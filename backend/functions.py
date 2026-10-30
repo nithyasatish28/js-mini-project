@@ -142,6 +142,27 @@ def register_student(event_id,roll_no):
     return{"message":"Registration successful"}
 
 
+def get_student_registrations(roll_no):
+    session = Session(engine)
+
+    registrations = session.query(Registrations).filter(
+        Registrations.roll_no == roll_no,
+        Registrations.cancelled_on == None
+    ).all()
+    response = []
+    for registration in registrations:
+        event = session.get(Events,registration.event_id)
+
+        temp_item = {
+            "registration_id": registration.id,
+            "event_id": event.id,
+            "title":event.title,
+            "event_date":event.event_date
+        }
+
+        response.append(temp_item)
+    session.close()
+    return response
     
 
   
