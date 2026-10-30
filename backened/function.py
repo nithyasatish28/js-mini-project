@@ -61,3 +61,4 @@ def add_new_event(title: str, club: str, category: str, events_date:str,total_se
         response = ["title"=events.title, "club"= events.club, "events_date"= events.events_date ,"total_seats"=events.total_seats,]
         session.close()
         return response
+
