@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Amruta Nagavi |  |  |  |  |
+| Day 1 | Amruta Nagavi | setup database and create tables |  |  |  |
 | Day 1 | Toshimah Devi Palanadoo | set up fastAPI and CORS and seed data |  |  |  |
 | Day 2 | Amruta Nagavi |  |  |  |  |
 | Day 2 | Toshimah Devi Palanadoo |  |  |  |  |
