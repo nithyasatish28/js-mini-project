@@ -25,4 +25,13 @@ class Event(BaseModel):
 class Registration(BaseModel):
     roll_no: str
 
+@app.get("/events")
+def get_events(category=None):
+
+    if category != None:
+        if category not in ["technical", "cultural", "sports", "workshop", "seminar"]:
+            raise HTTPException(status_code=422, detail="Invalid category")
+
+    return functions.get_all_events(category=category)
+
 
