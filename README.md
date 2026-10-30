@@ -25,9 +25,15 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
+<<<<<<< Updated upstream
 | E1 |  | ⬜ | ✅ | ⬜ |  |
 | E2 |  | ⬜ | ⬜ | ⬜ |  |
 | E3 |  | ⬜ | ⬜ | ⬜ |  |
+=======
+| E1 | GET /complaints?status=&category= | ✅ | ⬜ | ⬜ | Rehaan (API), Darsh (React) |
+| E2 | GET /complaints/{id} | ⬜ | ⬜ | ⬜ | Rehaan (API), Darsh (React) |
+| E3 | POST /complaints | ⬜ | ⬜ | ⬜ | Rehaan (API), Darsh (React) |
+>>>>>>> Stashed changes
 | E4 |  | ⬜ | ⬜ | ⬜ |  |
 | E5 |  | ⬜ | ⬜ | ⬜ |  |
 | E6 |  | ⬜ | ⬜ | ⬜ |  |
