@@ -28,7 +28,6 @@ class Registrations(Base):
 Base.metadata.create_all(engine)
 
 
-
 def get_all_events():
     session = Session(engine)
     events = session.query(Events).all()
@@ -80,3 +79,27 @@ def add_event(title,club,category,event_date,total_seats):
     session.commit()
     session.close()
     return response
+
+
+def delete_event(event_id):
+    session = Session(engine)
+    event = session.get(Events,event_id)
+
+    if event is None:
+        session.close()
+        return None
+    registrations = session.query(Registrations).filter(
+        Registrations.event_id == event_id,
+        Registrations.cancelled_on == None
+    ).all()
+    if len(registrations) > 0:
+        session.close()
+        return {"error" : "This event has active registrations"}
+    session.query(Registrations).filter(
+        Registrations.event_id ==event_id
+
+    ).delete()
+    session.delete(event)
+    session.commit()     
+    session.close()
+    return{"message":"Event deleted successfully"}
