@@ -71,7 +71,62 @@ git switch team-01-hostel
 
 Check that you're on the right branch: `git branch`. The line with `*` is the branch you're on. Your branch has only one file at first: `README.md`, your team tracker.
 
-### Step 3 · Save and push your work (every time something works)
+### Step 3 · Add the .gitignore (one partner, once, before any code)
+
+A `.gitignore` file tells Git which files to leave out, like `node_modules` (thousands of files) and secret `.env` files.
+
+1. In VS Code, in the **top folder** of the repo (next to `README.md`), create a new file named exactly `.gitignore`. It starts with a dot and has no other extension.
+2. Paste this into it:
+
+```gitignore
+# ---------- Frontend (React + Vite) ----------
+node_modules/
+dist/
+.vite/
+*.local
+
+# ---------- Backend (Python + FastAPI) ----------
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ---------- Secrets: never push these ----------
+.env
+.env.*
+!.env.example
+
+# ---------- Logs ----------
+*.log
+npm-debug.log*
+
+# ---------- Editor and OS files ----------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+```
+
+3. Commit and push it:
+
+```bash
+git add .gitignore
+git commit -m "Add .gitignore"
+git push
+```
+
+4. Your partner runs `git pull` to get it.
+
+> **Already pushed `node_modules` by mistake?** Add the `.gitignore` as above, then run:
+> ```bash
+> git rm -r --cached frontend/node_modules
+> git commit -m "Stop tracking node_modules"
+> git push
+> ```
+
+### Step 4 · Save and push your work (every time something works)
 
 ```bash
 git add .
@@ -81,7 +136,7 @@ git push
 
 **Push at least every 3 hours**, together with your tracker check-in.
 
-### Step 4 · Get your partner's work
+### Step 5 · Get your partner's work
 
 ```bash
 git pull
@@ -97,6 +152,7 @@ Pull before you start working, and whenever your partner tells you they've pushe
 js-mini-project/            (on your team's branch)
 ├── backend/        main.py, functions.py, your .db file, requirements.txt
 ├── frontend/       your Vite React app (without node_modules)
+├── .gitignore      the file from Step 3
 └── README.md       your team tracker
 ```
 
@@ -111,7 +167,7 @@ By the end of Day 2, also fill in *How to run our app* in the same file.
 
 1. **Never push to `main`**, and never push to another team's branch.
 2. **Check your branch before you push:** `git branch`.
-3. **Don't push big folders:** no `node_modules/` or `.venv/`. If `git add .` shows thousands of files, stop and ask.
+3. **Add the `.gitignore` before any code.** Never push `node_modules/`, `.venv/` or `.env`. If `git add .` shows thousands of files, stop and ask.
 4. **Write commit messages that say what changed:** "Add borrow rules", not "update".
 5. **Update your tracker README every 3 hours, and push it.**
 6. **Both partners must be able to explain any part of the code.**
