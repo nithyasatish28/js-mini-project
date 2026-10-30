@@ -23,15 +23,15 @@ Update your own row at every check-in.
 
 Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 
-| # | Method + path          | Built | Rules checked in /docs | Connected to React | Who |
-|---|------------------------|-------|---|---|---|
-| E1 | GET /plants            | 🟡    | ⬜ | ⬜ |  |
-| E2 | GET /plants/{plant_id} | 🟡    | ⬜ | ⬜ |  |
-| E3 | POST /plants           | 🟡    | ⬜ | ⬜ |  |
-| E4 |                        | 🟡    | ⬜ | ⬜ |  |
-| E5 |                        | 🟡    | ⬜ | ⬜ |  |
-| E6 |                        | 🟡      | ⬜ | ⬜ |  |
-| E7 |                        | ⬜    | ⬜ | ⬜ |  |
+| # | Method + path            | Built   | Rules checked in /docs | Connected to React | Who |
+|---|--------------------------|---------|---|---|---|
+| E1 | GET /plants              | 🟡      | ⬜ | ⬜ |  |
+| E2 | GET /plants/{plant_id}   | 🟡      | ⬜ | ⬜ |  |
+| E3 | POST /plants             | 🟡      | ⬜ | ⬜ |  |
+| E4 | PATCH /plants/{plant_id} | 🟡      | ⬜ | ⬜ |  |
+| E5 | PATCH /plants/{plant_id} | 🟡      | ⬜ | ⬜ |  |
+| E6 | POST /water              | 🟡      | ⬜ | ⬜ |  |
+| E7 |                          | ⬜      | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
