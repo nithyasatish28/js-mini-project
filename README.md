@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |GET/stations  | ⬜ | ⬜ | ⬜ |  |
+| E2 |GET/stations/{station_id}  | ⬜ | ⬜ | ⬜ |  |
+| E3 |POST/stations  | ⬜ | ⬜ | ⬜ |  |
+| E4 |POST/borrow  | ⬜ | ⬜ | ⬜ |  |
+| E5 |PATCH /borrows/{borrow_id}/return  | ⬜ | ⬜ | ⬜ |  |
+| E6 |GET /students/{roll_no}/umbrella  | ⬜ | ⬜ | ⬜ |  |
+| E7 |GET /stations/needs-attention | ⬜ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
