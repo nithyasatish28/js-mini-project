@@ -87,6 +87,7 @@ def get_plant(id):
             response_water.append(temp_water)     
         session.close()
         return response
+<<<<<<< HEAD
 
 
 # E4-adpot by roll number
@@ -94,3 +95,5 @@ def adpot_plant(id,roll_no):
     session = Session(engine)
     plant = session.get(Plants, id)
     return
+=======
+>>>>>>> df399db81b6cb33d4823d8cfe08fe7a2f57ba2c9
