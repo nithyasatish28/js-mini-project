@@ -27,10 +27,10 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 |---|---|---|---|---|---|
 | E1 |get /events | ✅ | ✅ | ⬜ | Thanuja |
 | E2 |get /events/{event_id}  | ✅ | ✅ | ⬜ | Thanuja |
-| E3 |post /events  | ✅ | ⬜ | ⬜ |Thanuja  |
+| E3 |post /events  | ✅ | ✅ | ⬜ |Thanuja  |
 | E4 |DELETE /events/{events_id}  | ✅ | ✅ | ⬜ | Thanuja |
 | E5 |POST /events/{event_id}/registrations  | ✅ | ✅ | ⬜ | Thanuja |
-| E6 |GET /registrations?roll_no=  | ✅ | ⬜ | ⬜ | Thanuja |
+| E6 |GET /registrations?roll_no=  | ✅ | ✅ | ⬜ | Thanuja |
 | E7 |PATCH /registrations/{registration_id}/cancel  | ✅ | ✅ | ⬜ | Thanuja |
 
 ## 3. Frontend tracker
