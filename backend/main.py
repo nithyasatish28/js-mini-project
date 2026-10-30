@@ -17,3 +17,11 @@ app.add_middleware(
 @app.get("/complaints")
 def all_complaints():
     return functions.get_all_complaints()
+
+#E2
+@app.get("/complaints/{id}")
+def get_complaint(id: int):
+    complaint = functions.get_complaint(id=id)
+    if complaint is None:
+        raise HTTPException(status_code=404, detail="Complaint not found")
+    return complaint
