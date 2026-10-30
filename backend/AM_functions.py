@@ -1,5 +1,8 @@
-from sqlalchemy import Integer, String, Column, create_engine,inspect
+from http.client import HTTPException
+
+from sqlalchemy import Integer, String, Column, create_engine,inspect,ForeignKey
 from sqlalchemy.orm import Session, declarative_base;
+
 from datetime import datetime;
 
 DB_PATH = "garden.db"
@@ -8,7 +11,7 @@ engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
 print(inspect(engine).get_table_names())
 
-class plants(Base):
+class Plants(Base):
     __tablename__="plants"
 
     id = Column(Integer,primary_key = True)
@@ -20,20 +23,23 @@ class plants(Base):
     
    
 
-class waterings(Base):
+class Waterings(Base):
     __tablename__="waterings"
     
     id = Column(Integer,primary_key = True)
-    plant_id = Column(Integer, Foreign_Key=plants.id)
+    plant_id = Column(Integer, ForeignKey("plants.id"))
     roll_no = Column(String)
     watered_on= Column(String)
     
     
 Base.metadata.create_all(engine)
 
+
+# get all plants
 def get_all_plants():
+    
     session = Session(engine)
-    plants = session.query(plants).all()
+    plants = session.query(Plants).all()
     response = []
     for plant in plants:
         temp_plant ={
@@ -47,4 +53,20 @@ def get_all_plants():
     return response 
 
 
- 
+def get_plant(id):
+    session = Session(engine)
+    plant = session.get(Plants, id)
+    if plant is None:
+        session.close()
+        
+    else:
+        response = {
+                "id": plant.id,
+                "name": plant.name,
+                "type": plant.type,
+                "location": plant.location,
+                "water_every_days": plant.water_every_days,
+                "adopted_by": plant.adopted_by
+            }
+        session.close()
+        return response

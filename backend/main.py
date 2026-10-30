@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 import AM_functions
 
 app =FastAPI()
@@ -7,3 +7,9 @@ app =FastAPI()
 def get_plants():
     return AM_functions.get_all_plants()
 
+@app.get("/plants/{id}")
+def get_plant(id: int):
+    plant = AM_functions.get_plant(id=id)
+    if plant is None:
+        raise HTTPException(status_code=404, detail="Plant not found")
+    return plant
