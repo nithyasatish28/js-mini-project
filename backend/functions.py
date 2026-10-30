@@ -86,7 +86,7 @@ def get_one_complaint(id:int):
 
     
 
-def update_complaint(complaint_id: int, new_status: str, note: str,description,category,rollno,roomno):
+def update_complaint(complaint_id: int,description,category,rollno,roomno):
     session = Session(engine)
     complaint = complaints(complaint_id=complaint_id,rollno=rollno,room_no=roomno,category=category,description=description,status="open")    
     session.commit()
