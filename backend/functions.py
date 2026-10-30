@@ -130,5 +130,22 @@ def update_service( equipment_id, in_service):
         session.close()
 
 
+#E5
+def add_booking(equipment_id, roll_no, booking_date, booked_on=date.today()):
+        session = Session(engine)
+        booking = Booking(equipment_id=equipment_id, roll_no=roll_no, booking_date=booking_date,booked_on=booked_on)
+        session.add(booking)
+        response =  {
+            "id": booking.id,
+            "equipment_id": booking.equipment_id,
+            "roll_no": booking.roll_no,
+            "booking_date": booking.booking_date,
+            "booked_on": booking.booked_on,
+            "cancelled": booking.cancelled
+        }
+        session.commit()
+        session.close()
+        return response
+
 
 
