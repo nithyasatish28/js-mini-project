@@ -127,6 +127,103 @@ def create_complaint(rollno, roomno, category, description):
     return temp
 
 
+def update_complaint(id, status, note):
+    session = Session(engine)
+    complaint = session.get(Complaints, id)
+
+    if complaint is None:
+        session.close()
+        return None
+
+    complaint.status = status
+
+    if status == "resolved":
+        complaint.resolved_on = datetime.now()
+
+    update = Updates(
+        complaint_id=id,
+        status=status,
+        note=note
+    )
+
+    session.add(update)
+    session.commit()
+
+    temp = {
+        "id": complaint.id,
+        "status": complaint.status
+    }
+
+    session.close()
+    return temp
+
+
+def fetch_student_complaint(roll_no):
+    session = Session(engine)
+
+    complaints = session.query(Complaints).filter(
+        Complaints.roll_no == roll_no
+    ).all()
+
+    response = []
+
+    for complaint in complaints:
+        temp = {
+            "id": complaint.id,
+            "roll_no": complaint.roll_no,
+            "room_no": complaint.room_no,
+            "category": complaint.category,
+            "description": complaint.description,
+            "status": complaint.status,
+            "created_on": complaint.created_on,
+            "resolved_on": complaint.resolved_on
+        }
+
+        response.append(temp)
+
+    session.close()
+    return response
+
+
+def remove_complaint(id):
+    session = Session(engine)
+    complaint = session.get(Complaints, id)
+
+    if complaint is None or complaint.status != "open":
+        session.close()
+        return False
+
+    session.query(Updates).filter(
+        Updates.complaint_id == id
+    ).delete()
+
+    session.delete(complaint)
+    session.commit()
+    session.close()
+
+    return True
+
+
+def get_status_counts():
+    session = Session(engine)
+
+    temp = {
+        "open": session.query(Complaints).filter(
+            Complaints.status == "open"
+        ).count(),
+
+        "in_progress": session.query(Complaints).filter(
+            Complaints.status == "in_progress"
+        ).count(),
+
+        "resolved": session.query(Complaints).filter(
+            Complaints.status == "resolved"
+        ).count()
+    }
+
+    session.close()
+    return temp
+
 
 
 
