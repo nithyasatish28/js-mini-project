@@ -160,10 +160,11 @@ def water_plant(plant_id, roll_no):
         return {"code": 409, "msg": "Plant has been already watered today"}
     new_watered = Watering(plant_id=plant_id,roll_no=roll_no)
     session.add(new_watered)
+    response = {"code":200, "watering":plant_to_dict(plant)}
     session.commit()
     session.close()
 
-    return {"code":200, "watering":plant_to_dict(plant)}
+    return response
 
 
 

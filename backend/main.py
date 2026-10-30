@@ -50,7 +50,7 @@ def water(body : Watering):
 
 @app.get("/plants")
 def plants(plant_type=None):
-    if plant_type.lower() not in ["succulent","flowering","herb","indoor","tree"]:
+    if plant_type and plant_type.lower() not in ["succulent","flowering","herb","indoor","tree"]:
         raise HTTPException(status_code=404,detail="No such type exists")
     return functions.get_all_plants(plant_type=plant_type)
 
