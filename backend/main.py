@@ -47,10 +47,13 @@ def update_service(equipment_id: int, in_service: int):
     return result
 
 
+from datetime import date
+
+@app.post("/bookings", status_code=201)
 def book_equipment(equipment_id: int, roll_no: str, booking_date: date):
 
     if not roll_no.strip():
-        raise HTTPException(status_code=422, detail="Roll number required")
+        raise HTTPException(status_code=422, detail="Roll number is required")
 
     if booking_date < date.today():
         raise HTTPException(status_code=422, detail="Past date not allowed")
@@ -62,11 +65,14 @@ def book_equipment(equipment_id: int, roll_no: str, booking_date: date):
 
     if result is None:
         raise HTTPException(status_code=404, detail="Equipment not found")
+
     if result == "out_of_service":
         raise HTTPException(status_code=409, detail="Equipment is out of service")
+
     if result == "already_booked":
-        raise HTTPException(status_code=409, detail="Equipment already booked")
+        raise HTTPException(status_code=409, detail="Equipment is already booked for this date")
+
     if result == "booking_limit":
-        raise HTTPException(status_code=409, detail="Maximum 2 bookings allowed")
+        raise HTTPException(status_code=409, detail="Maximum 2 bookings allowed per day")
 
     return result

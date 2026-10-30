@@ -109,12 +109,14 @@ def book_equipment(equipment_id, roll_no, booking_date):
 
     with SessionLocal() as db:
 
-        equipment = db.get(Equipment, equipment_id)
+        equipment = db.query(Equipment).filter(
+            Equipment.id == equipment_id
+        ).first()
 
         if equipment is None:
             return None
 
-        if equipment.in_service == 0:
+        if not equipment.in_service:
             return "out_of_service"
 
         booking = db.query(Bookings).filter(
