@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Kommaddi Fayaz | main.py (endpoints) |  |  |  |
-| Day 1 | Ganga Siva Kumar Reddy |  |  |  |  |
+| Day 1 | Ganga Siva Kumar Reddy |functions.py  | no |one more function  |  |
 | Day 2 | Kommaddi Fayaz |  |  |  |  |
 | Day 2 | Ganga Siva Kumar Reddy |  |  |  |  |
 | Day 3 | Kommaddi Fayaz |  |  |  |  |
