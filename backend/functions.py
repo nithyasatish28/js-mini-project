@@ -76,13 +76,9 @@ def get_one_complaint(id:int):
     for update in query2:
         temp = {
             "id" : update.id,
-            "roll_no" : update.rollno,
-            "room_no" : update.room_no,
-            "category" : update.category,
-            "description" : update.description,
             "status" : update.status,
-            "created_on" : update.created_on,
-            "resolved_on" : update.resolved_on
+            "note" : update.note,
+            "updated_on" : update.updated_on
         }
         response.append(temp)
     session.close()
