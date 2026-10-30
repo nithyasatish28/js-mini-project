@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | A Akshay |  |  |  |  |
-| Day 1 | Lakshya R |  |  |  |  |
+| Day 1 | Lakshya R |working on functions.py(backend)|  |  |  |
 | Day 2 | A Akshay |  |  |  |  |
 | Day 2 | Lakshya R |  |  |  |  |
 | Day 3 | A Akshay |  |  |  |  |
