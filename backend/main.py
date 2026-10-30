@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from fastapi import FastAPI , HTTPException
 import functions
 
@@ -24,3 +25,14 @@ def remove_events(event_id):
 def register_events(event_id: int, roll_no):
     return functions.register(event_id=event_id, roll_no=roll_no)
 
+=======
+from fastapi import FastAPI,HTTPException
+from datetime import datetime
+import functions
+
+app = FastAPI()
+
+@app.post("/events")
+def item():
+    return functions.add_event(title="Test Event", club="Test Club", category="Test Category", event_date=datetime.now(), total_seats=100)
+>>>>>>> Stashed changes
