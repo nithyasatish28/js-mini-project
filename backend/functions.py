@@ -29,15 +29,11 @@ class Update(Base):
 
 Base.metadata.create_all(engine)
 
-def get_all_complaints(status=None, category=None):
+def get_all_complaints():
     session = Session(engine)
-    complaints = session.query(complaints).all()
+    complaints = session.query(Complaint).all()
     response = []
     for complaint in complaints:
-        if status and complaint.status != status:
-            continue
-        if category and complaint.category != category:
-            continue
         temp_complaint = {
             "id": complaint.id,
             "roll_no": complaint.roll_no,
@@ -45,8 +41,8 @@ def get_all_complaints(status=None, category=None):
             "category": complaint.category,
             "description": complaint.description,
             "status": complaint.status,
-            "created_on": complaint.created_on.isoformat(),
-            "resolved_on": complaint.resolved_on.isoformat() if complaint.resolved_on else None
+            "created_on": complaint.created_on,
+            "resolved_on": complaint.resolved_on
         }
         response.append(temp_complaint)
     session.close()
@@ -59,9 +55,7 @@ def get_complaint(complaint_id):
     if complaint is None:
         session.close()
         return None
-    updates = session.query(Update).filter(
-        Update.complaint_id == complaint_id
-    ).all()
+    updates = session.query(Update).filter(Update.complaint_id == complaint_id).all()
     response = {
         "id": complaint.id,
         "roll_no": complaint.roll_no,
@@ -69,10 +63,11 @@ def get_complaint(complaint_id):
         "category": complaint.category,
         "description": complaint.description,
         "status": complaint.status,
-        "created_on": complaint.created_on.isoformat(),
-        "resolved_on": complaint.resolved_on if complaint.resolved_on else None,
-        "updates": []
+        "created_on": complaint.created_on,
+        "resolved_on": complaint.resolved_on
     }
+
+    updates = []
     for update in updates:
         temp_update = {
             "id": update.id,
@@ -83,3 +78,6 @@ def get_complaint(complaint_id):
         response["updates"].append(temp_update)
     session.close()
     return response
+
+
+
