@@ -2,7 +2,7 @@
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
-| 10 | Konduru Nanda Kishore Raju | Aditya Sivaji Perumalla | [Umbrella-Sharing Stations](https://github.com/nithyasatish28/js-mini-project/blob/main/5-umbrella-sharing-stations.md) | `team-10-umbrellas` |
+| 10 | Aditya Sivaji Perumalla | — (working alone) | [Umbrella-Sharing Stations](https://github.com/nithyasatish28/js-mini-project/blob/main/5-umbrella-sharing-stations.md) | `team-10-umbrellas` |
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
@@ -12,11 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Konduru Nanda Kishore Raju |  |  |  |  |
 | Day 1 | Aditya Sivaji Perumalla |  |  |  |  |
-| Day 2 | Konduru Nanda Kishore Raju |  |  |  |  |
 | Day 2 | Aditya Sivaji Perumalla |  |  |  |  |
-| Day 3 | Konduru Nanda Kishore Raju |  |  |  |  |
 | Day 3 | Aditya Sivaji Perumalla |  |  |  |  |
 
 ## 2. Endpoint tracker
