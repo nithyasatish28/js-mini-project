@@ -1,7 +1,6 @@
-from sqlalchemy import Integer, String, Column , create_engine, DateTime, ForeignKey
-from sqlalchemy .orm import Session, declarative_base
-from datetime import datetime,date
-
+from sqlalchemy import Integer, String, Column, create_engine,DateTime, ForeignKey
+from sqlalchemy.orm import Session, declarative_base
+from datetime import datetime
 
 DB_PATH = "events.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -26,9 +25,6 @@ class Registrations(Base):
     event_id = Column(Integer,ForeignKey("events.id"),nullable=False)
     registered_on = Column(DateTime,default=datetime.now)
     cancelled_on = Column(DateTime,nullable=True)
-
-
-
 
 
 
