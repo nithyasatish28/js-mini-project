@@ -96,15 +96,12 @@ def adopt_plant(plant_id , roll_no):
     return {"code":200, "plant":plant_to_dict(plant)}
 
 
-def give_up_plant(plant_id, roll_no):
+def give_up_plant(plant_id):
     session = Session(engine)
     plant = session.get(Plants, plant_id)
     if not plant:
         session.close()
         return {"code": 404, "msg": "Plant Doesnt Exist"}
-    if plant.adopted_by != roll_no:
-        session.close()
-        return {"code": 403, "msg": "Plant is not adopted by you"}
     if not plant.adopted_by:
         session.close()
         return {"code": 409, "msg": "Plant is not adopted"}
