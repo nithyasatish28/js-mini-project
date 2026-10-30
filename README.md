@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | K. Jyoshna |will start doing backend end points E1,E2,E4,E5  |  |  |  |
-| Day 1 | Elluri Thammiksha | will start doing backend end points E3,E6,E7. |  |  |  |
+| Day 1 | K. Jyoshna |will start doing backend end points E1,E2,E4,E5, create datbase |  |  |  |
+| Day 1 | Elluri Thammiksha | will start doing backend end points E3,E6,E7,create database |  |  |  |
 | Day 2 | K. Jyoshna |  |  |  |  |
 | Day 2 | Elluri Thammiksha |  |  |  |  |
 | Day 3 | K. Jyoshna |  |  |  |  |
