@@ -169,5 +169,16 @@ def get_student_bookings(roll_no):
     session.close()
     return response
 
+#E7
+def cancel_booking(booking_id):
+    session = Session(engine)
+    booking = session.query(Booking).filter(Booking.id == booking_id).first()
+    if booking:
+        booking.cancelled = True
+        session.add(booking)
+        session.commit()
+        session.close()
 
+    session.close()
+    return booking
 
