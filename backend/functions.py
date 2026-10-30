@@ -79,36 +79,5 @@ def get_complaint(complaint_id):
     session.close()
     return response
 
-# def add_complaint(roll_no, room_no, category, description):
-#     session = Session(engine)
-
-#     complaint = Complaint(
-#         roll_no=roll_no,
-#         room_no=room_no,
-#         category=category,
-#         description=description,
-#         status="open"
-#     )
-#     session.add(complaint)
-#     session.flush()
-#     update = Update(
-#         complaint_id=complaint.id,
-#         status="open",
-#         note="Complaint raised."
-#     )
-#     session.add(update)
-#     session.commit()
-#     session.refresh(complaint)
-
-#     response = {
-#         "id": complaint.id,
-#         "roll_no": complaint.roll_no,
-#         "room_no": complaint.room_no,
-#         "category": complaint.category,
-#         "description": complaint.description,
-#         "status": complaint.status
-#     }
-#     session.close()
-#     return response
 
 
