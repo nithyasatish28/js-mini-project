@@ -50,17 +50,20 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 **Backend**
 
-```bash
-cd backend
-
+```powershell
+python -m pip install -r backend\requirements.txt
+python -m uvicorn backend.main:app --reload --port 8000
 ```
 
 **Frontend**
 
-```bash
+```powershell
 cd frontend
-
+npm install
+npm run dev
 ```
+
+Open the frontend at [http://localhost:8001](http://localhost:8001). The backend API is available at [http://localhost:8000/docs](http://localhost:8000/docs).
 
 ## 6. Proof of work
 
