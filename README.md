@@ -2,7 +2,7 @@
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
-| 10 | Konduru Nanda Kishore Raju | Aditya Sivaji Perumalla | [Umbrella-Sharing Stations](5-umbrella-sharing-stations.md) | `team-10-umbrellas` |
+| 10 | Konduru Nanda Kishore Raju | Aditya Sivaji Perumalla | [Umbrella-Sharing Stations](https://github.com/nithyasatish28/js-mini-project/blob/main/5-umbrella-sharing-stations.md) | `team-10-umbrellas` |
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
