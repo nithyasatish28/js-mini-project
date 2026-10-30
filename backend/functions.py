@@ -81,3 +81,5 @@ def get_complaint(complaint_id):
 
 
 
+def get_complaint_by_status(status):
+    pass

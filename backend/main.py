@@ -40,5 +40,4 @@ def show_complaints(roll_no):
 def getbystatus():
     status_open = functions.get_complaint_by_status(status="open")
     status_x=[]
-    status_y = []
     return {"open":len(status_open), "x":len(status_x)}
