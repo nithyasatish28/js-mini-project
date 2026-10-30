@@ -1,6 +1,7 @@
 from fastapi import FastAPI,HTTPException
 from Backend import E1
 from Backend import E2
+from Backend import E3
 
 
 
@@ -25,3 +26,13 @@ def get_equipment_by_id(equipment_id: int):
         raise HTTPException(status_code=404, detail="Equipment not found")
 
     return equipment
+
+# E3 - Add new equipment
+@app.post("/equipment")
+def add_equipment(name: str, equipment_type: str, lab_room: str):
+
+    return E3.add_equipment(
+        name=name,
+        type=equipment_type,
+        lab_room=lab_room
+    )
