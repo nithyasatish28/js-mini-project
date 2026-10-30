@@ -29,13 +29,13 @@ Run it on port **8001**, and add CORS so the React app can call it.
 
 | # | What it does | Method | Path | Request body | Success code | Error codes |
 | --- | --- | --- | --- | --- | --- | --- |
-| E1 | Get all the stations. Each one includes its umbrellas available and its free slots. |GET |/api/stations |not required |200 | |
-| E2 | Get one station by its id. |GET |/api/stations/{id} |not required |200 | |
-| E3 | Add a new station: name, location, capacity, and how many umbrellas it starts with. |POST |/api/stations |required |201 | |
-| E4 | Borrow an umbrella from a station with a roll number. The borrow date is today. |POST |/api/borrowings |required |201 | |
-| E5 | Return an umbrella to a station (it can be a different station). The return date is today. |PUT |/api/borrowings/{id}/return | |200 | |
-| E6 | Get one student's umbrella that isn't returned yet, by roll number. It includes the name of the station it came from. |GET |/api/students/{rollNumber}/borrowing |not required |200 | |
-| E7 | Get the stations that need attention: empty ones (0 umbrellas) and full ones (0 free slots). |GET |/api/stations/attention |not required |200 | |
+| E1 | Get all the stations. Each one includes its umbrellas available and its free slots. || |
+| E2 | Get one station by its id.  | |
+| E3 | Add a new station: name, location, capacity, and how many umbrellas it starts with.
+| E4 | Borrow an umbrella from a station with a roll number. The borrow date is today.
+| E5 | Return an umbrella to a station (it can be a different station). The return date is today. 
+| E6 | Get one student's umbrella that isn't returned yet, by roll number. It includes the name of the station it came from. 
+| E7 | Get the stations that need attention: empty ones (0 umbrellas) and full ones (0 free slots). 
 
 ## 4. Rules the API must check
 
