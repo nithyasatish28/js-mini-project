@@ -1,5 +1,6 @@
 from datetime import datetime
-from datetime import date 
+from datetime import date
+from http.client import HTTPException 
 from sqlalchemy import Column, DateTime,Date, Integer, ForeignKey, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
@@ -149,4 +150,36 @@ def book_equipment(equipment_id, roll_no, booking_date):
         db.commit()
         db.refresh(new_booking)
 
-        return booking_response(new_booking, equipment.name)
+        return booking_response(new_booking, equipment.name)  
+    
+    
+def get_student_bookings(roll_no):
+    with SessionLocal() as db:
+        bookings = db.query(Bookings).filter(
+            Bookings.roll_no == roll_no,
+            Bookings.cancelled == 0,
+            Bookings.booking_date >= date.today()
+        ).all()
+
+        return [booking_response(booking) for booking in bookings]
+    
+    
+def get_booking(booking_id):
+      with SessionLocal() as db:
+        return db.query(Bookings).filter(
+            Bookings.id == booking_id
+        ).first()
+
+
+def cancel_booking(booking_id):
+    with SessionLocal() as db:
+        booking = db.query(Bookings).filter(
+            Bookings.id == booking_id
+        ).first()
+
+        booking.cancelled = 1
+        db.commit()
+        db.refresh(booking)
+
+        return booking_response(booking)   
+    

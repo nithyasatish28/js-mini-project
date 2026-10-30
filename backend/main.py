@@ -75,4 +75,24 @@ def book_equipment(equipment_id: int, roll_no: str, booking_date: date):
     if result == "booking_limit":
         raise HTTPException(status_code=409, detail="Maximum 2 bookings allowed per day")
 
-    return result
+    return result  
+
+
+@app.get("/students/{roll_no}/bookings")
+def student_bookings(roll_no):
+    if not roll_no:
+        raise HTTPException(status_code=422, detail="Roll number is required")
+
+    return functions.get_student_bookings(roll_no=roll_no)  
+
+@app.patch("/bookings/{booking_id}/cancel")
+def cancel_booking(booking_id):
+    booking = functions.get_booking(booking_id)
+
+    if booking is None:
+        raise HTTPException(status_code=404, detail="Booking not found")
+
+    if booking.cancelled == 1:
+        raise HTTPException(status_code=409, detail="Booking is already cancelled")
+
+    return functions.cancel_booking(booking_id)
