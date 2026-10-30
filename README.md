@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Sanghavi S |  |  |  |  |
+| Day 1 | Sanghavi S | Understand project requirements, design API endpoints and plan SQLite database structure. |  |  |  |
 | Day 1 | Naidile D |  |  |  |  |
 | Day 2 | Sanghavi S |  |  |  |  |
 | Day 2 | Naidile D |  |  |  |  |
