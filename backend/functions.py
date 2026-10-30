@@ -26,13 +26,13 @@ class Bookings(Base):
     cancelled = Column(Integer, nullable=False, default=0)
 Base.metadata.create_all(engine)
 
-def equipment_response(item):
+def equipment_response(equipment):
 
     return {
-        "id": item.id,
-        "name": item.name,
-        "type": item.type,
-        "lab_room": item.lab_room,
-        "in_service": item.in_service
+        "id": equipment.id,
+        "name": equipment.name,
+        "type": equipment.type,
+        "lab_room": equipment.lab_room,
+        "in_service": equipment.in_service
     }
 
