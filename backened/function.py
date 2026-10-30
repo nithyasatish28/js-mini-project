@@ -63,11 +63,16 @@ def get_event(id):
 
 
 def add_new_event(title: str, club: str, category: str, events_date:str,total_seats:int):
-        session = Session(engine)  
-        events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
-        response = ["title"=events.title, "club"= events.club, "events_date"= events.events_date ,"total_seats"=events.total_seats]
-        session.close()
-        return response
+    session = Session(engine)  
+    events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+    response = { "title"=events.title,
+                 "club"= events.club, 
+                 "events_date"= events.events_date ,
+                 "total_seats"=events.total_seats
+
+    }
+    session.close()
+    return response
 
 def delete_event(event_id):
  session = Session(engine)  
