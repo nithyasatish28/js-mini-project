@@ -118,3 +118,4 @@ def add_equipment(name, type, lab_room):
     session.close()
     return response
 
+
