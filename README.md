@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Ayushman Anand | create backend folder, install required libs, create backend files | backend folder  | install required files, created backend files, installed required lib|  nothing right now |
+| Day 1 | Ayushman Anand | Create backend folder, install required libraries, set up database and backend files, and create the initial API endpoints. | Created backend and frontend folders, installed required libraries, created main.py and function.py, set up the SQLite database using SQLAlchemy, created the Stations and Borrows database models, added five initial stations, created the root API endpoint, and added the GET /stations endpoint to retrieve all stations with their free slots.  | Test the GET /stations endpoint and then work on the GET /stations/{id} endpoint.|  nothing right now |
 | Day 1 | Shafreen | Create react app | working on it |  |  |
 | Day 2 | Ayushman Anand |  |  |  |  |
 | Day 2 | Shafreen |  |  |  |  |
