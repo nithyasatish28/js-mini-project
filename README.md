@@ -43,7 +43,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 ## 4. Blockers and help needed
 
-- 
+- stuck on creating two tables and cross referencing them
 
 ## 5. How to run our app
 
