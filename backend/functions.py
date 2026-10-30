@@ -25,6 +25,7 @@ class Bookings(Base):
     booked_on = Column(DateTime, nullable=False)
     cancelled = Column(Integer, nullable=False, default=0)
 Base.metadata.create_all(engine)
+equipment_types = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"]
 
 def equipment_response(equipment):
 
@@ -36,3 +37,12 @@ def equipment_response(equipment):
         "in_service": equipment.in_service
     }
 
+def get_all_equipments(equipment_type=None):
+    with SessionLocal() as db:
+        if equipment_type:
+            equipment = db.query(Equipment).filter(
+                Equipment.type == equipment_type).all()
+        else:
+            equipment = db.query(Equipment).all()
+
+        return [equipment_response(item) for item in equipment]
