@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Darsh Keshav |  |  |  |  |
+| Day 1 | Darsh Keshav | Set up Git and the team-06-hostel branch. Create the Vite React app in frontend/. Put API_URL in one place. |  |  |  |
 | Day 1 | Rehaan Saha |  |  |  |  |
 | Day 2 | Darsh Keshav |  |  |  |  |
 | Day 2 | Rehaan Saha |  |  |  |  |
