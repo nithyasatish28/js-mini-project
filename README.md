@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Padmaraju Poojitha | creating database tables |  |  |  |
-| Day 1 | S Thanmayee |  |  |  |  |
+| Day 1 | S Thanmayee |Prepare API and DB requirements  |  |  |  |
 | Day 2 | Padmaraju Poojitha |  |  |  |  |
 | Day 2 | S Thanmayee |  |  |  |  |
 | Day 3 | Padmaraju Poojitha |  |  |  |  |
