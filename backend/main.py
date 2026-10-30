@@ -34,4 +34,14 @@ def get_events(category=None):
 
     return functions.get_all_events(category=category)
 
+@app.get("/events/{event_id}")
+def get_event(event_id: int):
+
+    response = functions.get_event(id=event_id)
+
+    if response is None:
+        raise HTTPException(status_code=404, detail="Event not found")
+
+    return response
+
 
