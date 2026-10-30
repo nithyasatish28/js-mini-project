@@ -1,10 +1,11 @@
 from datetime import datetime
-
+from pathlib import Path
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
+BASE_DIR = Path(__file__).resolve().parent
+DB_PATH = BASE_DIR / "lab.db"
 
-DB_PATH = "lab.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
