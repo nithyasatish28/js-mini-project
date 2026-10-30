@@ -1,7 +1,8 @@
-from fastapi import FastAPI,HTTPException
+from fastapi import FastAPI, HTTPException
 from Backend import E1
 from Backend import E2
 from Backend import E4
+from Backend import E5
 
 
 app=FastAPI()
@@ -31,3 +32,4 @@ def get_equipment_by_id(equipment_id: int):
 def mark_equipment_status(equipment_id: int, in_service: bool):
     E4.mark_equipment_status(equipment_id, in_service)
     return {"message": "Equipment status updated successfully."}
+
