@@ -181,7 +181,7 @@ def need_to_water_today(): #gets the plants that need to be watered today, E7
     plants = session.query(Plants).all()
     response = []
     for plant in plants:
-        last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one()
+        last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one_or_none()
         temp_plant = {
             "id": plant.id,
             "name": plant.name,
@@ -191,7 +191,7 @@ def need_to_water_today(): #gets the plants that need to be watered today, E7
             "adopted_by": plant.adopted_by,
             "last_watered": last_watered
         }
-        if (date.today() - date.fromisoformat(last_watered)).days >= plant.water_every_days:
+        if last_watered and (date.today() - date.fromisoformat(last_watered)).days >= plant.water_every_days:
             response.append(temp_plant)
     session.close()
     return response

@@ -37,7 +37,7 @@ Run it on port **8001**, and add CORS so the React app can call it.
 | E4 | Adopt a plant with a roll number. | PATCH  | /plants/{plant_id} | {adopted_by:""}                                   | 200          | 404 , 409       |
 | E5 | Give up (un-adopt) a plant. | PATCH  | /plant/{plant_id} | {adopted_by:null}                                 | 200          | 404,409         |
 | E6 | Log a watering with a roll number. The watering date is today. | POST   | /water      | {plant_id:"",roll_no:""}                            | 201          | 403,404,409,422 |
-| E7 | Get the plants that need water today. |        |             |                                                   |              |                 |
+| E7 | Get the plants that need water today. |  GET      |  /water           |                                                   |              |                 |
 
 ## 4. Rules the API must check
 
