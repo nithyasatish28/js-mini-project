@@ -12,7 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | H A Bhuvan | In Frontend Part,App.jsx|  |  |  |
+| Day 1 | H A Bhuvan | README.md
+In Frontend Part,App.jsx|  |  |  |
 | Day 1 | Pavan Kumar |In backend part, presently creating databse  |  |  |  |
 | Day 2 | H A Bhuvan |  |  |  |  |
 | Day 2 | Pavan Kumar |  |  |  |  |
