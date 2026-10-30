@@ -63,4 +63,44 @@ def add_starting_items():
 
 add_starting_items()
 
+# E1
+def get_all_equipment(type=None):
+    if type is not None and type not in VALID_TYPES:
+        raise HTTPException(status_code=422, detail="Type must be microscope, oscilloscope, 3d-printer, laptop or camera.")
+    session = Session(engine)
+    if type is None:
+        items = session.query(Equipment).all()
+    else:
+        items = session.query(Equipment).filter(Equipment.type == type).all()
+    response = []
+    for item in items:
+        response.append(equipment_to_dict(item))
+    session.close()
+    return response
 
+
+# E2
+def get_equipment(id):
+    session = Session(engine)
+    item = session.get(Equipment, id)
+    if item is None:
+        session.close()
+        raise HTTPException(status_code=404, detail="Equipment not found.")
+    response = equipment_to_dict(item)
+    session.close()
+    return response
+
+
+# E3
+def add_equipment(name, type, lab_room):
+    if name.strip() == "" or lab_room.strip() == "":
+        raise HTTPException(status_code=422, detail="Name and lab room must not be empty.")
+    if type not in VALID_TYPES:
+        raise HTTPException(status_code=422, detail="Type must be microscope, oscilloscope, 3d-printer, laptop or camera.")
+    session = Session(engine)
+    item = Equipment(name=name.strip(), type=type, lab_room=lab_room.strip(), in_service=1)
+    session.add(item)
+    session.commit()
+    response = equipment_to_dict(item)
+    session.close()
+    return response
