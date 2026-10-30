@@ -51,10 +51,15 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 **Backend**
 
-```bash
+```powershell
 cd backend
-
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m uvicorn main:app --reload
 ```
+
+Open http://127.0.0.1:8000 for the API status or http://127.0.0.1:8000/docs to try the endpoints.
 
 **Frontend**
 
