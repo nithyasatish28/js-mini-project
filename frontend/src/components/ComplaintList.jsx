@@ -1,16 +1,12 @@
 import ComplaintItem from "./ComplaintItem";
 
-function ComplaintList({ complaints }) {
+function ComplaintList({ complaints, onSelect }) {
   return (
     <>
-      <h1>All Complaints</h1>
-
-      <ul>
+      <h1>Complaints</h1>
+      <ul className="products">
         {complaints.map((complaint) => (
-          <ComplaintItem
-            key={complaint.id}
-            complaint={complaint}
-          />
+          <ComplaintItem key={complaint.id} complaint={complaint} onSelect={onSelect} />
         ))}
       </ul>
     </>
