@@ -2,7 +2,7 @@
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
-| 11 | Melvin Jacob | Naman Choudhary | [Hostel Complaint Tracker](1-hostel-complaint-tracker.md) | `team-11-hostel` |
+| 11 | Melvin Jacob | Naman Choudhary | [Hostel Complaint Tracker](https://github.com/nithyasatish28/js-mini-project/blob/main/1-hostel-complaint-tracker.md) | `team-11-hostel` |
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
