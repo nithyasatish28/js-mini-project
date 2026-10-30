@@ -20,4 +20,6 @@ def add_booking(equipment_id : int ,booking_date , roll_no : int):
 def get_equipments_not_booked(roll_no):
     return functions.get_student_bookings(roll_no)
 
-
+@app.patch("/booking/cancel/{roll_no}")
+def cancel_booking(booking_id : int):
+    return functions.cancel_booking(booking_id)
