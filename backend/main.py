@@ -13,7 +13,7 @@ def get_one_complaint(id:int):
 
 @app.post("/complaints")
 def create_complaint(rollno:str, roomno:int, description:str, category:str):
-    return functions.create_complaint(rollno=rollno, roomno=roomno, category=category, description=description)
+    return functions.update_complaint(rollno=rollno, roomno=roomno, category=category, description=description)
 
 @app.patch("/complaints/{complaint_id}")
 def update_complaint_status(complaint_id: int, new_status: str, note: str):
