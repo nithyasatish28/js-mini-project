@@ -25,4 +25,16 @@ class Registrations(Base):
     roll_no = Column(String, nullable=False)
     registered_on = Column(DateTime, default=datetime.now)
     cancelled_on = Column(DateTime, nullable=True)
+
+
+
+def get_all_events(category=None):
+    with SessionLocal() as db:
+        events = db.query(Events)
+
+        if category:
+            events = events.filter(Events.category == category)
+
+        events = events.all()
+        return [events_response(event) for event in events]    
     
