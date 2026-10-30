@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Gokul Reddy M |  |  |  |  |
-| Day 1 | Abhishek Nayak |  |  |  |  |
+| Day 1 | Gokul Reddy M | I am doing forntend |  |  |  |
+| Day 1 | Abhishek Nayak |I am doing backend|  |  |  |
 | Day 2 | Gokul Reddy M |  |  |  |  |
 | Day 2 | Abhishek Nayak |  |  |  |  |
 | Day 3 | Gokul Reddy M |  |  |  |  |
