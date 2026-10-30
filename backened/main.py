@@ -5,3 +5,9 @@ app = FastAPI()
 @app.get("/Events")
 def events():
     return function.get_all_event(  )
+
+
+
+@app.get ("/Events")
+def events(id):
+    return function.get_all_event() 

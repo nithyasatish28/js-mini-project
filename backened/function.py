@@ -27,12 +27,27 @@ class Registration(Base):
 
 Base.metadata.create_all(engine)
 
-def add_all_event( category:str,):
-        with Session(engine) as session:
-            events = Event( category=category)
-            session.add(events)
-            response={ "id":events.id, "title": events.title, "club": events.club, "category": events.category}
-            session.commit()
-            session.close()
-            return response                                             
-        
+def get_all_event(category:str):
+        session = Session(engine)
+        events = session.query(Event).all()
+        response = []
+        for event in events:
+             temp_event={"id":events_id}
+        session.close()
+
+    
+                                              
+def get_event(id):
+    session= Session(engine)
+    events= session.get(Event, id)
+    response = {"id": events.id, }
+    session.close()
+    return response
+
+
+def add_new_event(title: str, club: str, category: str, events_dates:str,total_seats:int):
+        session = Session(engine)  
+        events = session.add(title=title, club=club, events_dates=events_dates ,total_seats=total_seats )
+        response = ["title"=events.title, "club"= events.club, "events_dates"= events.events_dates ,"total_seats"=events.total_seats]
+        session.close()
+        return response
