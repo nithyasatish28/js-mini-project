@@ -5,10 +5,13 @@ import AM_functions
 
 app =FastAPI()
 
+@app.get("/")
+def hello():
+    return {"Message": "Amruta"}
 
 @app.get("/plants")
-def get_plants():
-    return AM_functions.get_all_plants()
+def get_plants(type: str = None):
+    return AM_functions.get_all_plants(type=type)
 
 @app.get("/plants/{id}")
 def get_plant(id: int):
