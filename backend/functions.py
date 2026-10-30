@@ -1,8 +1,8 @@
 
 
-from sqlalchemy import create_engine, Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, Date, ForeignKey
 from sqlalchemy.orm import Session, declarative_base
-from datetime import datetime
+from datetime import date
 
 DB_PATH = "garden.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -22,7 +22,7 @@ class Waterings(Base):
     id = Column(Integer, primary_key=True) 
     plant_id = Column(Integer, ForeignKey("plants.id")) 
     roll_no = Column(String)
-    watered_on = Column(DateTime, default=datetime.now) 
+    watered_on = Column(Date, default=date.today) 
 
 Base.metadata.create_all(engine)
 
@@ -64,24 +64,26 @@ def add_waterings(id,plant_id,roll_no,watered_on):
 
 
 # 3)get all plants
-def get_all_Plants():
+def get_all_plants():
     session = Session(engine)
-    Plants = session.query(Plants).all()
+    plants = session.query(Plants).all()
+
     response = []
-    for plant in Plants:
+    for plant in plants:
         temp_plant = {
             "id": plant.id,
-            "name":plant.name,
-            "type":plant.type,
+            "name": plant.name,
+            "type": plant.type,
+            "location": plant.location,
             "water_every_days": plant.water_every_days,
-            "location":  plant.location,
-            "adopted_by":  plant.adopted_by
-           
+            "adopted_by": plant.adopted_by
         }
 
         response.append(temp_plant)
+
     session.close()
     return response
+
 
 
 # 4)getting a plant by id
@@ -145,7 +147,7 @@ def get_plants_needing_water():
         )
 
     if last_watering is None or (
-        datetime.today() - last_watering.watered_on
+        date.today() - last_watering.watered_on
     ).days >= plant.water_every_days:
 
         temp_plant = {
