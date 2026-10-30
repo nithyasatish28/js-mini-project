@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Samhita Bhuvanagiri |  |  |  |  |
-| Day 1 | Aiman Patil |  |  |  |  |
+| Day 1 | Samhita Bhuvanagiri | Frontend |  |  |  |
+| Day 1 | Aiman Patil | Functions.py |  | Main.py |  |
 | Day 2 | Samhita Bhuvanagiri |  |  |  |  |
 | Day 2 | Aiman Patil |  |  |  |  |
 | Day 3 | Samhita Bhuvanagiri |  |  |  |  |
