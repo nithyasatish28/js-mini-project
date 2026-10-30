@@ -33,3 +33,40 @@ def add_equipment(name, equipment_type, lab_room):
 
     return functions.add_equipment(name=name,equipment_type=equipment_type,lab_room=lab_room)
 
+@app.patch("/equipment/{equipment_id}")
+def update_service(equipment_id: int, in_service: int):
+
+    if in_service not in [0, 1]:
+        raise HTTPException(status_code=422, detail="Invalid service status")
+
+    result = functions.update_service(equipment_id, in_service)
+
+    if result is None:
+        raise HTTPException(status_code=404, detail="Equipment not found")
+
+    return result
+
+
+def book_equipment(equipment_id: int, roll_no: str, booking_date: date):
+
+    if not roll_no.strip():
+        raise HTTPException(status_code=422, detail="Roll number required")
+
+    if booking_date < date.today():
+        raise HTTPException(status_code=422, detail="Past date not allowed")
+
+    if (booking_date - date.today()).days > 7:
+        raise HTTPException(status_code=422, detail="Booking date cannot be more than 7 days ahead")
+
+    result = functions.book_equipment(equipment_id, roll_no, booking_date)
+
+    if result is None:
+        raise HTTPException(status_code=404, detail="Equipment not found")
+    if result == "out_of_service":
+        raise HTTPException(status_code=409, detail="Equipment is out of service")
+    if result == "already_booked":
+        raise HTTPException(status_code=409, detail="Equipment already booked")
+    if result == "booking_limit":
+        raise HTTPException(status_code=409, detail="Maximum 2 bookings allowed")
+
+    return result

@@ -93,3 +93,58 @@ def add_equipment(name, equipment_type, lab_room):
         return equipment_response(equipment)
     
 
+def update_service(equipment_id, in_service):
+    with SessionLocal() as db:
+        equipment = db.get(Equipment, equipment_id)
+
+        if equipment is not None:
+            equipment.in_service = int(in_service)
+            db.commit()
+            db.refresh(equipment)
+
+            return equipment_response(equipment)
+        return None
+
+def book_equipment(equipment_id, roll_no, booking_date):
+
+    with SessionLocal() as db:
+
+        equipment = db.get(Equipment, equipment_id)
+
+        if equipment is None:
+            return None
+
+        if equipment.in_service == 0:
+            return "out_of_service"
+
+        booking = db.query(Bookings).filter(
+            Bookings.equipment_id == equipment_id,
+            Bookings.booking_date == booking_date,
+            Bookings.cancelled == 0
+        ).first()
+
+        if booking is not None:
+            return "already_booked"
+
+        count = db.query(Bookings).filter(
+            Bookings.roll_no == roll_no,
+            Bookings.booking_date == booking_date,
+            Bookings.cancelled == 0
+        ).count()
+
+        if count >= 2:
+            return "booking_limit"
+
+        new_booking = Bookings(
+            equipment_id=equipment_id,
+            roll_no=roll_no,
+            booking_date=booking_date,
+            booked_on=date.today(),
+            cancelled=0
+        )
+
+        db.add(new_booking)
+        db.commit()
+        db.refresh(new_booking)
+
+        return booking_response(new_booking, equipment.name)
