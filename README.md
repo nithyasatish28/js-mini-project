@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Darsh Keshav |  |  |  |  |
-| Day 1 | Rehaan Saha |  |  |  |  |
+| Day 1 | Rehaan Saha | Create hostel.db with the complaints and updates tables and 8 seed complaints |  |  |  |
 | Day 2 | Darsh Keshav |  |  |  |  |
 | Day 2 | Rehaan Saha |  |  |  |  |
 | Day 3 | Darsh Keshav |  |  |  |  |
