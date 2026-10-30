@@ -130,3 +130,6 @@ def update_complaint_status(complaint_id, new_status, note):
     
     session.close()
     return temp
+
+
+def get_students_complaints_byrollno():
