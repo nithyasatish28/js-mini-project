@@ -2,7 +2,7 @@
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
-| 08 | H A Bhuvan | Pavan Kumar | [Lab Equipment Booking](3-lab-equipment-booking.md) | `team-08-lab` |
+| 08 | H A Bhuvan | Pavan Kumar | [Lab Equipment Booking](https://github.com/nithyasatish28/js-mini-project/blob/main/3-lab-equipment-booking.md) | `team-08-lab` |
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
