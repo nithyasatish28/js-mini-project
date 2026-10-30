@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, String, Column, create_engine
 from sqlalchemy.orm  import Session, declarative_base
-from datetime import date, timedelta
+from datetime import datetime
 from fastapi import HTTPException 
 
 DB_PATH = "lab.db"
