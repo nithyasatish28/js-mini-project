@@ -22,7 +22,69 @@ class borrows(Base):
     borrowed_on = Column(DateTime, default=datetime.now)
     returned_on = Column(DateTime)
 
-Base.metaengine.create_all(engine)
+Base.metadata.create_all(engine)
+
+def get_all_stations():
+    session = Session(engine)
+    Stations = session.query(stations).all()
+    response = []
+    for station in Stations:
+        temp_station = {
+            "id": station.station_id,
+            "name": station.name,
+            "location": station.location,
+            "capacity": station.capacity,
+            "umbrellas_available": station.umbrellas_available
+        }
+
+        response.append(temp_station)
+    session.close()
+    return response
+
+
+# def add_stations(station_id, name, location, capacity, umbrellas_available):
+#     session = Session(engine)
+#     Station = stations(station_id = station_id, name = name, location = location, capacity = 20, umbrellas_available = umbrellas_available)
+#     session.add(Station)
+#     response = {
+#         "station_id": Station.station_id,
+#         "name": Station.name,
+#         "location": Station.location,
+#         "capacity": Station.capacity,
+#         "umbrellas_available": Station.umbrellas_available
+#     }
+#     session.commit()
+#     session.close()
+#     return response
+
+def get_station_by_id(station_id):
+    session = Session(engine)
+    Station = session.get(stations, station_id)
+    response = {
+        "station_id": Station.station_id,
+        "name": Station.name,
+        "location": Station.location,
+        "capacity": Station.capacity,
+        "umbrellas_available": Station.umbrellas_available,
+    }
+    session.close()
+    return response
+
+def update_stations(station_id, name, location, capacity, umbrellas_available):
+    session = Session(engine)
+    Station = stations(station_id = station_id, name = name, location = location, capacity = 20, umbrellas_available = umbrellas_available)
+    session.add(Station)
+    response = {
+        "station_id": Station.station_id,
+        "name": Station.name,
+        "location": Station.location,
+        "capacity": Station.capacity,
+        "umbrellas_available": Station.umbrellas_available
+    }
+    session.commit()
+    session.close()
+    return response
+
 
 
 
