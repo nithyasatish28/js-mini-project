@@ -98,6 +98,34 @@ def get_complaint(id):
     return response
 
 
+def create_complaint(rollno, roomno, category, description):
+    session = Session(engine)
+
+    complaint = Complaints(
+        roll_no=rollno,
+        room_no=roomno,
+        category=category,
+        description=description,
+        status="open"
+    )
+
+    session.add(complaint)
+    session.commit()
+
+    temp = {
+        "id": complaint.id,
+        "roll_no": complaint.roll_no,
+        "room_no": complaint.room_no,
+        "category": complaint.category,
+        "description": complaint.description,
+        "status": complaint.status,
+        "created_on": complaint.created_on,
+        "resolved_on": complaint.resolved_on
+    }
+
+    session.close()
+    return temp
+
 
 
 
