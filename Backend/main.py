@@ -6,6 +6,7 @@ from Backend import E3
 from Backend import E4
 from Backend import E5
 from Backend import E6
+from Backend import E7
 
 
 app=FastAPI()
@@ -59,6 +60,21 @@ def book_equipment(equipment_id: int, roll_no: str, booking_date: str):
 @app.get("/bookings/student/{roll_no}")
 def get_student_bookings(roll_no: str):
     return E6.get_student_bookings(roll_no)
+
+
+# E7 - Cancel booking
+@app.patch("/booking/{booking_id}/cancel")
+def cancel_booking(booking_id: int):
+
+    result = E7.cancel_booking(booking_id)
+
+    if result is None:
+        raise HTTPException(status_code=404, detail="Booking not found")
+
+    if result is False:
+        raise HTTPException(status_code=409, detail="Booking already cancelled")
+
+    return {"message": "Booking cancelled successfully."}
 
 
 
