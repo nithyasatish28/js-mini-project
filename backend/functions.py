@@ -17,8 +17,8 @@ class Plants(Base):
     location = Column(String, nullable=True)
     adopted_by = Column(String, nullable=True)
 
-class Watering(Base):
-    __tablename__ = "watering" 
+class Waterings(Base):
+    __tablename__ = "waterings" 
     id = Column(Integer, primary_key=True) 
     plant_id = Column(Integer, ForeignKey("Plants.id")) 
     roll_no = Column(Integer)
@@ -26,9 +26,9 @@ class Watering(Base):
 
 Base.metadata.create_all(engine)
 
-def add_plant(name, description,contact, location = None):
+def add_plant(id,name,type,water_every_days,adopted_by = bool,location = None):
     session = Session(engine)
-    item = Plants(name=name, description=description, contact=contact, location=location, status="active") 
+    plant = Plants(id = id,name=name,type =type,water_every_days = water_every_days,adopted_by = adopted_by,location= location) 
     session.add(Plants)
     response = {
         "id": Plants.id,
@@ -43,12 +43,27 @@ def add_plant(name, description,contact, location = None):
     session.close()
     return response
 
-def get_all_items():
+
+def add_waterings(id,plant_id,roll_no,watered_on):
+    session = Session(engine)
+    Watering = Waterings(id =id,plant_id = plant_id,roll_no= roll_no,watered_on = watered_on)
+    session.add(Waterings)
+    response = {
+        "id": Waterings.id,
+        "plant_id":Waterings.plant_id,
+        "roll_no":Waterings.roll_no,
+        "watered_on":Waterings.watered_on
+    }
+    session.commit() 
+    session.close()
+    return response
+
+def get_all_Plants():
     session = Session(engine)
     Plants = session.query(Plants).all()
     response = []
     for plant in Plants:
-        temp_item = {
+        temp_plant = {
             "id": plant.id,
             "name":plant.name,
             "type":plant.type,
@@ -58,7 +73,22 @@ def get_all_items():
            
         }
 
-        response.append(temp_item)
+        response.append(temp_plant)
+    session.close()
+    return response
+
+def get_all_Waterings():
+    session = Session(engine)
+    Waterings = session.query(Waterings).all()
+    response =[]
+    for watering in Waterings:
+        temp_watering = {
+            "id": watering.id,
+            "plant_id": watering.plant_id,
+            "roll_no": watering.roll_no,
+            "watered-on":watering.watered_on
+        }
+        response.append(temp_watering)
     session.close()
     return response
 
