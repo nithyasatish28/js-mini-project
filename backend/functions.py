@@ -65,6 +65,9 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
 def get_plant(id): #gets info about specific plant from id and gives all waterings
     session = Session(engine)
     plant = session.get(Plants, id)
+    if not plant:
+        session.close()
+        return {"code":404,"msg":"Plant doesn't exist"}
     last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).all()
     response = {
         "id": plant.id,
@@ -76,7 +79,7 @@ def get_plant(id): #gets info about specific plant from id and gives all waterin
         "last_watered":last_watered
     }
     session.close()
-    return response
+    return {"plant":response,"code":200}
 
 def add_plant(name,type,location,water_every_days):#adds new plants to database, E3
     session = Session(engine)
@@ -191,7 +194,7 @@ def need_to_water_today(): #gets the plants that need to be watered today, E7
             "adopted_by": plant.adopted_by,
             "last_watered": last_watered
         }
-        if last_watered and (date.today() - date.fromisoformat(last_watered)).days >= plant.water_every_days:
+        if last_watered and (datetime.today().date() - last_watered.watered_on.date()).days >= plant.water_every_days:
             response.append(temp_plant)
     session.close()
     return response

@@ -61,13 +61,11 @@ def add_plant(name,type,location,water_every_days:int):
 
 @app.get("/plants/{plant_id}")
 def get_plant(plant_id:int):
-    if plant_id <= 0:
-        raise HTTPException(status_code=422, detail="Invalid ID")
-    plants = functions.get_all_plants()
-    if plant_id not in plants["id"]:
-        raise HTTPException(status_code=404, detail="ID doesn't exist")
-    return functions.get_plant(id=plant_id)
-
+    response = functions.get_plant(id=plant_id)
+    code = response["code"]
+    if code == 200:
+        return response["plant"]
+    raise HTTPException(status_code=code,detail=response["msg"])
 @app.get("/water")
 def water_today():
     return functions.need_to_water_today()
