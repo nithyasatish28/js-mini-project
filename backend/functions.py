@@ -64,9 +64,7 @@ def add_starting_items():
 add_starting_items()
 
 # E1
-def get_all_equipment(type=None):
-    if type is not None and type not in VALID_TYPES:
-        raise HTTPException(status_code=422, detail="Type must be microscope, oscilloscope, 3d-printer, laptop or camera.")
+def get_all_equipment(type = None):
     session = Session(engine)
     if type is None:
         items = session.query(Equipment).all()
@@ -74,7 +72,14 @@ def get_all_equipment(type=None):
         items = session.query(Equipment).filter(Equipment.type == type).all()
     response = []
     for item in items:
-        response.append(equipment_to_dict(item))
+        temp_item = {
+            "id" : item.id,
+            "name" : item.name,
+            "type" : item.type,
+            "lab_room" : item.lab_room,
+            "in_service" : item.in_service
+        }
+        response.append(temp_item)
     session.close()
     return response
 
@@ -86,8 +91,30 @@ def get_equipment(id):
     if item is None:
         session.close()
         raise HTTPException(status_code=404, detail="Equipment not found.")
-    response = equipment_to_dict(item)
+    response = {
+        "id" : item.id,
+        "name" : item.name,
+        "type" : item.type,
+        "lab_room" : item.lab_room,
+        "in_service" : item.in_service
+    }
     session.close()
     return response
 
+
+# E3
+def add_equipment(name, type, lab_room):
+    session = Session(engine)
+    item = Equipment(name = name, type = type, lab_room = lab_room, in_service = 1)
+    session.add(item)
+    session.commit()
+    response = {
+        "id" : item.id,
+        "name" : item.name,
+        "type" : item.type,
+        "lab_room" : item.lab_room,
+        "in_service" : item.in_service
+    }
+    session.close()
+    return response
 
