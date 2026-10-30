@@ -62,17 +62,18 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
         session.close()
         return response
 
-def get_plant(id): #gets info about specific plant from id
+def get_plant(id): #gets info about specific plant from id and gives all waterings
     session = Session(engine)
     plant = session.get(Plants, id)
+    last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).all()
     response = {
         "id": plant.id,
         "name": plant.name,
         "type": plant.type,
         "location": plant.location,
         "water_every_days": plant.water_every_days,
-        "adopted_by": plant.adopted_by
-
+        "adopted_by": plant.adopted_by,
+        "last_watered":last_watered
     }
     session.close()
     return response
