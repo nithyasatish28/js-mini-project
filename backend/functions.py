@@ -76,13 +76,9 @@ def get_one_complaint(id:int):
     for update in query2:
         temp = {
             "id" : update.id,
-            "roll_no" : update.rollno,
-            "room_no" : update.room_no,
-            "category" : update.category,
-            "description" : update.description,
             "status" : update.status,
-            "created_on" : update.created_on,
-            "resolved_on" : update.resolved_on
+            "note" : update.note,
+            "updated_on" : update.updated_on
         }
         response.append(temp)
     session.close()
@@ -136,21 +132,5 @@ def update_complaint_status(complaint_id, new_status, note):
     return temp
 
 
-def get_students_complaints_byrollno(rollno,):
-    session=session(engine)
-    query=session.query(complaints).filter(complaints.rollno==rollno).all()
-    repose=[]
-    for complaint in query:
-        temp = {
-            "id" : complaint.id,
-            "roll_no" : complaint.rollno,
-            "room_no" : complaint.room_no,
-            "category" : complaint.category,
-            "description" : complaint.description,
-            "status" : complaint.status,
-            "created_on" : complaint.created_on,
-            "resolved_on" : complaint.resolved_on
-        }
-        repose.append(temp)
-    session.close()
-    return repose
+def get_students_complaints_byrollno():
+    pass
