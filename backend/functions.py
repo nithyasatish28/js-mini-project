@@ -89,3 +89,21 @@ def get_one_complaint(id:int):
     return response
 
     
+
+def create_complaint(rollno, roomno, category, description):
+    session = Session(engine)
+    complaint = complaints(rollno=rollno,room_no=roomno,category=category,description=description,status="open")    
+    session.add(complaint)
+    session.commit()
+    temp = {
+                "id" : complaint.id,
+                "roll_no" : complaint.rollno,
+                "room_no" : complaint.room_no,
+                "category" : complaint.category,
+                "description" : complaint.description,
+                "status" : complaint.status,
+                "created_on" : complaint.created_on,
+                "resolved_on" : complaint.resolved_on
+            }
+    session.close()
+    return temp
