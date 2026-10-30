@@ -32,26 +32,32 @@ def get_all_event(category:str):
         events = session.query(Event).all()
         response = []
         for event in events:
-             temp_event={"id":events_id}
+             temp_event= {
+        "id": events.id,
+        "title": events.title,
+        "club":events.club,
+        "category": events.category,
+        "event_date":events.event_date,
+        "total_seats":events.total_seats,
+        "seats_left":events.seats_left
+        }
+            
         session.close()
+        return response
 
     
                                               
 def get_event(id):
     session= Session(engine)
     events= session.get(Event, id)
-    response = {"id": events.id, }
+    response = { "id": events.id,}
     session.close()
     return response
 
 
-def add_new_event(title: str, club: str, category: str, events_dates:str,total_seats:int):
+def add_new_event(title: str, club: str, category: str, events_date:str,total_seats:int):
         session = Session(engine)  
-        events = session.add(title=title, club=club, events_dates=events_dates ,total_seats=total_seats )
-        response = ["title"=events.title, "club"= events.club, "events_dates"= events.events_dates ,"total_seats"=events.total_seats]
+        events = session.add(title=title, club=club, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+        response = ["title"=events.title, "club"= events.club, "events_date"= events.events_date ,"total_seats"=events.total_seats,]
         session.close()
-        return 
-
-
-
-  
+        return response
