@@ -25,3 +25,39 @@ class Watering(Base):
     watered_on = Column(DateTime , default=datetime.now())
 
 Base.metadata.create_all(engine)
+
+
+def get_all_plants(plant_type=None): #gives all plants, may be filtered with type
+    session = Session(engine)
+    if plant_type is None:
+        plants = session.query(Plants).all()
+        response = []
+        for plant in plants:
+            temp_plant = {
+                "id": plant.id,
+                "name": plant.name,
+                "type": plant.type,
+                "location": plant.location,
+                "water_every_days": plant.water_every_days,
+                "adopted_by": plant.adopted_by
+
+            }
+            response.append(temp_plant)
+        session.close()
+        return response
+    else:
+        plants = session.query(Plants).filter(Plants.type == plant_type)
+        response = []
+        for plant in plants:
+            temp_plant = {
+                "id": plant.id,
+                "name": plant.name,
+                "type": plant.type,
+                "location": plant.location,
+                "water_every_days": plant.water_every_days,
+                "adopted_by": plant.adopted_by
+
+            }
+            response.append(temp_plant)
+        session.close()
+        return response
