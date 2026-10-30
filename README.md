@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Jiken Pulinbhai Jasoliya |  |  |  |  |
+| Day 1 | Jiken Pulinbhai Jasoliya | starting with the Backend (API) | not-yet | Debugging | debugging |
 | Day 1 | Vilok |  |  |  |  |
 | Day 2 | Jiken Pulinbhai Jasoliya |  |  |  |  |
 | Day 2 | Vilok |  |  |  |  |
