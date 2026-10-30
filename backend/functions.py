@@ -9,7 +9,7 @@ DB_PAth ="hostel_complaint_tracker.db"
 engine=create_engine(f"sqlite:///{DB_PAth}")
 
 Base=declarative_base()
-Base.metadata.create_all(engine) 
+
 
 class updates(Base):
     __tablename__="updates"
@@ -30,9 +30,11 @@ class complaints(Base):
     created_on = Column(DateTime,default=datetime.now)
     resolved_on = Column(DateTime, nullable=True)
 
-def get_complaints(status,category):
+Base.metadata.create_all(engine) 
+
+def get_complaints(status=None,category=None):
     session=Session(engine)
-    query = session.query(complaints).all()
+    query = session.query(complaints)
     if status:
         query = query.filter(complaints.status==status)
     if category:
@@ -41,7 +43,7 @@ def get_complaints(status,category):
     for complaint in query:
         temp = {
             "id" : complaint.id,
-            "rollno" : complaint.rollno,
+            "roll_no" : complaint.rollno,
             "room_no" : complaint.room_no,
             "category" : complaint.category,
             "description" : complaint.description,
@@ -52,5 +54,7 @@ def get_complaints(status,category):
         respone.append(temp)
     session.close()
     return respone
+
+
 
     
