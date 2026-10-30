@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+<<<<<<< Updated upstream
 from Backend import E1
 from Backend import E2
 from Backend import E4
@@ -49,3 +50,14 @@ def book_equipment(equipment_id: int, roll_no: str, booking_date: str):
         raise HTTPException(status_code=400, detail="Failed to book equipment")
 
     return {"message": "Equipment booked successfully."}
+=======
+from Backend import E1, E2, E3, E6
+
+app = FastAPI()
+
+
+# E6 - Get student bookings using roll number
+@app.get("/bookings/student/{roll_no}")
+def get_student_bookings(roll_no: str):
+    return E6.get_student_bookings(roll_no)
+>>>>>>> Stashed changes
