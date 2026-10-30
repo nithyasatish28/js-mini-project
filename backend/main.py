@@ -18,3 +18,8 @@ def create_complaint(rollno:str, roomno:int, description:str, category:str):
 @app.patch("/complaints/{complaint_id}")
 def update_complaint_status(complaint_id: int, new_status: str, note: str):
     return functions.update_complaint_status(complaint_id=complaint_id, new_status=new_status, note=note)
+
+
+@app.get("/complaints/students/{rollno}")
+def get_complaints_by_rollno(rollno: str):
+    return functions.get_complaints_by_rollno(rollno=rollno)
