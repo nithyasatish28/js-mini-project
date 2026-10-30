@@ -2,6 +2,8 @@ from urllib import response
 
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+
 import functions
 
 
@@ -12,10 +14,17 @@ app.add_middleware(CORSMiddleware,
                    allow_methods=["*"],
                    allow_headers=["*"])
 
+class Watering(BaseModel):
+    plant_id : int
+    roll_no : str | None
+
+class Adopt(BaseModel):
+    adopted_by : str | None
+
 # this is used both for adopting and giving up where {adopted_by: null} means its giving up
 @app.patch("/plants/{plant_id}")
-def adopt_plant(plant_id: str, body=Body()):
-    adopted_by = body["adopted_by"]
+def adopt_plant(plant_id: str, body: Adopt):
+    adopted_by = body.adopted_by
     if adopted_by:
         response = functions.adopt_plant(plant_id=plant_id,roll_no=adopted_by)
         code = response["code"]
@@ -30,8 +39,8 @@ def adopt_plant(plant_id: str, body=Body()):
     raise HTTPException(code, detail=response["msg"])
 
 @app.post("/water")
-def water(body = Body()):
-    response = functions.water_plant( body["plant_id"], body["roll_no"])
+def water(body : Watering):
+    response = functions.water_plant( body.plant_id, body.roll_no)
     code = response["code"]
     if code == 200:
         return response["watering"]

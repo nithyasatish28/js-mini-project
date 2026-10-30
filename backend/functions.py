@@ -80,7 +80,7 @@ def get_plant(id): #gets info about specific plant from id and gives all waterin
 
 def add_plant(name,type,location,water_every_days):#adds new plants to database, E3
     session = Session(engine)
-    plant = Plants(name=name, type=type,location=location,water_every_days=water_every_days,adopted_by= False)
+    plant = Plants(name=name, type=type,location=location,water_every_days=water_every_days,adopted_by= None)
     session.add(plant)
     response = {
         "id": plant.id,
@@ -106,9 +106,11 @@ def adopt_plant(plant_id , roll_no):
         session.close()
         return {"code":409,"msg":"Plant is already adopted"}
     plant.adopted_by = roll_no
-    session.flush()
+    response = {"code":200, "plant":plant_to_dict(plant)}
+    session.commit()
+
     session.close()
-    return {"code":200, "plant":plant_to_dict(plant)}
+    return response
 
 
 def give_up_plant(plant_id):
@@ -122,9 +124,11 @@ def give_up_plant(plant_id):
         return {"code": 409, "msg": "Plant is not adopted"}
 
     plant.adopted_by = None
-    session.flush()
+    response = {"code":200, "plant":plant_to_dict(plant)}
+
+    session.commit()
     session.close()
-    return {"code":200, "plant":plant_to_dict(plant)}
+    return response
 
 
 
@@ -145,13 +149,15 @@ def water_plant(plant_id, roll_no):
     if not plant:
         session.close()
         return {"code": 404, "msg": "Plant Doesnt Exist"}
+
     if plant.adopted_by != roll_no:
         session.close()
         return {"code": 403, "msg": "Plant is not adopted by you"}
-    last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one()
-    if datetime.today().date() == last_watered.watered_on.date():
+    last_watered = session.query(Watering).join(Plants).filter(Plants.id == plant_id).order_by(Watering.plant_id.desc()).one_or_none()
+
+    if last_watered  and datetime.today().date() == last_watered.watered_on.date():
         session.close()
-        return {"code": 403, "msg": "Plant is not adopted by you"}
+        return {"code": 409, "msg": "Plant has been already watered today"}
     new_watered = Watering(plant_id=plant_id,roll_no=roll_no)
     session.add(new_watered)
     session.commit()
