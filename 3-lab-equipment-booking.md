@@ -29,13 +29,13 @@ Run it on port **8001**, and add CORS so the React app can call it.
 
 | # | What it does | Method | Path | Request body | Success code | Error codes |
 | --- | --- | --- | --- | --- | --- | --- |
-| E1 | Get all the equipment. Can be filtered by type. |GET| | | | |
-| E2 | Get one item by its id. |GET | | | | |
-| E3 | Add a new item: name, type and lab room. It starts in service. |POST | | | | |
+| E1 | Get all the equipment. Can be filtered by type. |  | | | | |
+| E2 | Get one item by its id. | | | | | |
+| E3 | Add a new item: name, type and lab room. It starts in service. || | | | |
 | E4 | Mark an item in service or out of service. |PATCH | | | | |
-| E5 | Book an item for a date with a roll number. The booked-on date is today. |POST | | | | |
-| E6 | Get one student's bookings that aren't cancelled and are today or later, by roll number. Each one includes the item's name. |GET | | | | |
-| E7 | Cancel a booking. |POST | | | | |
+| E5 | Book an item for a date with a roll number. The booked-on date is today. | | | | | |
+| E6 | Get one student's bookings that aren't cancelled and are today or later, by roll number. Each one includes the item's name. || | | | |
+| E7 | Cancel a booking. || | | | |
 
 ## 4. Rules the API must check
 
