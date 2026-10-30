@@ -5,7 +5,7 @@ Build a full-stack app in **pairs**: a **FastAPI + SQLite** backend and a **Reac
 
 ## 1. The projects
 
-Each pair builds **one** project. Open your project's file and read it fully before you start.
+Each team builds **one** project. Open your project's file and read it fully before you start.
 
 | # | Project | File | Teams |
 |---|---|---|---|
@@ -13,13 +13,13 @@ Each pair builds **one** project. Open your project's file and read it fully bef
 | 2 | Campus Event Registration | [2-campus-event-registration.md](2-campus-event-registration.md) | 02, 07, 12, 17, 22 |
 | 3 | Lab Equipment Booking | [3-lab-equipment-booking.md](3-lab-equipment-booking.md) | 03, 08, 13, 18, 23 |
 | 4 | Adopt-a-Plant | [4-adopt-a-plant.md](4-adopt-a-plant.md) | 04, 09, 14, 19, 24 |
-| 5 | Umbrella-Sharing Stations | [5-umbrella-sharing-stations.md](5-umbrella-sharing-stations.md) | 05, 10, 15, 20, 25 |
+| 5 | Umbrella-Sharing Stations | [5-umbrella-sharing-stations.md](5-umbrella-sharing-stations.md) | 05, 10, 15, 20, 25, 26 |
 
 **Before you write any code:** fill in the empty endpoint table (section 3 of your project file) and show it to your instructor.
 
 ## 2. Teams and branches
 
-Find your team below. **Your branch name must match exactly:** small letters, no spaces.
+Find your team below. **Your branch is already on GitHub**, ready for you.
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
@@ -32,7 +32,7 @@ Find your team below. **Your branch name must match exactly:** small letters, no
 | 07 | Gokul Reddy M | Abhishek Nayak | 2 · Campus Event Registration | `team-07-events` |
 | 08 | H A Bhuvan | Pavan Kumar | 3 · Lab Equipment Booking | `team-08-lab` |
 | 09 | Kommaddi Fayaz | Ganga Siva Kumar Reddy | 4 · Adopt-a-Plant | `team-09-plants` |
-| 10 | Konduru Nanda Kishore Raju | Aditya Sivaji Perumalla | 5 · Umbrella-Sharing Stations | `team-10-umbrellas` |
+| 10 | Aditya Sivaji Perumalla | — (working alone) | 5 · Umbrella-Sharing Stations | `team-10-umbrellas` |
 | 11 | Melvin Jacob | Naman Choudhary | 1 · Hostel Complaint Tracker | `team-11-hostel` |
 | 12 | Thanuja Reddy | Supriya R | 2 · Campus Event Registration | `team-12-events` |
 | 13 | Monica Irala | Aryan Rao | 3 · Lab Equipment Booking | `team-13-lab` |
@@ -43,42 +43,35 @@ Find your team below. **Your branch name must match exactly:** small letters, no
 | 18 | K. Jyoshna | Elluri Thammiksha | 3 · Lab Equipment Booking | `team-18-lab` |
 | 19 | Harsita | Hemanth Singh | 4 · Adopt-a-Plant | `team-19-plants` |
 | 20 | Sanghavi S | Naidile D | 5 · Umbrella-Sharing Stations | `team-20-umbrellas` |
-| 21 | Jiken Pulinbhai Jasoliya | Vilok | 1 · Hostel Complaint Tracker | `team-21-hostel` |
+| 21 | Jiken Pulinbhai Jasoliya | — (working alone) | 1 · Hostel Complaint Tracker | `team-21-hostel` |
 | 22 | Shahiba Arshiya Banu | Madiha Shaik S | 2 · Campus Event Registration | `team-22-events` |
 | 23 | Padmaraju Poojitha | S Thanmayee | 3 · Lab Equipment Booking | `team-23-lab` |
 | 24 | Mohammed Shafi | Sarang Siva Thilakan | 4 · Adopt-a-Plant | `team-24-plants` |
-| 25 | Sanika B Raj | Blessy Krupa S | 5 · Umbrella-Sharing Stations | `team-25-umbrellas` |
+| 25 | Sanika B Raj | — (working alone) | 5 · Umbrella-Sharing Stations | `team-25-umbrellas` |
+| 26 | Konduru Nanda Kishore Raju | — (working alone) | 5 · Umbrella-Sharing Stations | `team-26-umbrellas` |
 
-> **Never push to `main`.** Your pair works only on your own branch. Whatever is on your branch at the deadline is what gets marked.
+> **Never push to `main`.** Your team works only on your own branch. Whatever is on your branch at the deadline is what gets marked.
 
 ## 3. Getting started with Git
 
 The examples below use `team-01-hostel`. **Use your own branch name from the table.**
 
-### Step 1 · Clone the repo (both partners)
+### Step 1 · Clone the repo (every partner, once)
 
 ```bash
 git clone https://github.com/nithyasatish28/js-mini-project.git
 cd js-mini-project
 ```
 
-### Step 2 · Create your branch (Partner 1 only)
+### Step 2 · Switch to your team's branch (every partner, once)
 
 ```bash
-git switch -c team-01-hostel
-git push -u origin team-01-hostel
-```
-
-### Step 3 · Get the branch (Partner 2 only)
-
-```bash
-git fetch
 git switch team-01-hostel
 ```
 
-Check that you're on the right branch: `git branch`. The line with `*` is the branch you're on.
+Check that you're on the right branch: `git branch`. The line with `*` is the branch you're on. Your branch has only one file at first: `README.md`, your team tracker.
 
-### Step 4 · Save and push your work (every time something works)
+### Step 3 · Save and push your work (every time something works)
 
 ```bash
 git add .
@@ -86,9 +79,9 @@ git commit -m "Add E1 and E2"
 git push
 ```
 
-**Push at least every 3 hours**, before each progress check-in.
+**Push at least every 3 hours**, together with your tracker check-in.
 
-### Step 5 · Get your partner's work
+### Step 4 · Get your partner's work
 
 ```bash
 git pull
@@ -101,19 +94,18 @@ Pull before you start working, and whenever your partner tells you they've pushe
 ## 4. What your branch should look like
 
 ```
-js-mini-project/
+js-mini-project/            (on your team's branch)
 ├── backend/        main.py, functions.py, your .db file, requirements.txt
 ├── frontend/       your Vite React app (without node_modules)
-└── README.md       YOUR project's README (see below)
+└── README.md       your team tracker
 ```
 
-On your branch, **replace this README** with your own. It should have:
+**Your tracker (`README.md`) is how your instructor follows your progress.** Every 3 hours:
 
-- your team number, both names, and the project name;
-- how to run the backend and the frontend, step by step;
-- your filled-in endpoint table.
+1. Update your row in *Who is doing what*, and the endpoint and frontend trackers.
+2. Commit and push it with a message like `Check-in Day 1 12:00`.
 
-These instructions stay on `main`, so you can always read them on GitHub.
+By the end of Day 2, also fill in *How to run our app* in the same file.
 
 ## 5. Rules
 
@@ -121,7 +113,7 @@ These instructions stay on `main`, so you can always read them on GitHub.
 2. **Check your branch before you push:** `git branch`.
 3. **Don't push big folders:** no `node_modules/` or `.venv/`. If `git add .` shows thousands of files, stop and ask.
 4. **Write commit messages that say what changed:** "Add borrow rules", not "update".
-5. **Fill in the progress check-in on Notion every 3 hours.**
+5. **Update your tracker README every 3 hours, and push it.**
 6. **Both partners must be able to explain any part of the code.**
 
 ## 6. When Git says no
@@ -132,6 +124,7 @@ These instructions stay on `main`, so you can always read them on GitHub.
 | `nothing to commit, working tree clean` | Save your files in VS Code first |
 | `src refspec … does not match any` | Commit before you push |
 | You're on `main` (`git branch` shows `* main`) | `git switch` your branch name |
+| `invalid reference` when you switch | Check the spelling of your branch, then run `git fetch` and try again |
 | `CONFLICT (content): Merge conflict in …` | Call your partner over, then ask your instructor |
 
 ## 7. Plan and submission
@@ -142,4 +135,4 @@ These instructions stay on `main`, so you can always read them on GitHub.
 | Day 2 | React app connected to the API |
 | Day 3 | Demo |
 
-**Deadline:** Nov 1st 12:00 am The last commit pushed to your branch before the deadline is your submission.
+**Deadline:** [date and time]. The last commit pushed to your branch before the deadline is your submission.
