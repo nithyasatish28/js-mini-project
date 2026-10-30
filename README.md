@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Afifa Adeen |  |  |  |  |
-| Day 1 | Syed Kaifuddin |  |  |  |  |
+| Day 1 | Afifa Adeen | database + E1, E2, E3 |  |  |  |
+| Day 1 | Syed Kaifuddin | E4, E5, E6, E7, readme |  |  |  |
 | Day 2 | Afifa Adeen |  |  |  |  |
 | Day 2 | Syed Kaifuddin |  |  |  |  |
 | Day 3 | Afifa Adeen |  |  |  |  |
