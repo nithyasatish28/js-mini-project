@@ -1,10 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from Backend import E1
 from Backend import E2
-<<<<<<< HEAD
 from Backend import E3
-
-=======
 from Backend import E4
 <<<<<<< HEAD
 from Backend import E5
@@ -35,7 +32,6 @@ def get_equipment_by_id(equipment_id: int):
 
     return equipment
 
-<<<<<<< HEAD
 # E3 - Add new equipment
 @app.post("/equipment")
 def add_equipment(name: str, equipment_type: str, lab_room: str):
@@ -45,7 +41,7 @@ def add_equipment(name: str, equipment_type: str, lab_room: str):
         type=equipment_type,
         lab_room=lab_room
     )
-=======
+
 # E4 - Mark equipment status
 @app.put("/equipment/{equipment_id}/status")
 def mark_equipment_status(equipment_id: int, in_service: bool):
