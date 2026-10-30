@@ -91,16 +91,3 @@ def get_equipment(id):
     return response
 
 
-# E3
-def add_equipment(name, type, lab_room):
-    if name.strip() == "" or lab_room.strip() == "":
-        raise HTTPException(status_code=422, detail="Name and lab room must not be empty.")
-    if type not in VALID_TYPES:
-        raise HTTPException(status_code=422, detail="Type must be microscope, oscilloscope, 3d-printer, laptop or camera.")
-    session = Session(engine)
-    item = Equipment(name=name.strip(), type=type, lab_room=lab_room.strip(), in_service=1)
-    session.add(item)
-    session.commit()
-    response = equipment_to_dict(item)
-    session.close()
-    return response
