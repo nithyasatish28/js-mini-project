@@ -11,27 +11,27 @@
 Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
-|---|---|------------|------------|-------------------------------------|---|
-| Day 1 | Mohammed Shafi |            |            |                                     |  |
-| Day 1 | Sarang Siva Thilakan | E1,E2,E3   | No         | E1                                  |  |
-| Day 2 | Mohammed Shafi |            |            |                                     |  |
-| Day 2 | Sarang Siva Thilakan |            |            |                                     |  |
-| Day 3 | Mohammed Shafi |            |            |                                     |  |
-| Day 3 | Sarang Siva Thilakan |            |            |                                     |  |
+|---|---|-------------------|------------|-------------------------------------|---|
+| Day 1 | Mohammed Shafi | E4,E5,E6          | No         | E4                                  |  |
+| Day 1 | Sarang Siva Thilakan | E1,E2,E3          | No         | E1                                  |  |
+| Day 2 | Mohammed Shafi |                   |            |                                     |  |
+| Day 2 | Sarang Siva Thilakan |                   |            |                                     |  |
+| Day 3 | Mohammed Shafi |                   |            |                                     |  |
+| Day 3 | Sarang Siva Thilakan |                   |            |                                     |  |
 
 ## 2. Endpoint tracker
 
 Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 
 | # | Method + path          | Built | Rules checked in /docs | Connected to React | Who |
-|---|------------------------|-----|---|---|---|
-| E1 | GET /plants            | 🟡  | ⬜ | ⬜ |  |
+|---|------------------------|-------|---|---|---|
+| E1 | GET /plants            | 🟡    | ⬜ | ⬜ |  |
 | E2 | GET /plants/{plant_id} | 🟡    | ⬜ | ⬜ |  |
 | E3 | POST /plants           | 🟡    | ⬜ | ⬜ |  |
-| E4 |                        | ⬜   | ⬜ | ⬜ |  |
-| E5 |                        | ⬜   | ⬜ | ⬜ |  |
-| E6 |                        | ⬜   | ⬜ | ⬜ |  |
-| E7 |                        | ⬜   | ⬜ | ⬜ |  |
+| E4 |                        | 🟡    | ⬜ | ⬜ |  |
+| E5 |                        | 🟡    | ⬜ | ⬜ |  |
+| E6 |                        | 🟡      | ⬜ | ⬜ |  |
+| E7 |                        | ⬜    | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
