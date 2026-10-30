@@ -27,11 +27,11 @@ class Registration(Base):
 
 Base.metadata.create_all(engine)
 
-def add_all_event( title: str, club: str, category:str,):
+def add_all_event( category:str,):
         with Session(engine) as session:
-            events = Event( title=title,club=club,category=category)
+            events = Event( category=category)
             session.add(events)
-            response={ "title": Event.title, "club": Event.club, "category": Event.category}
+            response={ "id":events.id, "title": events.title, "club": events.club, "category": events.category}
             session.commit()
             session.close()
             return response                                             
