@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Monica Irala |  |  |  |  |
-| Day 1 | Aryan Rao | will do E2,E3,E6 and E7 |  |  |  |
+| Day 1 | Monica Irala | will do E2,E3,E6 and E7  |  |  |  |
+| Day 1 | Aryan Rao |  |  |  |  |
 | Day 2 | Monica Irala |  |  |  |  |
 | Day 2 | Aryan Rao |  |  |  |  |
 | Day 3 | Monica Irala |  |  |  |  |
