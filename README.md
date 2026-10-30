@@ -25,9 +25,9 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |GET /events?category=  | ⬜ | ⬜ | ⬜ | Thanuja |
-| E2 |GET /events/{event_id}  | ⬜ | ⬜ | ⬜ | Thanuja |
-| E3 |POST /events  | ⬜ | ⬜ | ⬜ |Thanuja  |
+| E1 |get /events | ⬜ | ⬜ | ⬜ | Thanuja |
+| E2 |get /events/{event_id}  | ⬜ | ⬜ | ⬜ | Thanuja |
+| E3 |post /events  | ⬜ | ⬜ | ⬜ |Thanuja  |
 | E4 |DELETE /events/{events_id}  | ⬜ | ⬜ | ⬜ | Thanuja |
 | E5 |POST /events/{event_id}/registrations  | ⬜ | ⬜ | ⬜ | Thanuja |
 | E6 |GET /registrations?roll_no=  | ⬜ | ⬜ | ⬜ | Thanuja |
