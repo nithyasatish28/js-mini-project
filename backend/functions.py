@@ -165,9 +165,7 @@ def update_complaint(id, note):
 def fetch_student_complaint(roll_no):
     session = Session(engine)
 
-    complaints = session.query(Complaints).filter(
-        Complaints.roll_no == roll_no
-    ).all()
+    complaints = session.query(Complaints).filter(Complaints.roll_no == roll_no).all()
 
     response = []
 
@@ -197,9 +195,7 @@ def remove_complaint(id):
         session.close()
         return False
 
-    session.query(Updates).filter(
-        Updates.complaint_id == id
-    ).delete()
+    session.query(Updates).filter(Updates.complaint_id == id).delete()
 
     session.delete(complaint)
     session.commit()
@@ -212,17 +208,11 @@ def get_status_counts():
     session = Session(engine)
 
     temp = {
-        "open": session.query(Complaints).filter(
-            Complaints.status == "open"
-        ).count(),
+        "open": session.query(Complaints).filter(Complaints.status == "open").count(),
 
-        "in_progress": session.query(Complaints).filter(
-            Complaints.status == "in_progress"
-        ).count(),
+        "in_progress": session.query(Complaints).filter(Complaints.status == "in_progress").count(),
 
-        "resolved": session.query(Complaints).filter(
-            Complaints.status == "resolved"
-        ).count()
+        "resolved": session.query(Complaints).filter(Complaints.status == "resolved").count()
     }
 
     session.close()
