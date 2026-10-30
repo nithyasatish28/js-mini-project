@@ -22,5 +22,7 @@ class Event(BaseModel):
     event_date: str
     total_seats: int
 
+class Registration(BaseModel):
+    roll_no: str
 
 
