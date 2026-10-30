@@ -4,7 +4,7 @@ app = FastAPI()
 
 @app.get("/")
 def root():
-    return {"message": "Campus Event API is running! Go to /events or /docs"}
+    return {}
 
 
 @app.get("/events")
