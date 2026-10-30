@@ -24,13 +24,13 @@ Update your own row at every check-in.
 Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 | ID | Method and path | API status | Frontend status | Test status | Owner |
 |---|---|---|---|---|---|
-| E1 | GET /complaints?status=&category= | ✅ | ⬜ | ⬜ | Rehaan (API), Darsh (React) |
-| E2 | GET /complaints/{id} | ⬜ | ⬜ | ⬜ | Rehaan (API), Darsh (React) |
-| E3 | POST /complaints | ⬜ | ⬜ | ⬜ | Rehaan (API), Darsh (React) |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | GET /complaints?status=&category= | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
+| E2 | GET /complaints/{id} | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
+| E3 | POST /complaints | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
+| E4 | PATCH /complaints/{id}/status | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
+| E5 | GET /students/{roll_no}/complaints | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
+| E6 | DELETE /complaints/{id} | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
+| E7 | GET /stats | ✅ | ✅ | ✅ | Rehaan (API), Darsh (React) |
 
 ## 3. Frontend tracker
 
