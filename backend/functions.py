@@ -40,4 +40,27 @@ def equipment_to_dict(item):
         "in_service": item.in_service
     }
 
+def add_starting_items():
+    session = Session(engine)
+    count = session.query(Equipment).count()
+    if count == 0:
+        items = [
+            Equipment(name="Glitter Microscope ", type="microscope", lab_room="Lab 101", in_service=1),
+            Equipment(name="Barbie Microscope ", type="microscope", lab_room="Lab 101", in_service=1),
+            Equipment(name="Pink Oscilloscope ", type="oscilloscope", lab_room="Lab 202", in_service=1),
+            Equipment(name="Blue Oscilloscope ", type="oscilloscope", lab_room="Lab 202", in_service=0),
+            Equipment(name="Magical 3D Printer", type="3d-printer", lab_room="Lab 305", in_service=1),
+            Equipment(name="Galaxy 3D Printer", type="3d-printer", lab_room="Lab 305", in_service=1),
+            Equipment(name="Apple Laptop 1", type="laptop", lab_room="Lab 110", in_service=1),
+            Equipment(name="Apple Laptop 2", type="laptop", lab_room="Lab 110", in_service=1),
+            Equipment(name="Canon DSLR", type="camera", lab_room="Media Room", in_service=1),
+            Equipment(name="GoPro Hero", type="camera", lab_room="Media Room", in_service=1),
+        ]
+        session.add_all(items)
+        session.commit()
+    session.close()
+
+
+add_starting_items()
+
 
