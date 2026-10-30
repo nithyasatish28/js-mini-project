@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, DateTime,Column, create_engine;
+from sqlalchemy import Integer, String, Column, ForeignKey, create_engine
 from sqlalchemy.orm import Session, declarative_base;
 from datetime import datetime;
 
@@ -23,7 +23,7 @@ class waterings(Base):
     __tablename__="waterings"
     
     id = Column(Integer,primary_key = True)
-    plant_id = Column(String)
+    pplant_id = Column(Integer, ForeignKey("plants.id"))
     roll_no = Column(String)
     watered_on= Column(String)
     
