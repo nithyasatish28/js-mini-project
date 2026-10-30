@@ -1,3 +1,5 @@
+from urllib import response
+
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 import functions
@@ -25,6 +27,14 @@ def adopt_plant(plant_id: str, body=Body()):
     code = response["code"]
     if code == 200:
         return response["plant"]
+    raise HTTPException(code, detail=response["msg"])
+
+@app.post("/water")
+def water(body = Body()):
+    response = functions.water_plant( body["plant_id"], body["roll_no"])
+    code = response["code"]
+    if code == 200:
+        return response["watering"]
     raise HTTPException(code, detail=response["msg"])
 
 
