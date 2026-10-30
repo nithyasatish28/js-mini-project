@@ -184,6 +184,25 @@ def fetch_student_complaint(roll_no):
     session.close()
     return response
 
+# E6
+def remove_complaint(id):
+    session = Session(engine)
+    complaint = session.get(Complaints, id)
+
+    if complaint is None or complaint.status != "open":
+        session.close()
+        return False
+
+    session.query(Updates).filter(
+        Updates.complaint_id == id
+    ).delete()
+
+    session.delete(complaint)
+    session.commit()
+    session.close()
+
+    return True
+
 
 
 
