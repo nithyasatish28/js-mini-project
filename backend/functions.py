@@ -164,5 +164,20 @@ def get_student_registrations(roll_no):
     session.close()
     return response
     
+def cancel_registration(registration_id):
+    session = Session(engine)
+    registration = session.get(Registrations,registration_id)
 
+    if registration is None:
+        session.close()
+        return None
+    if registration.cancelled_on != None:
+        session.close()
+        return {"error":"Already cancelled"}
+    registration.cancelled_on = datetime.now()
+    event = session.get(Events,registration.event_id)
+    event.seats_left = event.seats_left + 1
+    session.commit()
+    session.close()
+    return {"message":"Registration cancelled successfully"}
   
