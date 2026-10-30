@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Yashwant Gowda |  |  |  |  |
-| Day 1 | S Mohammed Abrar ul Haq |  |  |  |  |
+| Day 1 | Yashwant Gowda | created framework | yes | handleing backend  |  |
+| Day 1 | S Mohammed Abrar ul Haq | will handle the database | not yet | preparing sample data to test api |  |
 | Day 2 | Yashwant Gowda |  |  |  |  |
 | Day 2 | S Mohammed Abrar ul Haq |  |  |  |  |
 | Day 3 | Yashwant Gowda |  |  |  |  |
