@@ -1,7 +1,7 @@
-from sqlalchemy import Integer, String, Column, create_engine
+from sqlalchemy import Integer, String, Column, create_engine, ForeignKey, DateTime
 from sqlalchemy.orm  import Session, declarative_base
-from datetime import datetime
-from fastapi import HTTPException 
+from datetime import  date
+from fastapi import  HTTPException
 
 DB_PATH = "lab.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -19,14 +19,14 @@ class Equipment(Base):
     in_service = Column(Integer, default=1)
 
 
-class Bookings(Base):
+class Booking(Base):
     __tablename__ = "bookings"
     id = Column(Integer, primary_key=True)
-    equipment_id = Column(Integer)
-    roll_no = Column(String)
-    booking_date = Column(String)
-    booked_on = Column(String)
-    cancelled = Column(Integer, default=0)
+    equipment_id = Column(Integer, ForeignKey("equipment.id"), nullable=False)
+    roll_no = Column(String, nullable=False)
+    booking_date = Column(String, nullable=False)
+    booked_on = Column(DateTime, default=date.today())
+    cancelled = Column(Integer, nullable=False, default=0)
 
 
 Base.metadata.create_all(engine)
@@ -117,5 +117,18 @@ def add_equipment(name, type, lab_room):
     }
     session.close()
     return response
+
+#E4
+def update_service( equipment_id, in_service):
+    session = Session(engine)
+    equipment = session.query(Equipment).filter(Equipment.id == equipment_id).first()
+
+    if equipment:
+        equipment.in_service = in_service
+        session.add(equipment)
+        session.commit()
+        session.close()
+
+
 
 
