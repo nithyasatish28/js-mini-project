@@ -50,18 +50,28 @@ def get_all_event(category:str):
 def get_event(id):
     session= Session(engine)
     events= session.get(Event, id)
-    response = { "id": events.id,}
+    response = { "id": events.id,
+             "title": events.title,
+            "club":events.club,
+            "category": events.category,
+            "event_date":events.event_date,
+            "total_seats":events.total_seats,
+            "seats_left":events.seats_left
+            }
     session.close()
     return response
 
 
 def add_new_event(title: str, club: str, category: str, events_date:str,total_seats:int):
         session = Session(engine)  
-        events = session.add(title=title, club=club, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
-        response = ["title"=events.title, "club"= events.club, "events_date"= events.events_date ,"total_seats"=events.total_seats,]
+        events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+        response = ["title"=events.title, "club"= events.club, "events_date"= events.events_date ,"total_seats"=events.total_seats]
         session.close()
         return response
 
 def delete_event(event_id):
  session = Session(engine)  
  events = session.get(Event,event_id)
+ session.delete(events)
+ session.commit
+ session.close
