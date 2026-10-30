@@ -1,5 +1,6 @@
 from datetime import datetime
-from sqlalchemy import Column, DateTime, Integer, ForeignKey, String, create_engine
+from datetime import date 
+from sqlalchemy import Column, DateTime,Date, Integer, ForeignKey, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 DB_PATH = "lab.db"
@@ -21,8 +22,8 @@ class Bookings(Base):
     id = Column(Integer, primary_key=True)
     equipment_id = Column(Integer, ForeignKey("equipment.id"), nullable=False)
     roll_no = Column(String, nullable=False)
-    booking_date = Column(DateTime, nullable=False)
-    booked_on = Column(DateTime, nullable=False)
+    booking_date = Column(Date, nullable=False)
+    booked_on = Column(Date, nullable=False)
     cancelled = Column(Integer, nullable=False, default=0)
 Base.metadata.create_all(engine)
 equipment_types = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"]
@@ -37,6 +38,17 @@ def equipment_response(equipment):
         "in_service": equipment.in_service
     }
 
+def booking_response(booking, equipment_name=None):
+    return {
+        "id": booking.id,
+        "equipment_id": booking.equipment_id,
+        "equipment_name": equipment_name,
+        "roll_no": booking.roll_no,
+        "booking_date": booking.booking_date.isoformat(),
+        "booked_on": booking.booked_on.isoformat(),
+        "cancelled": booking.cancelled
+    }
+
 def get_all_equipments(equipment_type=None):
     with SessionLocal() as db:
         if equipment_type:
@@ -45,9 +57,26 @@ def get_all_equipments(equipment_type=None):
         else:
             equipment = db.query(Equipment).all()
 
-        return [equipment_response(equipment) for item in equipment]
+        return [equipment_response(item) for item in equipment]
+
+def get_equipment_by_type(equipment_type):
+    with SessionLocal() as db:
+        equipment_list = db.query(Equipment).filter(
+            Equipment.type == equipment_type
+        ).all()
+
+        return equipment_list
     
-    
+def get_equipment_by_id(equipment_id):
+    with SessionLocal() as db:
+        equipment = db.get(Equipment, equipment_id)
+
+        if equipment is not None:
+            return equipment_response(equipment)
+
+        return None
+
+
 def add_equipment(name, equipment_type, lab_room):
     with SessionLocal() as db:
         equipment = Equipment(
@@ -62,3 +91,5 @@ def add_equipment(name, equipment_type, lab_room):
         db.refresh(equipment)
 
         return equipment_response(equipment)
+    
+
