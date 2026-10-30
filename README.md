@@ -65,6 +65,6 @@ cd frontend
 
 ## 6. Proof of work
 
-Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
+Save a screenshot of `/docs ` or your app as `screenshot.png` in this branch. It shows here:
 
 ![Our app](screenshot.png)
