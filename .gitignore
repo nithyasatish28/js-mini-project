@@ -25,4 +25,5 @@ npm-debug.log*
 .vscode/
 .idea/
 .DS_Store
-Thumbs.db
+Thumbs.db*.db
+__pycache__/
