@@ -2,7 +2,7 @@
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
-| 09 | Kommaddi Fayaz | Ganga Siva Kumar Reddy | [Adopt-a-Plant](4-adopt-a-plant.md) | `team-09-plants` |
+| 09 | Kommaddi Fayaz | Ganga Siva Kumar Reddy | [Adopt-a-Plant](https://github.com/nithyasatish28/js-mini-project/blob/main/4-adopt-a-plant.md) | `team-09-plants` |
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
