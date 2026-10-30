@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Shahiba Arshiya Banu |  |  |  |  |
+| Day 1 | Shahiba Arshiya Banu |E1,E2,E3,E4|  |  |  |
 | Day 1 | Madiha Shaik S |  |  |  |  |
 | Day 2 | Shahiba Arshiya Banu |  |  |  |  |
 | Day 2 | Madiha Shaik S |  |  |  |  |
