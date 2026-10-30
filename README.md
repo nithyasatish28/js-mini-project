@@ -12,8 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Praneeth Reddy |  |  |  |  |
-| Day 1 | Jashan S |  |  |  |  |
+| Day 1 | Praneeth Reddy |functions.py  |  |  |  |
+| Day 1 | Jashan S |main.py(endpoints) |  |  |  |
 | Day 2 | Praneeth Reddy |  |  |  |  |
 | Day 2 | Jashan S |  |  |  |  |
 | Day 3 | Praneeth Reddy |  |  |  |  |
