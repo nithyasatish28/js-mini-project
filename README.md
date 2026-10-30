@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Thanuja Reddy | understand project requirements ,design API end points , plan sqlite database structure |  |  |  |
-| Day 1 | Supriya R |  |  |  |  |
+| Day 1 | Supriya R |Setup backend folder  |  |  |  |
 | Day 2 | Thanuja Reddy |  |  |  |  |
 | Day 2 | Supriya R |  |  |  |  |
 | Day 3 | Thanuja Reddy |  |  |  |  |
