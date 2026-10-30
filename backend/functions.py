@@ -76,3 +76,33 @@ def get_plant(id): #gets info about specific plant from id
     }
     session.close()
     return response
+
+
+
+
+def adopt_plant(plant_id , roll_no):
+    session = Session(engine)
+    plant = session.get(Plants, plant_id)
+    if not plant:
+        session.close()
+        return {"code":404,"msg":"Plant Doesnt Exist"}
+    if plant.adopted_by:
+        session.close()
+        return {"code":409,"msg":"Plant is already adopted"}
+    plant.adopted_by = roll_no
+    session.flush()
+    session.close()
+    return plant_to_dict(plant)
+
+
+
+def plant_to_dict(plant: Plants):
+    return {
+        "id": plant.id,
+        "name": plant.name,
+        "type": plant.type,
+        "location": plant.location,
+        "water_every_days": plant.water_every_days,
+        "adopted_by": plant.adopted_by
+    }
+
