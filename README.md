@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Ayushman Anand | create backend folder, install required libs, create backend files | backend folder  | install required files  |  nothing right now |
-| Day 1 | Shafreen | Will make React app | Still working on it  | Will do Javascript | Nothing right now|
+| Day 1 | Shafreen | Will make React app, istall | Still working on it  | Will do Javascript | Nothing right now |
 | Day 2 | Ayushman Anand |  |  |  |  |
 | Day 2 | Shafreen |  |  |  |  |
 | Day 3 | Ayushman Anand |  |  |  |  |
