@@ -1,8 +1,16 @@
 from fastapi import FastAPI, HTTPException
 from Backend import E1
 from Backend import E2
+<<<<<<< HEAD
+from Backend import E3
+
+=======
 from Backend import E4
+<<<<<<< HEAD
 from Backend import E5
+=======
+>>>>>>> 05a9bafdfadd971ac93a32826ba7c480d5ae7714
+>>>>>>> 1a860938621fbadd92a89a0344dcd068e794db82
 
 
 app=FastAPI()
@@ -27,9 +35,24 @@ def get_equipment_by_id(equipment_id: int):
 
     return equipment
 
+<<<<<<< HEAD
+# E3 - Add new equipment
+@app.post("/equipment")
+def add_equipment(name: str, equipment_type: str, lab_room: str):
+
+    return E3.add_equipment(
+        name=name,
+        type=equipment_type,
+        lab_room=lab_room
+    )
+=======
 # E4 - Mark equipment status
 @app.put("/equipment/{equipment_id}/status")
 def mark_equipment_status(equipment_id: int, in_service: bool):
     E4.mark_equipment_status(equipment_id, in_service)
     return {"message": "Equipment status updated successfully."}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 05a9bafdfadd971ac93a32826ba7c480d5ae7714
+>>>>>>> 1a860938621fbadd92a89a0344dcd068e794db82
