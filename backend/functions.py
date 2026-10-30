@@ -45,4 +45,20 @@ def get_all_equipments(equipment_type=None):
         else:
             equipment = db.query(Equipment).all()
 
-        return [equipment_response(item) for item in equipment]
+        return [equipment_response(equipment) for item in equipment]
+    
+    
+def add_equipment(name, equipment_type, lab_room):
+    with SessionLocal() as db:
+        equipment = Equipment(
+            name=name,
+            type=equipment_type,
+            lab_room=lab_room,
+            in_service=1
+        )
+
+        db.add(equipment)
+        db.commit()
+        db.refresh(equipment)
+
+        return equipment_response(equipment)
