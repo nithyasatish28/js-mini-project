@@ -13,7 +13,7 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Soham Nanduri | Frontend | In Progress |  |  |
-| Day 1 | B Chaitanya | Backend/ Creating Endpoints  | In progress  |  |  |
+| Day 1 | B Chaitanya | Backend/ Creating Database  | In progress  |  |  |
 | Day 2 | Soham Nanduri |  |  |  |  |
 | Day 2 | B Chaitanya |  |  |  |  |
 | Day 3 | Soham Nanduri |  |  |  |  |
@@ -25,7 +25,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 | get/umbrellas | 🟡 | ⬜ | ⬜ |  |
+| E1 | get/umbrellas | ⬜ | ⬜ | ⬜ |  |
 | E2 |  | ⬜ | ⬜ | ⬜ |  |
 | E3 |  | ⬜ | ⬜ | ⬜ |  |
 | E4 |  | ⬜ | ⬜ | ⬜ |  |
