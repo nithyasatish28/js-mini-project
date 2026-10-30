@@ -31,7 +31,7 @@ Run it on port **8001**, and add CORS so the React app can call it.
 
 | # | What it does | Method | Path        | Request body                                      | Success code | Error codes     |
 | --- | --- |--------|-------------|---------------------------------------------------|--------------|-----------------|
-| E1 | Get all the plants. Can be filtered by type. Each one includes its last watered date. | GET    | /plants?type={type} | NA                                                | 200          | 404             |
+| E1 | Get all the plants. Can be filtered by type. Each one includes its last watered date. | GET    | /plants?type={type} | NA                                                | 200          |     404       |
 | E2 | Get one plant by its id, with its list of waterings, newest first. | GET    | /plants/{plant_id} | NA                                                | 200          | 404             |
 | E3 | Add a new plant: name, type, location and how often it needs water. Nobody has adopted it yet. | POST   | /plants     | {name:"",type="",location="",water_every_days=""} | 201          | 422,400         |
 | E4 | Adopt a plant with a roll number. | PATCH  | /plants/{plant_id} | {adopted_by:""}                                   | 200          | 404 , 409       |

@@ -168,3 +168,23 @@ def watering_to_dict(watering:Watering):
         "roll_no": watering.roll_no,
         "watered_on": watering.watered_on.date()
     }
+
+def need_to_water_today(): #gets the plants that need to be watered today, E7
+    session = Session(engine)
+    plants = session.query(Plants).all()
+    response = []
+    for plant in plants:
+        last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one()
+        temp_plant = {
+            "id": plant.id,
+            "name": plant.name,
+            "type": plant.type,
+            "location": plant.location,
+            "water_every_days": plant.water_every_days,
+            "adopted_by": plant.adopted_by,
+            "last_watered": last_watered
+        }
+        if (date.today() - date.fromisoformat(last_watered)).days >= plant.water_every_days:
+            response.append(temp_plant)
+    session.close()
+    return response

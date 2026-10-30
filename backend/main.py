@@ -45,6 +45,15 @@ def plants(plant_type=None):
 
 
 @app.post("/plants")
-def add_plant(name,type,location,water_every_days):
+def add_plant(name,type,location,water_every_days:int):
     return  functions.add_plant(name=name,type=type,location=location,water_every_days=water_every_days)
 
+@app.get("/plants/{plant_id}")
+def get_plant(plant_id:int):
+    if plant_id <= 0:
+        raise HTTPException(status_code=422, detail="Invalid ID")
+    return functions.get_plant(id=plant_id)
+
+@app.get("/water")
+def water_today():
+    return functions.need_to_water_today()
