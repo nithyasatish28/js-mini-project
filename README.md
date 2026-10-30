@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Melvin Jacob |  |  |  |  |
+| Day 1 | Melvin Jacob | creating updates table and working on backend functions |  |  |  |
 | Day 1 | Naman Choudhary |Creating complaints table and working on backend functions |  |  |  |
 | Day 2 | Melvin Jacob |  |  |  |  |
 | Day 2 | Naman Choudhary |  |  |  |  |
