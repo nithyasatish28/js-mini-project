@@ -23,7 +23,7 @@ class waterings(Base):
     __tablename__="waterings"
     
     id = Column(Integer,primary_key = True)
-    pplant_id = Column(Integer, ForeignKey("plants.id"))
+    plant_id = Column(Integer, ForeignKey("plants.id"))
     roll_no = Column(String)
     watered_on= Column(String)
     
