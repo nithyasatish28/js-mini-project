@@ -19,7 +19,7 @@ class Plants(Base):
     type = Column(String)
     location = Column(String,nullable = True)
     water_every_days = Column(Integer)
-    adopted_by = Column(String,nullable = True)
+    adopted_by = Column(Boolean,default = False)
     
    
 
@@ -28,8 +28,8 @@ class Waterings(Base):
     
     id = Column(Integer,primary_key = True)
     plant_id = Column(Integer, ForeignKey("plants.id"))
-    roll_no = Column(String)
-    watered_on= Column(String)
+    roll_no = Column(Integer)
+    watered_on= Column(DateTime)
     
     
 Base.metadata.create_all(engine)
