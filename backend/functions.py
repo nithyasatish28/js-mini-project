@@ -78,6 +78,21 @@ def get_plant(id): #gets info about specific plant from id and gives all waterin
     session.close()
     return response
 
+def add_plant(name,type,location,water_every_days):#adds new plants to database, E3
+    session = Session(engine)
+    plant = Plants(name=name, type=type,location=location,water_every_days=water_every_days,adopted_by= False)
+    session.add(plant)
+    response = {
+        "id": plant.id,
+        "name": plant.name,
+        "type": plant.type,
+        "location": plant.location,
+        "water_every_days": plant.water_every_days,
+        "adopted_by": plant.adopted_by,
+    }
+    session.commit()
+    session.close()
+    return response
 
 
 
@@ -96,15 +111,12 @@ def adopt_plant(plant_id , roll_no):
     return {"code":200, "plant":plant_to_dict(plant)}
 
 
-def give_up_plant(plant_id, roll_no):
+def give_up_plant(plant_id):
     session = Session(engine)
     plant = session.get(Plants, plant_id)
     if not plant:
         session.close()
         return {"code": 404, "msg": "Plant Doesnt Exist"}
-    if plant.adopted_by != roll_no:
-        session.close()
-        return {"code": 403, "msg": "Plant is not adopted by you"}
     if not plant.adopted_by:
         session.close()
         return {"code": 409, "msg": "Plant is not adopted"}
