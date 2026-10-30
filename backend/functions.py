@@ -9,7 +9,7 @@ DB_PAth ="hostel_complaint_tracker.db"
 engine=create_engine(f"sqlite:///{DB_PAth}")
 
 Base=declarative_base()
-Base.metadata.create_all(engine) 
+
 
 class Updates(Base):
     __tablename__="updates"
@@ -19,6 +19,6 @@ class Updates(Base):
     note=Column(String,nullable=True)
     updated_on=Column(DateTime,default=datetime.now)
 
-Base.metadata.create_all(engine) #create table if not exists
+Base.metadata.create_all(engine) 
 
     
