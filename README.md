@@ -12,7 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Ayushman Anand |  |  |  |  |
+| Day 1 | Ayushman Anand | test |  |  |  |
 | Day 1 | Shafreen |  |  |  |  |
 | Day 2 | Ayushman Anand |  |  |  |  |
 | Day 2 | Shafreen |  |  |  |  |
