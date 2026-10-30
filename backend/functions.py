@@ -53,6 +53,8 @@ def get_complaints(status=None,category=None):
         }
         respone.append(temp)
     session.close()
+    if respone == []:
+        return None
     return respone
 
 def get_one_complaint(id:int):
@@ -86,9 +88,10 @@ def get_one_complaint(id:int):
 
     
 
-def update_complaint(complaint_id: int, new_status: str, note: str,description,category,rollno,roomno):
+def create_complaint(rollno:int, roomno:str, category:str, description:str):
     session = Session(engine)
-    complaint = complaints(complaint_id=complaint_id,rollno=rollno,room_no=roomno,category=category,description=description,status="open")    
+    complaint = complaints(rollno=rollno,room_no=roomno,category=category,description=description,status="open")    
+    session.add(complaint)
     session.commit()
     temp = {
                 "id" : complaint.id,
@@ -134,3 +137,4 @@ def update_complaint_status(complaint_id, new_status, note):
 
 def get_students_complaints_byrollno():
     pass
+
