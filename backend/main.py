@@ -21,12 +21,12 @@ def all_complaints():
 #E2
 @app.get("/complaints/{id}")
 def get_complaint(id: int):
-    complaint = functions.get_complaint(id=id)
+    complaint = functions.get_complaint(id)
     if complaint is None:
         raise HTTPException(status_code=404, detail="Complaint not found")
     return complaint
 
-#3
+#E3
 @app.post("/complaints")
 def create_complaint(rollno: str, roomno: str, category: str, description: str):
     
@@ -50,4 +50,39 @@ def create_complaint(rollno: str, roomno: str, category: str, description: str):
                 if exist["status"] != "resolved":
                     raise HTTPException(status_code=409, detail="Has an unresolved complaint in this category")
 
-    return functions.create_complaint(roll_no=rollno, room_no=roomno, category=category, description=description)
+    return functions.create_complaint(rollno=rollno, roomno=roomno, category=category, description=description)
+
+#E4
+@app.patch("/complaints/{complaint_id}/status")
+def update_complaint(complaint_id: int, note: str):
+    complaint = functions.get_complaint(complaint_id)
+    if complaint is None:
+        raise HTTPException(status_code=404, detail="Complaint is not there")
+    if complaint["status"] == "resolved":
+        raise HTTPException(status_code=409, detail="Resolved complaint can't be changed")
+    if note == "":
+        raise HTTPException(status_code=422, detail="Can't be empty")
+    return functions.update_complaint(complaint_id, note)
+
+#E5
+@app.get("/students/{roll_no}/complaints")
+def student_complaints(roll_no: str):
+    return functions.fetch_student_complaint(roll_no)
+
+
+#E6
+@app.delete("/complaints/{complaint_id}", status_code=204)
+def delete_complaint(complaint_id: int):
+    complaint = functions.get_complaint(complaint_id)
+    if complaint is None:
+        raise HTTPException(status_code=404, detail="Complaint not found")
+    if complaint["status"] != "open":
+        raise HTTPException(status_code=409, detail="Only an open complaint can be deleted")
+    functions.remove_complaint(complaint_id)
+    return {"message": "Complaint deleted successfully"}
+
+
+#E7
+@app.get("/stats")
+def status_counts():
+    return functions.get_status_counts()

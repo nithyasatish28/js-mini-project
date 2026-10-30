@@ -34,6 +34,8 @@ Base.metadata.create_all(engine)
 
 CATEGORIES = ["electrical", "plumbing", "furniture", "cleaning", "internet"]
 
+NEXT_STATUS = {"open": "in_progress", "in_progress": "resolved"}
+
 
 # E1
 def get_all_complaints(status=None, category=None):
@@ -126,38 +128,40 @@ def create_complaint(rollno, roomno, category, description):
     session.close()
     return temp
 
-
-def update_complaint(id, status, note):
+#4
+def update_complaint(id, note):
     session = Session(engine)
     complaint = session.get(Complaints, id)
 
-    if complaint is None:
+    if complaint is None or complaint.status not in NEXT_STATUS:
         session.close()
         return None
 
-    complaint.status = status
+    new_status = NEXT_STATUS[complaint.status]
+    complaint.status = new_status
 
-    if status == "resolved":
+    if new_status == "resolved":
         complaint.resolved_on = datetime.now()
 
     update = Updates(
         complaint_id=id,
-        status=status,
+        status=new_status,
         note=note
     )
-
     session.add(update)
     session.commit()
 
     temp = {
         "id": complaint.id,
-        "status": complaint.status
+        "status": complaint.status,
+        "note": update.note,
+        "updated_on": update.updated_on
     }
 
     session.close()
     return temp
 
-
+#5
 def fetch_student_complaint(roll_no):
     session = Session(engine)
 
@@ -184,7 +188,7 @@ def fetch_student_complaint(roll_no):
     session.close()
     return response
 
-
+#6
 def remove_complaint(id):
     session = Session(engine)
     complaint = session.get(Complaints, id)
@@ -203,7 +207,7 @@ def remove_complaint(id):
 
     return True
 
-
+#7
 def get_status_counts():
     session = Session(engine)
 
@@ -223,10 +227,3 @@ def get_status_counts():
 
     session.close()
     return temp
-
-
-
-
-
-
-
