@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, String, Column, create_engine, DateTime, ForeignKey
 from sqlalchemy.orm import Session, declarative_base
-from datetime import datetime
+from datetime import datetime, date
 
 
 DB_PATH = "./plants_orphange.db"
@@ -92,7 +92,7 @@ def adopt_plant(plant_id , roll_no):
     plant.adopted_by = roll_no
     session.flush()
     session.close()
-    return plant_to_dict(plant)
+    return {"code":200, "plant":plant_to_dict(plant)}
 
 
 def give_up_plant(plant_id, roll_no):
@@ -111,7 +111,7 @@ def give_up_plant(plant_id, roll_no):
     plant.adopted_by = None
     session.flush()
     session.close()
-    return plant_to_dict(plant)
+    return {"code":200, "plant":plant_to_dict(plant)}
 
 
 
@@ -126,3 +126,32 @@ def plant_to_dict(plant: Plants):
         "adopted_by": plant.adopted_by
     }
 
+def water_plant(plant_id, roll_no):
+    session = Session(engine)
+    plant = session.get(Plants, plant_id)
+    if not plant:
+        session.close()
+        return {"code": 404, "msg": "Plant Doesnt Exist"}
+    if plant.adopted_by != roll_no:
+        session.close()
+        return {"code": 403, "msg": "Plant is not adopted by you"}
+    last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one()
+    if datetime.today().date() == last_watered.watered_on.date():
+        session.close()
+        return {"code": 403, "msg": "Plant is not adopted by you"}
+    new_watered = Watering(plant_id=plant_id,roll_no=roll_no)
+    session.add(new_watered)
+    session.commit()
+    session.close()
+
+    return {"code":200, "watering":plant_to_dict(plant)}
+
+
+
+def watering_to_dict(watering:Watering):
+    return {
+        "id":watering.id,
+        "plant_id": watering.plant_id,
+        "roll_no": watering.roll_no,
+        "watered_on": watering.watered_on.date()
+    }
