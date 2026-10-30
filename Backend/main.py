@@ -55,10 +55,10 @@ def book_equipment(equipment_id: int, roll_no: str, booking_date: str):
 
 
 
-
-
 # E6 - Get student bookings using roll number
 @app.get("/bookings/student/{roll_no}")
 def get_student_bookings(roll_no: str):
     return E6.get_student_bookings(roll_no)
+
+
 
