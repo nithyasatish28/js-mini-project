@@ -15,4 +15,9 @@ def update_service(equipment_id : int, in_service : bool):
 @app.post("/booking")
 def add_booking(equipment_id : int ,booking_date , roll_no : int):
     return functions.add_booking(equipment_id=equipment_id, booking_date=booking_date, roll_no=roll_no)
-#
+
+@app.get("/booking/{roll_no}")
+def get_equipments_not_booked(roll_no):
+    return functions.get_student_bookings(roll_no)
+
+
