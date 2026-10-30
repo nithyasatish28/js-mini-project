@@ -1,5 +1,3 @@
-from http.client import HTTPException
-
 from sqlalchemy import Integer, String, Column, create_engine,inspect,ForeignKey
 from sqlalchemy.orm import Session, declarative_base;
 
@@ -52,7 +50,7 @@ def get_all_plants():
     session.close()
     return response 
 
-
+#get a plant by its id
 def get_plant(id):
     session = Session(engine)
     plant = session.get(Plants, id)

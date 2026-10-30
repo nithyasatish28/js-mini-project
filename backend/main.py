@@ -1,7 +1,10 @@
 from fastapi import FastAPI,HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+
 import AM_functions
 
 app =FastAPI()
+
 
 @app.get("/plants")
 def get_plants():
