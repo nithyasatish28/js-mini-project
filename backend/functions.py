@@ -9,10 +9,9 @@ DB_PAth ="hostel_complaint_tracker.db"
 engine=create_engine(f"sqlite:///{DB_PAth}")
 
 Base=declarative_base()
-Base.metadata.create_all(engine) 
+
 
 class updates(Base):
-
     __tablename__="updates"
     id=Column(Integer,primary_key=True)
     complaint_id=Column(String)
@@ -20,9 +19,7 @@ class updates(Base):
     note=Column(String,nullable=True)
     updated_on=Column(DateTime,default=datetime.now)
 
-
-
-class Complaints(Base):
+class complaints(Base):
     __tablename__="complaints"
     id=Column(Integer ,primary_key=True)
     rollno = Column(String)
@@ -33,9 +30,46 @@ class Complaints(Base):
     created_on = Column(DateTime,default=datetime.now)
     resolved_on = Column(DateTime, nullable=True)
 
-    
-def get_complaint_by_id():
+Base.metadata.create_all(engine) 
+
+def get_complaints(status=None,category=None):
     session=Session(engine)
-    Update=session.get(Updates,id)
+    query = session.query(complaints)
+    if status:
+        query = query.filter(complaints.status==status)
+    if category:
+        query=query.filter(complaints.category==category)
+    respone=[]
+    for complaint in query:
+        temp = {
+            "id" : complaint.id,
+            "roll_no" : complaint.rollno,
+            "room_no" : complaint.room_no,
+            "category" : complaint.category,
+            "description" : complaint.description,
+            "status" : complaint.status,
+            "created_on" : complaint.created_on,
+            "resolved_on" : complaint.resolved_on
+        }
+        respone.append(temp)
+    session.close()
+    return respone
 
 
+def create_complaint(rollno, roomno, category, description):
+    session = Session(engine)
+    complaint = complaints(rollno=rollno,room_no=roomno,category=category,description=description,status="open")    
+    session.add(complaint)
+    session.commit()
+    temp = {
+                "id" : complaint.id,
+                "roll_no" : complaint.rollno,
+                "room_no" : complaint.room_no,
+                "category" : complaint.category,
+                "description" : complaint.description,
+                "status" : complaint.status,
+                "created_on" : complaint.created_on,
+                "resolved_on" : complaint.resolved_on
+            }
+    session.close()
+    return temp
