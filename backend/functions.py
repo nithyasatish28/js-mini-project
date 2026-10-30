@@ -58,6 +58,36 @@ def get_all_complaints(status=None, category=None):
     session.close()
     return response
 
+def get_complaint(id):
+    session = Session(engine)
+    complaint = session.get(Complaints, id)
+
+    response = {
+        "id": complaint.id,
+        "roll_no": complaint.roll_no,
+        "room_no": complaint.room_no,
+        "category": complaint.category,
+        "description": complaint.description,
+        "status": complaint.status,
+        "created_on": complaint.created_on,
+        "resolved_on": complaint.resolved_on
+    }
+
+    updates = session.query(Updates).filter(Updates.complaint_id == id).all()
+
+    response["updates"] = []
+
+    for update in updates:
+        temp = {
+            "status": update.status,
+            "note": update.note,
+            "updated_on": update.updated_on
+        }
+        response["updates"].append(temp)
+
+    session.close()
+    return response
+
 
 
 
