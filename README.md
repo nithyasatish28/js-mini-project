@@ -142,4 +142,4 @@ These instructions stay on `main`, so you can always read them on GitHub.
 | Day 2 | React app connected to the API |
 | Day 3 | Demo |
 
-**Deadline:** [date and time]. The last commit pushed to your branch before the deadline is your submission.
+**Deadline:** Nov 1st 12:00 am The last commit pushed to your branch before the deadline is your submission.
