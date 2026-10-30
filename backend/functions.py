@@ -55,6 +55,37 @@ def get_complaints(status=None,category=None):
     session.close()
     return respone
 
-
+def get_one_complaint(id:int):
+    session = Session(engine)
+    query = session.query(complaints).filter(complaints.id == id).first()
+    if not query:
+            return None
+    query2 = session.query(updates).filter(updates.complaint_id == id).all()
+    response =[]
+    temp1 = {
+        "id" : query.id,
+        "roll_no" : query.rollno,
+        "room_no" : query.room_no,
+        "category" : query.category,
+        "description" : query.description,
+        "status" : query.status,
+        "created_on" : query.created_on,
+        "resolved_on" : query.resolved_on
+    }
+    response.append(temp1)
+    for update in query2:
+        temp = {
+            "id" : update.id,
+            "roll_no" : update.rollno,
+            "room_no" : update.room_no,
+            "category" : update.category,
+            "description" : update.description,
+            "status" : update.status,
+            "created_on" : update.created_on,
+            "resolved_on" : update.resolved_on
+        }
+        response.append(temp)
+    session.close()
+    return response
 
     
