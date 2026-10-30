@@ -2,7 +2,7 @@ from sqlalchemy import Integer, String, Column, ForeignKey, create_engine, DateT
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime
 
-DB_PATH = "umbrella_station"
+DB_PATH = "backend/umbrellas.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
 
