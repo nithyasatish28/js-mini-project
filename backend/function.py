@@ -49,3 +49,23 @@ def add_initial_stations():
         session.commit()
 
     session.close()
+def get_all_stations():
+    session = Session(engine)
+
+    stations = session.query(Stations).all()
+
+    result = []
+
+    for station in stations:
+        result.append({
+            "id": station.id,
+            "name": station.name,
+            "location": station.location,
+            "capacity": station.capacity,
+            "umbrellas_available": station.umbrellas_available,
+            "free_slots": station.capacity - station.umbrellas_available
+        })
+
+    session.close()
+
+    return result

@@ -12,3 +12,7 @@ def startup():
 @app.get("/")
 def hello():
     return {"message": "Umbrella Sharing API is running"}
+
+@app.get("/stations")
+def get_all_stations():
+    return function.get_all_stations()
