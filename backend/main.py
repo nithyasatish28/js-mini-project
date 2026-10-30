@@ -17,7 +17,7 @@ def get_event(event_id: int):
     return response
 
 
-@app.post("/events", status_code=201)
+@app.post("/events")
 def add_event(title, club, category, event_date, total_seats: int):
     return functions.add_event(title=title, club=club, category=category, event_date=event_date, total_seats=total_seats)
 
