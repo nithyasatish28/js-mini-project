@@ -11,7 +11,7 @@ VALID_TYPES = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"]
 
 
 class Equipment(Base):
-    _tablename_ = "equipment"
+    __tablename__ = "equipment"
     id = Column(Integer, primary_key=True)
     name = Column(String)
     type = Column(String)
@@ -20,7 +20,7 @@ class Equipment(Base):
 
 
 class Bookings(Base):
-    _tablename_ = "bookings"
+    __tablename__ = "bookings"
     id = Column(Integer, primary_key=True)
     equipment_id = Column(Integer)
     roll_no = Column(String)
@@ -30,3 +30,14 @@ class Bookings(Base):
 
 
 Base.metadata.create_all(engine)
+
+def equipment_to_dict(item):
+    return {
+        "id": item.id,
+        "name": item.name,
+        "type": item.type,
+        "lab_room": item.lab_room,
+        "in_service": item.in_service
+    }
+
+
