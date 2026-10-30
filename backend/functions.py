@@ -158,6 +158,33 @@ def update_complaint(id, status, note):
     return temp
 
 
+def fetch_student_complaint(roll_no):
+    session = Session(engine)
+
+    complaints = session.query(Complaints).filter(
+        Complaints.roll_no == roll_no
+    ).all()
+
+    response = []
+
+    for complaint in complaints:
+        temp = {
+            "id": complaint.id,
+            "roll_no": complaint.roll_no,
+            "room_no": complaint.room_no,
+            "category": complaint.category,
+            "description": complaint.description,
+            "status": complaint.status,
+            "created_on": complaint.created_on,
+            "resolved_on": complaint.resolved_on
+        }
+
+        response.append(temp)
+
+    session.close()
+    return response
+
+
 
 
 
