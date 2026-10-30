@@ -148,4 +148,26 @@ def add_booking(equipment_id, roll_no, booking_date, booked_on=date.today()):
         return response
 
 
+#E6
+def get_student_bookings(roll_no):
+    session = Session(engine)
+    bookings = session.query(Booking).filter(Booking.roll_no == roll_no).all()
+    response = []
+    for booking in bookings:
+        # today = date.today()
+        # if booking.booking_date >= today:
+            temp_booking = {
+                "id" : booking.id,
+                "equipment_id": booking.equipment_id,
+                "roll_no": booking.roll_no,
+                "booking_date": booking.booking_date,
+                "booked_on": booking.booked_on,
+                "cancelled": booking.cancelled
+            }
+            response.append(temp_booking)
+
+    session.close()
+    return response
+
+
 
