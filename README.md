@@ -2,7 +2,7 @@
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
-| 23 | Padmaraju Poojitha | S Thanmayee | [Lab Equipment Booking](3-lab-equipment-booking.md) | `team-23-lab` |
+| 23 | Padmaraju Poojitha | S Thanmayee | [Lab Equipment Booking](https://github.com/nithyasatish28/js-mini-project/blob/main/3-lab-equipment-booking.md) | `team-23-lab` |
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
