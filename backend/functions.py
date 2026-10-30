@@ -47,3 +47,36 @@ def get_all_events():
         response.append(temp_item)
     session.close()
     return response
+
+
+def get_event(id):
+    session = Session(engine)
+    event = session.get(Events,id)
+
+    if event is None:
+        session.close()
+        return None
+
+    response = {
+        "id":event.id,
+        "title":event.title,
+        "club":event.club,
+        "category":event.category,
+        "event_date":event.event_date,
+        "total_seats":event.total_seats,
+        "seats_left":event.seats_left
+
+    }
+    session.close()
+    return response
+
+
+def add_event(title,club,category,event_date,total_seats):
+    session = Session(engine)
+    event = Events(title=title,club=club,category=category,event_date=event_date,total_seats=total_seats,seats_left=total_seats)
+
+    response = {"message": "Event added successfully"}
+    session.add(event)
+    session.commit()
+    session.close()
+    return response
