@@ -61,3 +61,18 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
             response.append(temp_plant)
         session.close()
         return response
+
+def get_plant(id): #gets info about specific plant from id
+    session = Session(engine)
+    plant = session.get(Plants, id)
+    response = {
+        "id": plant.id,
+        "name": plant.name,
+        "type": plant.type,
+        "location": plant.location,
+        "water_every_days": plant.water_every_days,
+        "adopted_by": plant.adopted_by
+
+    }
+    session.close()
+    return response
