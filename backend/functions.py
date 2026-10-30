@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, String, Column, create_engine,DateTime, ForeignKey
 from sqlalchemy.orm import Session, declarative_base
-from datetime import datetime
+from datetime import datetime,date
 
 DB_PATH = "events.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -23,14 +23,22 @@ class Registrations(Base):
     __tablename__ = "registrations"
     id = Column(Integer,primary_key=True)
     event_id = Column(Integer,ForeignKey("events.id"),nullable=False)
+    roll_no = Column(String,nullable=False)
     registered_on = Column(DateTime,default=datetime.now)
     cancelled_on = Column(DateTime,nullable=True)
 Base.metadata.create_all(engine)
 
 
-def get_all_events():
+
+def get_all_events(category= None):
     session = Session(engine)
-    events = session.query(Events).all()
+    if category == None:
+        events = session.query(Events).all()
+    else:
+        events = session.query(Events).filter(
+            Events.category == category
+        ).all()
+        
     response =[]
 
     for event in events:
@@ -46,6 +54,7 @@ def get_all_events():
         response.append(temp_item)
     session.close()
     return response
+
 
 
 def get_event(id):
@@ -103,3 +112,36 @@ def delete_event(event_id):
     session.commit()     
     session.close()
     return{"message":"Event deleted successfully"}
+       
+
+def register_student(event_id,roll_no):
+    session = Session(engine)
+    event = session.get(Events,event_id)
+    if event is None:
+        session.close()
+        return None
+    if event.seats_left <= 0:
+        session.close()
+        return{"error":"No seats available"}
+    if date.fromisoformat(event.event_date) < date.today():
+        session.close()
+        return{"error":"Event has already passed"}
+    registration = session.query(Registrations).filter(
+        Registrations.event_id == event_id,
+        Registrations.roll_no == roll_no,
+        Registrations.cancelled_on == None
+    ).first()
+    if registration:
+        session.close()
+        return{"error":"Already registered"}
+    registration = Registrations(event_id=event_id,roll_no= roll_no)
+    session.add(registration)
+    event.seats_left=event.seats_left - 1
+    session.commit()
+    session.close()
+    return{"message":"Registration successful"}
+
+
+    
+
+  
