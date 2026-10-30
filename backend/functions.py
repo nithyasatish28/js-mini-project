@@ -73,3 +73,30 @@ def create_complaint(rollno, roomno, category, description):
             }
     session.close()
     return temp
+
+def update_complaint_status(complaint_id, new_status, note):
+    session = Session(engine)
+    
+    complaint = session.query(complaints).filter(complaints.id == complaint_id).first()
+    
+    if not complaint:
+        return {"error": "Complaint not found"}
+        
+    complaint.status = new_status
+    
+    if new_status.lower() == "resolved":
+        complaint.resolved_on = datetime.now()
+        
+    status_update = updates(complaint_id=complaint_id, status=new_status, note=note)
+    session.add(status_update)
+    session.commit()
+    
+    temp = {
+        "complaint_id": complaint.id,
+        "new_status": complaint.status,
+        "resolved_on": complaint.resolved_on,
+        "message": "Status updated and note added successfully"
+    }
+    
+    session.close()
+    return temp
