@@ -20,7 +20,7 @@ def all_complaints():
 
 # E2: one complaint based on complaint id, with its updates
 @app.get("/complaints/{complaint_id}")
-def complaint(complaint_id: int):
+def complaint_by_id(complaint_id: int):
     result = functions.get_complaint_by_id(complaint_id=complaint_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Complaint doesn't exist")
@@ -29,6 +29,7 @@ def complaint(complaint_id: int):
 # E3: raise a complaint
 @app.post("/complaints")
 def add_complaint(roll_no, room_no, category, description):
+    category = category.lower() # added this because whenever any category with caps was put in, the invalid category error came up
     if roll_no == "" or room_no == "" or category == "" or description == "":
         raise HTTPException(status_code=422, detail="Every field must be filled in")
 
