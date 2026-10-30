@@ -11,7 +11,7 @@ engine=create_engine(f"sqlite:///{DB_PAth}")
 Base=declarative_base()
 Base.metadata.create_all(engine) 
 
-class Updates(Base):
+class updates(Base):
 
     __tablename__="updates"
     id=Column(Integer,primary_key=True)
@@ -34,3 +34,8 @@ class Complaints(Base):
     resolved_on = Column(DateTime, nullable=True)
 
     
+def get_complaint_by_id():
+    session=Session(engine)
+    Update=session.get(Updates,id)
+
+
