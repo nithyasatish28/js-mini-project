@@ -184,7 +184,7 @@ def fetch_student_complaint(roll_no):
     session.close()
     return response
 
-# E6
+
 def remove_complaint(id):
     session = Session(engine)
     complaint = session.get(Complaints, id)
@@ -202,6 +202,27 @@ def remove_complaint(id):
     session.close()
 
     return True
+
+
+def get_status_counts():
+    session = Session(engine)
+
+    temp = {
+        "open": session.query(Complaints).filter(
+            Complaints.status == "open"
+        ).count(),
+
+        "in_progress": session.query(Complaints).filter(
+            Complaints.status == "in_progress"
+        ).count(),
+
+        "resolved": session.query(Complaints).filter(
+            Complaints.status == "resolved"
+        ).count()
+    }
+
+    session.close()
+    return temp
 
 
 
