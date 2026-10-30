@@ -25,3 +25,5 @@ def get_complaint(id: int):
     if complaint is None:
         raise HTTPException(status_code=404, detail="Complaint not found")
     return complaint
+
+#3

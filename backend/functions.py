@@ -20,16 +20,15 @@ class Updates(Base):
 
 
 class Complaints(Base):
-    __tablename__ = "complaints"
-    id = Column(Integer, primary_key=True)
-    roll_no = Column(String)
-    room_no = Column(String)
-    category = Column(String)
-    description = Column(String)
-    status = Column(String, default="open")
-    created_on = Column(DateTime, default=datetime.now)
-    resolved_on = Column(DateTime, nullable=True)
-
+    __tablename__="complaints"
+    id=Column(Integer,primary_key=True)
+    roll_no=Column(String)
+    room_no=Column(String)
+    category=Column(String)
+    description=Column(String)
+    status=Column(String,default="open")
+    created_on=Column(DateTime,default=datetime.now)
+    resolved_on=Column(DateTime,nullable=True)
 
 Base.metadata.create_all(engine)
 
@@ -97,3 +96,12 @@ def get_complaint(id):
 
     session.close()
     return response
+
+
+
+
+
+
+
+
+
