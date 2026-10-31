@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Column, create_engine, DateTime
+from sqlalchemy import Integer, String, Column, create_engine, DateTime, ForeignKey
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime
 
@@ -7,31 +7,25 @@ engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
 
 
-
-class Items(Base):
+class Plants(Base):
     __tablename__ = "plants"
+
     id = Column(Integer, primary_key=True)
-    name =  Column(String)
+    name = Column(String)
     type = Column(String)
-    
     location = Column(String, nullable=True)
-    
     water_every_days = Column(Integer)
     adopted_by = Column(String, nullable=True)
 
-Base.metadata.create_all(engine)
 
-
-class Items(Base):
+class Waterings(Base):
     __tablename__ = "waterings"
+
     id = Column(Integer, primary_key=True)
-    roll_no =  Column(Integer)
-    plant_id = Column(Integer, foreign_key="plants.id")
-    
-    watered_on = Column(Integer, default=datetime.now().timestamp())
-    
+    roll_no = Column(String)
+    plant_id = Column(Integer, ForeignKey("plants.id"))
+    watered_on = Column(DateTime, default=datetime.now)
+
 
 Base.metadata.create_all(engine)
-
-
 
