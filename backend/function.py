@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from sqlalchemy import (Column,Date,DateTime,ForeignKey,Integer,String,create_engine,)
 from sqlalchemy.orm import declarative_base, sessionmaker
@@ -46,7 +46,7 @@ def _booking_response(booking, equipment_name=None):
         "equipment_name": equipment_name,
         "roll_no": booking.roll_no,
         "booking_date": booking.booking_date,
-        "booking_on": booking.booking_on,
+        "booking_on": booking.booked_on,
         "cancelled": booking.cancelled
     }
 

@@ -6,7 +6,7 @@ app = FastAPI(title="Laboratory Equipment Booking System")
 
 app.add_middleware(
     __import__("fastapi").middleware.cors.CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:5173","http://127.0.0.1:5173"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -32,9 +32,9 @@ def equipment_by_id(id: int):
 def add_equipment(name: str = Body(...),type: str = Body(...),lab_room: str = Body(...)):
     if not name.strip() or not lab_room.strip():
         raise HTTPException(status_code=422,detail="Name and lab room cannot be empty.")
-    if type not in functions.VALID_TYPES:
+    if type not in function.VALID_TYPES:
         raise HTTPException(status_code=422,detail="Invalid equipment type.")
-    return functions.add_equipment(name=name,type=type,lab_room=lab_room)
+    return function.add_equipment(name=name,type=type,lab_room=lab_room)
 
 
 @app.patch("/equipment/{id}/service")
