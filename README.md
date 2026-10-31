@@ -28,9 +28,9 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E1 |GET /api/stations | ⬜ | ⬜ | ⬜ |  |
 | E2 |GET /api/stations/{id}  | ⬜ | ⬜ | ⬜ |  |
 | E3 |POST/api/stations  | ⬜ | ⬜ | ⬜ |  |
-| E4 |POST /api/borrowings |⬜ | ⬜ | ⬜ |  |
-| E5 |PUT /api/borrowings/{id}/return  | ⬜ | ⬜ | ⬜ |  |
-| E6 |GET/api/students/{rollNumber}/borrowing | ⬜ | ⬜ | ⬜ |  |
+| E4 |POST /api/borrow |⬜ | ⬜ | ⬜ |  |
+| E5 |POST /api/return  | ⬜ | ⬜ | ⬜ |  |
+| E6 |GET/api/students/{rollNumber}/borrow | ⬜ | ⬜ | ⬜ |  |
 | E7 |GET /api/stations/attention|⬜ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
