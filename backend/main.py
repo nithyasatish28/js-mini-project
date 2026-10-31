@@ -1,5 +1,6 @@
 from fastapi import FastAPI,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+import E1
 
 app = FastAPI()
 
@@ -14,6 +15,7 @@ app.add_middleware(
 def hello():
     return {"message": "hello peoples"}
 
-@app.get ("/plants")
-def get_plants(plants_name: str):
-    return {"plants": [plants_name]}
+@app.get("/plants")
+def read_plants(type: str = None):
+    plants = E1.get_all_plants(type)
+    return plants
