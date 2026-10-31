@@ -14,7 +14,7 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Padmaraju Poojitha | creating database tables |Done  |completing the test of backend  | stuck on end points  |
 | Day 1 | S Thanmayee |Prepare API and DB requirements  |Done  |making the url to work without errors |def 1 particular fun  |
-| Day 2 | Padmaraju Poojitha |debugging the code  |Done  |  |  |
+| Day 2 | Padmaraju Poojitha |debugging the code  |Done  |booking form  | getting rejected while puhing |
 | Day 2 | S Thanmayee |testing all the endpoints  |Done  |adding frontend folders and files  |getting rejected while pushing  |
 | Day 3 | Padmaraju Poojitha |  |  |  |  |
 | Day 3 | S Thanmayee |  |  |  |  |
