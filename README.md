@@ -12,10 +12,10 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Padmaraju Poojitha | creating database tables |  |  |  |
-| Day 1 | S Thanmayee |Prepare API and DB requirements  |  |  |  |
-| Day 2 | Padmaraju Poojitha |  |  |  |  |
-| Day 2 | S Thanmayee |  |  |  |  |
+| Day 1 | Padmaraju Poojitha | creating database tables |  |completing the test of backend  | stuck on end points  |
+| Day 1 | S Thanmayee |Prepare API and DB requirements  |  |making the url to work without errors |def 1 particular fun  |
+| Day 2 | Padmaraju Poojitha |debugging the code  |  |  |  |
+| Day 2 | S Thanmayee |testing all the endpoints  |  |  |  |
 | Day 3 | Padmaraju Poojitha |  |  |  |  |
 | Day 3 | S Thanmayee |  |  |  |  |
 
@@ -25,10 +25,10 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |get  | ✅ | ✅ | ⬜ |  |
+| E2 |get  | ✅ | ✅ | ⬜ |  |
+| E3 |post  | ✅ | ✅ | ⬜ |  |
+| E4 |patch  | ✅ | ✅ | ⬜ |  |
 | E5 |  | ⬜ | ⬜ | ⬜ |  |
 | E6 |  | ⬜ | ⬜ | ⬜ |  |
 | E7 |  | ⬜ | ⬜ | ⬜ |  |

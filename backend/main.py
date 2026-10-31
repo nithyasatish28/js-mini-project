@@ -5,7 +5,7 @@ import function
 app = FastAPI(title="Laboratory Equipment Booking System")
 
 app.add_middleware(
-    __import__("fastapi").middleware.cors.CORSMiddleware,
+    _import_("fastapi").middleware.cors.CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
