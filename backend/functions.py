@@ -18,7 +18,6 @@ class Equipment(Base):
 
 class Bookings(Base):
     __tablename__ = "bookings"
-
     id = Column(Integer, primary_key=True)
     equipment_id = Column(Integer, ForeignKey("equipment.id"), nullable=False)
     roll_no = Column(String, nullable=False)
@@ -29,7 +28,6 @@ Base.metadata.create_all(engine)
 equipment_types = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"]
 
 def equipment_response(equipment):
-
     return {
         "id": equipment.id,
         "name": equipment.name,
@@ -52,133 +50,83 @@ def booking_response(booking, equipment_name=None):
 def get_all_equipments(equipment_type=None):
     with SessionLocal() as db:
         if equipment_type:
-            equipment = db.query(Equipment).filter(
-                Equipment.type == equipment_type).all()
+            equipment = db.query(Equipment).filter(Equipment.type == equipment_type).all()
         else:
             equipment = db.query(Equipment).all()
-
         return [equipment_response(item) for item in equipment]
 
 def get_equipment_by_type(equipment_type):
     with SessionLocal() as db:
-        equipment_list = db.query(Equipment).filter(
-            Equipment.type == equipment_type
-        ).all()
-
+        equipment_list = db.query(Equipment).filter(Equipment.type == equipment_type).all()
         return [equipment_response(item) for item in equipment_list]
     
 def get_equipment_by_id(equipment_id):
     with SessionLocal() as db:
         equipment = db.get(Equipment, equipment_id)
-
         if equipment is not None:
             return equipment_response(equipment)
-
         return None
-
 
 def add_equipment(name, equipment_type, lab_room):
     with SessionLocal() as db:
-        equipment = Equipment(
-            name=name,
-            type=equipment_type,
-            lab_room=lab_room,
-            in_service=1
-        )
-
+        equipment = Equipment(name=name,type=equipment_type,lab_room=lab_room,in_service=1)
         db.add(equipment)
         db.commit()
         db.refresh(equipment)
-
         return equipment_response(equipment)
     
 
 def update_service(equipment_id, in_service):
     with SessionLocal() as db:
         equipment = db.get(Equipment, equipment_id)
-
         if equipment is not None:
             equipment.in_service = int(in_service)
             db.commit()
             db.refresh(equipment)
-
             return equipment_response(equipment)
         return None
 
 def book_equipment(equipment_id, roll_no, booking_date):
-
     with SessionLocal() as db:
-
-        equipment = db.query(Equipment).filter(
-            Equipment.id == equipment_id
-        ).first()
-
+        equipment = db.query(Equipment).filter(Equipment.id == equipment_id).first()
         if equipment is None:
             return None
-
         if not equipment.in_service:
             return "out_of_service"
-
-        booking = db.query(Bookings).filter(
-            Bookings.equipment_id == equipment_id,
-            Bookings.booking_date == booking_date,
-            Bookings.cancelled == 0
-        ).first()
-
+        booking = db.query(Bookings).filter(Bookings.equipment_id == equipment_id,Bookings.booking_date == booking_date,Bookings.cancelled == 0).first()
         if booking is not None:
             return "already_booked"
-
-        count = db.query(Bookings).filter(
-            Bookings.roll_no == roll_no,
-            Bookings.booking_date == booking_date,
-            Bookings.cancelled == 0
-        ).count()
-
+        count = db.query(Bookings).filter(Bookings.roll_no == roll_no,Bookings.booking_date == booking_date,Bookings.cancelled == 0).count()
         if count >= 2:
             return "booking_limit"
-
-        new_booking = Bookings(
-            equipment_id=equipment_id,
-            roll_no=roll_no,
-            booking_date=booking_date,
-            booked_on=date.today(),
-            cancelled=0
-        )
-
+        new_booking = Bookings(equipment_id=equipment_id,roll_no=roll_no,booking_date=booking_date,booked_on=date.today(),cancelled=0)
         db.add(new_booking)
         db.commit()
         db.refresh(new_booking)
-
         return booking_response(new_booking, equipment.name)  
     
     
 def get_student_bookings(roll_no):
     with SessionLocal() as db:
-        bookings = db.query(Bookings).filter(
-            Bookings.roll_no == roll_no,
-            Bookings.cancelled == 0,
-            Bookings.booking_date >= date.today()
-        ).all()
-
-        return [booking_response(booking) for booking in bookings]
-    
+        bookings = db.query(Bookings).filter(Bookings.roll_no == roll_no,Bookings.cancelled == 0,Bookings.booking_date >= date.today()).all()
+        result = []
+        for booking in bookings:
+            equipment = db.get(Equipment, booking.equipment_id)
+            result.append(booking_response(booking, equipment.name))
+        return result
     
 def get_booking(booking_id):
       with SessionLocal() as db:
-        return db.query(Bookings).filter(
-            Bookings.id == booking_id
-        ).first()
-
+        return db.query(Bookings).filter(Bookings.id == booking_id).first()
 
 def cancel_booking(booking_id):
     with SessionLocal() as db:
-        booking = db.query(Bookings).filter(
-            Bookings.id == booking_id
-        ).first()
-
+        booking = db.query(Bookings).filter(Bookings.id == booking_id).first()
+        if booking is None:
+            return None
+        equipment = db.get(Equipment, booking.equipment_id)
         booking.cancelled = 1
         db.commit()
         db.refresh(booking)
-
-        return booking_response(booking)   
+        return booking_response(booking, equipment.name)   
     
