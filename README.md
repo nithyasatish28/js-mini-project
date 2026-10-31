@@ -27,7 +27,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 |---|---|---|---|---|---|
 | E1 | get/stations | ✅ | ⬜ | ⬜ |  |
 | E2 | get/stations/{station_id} | ✅ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
+| E3 | post/stations | ✅ | ⬜ | ⬜ |  |
 | E4 |  | ⬜ | ⬜ | ⬜ |  |
 | E5 |  | ⬜ | ⬜ | ⬜ |  |
 | E6 |  | ⬜ | ⬜ | ⬜ |  |
