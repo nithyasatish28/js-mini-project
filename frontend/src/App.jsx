@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <h1>Hostel Complaint Tracker</h1>
-      <Warden complaints={complaints} counts={counts} />
+      <Warden complaints={complaints} counts={counts} apiUrl={API_URL} onDone={loadComplaints} />
       <RaiseComplaint />
       <MyComplaints />
     </>
