@@ -12,7 +12,7 @@ Base = declarative_base()
 VALID_TYPES = ["microscope","oscilloscope","3d-printer","laptop","camera"]
 
 class Equipment(Base):
-    __tablename__ = "equipment"
+    _tablename_ = "equipment"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     type = Column(String, nullable=False)
@@ -20,7 +20,7 @@ class Equipment(Base):
     in_service = Column(Integer, default=1, nullable=False)
 
 class Bookings(Base):
-    __tablename__ = "bookings"
+    _tablename_ = "bookings"
     id = Column(Integer, primary_key=True)
     equipment_id = Column(Integer,ForeignKey("equipment.id"),nullable=False)
     roll_no = Column(String, nullable=False)
@@ -38,3 +38,4 @@ def _equipment_response(item):
         "lab_room": item.lab_room,
         "in_service": item.in_service
     }
+       
