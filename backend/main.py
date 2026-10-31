@@ -63,3 +63,12 @@ def student_bookings(roll_no: str = Query(...)):
     if not roll_no.strip():
         raise HTTPException(status_code=422,detail="Roll number cannot be empty.")
     return function.get_student_bookings(roll_no)
+
+@app.patch("/bookings/{id}/cancel")
+def cancel_booking(id: int):
+    result = function.cancel_booking(id)
+    if result is None:
+        raise HTTPException(status_code=404,detail="Booking not found.")
+    if "error" in result:
+        raise HTTPException(status_code=result["error"],detail=result["detail"])
+    return result
