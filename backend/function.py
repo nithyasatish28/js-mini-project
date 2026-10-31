@@ -50,3 +50,25 @@ def _booking_response(booking, equipment_name=None):
         "booking_on": booking.booking_on,
         "cancelled": booking.cancelled
     }
+
+def add_initial_equipment():
+    with SessionLocal() as session:
+        if session.query(Equipment).count() == 0:
+
+            equipment_list = [
+                ("Digital Microscope", "microscope", "Lab 101", 1),
+                ("Advanced Microscope", "microscope", "Lab 102", 1),
+                ("Digital Oscilloscope", "oscilloscope", "Lab 201", 1),
+                ("Analog Oscilloscope", "oscilloscope", "Lab 202", 1),
+                ("3D Printer A", "3d-printer", "Lab 301", 1),
+                ("3D Printer B", "3d-printer", "Lab 301", 0),
+                ("Dell Laptop", "laptop", "Lab 401", 1),
+                ("HP Laptop", "laptop", "Lab 402", 1),
+                ("Canon Camera", "camera", "Lab 501", 1),
+                ("Sony Camera", "camera", "Lab 502", 1)
+            ]
+
+            for name, type, room, status in equipment_list:
+                item = Equipment( name=name, type=type, lab_room=room, in_service=status )
+                session.add(item)
+            session.commit()
