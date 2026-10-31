@@ -90,3 +90,48 @@ def get_all_Waterings():
         response.append(temp_watering)
     session.close()
     return response
+
+
+def get_plant_by_id(plant_id):
+    session = Session(engine)
+    plant = session.get(Plants, plant_id) 
+    response = {
+        "id": plant.id,
+        "name": plant.name,
+        "type": plant.type,
+        "water_every_days": plant.water_every_days,
+        "location": plant.location,
+        "adopted_by": plant.adopted_by
+    }
+    session.close()
+    return response
+
+
+def adopt_plant(plant_id, roll_no):
+    session = Session(engine)
+    plant = session.get(Plants, plant_id)
+
+    plant.adopted_by = roll_no
+    response = {
+        "id": plant.id,
+        "adopted_by": plant.adopted_by
+    }
+
+    session.commit()
+    session.close()
+    return response
+
+
+def give_up_plant(plant_id):
+    session = Session(engine)
+    plant = session.get(Plants, plant_id)
+
+    plant.adopted_by = None
+    response = {
+        "id": plant.id,
+        "adopted_by": plant.adopted_by
+    }
+
+    session.commit()
+    session.close()
+    return response
