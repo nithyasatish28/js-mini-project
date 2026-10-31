@@ -12,10 +12,10 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Harsita |Create a Database |  yes| E4&E6 | NO |
-| Day 1 | Hemanth Singh | E1, E3, E5, E7 |  |  |  |
-| Day 2 | Harsita | E2,E4,E6 | no |frontend  | YES |
-| Day 2 | Hemanth Singh |  |  |  |  |
+| Day 1 | Harsita |Create a Database, E2, E4, E6 |  |  |  |
+| Day 1 | Hemanth Singh | E1,  |  yes |  |  |
+| Day 2 | Harsita |  |  |  |  |
+| Day 2 | Hemanth Singh | E3, E5, E7 |yes |  |  |
 | Day 3 | Harsita |  |  |  |  |
 | Day 3 | Hemanth Singh |  |  |  |  |
 
