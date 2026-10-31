@@ -16,4 +16,8 @@ function StationList ({stations , onBorrow , onDetails}) {
     );
 }
 
+<<<<<<< Updated upstream
 export default StationList ;
+=======
+export default StationList ;
+>>>>>>> Stashed changes

@@ -14,7 +14,11 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Sanghavi S | Understand project requirements, design API endpoints and plan SQLite database structure. |  |  |  |
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 | Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment. Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  | terminal to run |
+=======
+| Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment  |Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  |
+>>>>>>> Stashed changes
 =======
 | Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment  |Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  |
 >>>>>>> Stashed changes
