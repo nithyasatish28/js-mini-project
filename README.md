@@ -14,7 +14,7 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Sanika B Raj |design endpoints and then plan database structure  | endpoints completed |  |  |
 | Day 1 | Blessy Krupa S |  |  |  |  |
-| Day 2 | Sanika B Raj |  |  |  |  |
+| Day 2 | Sanika B Raj |function.py and main.py in backend  | completed |  |  |
 | Day 2 | Blessy Krupa S |  |  |  |  |
 | Day 3 | Sanika B Raj |  |  |  |  |
 | Day 3 | Blessy Krupa S |  |  |  |  |
