@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Column, create_engine,ForeignKey,Date,Boolean,Enum
+from sqlalchemy import Integer, String, Column, create_engine,ForeignKey,Enum, DateTime
 from sqlalchemy.orm import Session, declarative_base;
 
 from datetime import date;
@@ -17,16 +17,7 @@ class Plants(Base):
 
     id = Column(Integer,primary_key = True)
     name = Column(String)
-    type = Column(
-    Enum(
-        "succulent",
-        "flowering",
-        "herb",
-        "indoor",
-        "tree",
-        create_constraint=True
-    )
-)
+    type = Column(Enum("succulent","flowering","herb","indoor","tree", create_constraint=True))
     location = Column(String,nullable = True)
     water_every_days = Column(Integer)
     adopted_by = Column(String,default = None)
@@ -39,7 +30,7 @@ class Waterings(Base):
     id = Column(Integer,primary_key = True)
     plant_id = Column(Integer, ForeignKey("plants.id"))
     roll_no = Column(String)
-    watered_on= Column(Date)
+    watered_on= Column(DateTime)
     
     
 Base.metadata.create_all(engine)
@@ -70,7 +61,9 @@ def get_all_plants(type = None):
         need_water = True
         if latest is not None:
             last_watered = latest.watered_on
-            days = (date.today() - last_watered).days
+            
+            days = (date.today() - last_watered.date()).days
+            
             need_water = days >= plant.water_every_days
         temp_plant ={
             "id": plant.id,
@@ -78,6 +71,7 @@ def get_all_plants(type = None):
             "type": plant.type,
             "location": plant.location,
             "adopted_by":plant.adopted_by,
+            "water_every_days":plant.water_every_days,
             "last_watered": last_watered,
             "need_water": need_water,
             }
@@ -150,4 +144,4 @@ def get_need_water():
     for plant in plants:
         if plant["need_water"]:
             response.append(plant)
-    return response        
+    return response
