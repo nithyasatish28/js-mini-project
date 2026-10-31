@@ -39,3 +39,14 @@ def _equipment_response(item):
         "in_service": item.in_service
     }
        
+
+def _booking_response(booking, equipment_name=None):
+    return {
+        "id": booking.id,
+        "equipment_id": booking.equipment_id,
+        "equipment_name": equipment_name,
+        "roll_no": booking.roll_no,
+        "booking_date": booking.booking_date,
+        "booking_on": booking.booking_on,
+        "cancelled": booking.cancelled
+    }
