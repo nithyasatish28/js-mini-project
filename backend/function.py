@@ -67,5 +67,25 @@ def get_all_stations():
         })
 
     session.close()
+    return result
 
+def get_station(station_id):
+    session = Session(engine)
+
+    station = session.query(Stations).filter(Stations.id == station_id).first()
+
+    if station is None:
+        session.close()
+        return None
+
+    result = {
+        "id": station.id,
+        "name": station.name,
+        "location": station.location,
+        "capacity": station.capacity,
+        "umbrellas_available": station.umbrellas_available,
+        "free_slots": station.capacity - station.umbrellas_available
+    }
+
+    session.close()
     return result
