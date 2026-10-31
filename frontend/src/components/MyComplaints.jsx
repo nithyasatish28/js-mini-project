@@ -1,32 +1,41 @@
 import { useState } from "react";
 
-const API_URL = "http://127.0.0.1:8001";
-
-function MyComplaints() {
+function MyComplaints({ apiUrl, onDone }) {
   const [roll_no, setRollNo] = useState("");
   const [complaints, setComplaints] = useState([]);
   const [updates, setUpdates] = useState([]);
+  const [message, setMessage] = useState("");
 
   function searchComplaints() {
-    fetch(API_URL + "/students/" + roll_no + "/complaints")
+    if (roll_no.trim() === "") {
+      setMessage("Enter a roll number");
+      return;
+    }
+
+    fetch(apiUrl + "/students/" + encodeURIComponent(roll_no) + "/complaints")
       .then((response) => response.json())
-      .then((data) => setComplaints(data));
+      .then((data) => {
+        setComplaints(data);
+        setUpdates([]);
+        setMessage("");
+      });
   }
 
   function viewUpdates(id) {
-    fetch(API_URL + "/complaints/" + id)
+    fetch(apiUrl + "/complaints/" + id)
       .then((response) => response.json())
       .then((data) => setUpdates(data.updates || []));
   }
 
   function deleteComplaint(id) {
-    fetch(API_URL + "/complaints/" + id, {
-      method: "DELETE"
-    }).then((response) => {
+    fetch(apiUrl + "/complaints/" + id, { method: "DELETE" }).then((response) => {
       if (response.ok) {
-        setComplaints(
-          complaints.filter((complaint) => complaint.id !== id)
-        );
+        setMessage("");
+        setUpdates([]);
+        setComplaints(complaints.filter((complaint) => complaint.id !== id));
+        onDone();
+      } else {
+        response.json().then((data) => setMessage(data.detail));
       }
     });
   }
@@ -40,6 +49,8 @@ function MyComplaints() {
         onChange={(e) => setRollNo(e.target.value)} />
 
       <button onClick={searchComplaints}>Search</button>
+
+      <p>{message}</p>
 
       {complaints.map((complaint) => (
         <div key={complaint.id}>
