@@ -108,3 +108,84 @@ def update_service(id, in_service):
         session.commit()
         session.refresh(item)
         return _equipment_response(item)
+
+
+def book_equipment(equipment_id, roll_no, booking_date):
+    with SessionLocal() as session:
+        item = session.get(Equipment, equipment_id)
+        if item is None:
+            return {"error": 404, "detail": "Equipment not found."}
+        if item.in_service == 0:
+            return {"error": 409,"detail": "This item is out of service."}
+        try:
+            selected_date = date.fromisoformat(booking_date)
+        except (ValueError, TypeError):
+            return {"error": 422,"detail": "Date must be in YYYY-MM-DD format."}
+        
+        today = date.today()
+        last_date = today + timedelta(days=7)
+        if selected_date < today or selected_date > last_date:
+            return {"error": 422,"detail": "Booking date must be within the next 7 days."}
+        
+        existing_booking = session.query(Bookings).filter(
+            Bookings.equipment_id == equipment_id,
+            Bookings.booking_date == selected_date,
+            Bookings.cancelled == 0
+        ).first()
+        if existing_booking:
+            return {"error": 409,"detail": "This item is already booked for that day."}
+        
+        student_bookings = session.query(Bookings).filter(
+            Bookings.roll_no == roll_no,
+            Bookings.booking_date == selected_date,
+            Bookings.cancelled == 0
+        ).count()
+        if student_bookings >= 2:
+            return {"error": 409,"detail": "You can only book 2 items per day."}
+        
+        booking = Bookings(
+            equipment_id=equipment_id,
+            roll_no=roll_no,
+            booking_date=selected_date,
+            booked_on=datetime.now(),
+            cancelled=0
+        )
+
+        session.add(booking)
+        session.commit()
+        session.refresh(booking)
+        return _booking_response(booking, item.name)
+
+
+def get_student_bookings(roll_no):
+    with SessionLocal() as session:
+        today = date.today()
+        results = session.query(Bookings, Equipment.name).join(
+            Equipment,
+            Bookings.equipment_id == Equipment.id
+        ).filter(
+            Bookings.roll_no == roll_no,
+            Bookings.cancelled == 0,
+            Bookings.booking_date >= today
+        ).all()
+
+        return [
+            _booking_response(booking, equipment_name)
+            for booking, equipment_name in results
+        ]
+
+
+def cancel_booking(id):
+    with SessionLocal() as session:
+        booking = session.get(Bookings, id)
+        if booking is None:
+            return None
+        if booking.cancelled == 1:
+            return {"error": 409,"detail": "This booking is already cancelled."}
+
+        booking.cancelled = 1
+        session.commit()
+        session.refresh(booking)
+        return _booking_response(booking)
+
+add_initial_equipment()
