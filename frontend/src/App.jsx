@@ -1,14 +1,22 @@
-import{ useState, useEffect } from "react";
+import {useEffect, useState} from 'react'
+
+import './App.css'
+import Garden from "./components/Garden.jsx";
+
+const API_URL = "http://127.0.0.1:8001"
 
 function App() {
-  const [plants, setPlants] = useState([]);
+  const [plants,setPlants] = useState([])
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/")
-      .then((response) => response.json())
-      .then((data) => setPlants(data));
+    fetch(API_URL + "/plants")
+        .then((response) => response.json())
+        .then((data) => setPlants(data));
   }, []);
 
+  return <>
+    <Garden plants={plants}/>
+  </>
 }
 
-export default App;
+export default App
