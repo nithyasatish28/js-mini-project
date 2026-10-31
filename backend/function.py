@@ -72,3 +72,11 @@ def add_initial_equipment():
                 item = Equipment( name=name, type=type, lab_room=room, in_service=status )
                 session.add(item)
             session.commit()
+
+def get_all_equipment(type=None):
+    with SessionLocal() as session:
+        query = session.query(Equipment)
+        if type is not None:
+            query = query.filter(Equipment.type == type)
+        items = query.all()
+        return [_equipment_response(item) for item in items]
