@@ -163,4 +163,28 @@ def update_complaint_status(complaint_id, new_status, note):
     session.close()
     return temp
 
+<<<<<<< HEAD
 def get_complaints_bystatus
+=======
+
+def get_students_complaints_byrollno(rollno):
+    session = Session(engine)
+    query = session.query(complaints).filter(complaints.rollno==rollno).all()
+    response=[]
+    for complaint in query:
+        temp = {
+            "id" : complaint.id,
+            "roll_no" : complaint.rollno,
+            "room_no" : complaint.room_no,
+            "category" : complaint.category,
+            "description" : complaint.description,
+            "status" : complaint.status,
+            "created_on" : complaint.created_on,
+            "resolved_on" : complaint.resolved_on
+        }
+        response.append(temp)
+    session.close()
+    if response==[]:
+        return None
+    return response
+>>>>>>> 9c362af46c6f375e84790b2ea85c8ce614f4eb4d
