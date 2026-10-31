@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | GET /complaints | ✅ | ⬜ | ⬜ | Melvin |
+| E2 | GET /complaints/:id | ✅ | ⬜ | ⬜ | Melvin |
+| E3 | POST /complaints | ✅ | ⬜ | ⬜ | Naman |
+| E4 | PUT /complaints/:id | ✅ | ⬜ | ⬜ | Naman |
+| E5 | GET /complaints/student/:rollno | ✅ | ⬜ | ⬜ | Melvin |
+| E6 | DELETE /complaints/:id | ✅ | ⬜ | ⬜ | Naman |
+| E7 | GET /complaints/stats/counts | ✅ | ⬜ | ⬜ | Naman |
 
 ## 3. Frontend tracker
 
@@ -68,3 +68,7 @@ cd frontend
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
 
 ![Our app](screenshot.png)
+
+
+
+

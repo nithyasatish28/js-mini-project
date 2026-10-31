@@ -1,14 +1,18 @@
-from fastapi import FastAPI , HTTPException
+from fastapi import FastAPI, HTTPException
 import functions
 
 app = FastAPI()
 
 @app.get("/complaints")
-def get_complaints(status = None,category=None):
-    return functions.get_complaints(status=status,category=category)
+def get_complaints(status=None, category=None):
+    return functions.get_complaints(status=status, category=category)
+
+@app.get("/complaints/stats/counts")
+def get_status_counts():
+    return functions.get_complaint_status_counts()
 
 @app.get("/complaints/{id}")
-def get_one_complaint(id:int):
+def get_one_complaint(id: int):
     return functions.get_one_complaint(id=id)
 
 @app.post("/complaints")
@@ -19,7 +23,10 @@ def create_complaint(rollno: str, roomno: int, description: str, category: str):
 def update_complaint(complaint_id: int, status: str, note: str = None):
     return functions.update_complaint_status(complaint_id=complaint_id, new_status=status, note=note)
 
-
 @app.get("/complaints/student/{rollno}")
 def get_complaints_by_rollno(rollno: str):
     return functions.get_students_complaints_byrollno(rollno=rollno)
+
+@app.delete("/complaints/{id}")
+def delete_complaint(id: int):
+    return functions.delete_complaint(complaint_id=id)
