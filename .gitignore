@@ -28,3 +28,4 @@ npm-debug.log*
 Thumbs.db*.db
 __pycache__/
 *.db
+*.db
