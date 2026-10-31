@@ -12,10 +12,8 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|-------------------|------------|-------------------------------------|---|
-| Day 1 | Mohammed Shafi | E4,E5,E6          | No         | E4                                  |  |
-| Day 1 | Sarang Siva Thilakan | E1,E2,E3,E7          | No         | E3,E7                                  |  |
-| Day 2 | Mohammed Shafi |                   |            |                                     |  |
-| Day 2 | Sarang Siva Thilakan |                   |            |                                     |  |
+| Day 1 | Mohammed Shafi | E4,E5,E6          | Yes         |  Front-End                                  |  |
+| Day 1 | Sarang Siva Thilakan | E1,E2,E3,E7          | Yes                        | Front-End |
 | Day 3 | Mohammed Shafi |                   |            |                                     |  |
 | Day 3 | Sarang Siva Thilakan |                   |            |                                     |  |
 
@@ -25,13 +23,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path            | Built   | Rules checked in /docs | Connected to React | Who |
 |---|--------------------------|---------|------------------------|---|---|
-| E1 | GET /plants              |    ✅  | ⬜                     | ⬜ |  |
-| E2 | GET /plants/{plant_id}   |    ✅  | ⬜                     | ⬜ |  |
-| E3 | POST /plants             |    ✅  | ⬜                     | ⬜ |  |
-| E4 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜ |  |
-| E5 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜ |  |
-| E6 | POST /water              | ✅      | ✅                       | ⬜ |  |
-| E7 | GET /water                         | 🟡     | ⬜                     | ⬜ |  |
+| E1 | GET /plants              |    ✅  |✅                     | ⬜ | Sarang |
+| E2 | GET /plants/{plant_id}   |    ✅  | ✅                    | ⬜ | Sarang |
+| E3 | POST /plants             |    ✅  |✅                     | ⬜ | Sarang  |
+| E4 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜ | Shafi |
+| E5 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜ | Shafi  |
+| E6 | POST /water              | ✅      | ✅                       | ⬜ | Shafi  |
+| E7 | GET /water                         |  ✅     | ✅                      | ⬜ | Shafi  |
 
 ## 3. Frontend tracker
 
