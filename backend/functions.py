@@ -1,6 +1,5 @@
 from datetime import datetime
 from datetime import date
-from http.client import HTTPException 
 from sqlalchemy import Column, DateTime,Date, Integer, ForeignKey, String, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
@@ -66,7 +65,7 @@ def get_equipment_by_type(equipment_type):
             Equipment.type == equipment_type
         ).all()
 
-        return equipment_list
+        return [equipment_response(item) for item in equipment_list]
     
 def get_equipment_by_id(equipment_id):
     with SessionLocal() as db:
