@@ -13,9 +13,9 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Soham Nanduri | Frontend Stations.jsx and import on app.jsx | Completed | Frontend MyUmbrella.jsx | Nothing |
-| Day 1 | B Chaitanya | Backend/ Creating Database  | In progress  | |  |
+| Day 1 | B Chaitanya | Backend/ Creating Database  | completed  | |  |
 | Day 2 | Soham Nanduri | Frontend MyUmbrella.jsx and update with API and backend | In Progress  |  |  |
-| Day 2 | B Chaitanya |  |  |  |  |
+| Day 2 | B Chaitanya | created Endpoints/ testing and Debugging | In progress |  |  |
 | Day 3 | Soham Nanduri |  |  |  |  |
 | Day 3 | B Chaitanya |  |  |  |  |
 
