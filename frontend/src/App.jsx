@@ -85,17 +85,25 @@ function App() {
       .then(() => loadComplaints(status, category));
   }
 
-  return (
+    return (
     <>
-    // hi aiman you can make it look pretty here
+      <p><b>{message}</b></p>
+      <ComplaintList
+        complaints={complaints}
+        counts={counts}
+        onStatus={chooseStatus}
+        onCategory={chooseCategory}
+        onSelect={showUpdates}
+        onStudent={showStudent}
+        onMove={moveForward}
+        onDelete={deleteComplaint}
+      />
       <h2>Updates</h2>
-      <p>{selected.description}</p>
+      <p><strong>Complaint:</strong> {selected.description}</p>
       <ul>
         {selected.updates.map((update) => (
           <li key={update.id}>
-            <p>{update.status}</p>
-            <p>{update.note}</p>
-            <p>{update.updated_on}</p>
+            <strong>{update.status}</strong> - {update.note} ({update.updated_on.slice(0, 10)})
           </li>
         ))}
       </ul>
