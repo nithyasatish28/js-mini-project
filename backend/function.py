@@ -80,3 +80,11 @@ def get_all_equipment(type=None):
             query = query.filter(Equipment.type == type)
         items = query.all()
         return [_equipment_response(item) for item in items]
+
+
+def get_equipment(id):
+    with SessionLocal() as session:
+        item = session.get(Equipment, id)
+        if item is None:
+            return None
+        return _equipment_response(item)
