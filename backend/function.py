@@ -115,3 +115,48 @@ def add_station(name, location, capacity, umbrellas_available):
 
     session.close()
     return result
+def borrow_umbrella(roll_no, from_station_id):
+    session = Session(engine)
+
+    station = session.query(Stations).filter(Stations.id == from_station_id).first()
+
+    if station is None:
+        session.close()
+        return {"error": "Station not found", "status_code": 404}
+
+    active_borrow = session.query(Borrows).filter(
+        Borrows.roll_no == roll_no,
+        Borrows.returned_on == None
+    ).first()
+
+    if active_borrow:
+        session.close()
+        return {"error": "Student already has an active borrow", "status_code": 409}
+
+    if station.umbrellas_available == 0:
+        session.close()
+        return {"error": "No umbrellas available at this station", "status_code": 409}
+
+    station.umbrellas_available -= 1
+
+    borrow = Borrows(
+        roll_no=roll_no,
+        from_station_id=from_station_id,
+        borrowed_on=datetime.now()
+    )
+
+    session.add(borrow)
+    session.commit()
+    session.refresh(borrow)
+
+    result = {
+        "message": "Umbrella borrowed successfully",
+        "borrow_id": borrow.id,
+        "roll_no": borrow.roll_no,
+        "from_station_id": borrow.from_station_id,
+        "borrowed_on": borrow.borrowed_on
+    }
+
+    session.close()
+
+    return result

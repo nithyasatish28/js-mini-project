@@ -50,3 +50,21 @@ def add_station(station: StationCreate):
         umbrellas_available=station.umbrellas_available
 
     )
+
+class BorrowCreate(BaseModel):
+    roll_no: str = Field(min_length=1)
+    from_station_id: int
+@app.post("/borrow")
+def borrow_umbrella(borrow: BorrowCreate):
+    result = function.borrow_umbrella(
+        roll_no=borrow.roll_no,
+        from_station_id=borrow.from_station_id
+    )
+
+    if "error" in result:
+        raise HTTPException(
+            status_code=result["status_code"],
+            detail=result["error"]
+        )
+
+    return result
