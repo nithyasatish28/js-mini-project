@@ -1,9 +1,14 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-
 import function
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+def startup():
+    function.add_initial_stations()
+
 
 class StationCreate(BaseModel):
     name: str = Field(min_length=1)
@@ -12,50 +17,54 @@ class StationCreate(BaseModel):
     umbrellas_available: int = Field(ge=0)
 
 
-@app.on_event("startup")
-def startup():
-    function.add_initial_stations()
+class BorrowCreate(BaseModel):
+    roll_no: str = Field(pattern=r"^R[1-9][0-9]*$")
+    from_station_id: int = Field(ge=1)
 
 
 @app.get("/")
 def hello():
     return {"message": "Umbrella Sharing API is running"}
 
+
 @app.get("/stations")
 def get_all_stations():
     return function.get_all_stations()
+
 
 @app.get("/stations/{station_id}")
 def get_station(station_id: int):
     station = function.get_station(station_id)
 
     if station is None:
-        raise HTTPException(status_code=404, detail="Station not found")
+        raise HTTPException(
+            status_code=404,
+            detail="Station not found"
+        )
 
     return station
 
-@app.post("/stations")
 
+@app.post("/stations")
 def add_station(station: StationCreate):
 
     if station.umbrellas_available > station.capacity:
-
-        raise HTTPException(status_code=422, detail="Umbrellas available cannot exceed capacity")
+        raise HTTPException(
+            status_code=422,
+            detail="Umbrellas available cannot exceed capacity"
+        )
 
     return function.add_station(
-
         name=station.name,
         location=station.location,
         capacity=station.capacity,
         umbrellas_available=station.umbrellas_available
-
     )
 
-class BorrowCreate(BaseModel):
-    roll_no: str = Field(min_length=1)
-    from_station_id: int
+
 @app.post("/borrow")
 def borrow_umbrella(borrow: BorrowCreate):
+
     result = function.borrow_umbrella(
         roll_no=borrow.roll_no,
         from_station_id=borrow.from_station_id
