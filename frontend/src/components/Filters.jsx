@@ -1,7 +1,7 @@
 function Filters({ counts, onStatus, onCategory }) {
   return (
     <>
-      <h2>Counts</h2>
+      <h2>Complaint Count</h2>
       <p>
         🔴 Open: {counts.open} | 🟡 In progress: {counts.in_progress} | 🟢 Resolved: {counts.resolved}
       </p>
