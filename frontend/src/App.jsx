@@ -1,7 +1,10 @@
+
 import StationList from "./components/StationList";
 import MyUmbrella from "./components/MyUmbrella";
 import AddStation from "./components/AddStation";
 import "./styles/app.css";
+
+const API_URL = "http://127.0.0.1:8001";
 
 function App() {
   return (
@@ -12,11 +15,11 @@ function App() {
       </header>
 
       <main>
-        <StationList />
+        <StationList apiUrl={API_URL} />
 
         <div className="sections">
-          <MyUmbrella />
-          <AddStation />
+          <MyUmbrella apiUrl={API_URL} />
+          <AddStation apiUrl={API_URL} />
         </div>
       </main>
     </div>
