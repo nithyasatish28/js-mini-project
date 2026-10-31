@@ -1,10 +1,14 @@
-import { useState } from 'react'
-
-import './App.css'
+import{ useState, useEffect } from "react";
 
 function App() {
+  const [plants, setPlants] = useState([]);
 
-  return
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/")
+      .then((response) => response.json())
+      .then((data) => setPlants(data));
+  }, []);
+
 }
 
-export default App
+export default App;
