@@ -5,7 +5,7 @@ import function
 app = FastAPI(title="Laboratory Equipment Booking System")
 
 app.add_middleware(
-    _import_("fastapi").middleware.cors.CORSMiddleware,
+    __import__("fastapi").middleware.cors.CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
@@ -47,4 +47,3 @@ def change_service_status(id: int,in_service: int = Body(...)):
         raise HTTPException(status_code=404,detail="Equipment not found.")
     return result
 
-    
