@@ -32,6 +32,19 @@ def equipment_by_id(id: int):
 def add_equipment(name: str = Body(...),type: str = Body(...),lab_room: str = Body(...)):
     if not name.strip() or not lab_room.strip():
         raise HTTPException(status_code=422,detail="Name and lab room cannot be empty.")
-    if type not in function.VALID_TYPES:
+    if type not in functions.VALID_TYPES:
         raise HTTPException(status_code=422,detail="Invalid equipment type.")
-    return function.add_equipment(name=name, type=type, lab_room=lab_room)
+    return functions.add_equipment(name=name,type=type,lab_room=lab_room)
+
+
+@app.patch("/equipment/{id}/service")
+def change_service_status(id: int,in_service: int = Body(...)):
+    if in_service not in [0, 1]:
+        raise HTTPException(status_code=422,detail="Service status must be 0 or 1.")
+    result = function.update_service(id=id,in_service=in_service)
+
+    if result is None:
+        raise HTTPException(status_code=404,detail="Equipment not found.")
+    return result
+
+    
