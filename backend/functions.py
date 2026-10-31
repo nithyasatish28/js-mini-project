@@ -63,7 +63,7 @@ def add_starting_items():
 
 add_starting_items()
 
-# E1
+
 def get_all_equipment(type = None):
     session = Session(engine)
     if type is None:
@@ -84,7 +84,7 @@ def get_all_equipment(type = None):
     return response
 
 
-# E2
+
 def get_equipment(id):
     session = Session(engine)
     item = session.get(Equipment, id)
@@ -102,8 +102,10 @@ def get_equipment(id):
     return response
 
 
-# E3
+
 def add_equipment(name, type, lab_room):
+    if type not in VALID_TYPES:
+        raise HTTPException(status_code=422, detail="Type must be microscope, oscilloscope, 3d-printer, laptop or camera.")
     session = Session(engine)
     item = Equipment(name = name, type = type, lab_room = lab_room, in_service = 1)
     session.add(item)
@@ -118,7 +120,7 @@ def add_equipment(name, type, lab_room):
     session.close()
     return response
 
-#E4
+
 def update_service( equipment_id, in_service):
     session = Session(engine)
     equipment = session.query(Equipment).filter(Equipment.id == equipment_id).first()
@@ -130,7 +132,6 @@ def update_service( equipment_id, in_service):
         session.close()
 
 
-#E5
 def add_booking(equipment_id, roll_no, booking_date, booked_on=date.today()):
         session = Session(engine)
         booking = Booking(equipment_id=equipment_id, roll_no=roll_no, booking_date=booking_date,booked_on=booked_on)
@@ -148,14 +149,12 @@ def add_booking(equipment_id, roll_no, booking_date, booked_on=date.today()):
         return response
 
 
-#E6
+
 def get_student_bookings(roll_no):
     session = Session(engine)
     bookings = session.query(Booking).filter(Booking.roll_no == roll_no).all()
     response = []
     for booking in bookings:
-        # today = date.today()
-        # if booking.booking_date >= today:
             temp_booking = {
                 "id" : booking.id,
                 "equipment_id": booking.equipment_id,
@@ -169,7 +168,7 @@ def get_student_bookings(roll_no):
     session.close()
     return response
 
-#E7
+
 def cancel_booking(booking_id):
     session = Session(engine)
     booking = session.query(Booking).filter(Booking.id == booking_id).first()
@@ -181,4 +180,3 @@ def cancel_booking(booking_id):
 
     session.close()
     return booking
-
