@@ -180,4 +180,3 @@ def get_complaint_status_counts():
     results = session.query(complaints.status, func.count(complaints.id)).group_by(complaints.status).all()
     session.close()
     return {status: count for status, count in results}
-
