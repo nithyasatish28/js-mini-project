@@ -27,10 +27,10 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 |---|---|---|---|---|---|
 | E1 |  | ⬜ | ⬜ | ⬜ |  |
 | E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |POST/plants  | ✅ | ⬜ | ⬜ |  |
+| E3 |POST/plants  | ✅ | ✅ | ✅ | Toshimah |
 | E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |PATCH/plants/{id}  | ✅ | ⬜ | ⬜ |  |
-| E6 |POST/plants/{id}  | ✅ | ⬜ | ⬜ |  |
+| E5 |PATCH/plants/{id}  | ✅ | ✅ | ✅ | toshimah |
+| E6 |POST/plants/{id}  | ✅ | ✅ | ✅ | Toshimah |
 | E7 |  | ⬜ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
