@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Column, create_engine,ForeignKey,Date,Boolean
+from sqlalchemy import Integer, String, Column, create_engine,ForeignKey,Date,Boolean,Enum
 from sqlalchemy.orm import Session, declarative_base;
 
 from datetime import date;
@@ -17,7 +17,16 @@ class Plants(Base):
 
     id = Column(Integer,primary_key = True)
     name = Column(String)
-    type = Column(String)
+    type = Column(
+    Enum(
+        "succulent",
+        "flowering",
+        "herb",
+        "indoor",
+        "tree",
+        create_constraint=True
+    )
+)
     location = Column(String,nullable = True)
     water_every_days = Column(Integer)
     adopted_by = Column(String,default = None)
@@ -39,10 +48,16 @@ Base.metadata.create_all(engine)
 # E1-get all info of plants
 def get_all_plants(type = None):
     
-    session = Session(engine)
-    plant_query = session.query(Plants)
     if type is not None:
-        plant_query = plant_query.filter(Plants.type == type)
+            type = type.strip().lower()
+            if type not in ["succulent", "flowering", "herb", "indoor", "tree"]:
+                raise HTTPException(status_code=400, detail="Invalid plant type")
+
+    session = Session(engine)
+    plant_query = session.query(Plants)    
+
+    if type is not None:
+        plant_query = plant_query.filter(Plants.type == type)     
     plants = plant_query.all()
     
             
@@ -80,7 +95,7 @@ def get_plant(id):
     waterings = session.query(Waterings).all()
     response_water=[]
     for water in waterings:
-        
+
         if water.plant_id == id:
             temp_water={
                 "id": water.id,

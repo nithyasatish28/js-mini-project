@@ -21,12 +21,9 @@ import Toshimah_functions
 Toshimah_functions.seed_data()
 
 
-PlantType = Literal["succulent", "flowering", "herb", "indoor", "tree"]
-
-
 # E1 get all plants info
 @app.get("/plants")
-def plants(type: PlantType = None):
+def plants(type: str = None):
     return AM_functions.get_all_plants(type)
 
 # E7  get all plants that need  water
