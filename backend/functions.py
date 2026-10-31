@@ -28,9 +28,9 @@ Base.metadata.create_all(engine)
 
 
 # 1)add a plant
-def add_plant(id,name,type,water_every_days,adopted_by = None,location = None):
+def add_plant(name,type,water_every_days,adopted_by = None,location = None):
     session = Session(engine)
-    plant = Plants(id = id,name=name,type =type,water_every_days = water_every_days,adopted_by = adopted_by,location= location) 
+    plant = Plants(name=name,type =type,water_every_days = water_every_days,adopted_by = adopted_by,location= location) 
     session.add(plant)
     response = {
         "id": plant.id,
@@ -108,6 +108,8 @@ def adopt_plant(plant_id, roll_no):
     plant = session.get(Plants, plant_id)
 
     plant.adopted_by = roll_no
+    if plant is None:
+        return None
     response = {
         "id": plant.id,
         "adopted_by": plant.adopted_by
@@ -121,14 +123,47 @@ def adopt_plant(plant_id, roll_no):
 def give_up_plant(plant_id):
     session = Session(engine)
     plant = session.get(Plants, plant_id)
-
     plant.adopted_by = None
+
+    if plant is None:
+        return None
     response = {
         "id": plant.id,
         "adopted_by": plant.adopted_by
     }
 
     session.commit()
+    session.close()
+    return response
+
+
+# Needs a water to a plant
+
+def plants_need_water():
+    session = Session(engine)
+    plant = session.query(Plants).all()
+    response = []
+    for plant in Plants:
+        last_watered = (
+            session.query(Waterings)
+            .filter(Waterings.plant_id == plant.id)   
+        )
+        if last_watered < date.today():
+            return ("need water")
+        else:
+            return ("no need")
+        
+    temp_plant = {
+        "id": plant.id,
+        "name": plant.name,
+        "type": plant.type,
+        "location": plant.location,
+        "water_every_days": plant.water_every_days,
+        "adopted_by": plant.adopted_by
+         }
+
+    response.append(temp_plant)
+
     session.close()
     return response
 
