@@ -1,11 +1,10 @@
 from sqlalchemy import Column, Integer, String, create_engine, DateTime, func
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime
+from fastapi import HTTPException
 
 DB_PATH = "hostel_complaint_tracker.db"
-
 engine = create_engine(f"sqlite:///{DB_PATH}")
-
 Base = declarative_base()
 
 class updates(Base):
@@ -29,7 +28,6 @@ class complaints(Base):
 
 Base.metadata.create_all(engine) 
 
-
 def get_complaints(status=None, category=None):
     session = Session(engine)
     query = session.query(complaints)
@@ -51,17 +49,14 @@ def get_complaints(status=None, category=None):
         }
         response.append(temp)
     session.close()
-    if response == []:
-        return None
-    return response
-
+    return response  
 
 def get_one_complaint(id: int):
     session = Session(engine)
     query = session.query(complaints).filter(complaints.id == id).first()
     if not query:
         session.close()
-        return None
+        return None  
         
     query2 = session.query(updates).filter(updates.complaint_id == str(id)).all()
     response = []
@@ -88,9 +83,19 @@ def get_one_complaint(id: int):
     session.close()
     return response
 
-
 def create_complaint(rollno, roomno, category, description):
     session = Session(engine)
+
+    existing = session.query(complaints).filter(
+        complaints.room_no == int(roomno), 
+        complaints.category == str(category), 
+        complaints.status.in_(["open", "in_progress"])
+    ).first()
+    
+    if existing:
+        session.close()
+        raise HTTPException(status_code=409, detail="Room already has an unresolved complaint in that category.")
+        
     complaint = complaints(rollno=rollno, room_no=roomno, category=category, description=description, status="open")    
     session.add(complaint)
     session.commit()
@@ -109,14 +114,22 @@ def create_complaint(rollno, roomno, category, description):
     session.close()
     return temp
 
-
 def update_complaint_status(complaint_id, new_status, note):
     session = Session(engine)
     complaint = session.query(complaints).filter(complaints.id == complaint_id).first()
     
     if not complaint:
         session.close()
-        return {"error": "Complaint not found"}
+        raise HTTPException(status_code=404, detail="Complaint id doesn't exist.")
+        
+    if complaint.status == "resolved":
+        session.close()
+        raise HTTPException(status_code=409, detail="Changing a complaint that is already resolved is not allowed.")
+
+    status_order = {"open": "in_progress", "in_progress": "resolved"}
+    if status_order.get(complaint.status) != new_status:
+        session.close()
+        raise HTTPException(status_code=409, detail="A complaint can only move one step at a time.")
         
     complaint.status = new_status
     if new_status.lower() == "resolved":
@@ -135,7 +148,6 @@ def update_complaint_status(complaint_id, new_status, note):
     session.close()
     return temp
 
-
 def get_students_complaints_byrollno(rollno):
     session = Session(engine)
     query = session.query(complaints).filter(complaints.rollno == rollno).all()
@@ -153,10 +165,7 @@ def get_students_complaints_byrollno(rollno):
         }
         response.append(temp)
     session.close()
-    if response == []:
-        return None
-    return response
-
+    return response  
 
 def delete_complaint(complaint_id: int):
     session = Session(engine)
@@ -164,16 +173,17 @@ def delete_complaint(complaint_id: int):
     
     if not complaint:
         session.close()
-        return {"error": "Complaint not found"}
+        raise HTTPException(status_code=404, detail="Complaint id doesn't exist.")
+        
+    if complaint.status != "open":
+        session.close()
+        raise HTTPException(status_code=409, detail="Cannot delete a complaint that is not open anymore.")
      
     session.query(updates).filter(updates.complaint_id == str(complaint_id)).delete()
-    
-   
     session.delete(complaint)
     session.commit()
     session.close()
     return {"message": "Complaint and its updates deleted successfully"}
-
 
 def get_complaint_status_counts():
     session = Session(engine)

@@ -16,7 +16,10 @@ def get_status_counts():
 
 @app.get("/complaints/{id}")
 def get_one_complaint(id: int):
-    return functions.get_one_complaint(id=id)
+    result = functions.get_one_complaint(id=id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Complaint not found")
+    return result
 
 @app.post("/complaints")
 def create_complaint(rollno: str, roomno: int, description: str, category: str):
@@ -25,9 +28,10 @@ def create_complaint(rollno: str, roomno: int, description: str, category: str):
         
     if len(description) < 10:
         raise HTTPException(status_code=422, detail="Description must be at least 10 characters.")
+        
     return functions.create_complaint(rollno=rollno, roomno=roomno, category=category, description=description)
 
-@app.put("/complaints/{complaint_id}")
+@app.patch("/complaints/{complaint_id}")
 def update_complaint(complaint_id: int, new_status: str, note: str = None):
     if new_status not in VALID_STATUSES:
         raise HTTPException(status_code=422, detail="Invalid status.")
