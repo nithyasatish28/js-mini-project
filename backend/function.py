@@ -76,7 +76,9 @@ def get_all_stations():
 def get_station(station_id):
     session = Session(engine)
 
-    station = session.query(Stations).filter(Stations.id == station_id).first()
+    station = session.query(Stations).filter(
+        Stations.id == station_id
+    ).first()
 
     if station is None:
         session.close()
@@ -140,11 +142,17 @@ def borrow_umbrella(roll_no, from_station_id):
 
     if active_borrow:
         session.close()
-        return {"error": "Student already has an active borrow", "status_code": 400}
+        return {
+            "error": "Student already has an active borrow",
+            "status_code": 400
+        }
 
     if station.umbrellas_available == 0:
         session.close()
-        return {"error": "No umbrellas available at this station", "status_code": 400}
+        return {
+            "error": "No umbrellas available at this station",
+            "status_code": 400
+        }
 
     station.umbrellas_available -= 1
 
@@ -179,11 +187,17 @@ def return_umbrella(borrow_id, to_station_id):
 
     if borrow is None:
         session.close()
-        return {"error": "Borrow record not found", "status_code": 404}
+        return {
+            "error": "Borrow record not found",
+            "status_code": 404
+        }
 
     if borrow.returned_on is not None:
         session.close()
-        return {"error": "Umbrella has already been returned", "status_code": 400}
+        return {
+            "error": "Umbrella has already been returned",
+            "status_code": 400
+        }
 
     station = session.query(Stations).filter(
         Stations.id == to_station_id
@@ -210,6 +224,60 @@ def return_umbrella(borrow_id, to_station_id):
         "to_station_id": borrow.to_station_id,
         "returned_on": borrow.returned_on
     }
+
+    session.close()
+    return result
+
+
+def get_active_borrow(roll_no):
+    session = Session(engine)
+
+    borrow = session.query(Borrows, Stations.name).join(
+        Stations,
+        Borrows.from_station_id == Stations.id
+    ).filter(
+        Borrows.roll_no == roll_no,
+        Borrows.returned_on.is_(None)
+    ).first()
+
+    if borrow is None:
+        session.close()
+        return None
+
+    borrow_data = borrow[0]
+    station_name = borrow[1]
+
+    result = {
+        "borrow_id": borrow_data.id,
+        "roll_no": borrow_data.roll_no,
+        "from_station_id": borrow_data.from_station_id,
+        "station_name": station_name,
+        "borrowed_on": borrow_data.borrowed_on
+    }
+
+    session.close()
+    return result
+
+
+def get_attention_stations():
+    session = Session(engine)
+
+    stations = session.query(Stations).filter(
+        (Stations.umbrellas_available == 0) |
+        (Stations.umbrellas_available == Stations.capacity)
+    ).all()
+
+    result = []
+
+    for station in stations:
+        result.append({
+            "id": station.id,
+            "name": station.name,
+            "location": station.location,
+            "capacity": station.capacity,
+            "umbrellas_available": station.umbrellas_available,
+            "free_slots": station.capacity - station.umbrellas_available
+        })
 
     session.close()
     return result
