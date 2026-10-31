@@ -53,6 +53,8 @@ def get_complaints(status=None,category=None):
         }
         respone.append(temp)
     session.close()
+    if respone == []:
+        return None
     return respone
 
 def get_one_complaint(id:int):
@@ -85,23 +87,53 @@ def get_one_complaint(id:int):
     return response
 
     
-
-def update_complaint(complaint_id: int,description,category,rollno,roomno):
+def create_complaint(rollno, roomno, category, description):
     session = Session(engine)
-    complaint = complaints(complaint_id=complaint_id,rollno=rollno,room_no=roomno,category=category,description=description,status="open")    
+    
+    complaint = complaints(rollno=rollno, room_no=roomno, category=category, description=description, status="open")    
+    session.add(complaint)
     session.commit()
+    session.refresh(complaint)
+    
     temp = {
-                "id" : complaint.id,
-                "roll_no" : complaint.rollno,
-                "room_no" : complaint.room_no,
-                "category" : complaint.category,
-                "description" : complaint.description,
-                "status" : complaint.status,
-                "created_on" : complaint.created_on,
-                "resolved_on" : complaint.resolved_on
-            }
+        "id" : complaint.id,
+        "roll_no" : complaint.rollno,
+        "room_no" : complaint.room_no,
+        "category" : complaint.category,
+        "description" : complaint.description,
+        "status" : complaint.status,
+        "created_on" : complaint.created_on,
+        "resolved_on" : complaint.resolved_on
+    }
     session.close()
     return temp
+
+def update_complaint_status(complaint_id, new_status, note):
+    session = Session(engine)
+    
+    complaint = session.query(complaints).filter(complaints.id == complaint_id).first()
+    
+    if not complaint:
+        session.close()
+        return {"error": "Complaint not found"}
+        
+    complaint.status = new_status
+    if new_status.lower() == "resolved":
+        complaint.resolved_on = datetime.now()
+        
+    status_update = updates(complaint_id=str(complaint_id), status=new_status, note=note)
+    session.add(status_update)
+    session.commit()
+    
+    temp = {
+        "complaint_id": complaint.id,
+        "new_status": complaint.status,
+        "resolved_on": complaint.resolved_on,
+        "message": "Status updated and note added successfully"
+    }
+    session.close()
+    return temp
+
 
 def update_complaint_status(complaint_id, new_status, note):
     session = Session(engine)
@@ -132,5 +164,3 @@ def update_complaint_status(complaint_id, new_status, note):
     return temp
 
 
-def get_students_complaints_byrollno():
-    pass
