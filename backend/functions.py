@@ -33,13 +33,15 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
         plants = session.query(Plants).all()
         response = []
         for plant in plants:
+            last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one_or_none()
             temp_plant = {
                 "id": plant.id,
                 "name": plant.name,
                 "type": plant.type,
                 "location": plant.location,
                 "water_every_days": plant.water_every_days,
-                "adopted_by": plant.adopted_by
+                "adopted_by": plant.adopted_by,
+                "last_watered": last_watered
 
             }
             response.append(temp_plant)
@@ -49,13 +51,15 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
         plants = session.query(Plants).filter(Plants.type == plant_type)
         response = []
         for plant in plants:
+            last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one_or_none()
             temp_plant = {
                 "id": plant.id,
                 "name": plant.name,
                 "type": plant.type,
                 "location": plant.location,
                 "water_every_days": plant.water_every_days,
-                "adopted_by": plant.adopted_by
+                "adopted_by": plant.adopted_by,
+                "last_watered": last_watered
 
             }
             response.append(temp_plant)

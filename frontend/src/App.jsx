@@ -16,6 +16,7 @@ function App() {
 
   return <>
     <Garden plants={plants}/>
+    <plants plants ={plants} adopted_by={adopted_by} />
   </>
 }
 
