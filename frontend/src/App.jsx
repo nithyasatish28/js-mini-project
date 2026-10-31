@@ -5,25 +5,89 @@ const API_URL = "http://127.0.0.1:8001";
 
 function App() {
   const [complaints, setComplaints] = useState([]);
+  const [counts, setCounts] = useState({ open: 0, in_progress: 0, resolved: 0 });
+  const [status, setStatus] = useState("");
+  const [category, setCategory] = useState("");
+  const [message, setMessage] = useState("");
   const [selected, setSelected] = useState({ updates: [] });
 
+  // E1 and E7 bec they both need all complaints (E1 to show all complaints, and E7 to count each complaint)
   useEffect(() => {
-    //  uses GET /complaints from api
-    fetch(API_URL + "/complaints")
-      .then((response) => response.json())
-      .then((data) => setComplaints(data));
+    loadComplaints("", "");
   }, []);
 
+  function loadComplaints(newStatus, newCategory) {
+    setStatus(newStatus);
+    setCategory(newCategory);
+
+    // runs the get methond form /complaints endpoint for E1
+    fetch(API_URL + "/complaints?status=" + newStatus + "&category=" + newCategory)
+      .then((response) => response.json())
+      .then((data) => setComplaints(data));
+
+    // runs get method from /counts endpoint for E7
+    fetch(API_URL + "/counts")
+      .then((response) => response.json())
+      .then((data) => setCounts(data));
+  }
+
+    // for E1 and E7 it reloads the list and counts with the new status and the category that's already picked
+  function chooseStatus(name) {
+    loadComplaints(name, category);
+  }
+
+  // same as chooseStatus, but picking a category button keeps the current status
+  function chooseCategory(name) {
+    loadComplaints(status, name);
+  }
+
+  // E2 gets one complaint and its updates, saved in selected for the Updates section
   function showUpdates(id) {
-    // uses GET /complaints/{id} from api 
+    // runs get method from /complaints/{id} endpoint
     fetch(API_URL + "/complaints/" + id)
       .then((response) => response.json())
       .then((data) => setSelected(data));
   }
 
+    // E3 raises a new complaint, it starts as open 
+  function addComplaint(roll_no, room_no, category, description) {
+    // runs post method from /complaints endpoint, the complaint details go in the url like the cart in the sample
+    fetch(API_URL + "/complaints?roll_no=" + roll_no + "&room_no=" + room_no + "&category=" + category + "&description=" + description, {method: "POST"})
+      .then((response) => response.json())
+      .then((data) => setMessage(data.detail))
+      .then(() => loadComplaints(status, category));
+  }
+
+   // E4 patching the status and making it move to the next one
+  function moveForward(id) {
+    // runs patch method from /complaints/{id} endpoint
+    fetch(API_URL + "/complaints/" + id + "?note=Moved to next status", {method: "PATCH"})
+      .then((response) => response.json())
+      .then((data) => setMessage(data.detail)) // empty when it worked, the error when it didn't???
+      .then(() => loadComplaints(status, category));
+  }
+
+  // E5 gets complaint based on roll no
+  function showStudent(roll_no) {
+    // runs get method from /students/{roll_no}/complaints endpoints
+    fetch(API_URL + "/students/" + roll_no + "/complaints")
+      .then((response) => response.json())
+      .then((data) => setComplaints(data));
+  }
+
+
+  // E6 deleting compalaint 
+  function deleteComplaint(id) {
+    // runs delete method from /complaints/{id} endpoint to delete by id
+    fetch(API_URL + "/complaints/" + id, {method: "DELETE"})
+      .then((response) => response.json())
+      .then((data) => setMessage(data.detail))
+      .then(() => loadComplaints(status, category));
+  }
+
   return (
     <>
-      <ComplaintList complaints={complaints} onSelect={showUpdates} />
+    // hi aiman you can make it look pretty here
       <h2>Updates</h2>
       <p>{selected.description}</p>
       <ul>

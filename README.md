@@ -12,9 +12,9 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Samhita Bhuvanagiri | Frontend, Main.py |  | Fixing some of the frontend displays and integrating it with whatever backend exists |  |
-| Day 1 | Aiman Patil | Functions.py |  | Frontend |  |
-| Day 2 | Samhita Bhuvanagiri |  |  |  |  |
+| Day 1 | Samhita Bhuvanagiri | Main.py - Getting the API's to work and making sure they follow the rules and display correct error  | Yes | Frontend |  |
+| Day 1 | Aiman Patil | Functions.py - created and connected the tables as well as defined function logic | Yes | Frontend |  |
+| Day 2 | Samhita Bhuvanagiri | Finish the react connection in App.jsx so that the frontend can call the apis from backend | Yes | Some parts of the front end will probably be buggy after aiman makes the buttons and everything show up, so i'll debug the logic/code in App.jsx |  |
 | Day 2 | Aiman Patil |  |  |  |  |
 | Day 3 | Samhita Bhuvanagiri |  |  |  |  |
 | Day 3 | Aiman Patil |  |  |  |  |
@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | GET/complaints | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
+| E2 | GET/complaints/{complaint_id}  | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
+| E3 | POST/complaints | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
+| E4 | PATCH/complaints/{complaint_id} | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
+| E5 | GET/students/{roll_no}/complaints | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
+| E6 | DELETE/complaints/{complaint_id} | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
+| E7 | GET/counts | ✅ | ✅ | ✅ | function by aiman, api and react connection by sam |
 
 ## 3. Frontend tracker
 
