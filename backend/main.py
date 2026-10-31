@@ -1,5 +1,7 @@
+from fastapi import FastAPI, HTTPException, Body, Query
+from fastapi.middleware.cors import CORSMiddleware
+import function
 
-<<<<<<< HEAD
 app = FastAPI(title="Laboratory Equipment Booking System")
 
 app.add_middleware(
@@ -16,5 +18,11 @@ def equipment(type: str = None):
     if type is not None and type not in function.VALID_TYPES:
         raise HTTPException(status_code=422,detail="Invalid equipment type.")
     return function.get_all_equipment(type=type)
-=======
->>>>>>> 88321bffc8717cacb1d6bf14ec5726074d0a698e
+
+
+@app.get("/equipment/{id}")
+def equipment_by_id(id: int):
+    result = function.get_equipment(id)
+    if result is None:
+        raise HTTPException(status_code=404,detail="Equipment not found.")
+    return result
