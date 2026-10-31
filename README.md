@@ -14,7 +14,7 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | H A Bhuvan | README.md & Frontend Part,App.jsx and Bookeqip.jsx |  |  |  |
 | Day 1 | Pavan Kumar | README & In backend part, presently creating database  |  |  |  |
-| Day 2 | H A Bhuvan | Working on frontend, almost done  |  |  |  |
+| Day 2 | H A Bhuvan | Working on frontend, almost done  |yes  ||  no|
 | Day 2 | Pavan Kumar | main.py and functions.py files are redy to push |  |  |  |
 | Day 3 | H A Bhuvan |  |  |  |  |
 | Day 3 | Pavan Kumar |  |  |  |  |
