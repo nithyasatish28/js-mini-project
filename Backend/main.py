@@ -30,15 +30,32 @@ def get_equipment_by_id(equipment_id: int):
         raise HTTPException(status_code=404, detail="Equipment not found")
 
     return equipment
-# E3 - Add new equipment
+
+ # E3 - Add new equipment
+ 
 @app.post("/equipment")
 def add_equipment(name: str, equipment_type: str, lab_room: str):
+
+    if name.strip() == "":
+        raise HTTPException(status_code=422, detail="Equipment name is required")
+
+    if lab_room.strip() == "":
+        raise HTTPException(status_code=422, detail="Lab room is required")
+
+    allowed_types = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"]
+
+    if equipment_type not in allowed_types:
+        raise HTTPException(status_code=422, detail="Invalid equipment type")
 
     return E3.add_equipment(
         name=name,
         type=equipment_type,
         lab_room=lab_room
     )
+
+
+
+    
 # E4 - Mark equipment status
 @app.put("/equipment/{equipment_id}/status")
 def mark_equipment_status(equipment_id: int, in_service: bool):

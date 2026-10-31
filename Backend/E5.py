@@ -1,5 +1,5 @@
 from Backend.databaseorm import Booking, Equipment, SessionLocal
-#e5
+
 
 def book_equipment(equipment_id, roll_no, booking_date):
     with SessionLocal() as session:
@@ -15,3 +15,8 @@ def book_equipment(equipment_id, roll_no, booking_date):
         session.add(booking)
         session.commit()
         return True
+    
+    
+    
+    
+    
