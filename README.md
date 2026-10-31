@@ -31,7 +31,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E4 | post/borrows | ✅ | ⬜ | ⬜ |  |
 | E5 | patch/borrows/{roll_no} | ✅ | ⬜ | ⬜ |  |
 | E6 | get/borrows/active | ✅ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E7 | get/stations/attention | ✅ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
