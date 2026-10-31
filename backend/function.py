@@ -155,3 +155,21 @@ def book_equipment(equipment_id, roll_no, booking_date):
         session.commit()
         session.refresh(booking)
         return _booking_response(booking, item.name)
+
+
+def get_student_bookings(roll_no):
+    with SessionLocal() as session:
+        today = date.today()
+        results = session.query(Bookings, Equipment.name).join(
+            Equipment,
+            Bookings.equipment_id == Equipment.id
+        ).filter(
+            Bookings.roll_no == roll_no,
+            Bookings.cancelled == 0,
+            Bookings.booking_date >= today
+        ).all()
+
+        return [
+            _booking_response(booking, equipment_name)
+            for booking, equipment_name in results
+        ]
