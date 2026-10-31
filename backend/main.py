@@ -15,8 +15,12 @@ app.add_middleware(
 
 # E1: shows all complaints
 @app.get("/complaints")
-def all_complaints():
-    return functions.get_all_complaints()
+def all_complaints(status = None, category = None):
+    if status == "":
+        status = None
+    if category == "":
+        category = None
+    return functions.filter_complaint(status=status, category=category)
 
 # E2: one complaint based on complaint id, with its updates
 @app.get("/complaints/{complaint_id}")
@@ -77,10 +81,10 @@ def remove_complaint(complaint_id: int):
     result = functions.get_complaint_by_id(complaint_id=complaint_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Complaint doesn't exist")
-    if result["status"] is not "open":
+    if result["status"] != "open":
         raise HTTPException(status_code=409, detail="Only open complaints can be deleted")
     functions.remove_complaint(complaint_id=complaint_id)
-    return {"message": "Complaint deleted"}
+    return {"detail": "Complaint deleted"}
 
 # E7: how many complaints in each status
 @app.get("/counts")

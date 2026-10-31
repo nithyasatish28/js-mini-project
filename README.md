@@ -82,7 +82,21 @@ Note:
 **Frontend**
 
 ```bash
-cd frontend
+   ## Frontend (React + Vite)
+
+   1. Open a second terminal in the `frontend/` folder:
+      ```
+      cd frontend
+      ```
+   2. Install the packages:
+      ```
+      npm install
+      ```
+   3. Start the app:
+      ```
+      npm run dev
+      ```
+   4. Open http://localhost:5173 (start the backend first).
 
 ```
 
