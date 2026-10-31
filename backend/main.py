@@ -1,7 +1,18 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import functions
 
-app = FastAPI()
+app = FastAPI(
+    title = "Hostel-Complaints-Tracker API",
+    description = "Manage Hostel Complaints"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173" , "https://127.0.0.1:5173"],
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 VALID_CATEGORIES = ["electrical", "plumbing", "furniture", "cleaning", "internet"]
 VALID_STATUSES = ["open", "in_progress", "resolved"]
