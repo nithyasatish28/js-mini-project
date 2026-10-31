@@ -12,7 +12,7 @@ Base = declarative_base()
 VALID_TYPES = ["microscope","oscilloscope","3d-printer","laptop","camera"]
 
 class Equipment(Base):
-    _tablename_ = "equipment"
+    __tablename__ = "equipment"
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     type = Column(String, nullable=False)
@@ -20,7 +20,7 @@ class Equipment(Base):
     in_service = Column(Integer, default=1, nullable=False)
 
 class Bookings(Base):
-    _tablename_ = "bookings"
+    __tablename__ = "bookings"
     id = Column(Integer, primary_key=True)
     equipment_id = Column(Integer,ForeignKey("equipment.id"),nullable=False)
     roll_no = Column(String, nullable=False)
@@ -38,7 +38,6 @@ def _equipment_response(item):
         "lab_room": item.lab_room,
         "in_service": item.in_service
     }
-       
 
 def _booking_response(booking, equipment_name=None):
     return {
@@ -50,6 +49,7 @@ def _booking_response(booking, equipment_name=None):
         "booking_on": booking.booking_on,
         "cancelled": booking.cancelled
     }
+
 
 def add_initial_equipment():
     with SessionLocal() as session:
@@ -108,6 +108,7 @@ def update_service(id, in_service):
         session.commit()
         session.refresh(item)
         return _equipment_response(item)
+<<<<<<< HEAD
 
 
 def book_equipment(equipment_id, roll_no, booking_date):
@@ -155,3 +156,5 @@ def book_equipment(equipment_id, roll_no, booking_date):
         session.commit()
         session.refresh(booking)
         return _booking_response(booking, item.name)
+=======
+>>>>>>> 0e74cb550d6c1ca29a3f75aa0d780c9cb8e7ae69
