@@ -17,24 +17,6 @@ def add_equipment(name : str, type : str, lab_room : str):
     return functions.add_equipment(name=name, type=type, lab_room=lab_room)
 
 
-@app.get("/equipments")
-def get_all_equipment(type : str = None):
-    return functions.get_all_equipment(type)
-
-
-
-@app.get("/equipments/{id}")
-def get_equipment(id : int):
-    return functions.get_equipment(id)
-
-
-
-@app.post("/equipments", status_code=201)
-def add_equipment(name : str, type : str, lab_room : str):
-    return functions.add_equipment(name=name, type=type, lab_room=lab_room)
-
-
-
 
 @app.patch("/equipments{equipment_id}/status")
 def update_service(equipment_id : int, in_service : bool):
