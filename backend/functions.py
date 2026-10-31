@@ -200,24 +200,14 @@ def get_active_borrow(roll_no):
 
     with SessionLocal() as db:
 
-        result = db.query(
-            Borrows,
-            Stations.name
-        ).join(
-            Stations,
-            Stations.id == Borrows.from_station_id
-        ).filter(
-            Borrows.roll_no == roll_no,
-            Borrows.returned_on == None
+        result = db.query(Borrows,Stations.name).join(Stations,Stations.id == Borrows.from_station_id
+        ).filter(Borrows.roll_no == roll_no,Borrows.returned_on == None
         ).first()
-
         if result is None:
             return None
-
         borrow, station_name = result
 
-        return {
-            "borrow_id": borrow.id,
+        return {"borrow_id": borrow.id,
             "roll_no": borrow.roll_no,
             "from_station_id": borrow.from_station_id,
             "from_station_name": station_name,
