@@ -133,36 +133,7 @@ def give_up_plant(plant_id):
     return response
 
 
-# 7)plants which need water
-def get_plants_needing_water():
-    session = Session(engine)
-    plants = session.query(Plants).all()
-    response = []
-    for plant in plants:
-        last_watering = (
-            session.query(Waterings)
-            .filter(Waterings.plant_id == plant.id)
-            .order_by(Waterings.watered_on.desc())
-            .first()
-        )
 
-    if last_watering is None or (
-        date.today() - last_watering.watered_on
-    ).days >= plant.water_every_days:
-
-        temp_plant = {
-            "id": plant.id,
-            "name": plant.name,
-            "type": plant.type,
-            "location": plant.location,
-            "water_every_days": plant.water_every_days,
-            "adopted_by": plant.adopted_by
-         }
-
-        response.append(temp_plant)
-
-    session.close()
-    return response
 
 
 
