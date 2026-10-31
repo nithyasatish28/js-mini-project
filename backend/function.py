@@ -1,8 +1,9 @@
 from sqlalchemy import Integer, String, Column, create_engine, DateTime, ForeignKey
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime
+import os
 
-DB_PATH = "umbrellas.db"
+DB_PATH = os.path.join(os.path.dirname(__file__), "umbrellas.db")
 
 engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
@@ -31,6 +32,7 @@ class Borrows(Base):
 
 Base.metadata.create_all(engine)
 
+
 def add_initial_stations():
     session = Session(engine)
 
@@ -49,11 +51,12 @@ def add_initial_stations():
         session.commit()
 
     session.close()
+
+
 def get_all_stations():
     session = Session(engine)
 
     stations = session.query(Stations).all()
-
     result = []
 
     for station in stations:
@@ -68,6 +71,7 @@ def get_all_stations():
 
     session.close()
     return result
+
 
 def get_station(station_id):
     session = Session(engine)
@@ -89,6 +93,7 @@ def get_station(station_id):
 
     session.close()
     return result
+
 
 def add_station(name, location, capacity, umbrellas_available):
     session = Session(engine)
@@ -115,10 +120,14 @@ def add_station(name, location, capacity, umbrellas_available):
 
     session.close()
     return result
+
+
 def borrow_umbrella(roll_no, from_station_id):
     session = Session(engine)
 
-    station = session.query(Stations).filter(Stations.id == from_station_id).first()
+    station = session.query(Stations).filter(
+        Stations.id == from_station_id
+    ).first()
 
     if station is None:
         session.close()
@@ -126,16 +135,16 @@ def borrow_umbrella(roll_no, from_station_id):
 
     active_borrow = session.query(Borrows).filter(
         Borrows.roll_no == roll_no,
-        Borrows.returned_on == None
+        Borrows.returned_on.is_(None)
     ).first()
 
     if active_borrow:
         session.close()
-        return {"error": "Student already has an active borrow", "status_code": 409}
+        return {"error": "Student already has an active borrow", "status_code": 400}
 
     if station.umbrellas_available == 0:
         session.close()
-        return {"error": "No umbrellas available at this station", "status_code": 409}
+        return {"error": "No umbrellas available at this station", "status_code": 400}
 
     station.umbrellas_available -= 1
 
@@ -158,5 +167,49 @@ def borrow_umbrella(roll_no, from_station_id):
     }
 
     session.close()
+    return result
 
+
+def return_umbrella(borrow_id, to_station_id):
+    session = Session(engine)
+
+    borrow = session.query(Borrows).filter(
+        Borrows.id == borrow_id
+    ).first()
+
+    if borrow is None:
+        session.close()
+        return {"error": "Borrow record not found", "status_code": 404}
+
+    if borrow.returned_on is not None:
+        session.close()
+        return {"error": "Umbrella has already been returned", "status_code": 400}
+
+    station = session.query(Stations).filter(
+        Stations.id == to_station_id
+    ).first()
+
+    if station is None:
+        session.close()
+        return {"error": "Station not found", "status_code": 404}
+
+    if station.umbrellas_available >= station.capacity:
+        session.close()
+        return {"error": "Station is full", "status_code": 400}
+
+    station.umbrellas_available += 1
+    borrow.to_station_id = to_station_id
+    borrow.returned_on = datetime.now()
+
+    session.commit()
+
+    result = {
+        "message": "Umbrella returned successfully",
+        "borrow_id": borrow.id,
+        "roll_no": borrow.roll_no,
+        "to_station_id": borrow.to_station_id,
+        "returned_on": borrow.returned_on
+    }
+
+    session.close()
     return result

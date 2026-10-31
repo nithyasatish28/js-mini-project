@@ -22,6 +22,10 @@ class BorrowCreate(BaseModel):
     from_station_id: int = Field(ge=1)
 
 
+class ReturnCreate(BaseModel):
+    to_station_id: int = Field(ge=1)
+
+
 @app.get("/")
 def hello():
     return {"message": "Umbrella Sharing API is running"}
@@ -37,20 +41,16 @@ def get_station(station_id: int):
     station = function.get_station(station_id)
 
     if station is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Station not found"
-        )
+        raise HTTPException(status_code=404, detail="Station not found")
 
     return station
 
 
 @app.post("/stations")
 def add_station(station: StationCreate):
-
     if station.umbrellas_available > station.capacity:
         raise HTTPException(
-            status_code=422,
+            status_code=400,
             detail="Umbrellas available cannot exceed capacity"
         )
 
@@ -64,10 +64,25 @@ def add_station(station: StationCreate):
 
 @app.post("/borrow")
 def borrow_umbrella(borrow: BorrowCreate):
-
     result = function.borrow_umbrella(
         roll_no=borrow.roll_no,
         from_station_id=borrow.from_station_id
+    )
+
+    if "error" in result:
+        raise HTTPException(
+            status_code=result["status_code"],
+            detail=result["error"]
+        )
+
+    return result
+
+
+@app.patch("/return/{borrow_id}")
+def return_umbrella(borrow_id: int, return_data: ReturnCreate):
+    result = function.return_umbrella(
+        borrow_id=borrow_id,
+        to_station_id=return_data.to_station_id
     )
 
     if "error" in result:
