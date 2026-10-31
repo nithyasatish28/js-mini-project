@@ -14,6 +14,8 @@ Update your own row at every check-in.
 |---|---|-------------------|------------|-------------------------------------|---|
 | Day 1 | Mohammed Shafi | E4,E5,E6          | Yes         |  Front-End                                  |  |
 | Day 1 | Sarang Siva Thilakan | E1,E2,E3,E7          | Yes                        | Front-End |
+| Day 2 | Mohammed Shafi |          |          |                                    |  |
+| Day 2 | Sarang Siva Thilakan |           |                         | |
 | Day 3 | Mohammed Shafi |                   |            |                                     |  |
 | Day 3 | Sarang Siva Thilakan |                   |            |                                     |  |
 
