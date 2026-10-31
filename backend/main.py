@@ -47,4 +47,28 @@ def change_service_status(id: int,in_service: int = Body(...)):
         raise HTTPException(status_code=404,detail="Equipment not found.")
     return result
 
-    
+
+@app.post("/bookings", status_code=201)
+def book_equipment(equipment_id: int = Body(...),roll_no: str = Body(...),booking_date: str = Body(...)):
+    if not roll_no.strip():
+        raise HTTPException(status_code=422,detail="Roll number cannot be empty.")
+    result = function.book_equipment(equipment_id=equipment_id,roll_no=roll_no,booking_date=booking_date)
+    if "error" in result:
+        raise HTTPException(status_code=result["error"],detail=result["detail"])
+    return result
+
+@app.get("/bookings")
+def student_bookings(roll_no: str = Query(...)):
+    if not roll_no.strip():
+        raise HTTPException(status_code=422,detail="Roll number cannot be empty.")
+    return function.get_student_bookings(roll_no)
+
+
+@app.patch("/bookings/{id}/cancel")
+def cancel_booking(id: int):
+    result = function.cancel_booking(id)
+    if result is None:
+        raise HTTPException(status_code=404,detail="Booking not found.")
+    if "error" in result:
+        raise HTTPException(status_code=result["error"],detail=result["detail"])
+    return result
