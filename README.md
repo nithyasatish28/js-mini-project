@@ -51,8 +51,31 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 **Backend**
 
-```bash
-cd backend
+## Backend (FastAPI + SQLite)
+
+1. Open a bash terminal in the `backend/` folder:
+   ```
+   cd backend
+   ```
+2. Create and activate a virtual environment (optional):
+   ```
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. Install the requirements:
+   ```
+   pip install fastapi uvicorn sqlalchemy
+   ```
+4. Start the server on port 8001:
+   ```
+   uvicorn main:app --reload --port 8001
+   ```
+5. Open http://127.0.0.1:8001/docs to see and test all 7 endpoints.
+
+Note:
+- All the commands to be given in a bash terminal.
+- The database file `hostel.db` is created automatically on the first run, and the data stays in it after restarting.
+- The API only accepts requests from a frontend running at `http://localhost:5173` or `http://127.0.0.1:5173` (the default Vite address).
 
 ```
 
