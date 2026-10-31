@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |  | ✅ | ⬜ | ⬜ | Aryan |
+| E2 |  | ✅ | ⬜ | ⬜ |Monica |
+| E3 |  | ✅ | ⬜ | ⬜ |Monica |
+| E4 |  | ✅ | ⬜ | ⬜ | Aryan |
+| E5 |  | ✅ | ⬜ | ⬜ | Aryan |
+| E6 |  | ✅ | ⬜ | ⬜ |Monica  |
+| E7 |  | ✅ | ⬜ | ⬜ |Monica  |
 
 ## 3. Frontend tracker
 
