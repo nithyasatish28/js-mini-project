@@ -108,7 +108,6 @@ def update_service(id, in_service):
         session.commit()
         session.refresh(item)
         return _equipment_response(item)
-<<<<<<< HEAD
 
 
 def book_equipment(equipment_id, roll_no, booking_date):
@@ -156,5 +155,21 @@ def book_equipment(equipment_id, roll_no, booking_date):
         session.commit()
         session.refresh(booking)
         return _booking_response(booking, item.name)
-=======
->>>>>>> 0e74cb550d6c1ca29a3f75aa0d780c9cb8e7ae69
+
+
+def get_student_bookings(roll_no):
+    with SessionLocal() as session:
+        today = date.today()
+        results = session.query(Bookings, Equipment.name).join(
+            Equipment,
+            Bookings.equipment_id == Equipment.id
+        ).filter(
+            Bookings.roll_no == roll_no,
+            Bookings.cancelled == 0,
+            Bookings.booking_date >= today
+        ).all()
+
+        return [
+            _booking_response(booking, equipment_name)
+            for booking, equipment_name in results
+        ]
