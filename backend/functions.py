@@ -128,4 +128,4 @@ def cancel_booking(booking_id):
         booking.cancelled = 1
         db.commit()
         db.refresh(booking)
-        return booking_response(booking, equipment.name) 
+        return booking_response(booking, equipment.name)
