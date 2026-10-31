@@ -89,3 +89,29 @@ def get_station(station_id):
 
     session.close()
     return result
+
+def add_station(name, location, capacity, umbrellas_available):
+    session = Session(engine)
+
+    station = Stations(
+        name=name,
+        location=location,
+        capacity=capacity,
+        umbrellas_available=umbrellas_available
+    )
+
+    session.add(station)
+    session.commit()
+    session.refresh(station)
+
+    result = {
+        "id": station.id,
+        "name": station.name,
+        "location": station.location,
+        "capacity": station.capacity,
+        "umbrellas_available": station.umbrellas_available,
+        "free_slots": station.capacity - station.umbrellas_available
+    }
+
+    session.close()
+    return result
