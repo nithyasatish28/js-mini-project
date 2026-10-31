@@ -29,7 +29,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E2 | get/stations/{station_id} | ✅ | ⬜ | ⬜ |  |
 | E3 | post/stations | ✅ | ⬜ | ⬜ |  |
 | E4 | post/borrows | ✅ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
+| E5 | patch/borrows/{roll_no} | ✅ | ⬜ | ⬜ |  |
 | E6 |  | ⬜ | ⬜ | ⬜ |  |
 | E7 |  | ⬜ | ⬜ | ⬜ |  |
 
