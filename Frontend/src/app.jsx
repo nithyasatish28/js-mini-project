@@ -1,48 +1,98 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Stations from "./components/Stations";
+import MyUmbrella from "./components/MyUmbrella";
 
-const initial = [
-  { id: 1, name: "Library", location: "Main Block", capacity: 10, umbrellas_available: 5 },
-  { id: 2, name: "Cafeteria", location: "Food Court", capacity: 8, umbrellas_available: 0 },
-  { id: 3, name: "Sports Complex", location: "Grounds", capacity: 5, umbrellas_available: 5 },
-  { id: 4, name: "Hostel A", location: "Residential Zone", capacity: 12, umbrellas_available: 4 },
-];
+const API_URL = "http://127.0.0.1:8000";
 
 export default function App() {
-  const [stations, setStations] = useState(initial);
-  const [selected, setSelected] = useState(null);
-  const [error, setError] = useState("");
-  const [filtered, setFiltered] = useState(false);
+  const [stations, setStations] = useState([]);
+  const [selectedStation, setSelectedStation] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isFiltered, setIsFiltered] = useState(false);
 
-  function handleBorrow(id, roll) {
-    if (!roll?.trim()) return setError("Please enter a roll number.");
-    setError("");
-    setStations((prev) =>
-      prev.map((s) => (s.id === id ? (s.umbrellas_available ? { ...s, umbrellas_available: s.umbrellas_available - 1 } : (setError("Station empty!"), s)) : s))
-    );
-  }
+  const fetchStations = async () => {
+    try {
+      setErrorMessage("");
+      const res = await fetch(`${API_URL}/stations`);
+      const data = await res.json();
+      setStations(data);
+      setIsFiltered(false);
+    } catch (err) {
+      setErrorMessage("Could not connect to server.");
+    }
+  };
+
+  const fetchNeedsAttention = async () => {
+    try {
+      setErrorMessage("");
+      const res = await fetch(`${API_URL}/stations/attention`);
+      const data = await res.json();
+      setStations(data);
+      setIsFiltered(true);
+    } catch (err) {
+      setErrorMessage("Could not connect to server.");
+    }
+  };
+
+  useEffect(() => {
+    fetchStations();
+  }, []);
+
+  const handleBorrow = async (stationId, rollNo) => {
+    if (!rollNo?.trim()) {
+      setErrorMessage("Roll number is required.");
+      return;
+    }
+    setErrorMessage("");
+
+    try {
+      const res = await fetch(
+        `${API_URL}/borrows?roll_no=${rollNo.trim()}&station_id=${stationId}`,
+        { method: "POST" }
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMessage(data.detail || "Borrow failed.");
+      } else {
+        fetchStations();
+      }
+    } catch (err) {
+      setErrorMessage("Error processing borrow request.");
+    }
+  };
 
   return (
-    <div>
+    <div className="container">
       <h1>Campus Umbrella Sharing</h1>
-      {error && <p>{error}</p>}
+
+      {errorMessage && <div className="alert-error">{errorMessage}</div>}
 
       <Stations
         stations={stations}
-        onSelectStation={setSelected}
-        onNeedsAttention={() => { setError(""); setStations(initial.filter((s) => !s.umbrellas_available || s.capacity === s.umbrellas_available)); setFiltered(true); }}
-        onResetFilter={() => { setError(""); setStations(initial); setFiltered(false); }}
+        onSelectStation={setSelectedStation}
+        onNeedsAttention={fetchNeedsAttention}
+        onResetFilter={fetchStations}
         onBorrow={handleBorrow}
-        isFiltered={filtered}
+        isFiltered={isFiltered}
       />
 
-      {selected && (
-        <div>
-          <h3>{selected.name} Details</h3>
-          <p>Loc: {selected.location} | Cap: {selected.capacity} | Umbrellas: {selected.umbrellas_available} | Free: {selected.capacity - selected.umbrellas_available}</p>
-          <button onClick={() => setSelected(null)}>Close</button>
+      {selectedStation && (
+        <div className="modal-card">
+          <h3>{selectedStation.name} Details</h3>
+          <p><strong>Location:</strong> {selectedStation.location}</p>
+          <p><strong>Capacity:</strong> {selectedStation.capacity}</p>
+          <p><strong>Umbrellas Available:</strong> {selectedStation.umbrellas_available}</p>
+          <p><strong>Free Slots:</strong> {selectedStation.capacity - selectedStation.umbrellas_available}</p>
+          <button className="btn-secondary" onClick={() => setSelectedStation(null)}>Close</button>
         </div>
       )}
+
+      <MyUmbrella
+        stations={stations}
+        apiUrl={API_URL}
+        onError={setErrorMessage}
+        onSuccess={fetchStations}
+      />
     </div>
   );
 }

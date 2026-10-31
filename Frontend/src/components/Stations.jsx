@@ -4,37 +4,60 @@ export default function Stations({ stations, onSelectStation, onNeedsAttention, 
   const [rolls, setRolls] = useState({});
 
   return (
-    <div>
-      <div>
-        <h2>Stations</h2>
-        {isFiltered && <button onClick={onResetFilter}>Show All</button>}
-        <button onClick={onNeedsAttention}>Needs Attention</button>
+    <div className="box">
+      <h2>Stations</h2>
+      
+      <div style={{ marginBottom: "15px" }}>
+        {isFiltered ? (
+          <button onClick={onResetFilter}>Show All Stations</button>
+        ) : (
+          <button onClick={onNeedsAttention}>Needs Attention</button>
+        )}
       </div>
 
-      <ul>
-        {stations.map((s) => {
-          const free = s.capacity - s.umbrellas_available;
-          return (
-            <li key={s.id} onClick={() => onSelectStation(s)}>
-              <h3>{s.name} ({s.location})</h3>
-              <p>Umbrellas: {s.umbrellas_available} | Free: {free}</p>
-              {s.umbrellas_available === 0 && <b>[Empty] </b>}
-              {free === 0 && <b>[Full]</b>}
+      <div className="grid">
+        {stations.map((station) => {
+          const freeSlots = station.capacity - station.umbrellas_available;
+          const isEmpty = station.umbrellas_available === 0;
+          const isFull = freeSlots === 0;
 
-              <div onClick={(e) => e.stopPropagation()}>
+          return (
+            <div
+              key={station.id}
+              className="card"
+              onClick={() => onSelectStation(station)}
+            >
+              <h3>{station.name}</h3>
+              <p><b>Location:</b> {station.location}</p>
+              <p><b>Umbrellas:</b> {station.umbrellas_available}</p>
+              <p><b>Free Slots:</b> {freeSlots}</p>
+
+              {isEmpty && <p style={{ color: "red" }}><b>[Empty]</b></p>}
+              {isFull && <p style={{ color: "orange" }}><b>[Full]</b></p>}
+
+              <div onClick={(e) => e.stopPropagation()} style={{ marginTop: "10px" }}>
                 <input
+                  type="text"
                   placeholder="Roll No"
-                  value={rolls[s.id] || ""}
-                  onChange={(e) => setRolls({ ...rolls, [s.id]: e.target.value })}
+                  value={rolls[station.id] || ""}
+                  onChange={(e) =>
+                    setRolls({ ...rolls, [station.id]: e.target.value })
+                  }
+                  style={{ width: "100px" }}
                 />
-                <button onClick={() => { onBorrow(s.id, rolls[s.id]); setRolls({ ...rolls, [s.id]: "" }); }}>
+                <button
+                  onClick={() => {
+                    onBorrow(station.id, rolls[station.id]);
+                    setRolls({ ...rolls, [station.id]: "" });
+                  }}
+                >
                   Borrow
                 </button>
               </div>
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }
