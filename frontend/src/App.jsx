@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import ComplaintList from "./components/ComplaintList";
+import Filters from "./components/Filters";
+import StudentSearch from "./components/StudentSearch";
+import RaiseForm from "./components/RaiseForm";
 
 const API_URL = "http://127.0.0.1:8001";
 
@@ -50,18 +53,18 @@ function App() {
   }
 
     // E3 raises a new complaint, it starts as open 
-  function addComplaint(roll_no, room_no, category, description) {
+  function addComplaint(roll_no, room_no, newCategory, description) {
     // runs post method from /complaints endpoint, the complaint details go in the url like the cart in the sample
-    fetch(API_URL + "/complaints?roll_no=" + roll_no + "&room_no=" + room_no + "&category=" + category + "&description=" + description, {method: "POST"})
+    fetch(API_URL + "/complaints?roll_no=" + roll_no + "&room_no=" + room_no + "&category=" + newCategory + "&description=" + description, {method: "POST"})
       .then((response) => response.json())
       .then((data) => setMessage(data.detail))
       .then(() => loadComplaints(status, category));
   }
 
    // E4 patching the status and making it move to the next one
-  function moveForward(id) {
+  function moveForward(id, note) {
     // runs patch method from /complaints/{id} endpoint
-    fetch(API_URL + "/complaints/" + id + "?note=Moved to next status", {method: "PATCH"})
+    fetch(API_URL + "/complaints/" + id + "?note=" + note, {method: "PATCH"})
       .then((response) => response.json())
       .then((data) => setMessage(data.detail)) // empty when it worked, the error when it didn't???
       .then(() => loadComplaints(status, category));
@@ -88,13 +91,11 @@ function App() {
     return (
     <>
       <p><b>{message}</b></p>
+      <Filters counts={counts} onStatus={chooseStatus} onCategory={chooseCategory} />
+      <StudentSearch onStudent={showStudent} />
       <ComplaintList
         complaints={complaints}
-        counts={counts}
-        onStatus={chooseStatus}
-        onCategory={chooseCategory}
         onSelect={showUpdates}
-        onStudent={showStudent}
         onMove={moveForward}
         onDelete={deleteComplaint}
       />
@@ -107,6 +108,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <RaiseForm onAdd={addComplaint} />
     </>
   );
 }

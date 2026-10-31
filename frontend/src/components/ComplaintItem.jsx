@@ -1,10 +1,20 @@
-function ComplaintItem({ complaint, onSelect }) {
+import { useState } from "react";
+
+function ComplaintItem({ complaint, onSelect, onMove, onDelete }) {
+  const [note, setNote] = useState("");
+
   let icon = "🔴";
   if (complaint.status === "in_progress") {
     icon = "🟡";
   }
   if (complaint.status === "resolved") {
     icon = "🟢";
+  }
+
+  // the Delete button only shows on open complaints
+  let deleteButton = null;
+  if (complaint.status === "open") {
+    deleteButton = <button onClick={() => onDelete(complaint.id)}>Delete</button>;
   }
 
   return (
@@ -14,6 +24,11 @@ function ComplaintItem({ complaint, onSelect }) {
       <p><strong>Status:</strong> {icon} {complaint.status}</p>
       <p><strong>Raised on:</strong> {complaint.created_on.slice(0, 10)}</p>
       <button onClick={() => onSelect(complaint.id)}>See updates</button>
+      {deleteButton}
+      <p>
+        <input value={note} onChange={(e) => setNote(e.target.value)} placeholder="Note" />
+        <button onClick={() => onMove(complaint.id, note)}>Move to next status</button>
+      </p>
       <hr />
     </li>
   );
