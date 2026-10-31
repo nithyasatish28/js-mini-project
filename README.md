@@ -37,8 +37,8 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Garden | ⬜ | ⬜ | ⬜ |  |
-| My plants | ⬜ | ⬜ | ⬜ |  |
+| Garden | 🟡 | ⬜ | ⬜ | Shafi |
+| My plants | 🟡 | ⬜ | ⬜ | Sarang |
 | Add a plant | ⬜ | ⬜ | ⬜ |  |
 
 ## 4. Blockers and help needed
