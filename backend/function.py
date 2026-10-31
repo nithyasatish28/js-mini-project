@@ -173,3 +173,19 @@ def get_student_bookings(roll_no):
             _booking_response(booking, equipment_name)
             for booking, equipment_name in results
         ]
+
+
+def cancel_booking(id):
+    with SessionLocal() as session:
+        booking = session.get(Bookings, id)
+        if booking is None:
+            return None
+        if booking.cancelled == 1:
+            return {"error": 409,"detail": "This booking is already cancelled."}
+
+        booking.cancelled = 1
+        session.commit()
+        session.refresh(booking)
+        return _booking_response(booking)
+
+add_initial_equipment()
