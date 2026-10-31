@@ -48,9 +48,9 @@ def add_plant(name,type,water_every_days,adopted_by = None,location = None):
 
 
 # 2)add waterings
-def add_waterings(id,plant_id,roll_no,watered_on):
+def add_waterings(plant_id,roll_no,watered_on):
     session = Session(engine)
-    Watering = Waterings(id =id,plant_id = plant_id,roll_no= roll_no,watered_on = watered_on)
+    Watering = Waterings(plant_id = plant_id,roll_no= roll_no,watered_on = watered_on)
     session.add(Watering)
     response = {
         "id": Waterings.id,

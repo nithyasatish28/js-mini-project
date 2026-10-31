@@ -73,5 +73,5 @@ def water_plant(plant_id: int, roll_no: str):
 
 @app.get("/plants/needs-water")
 def needs_water():
-    return functions.get_plants_needing_water()
+    return functions.get_plants_need_water()
 
