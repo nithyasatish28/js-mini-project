@@ -97,3 +97,14 @@ def add_equipment(name, type, lab_room):
         session.commit()
         session.refresh(item)
         return _equipment_response(item)
+
+
+def update_service(id, in_service):
+    with SessionLocal() as session:
+        item = session.get(Equipment, id)
+        if item is None:
+            return None
+        item.in_service = in_service
+        session.commit()
+        session.refresh(item)
+        return _equipment_response(item)
