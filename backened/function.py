@@ -1,6 +1,6 @@
 from sqlalchemy import Integer,String, Column, create_engine, DateTime,ForeignKey
 from sqlalchemy.orm import Session, declarative_base
-from datetime import datetime
+from datetime import datetime , date
 
 DB_PATH="event.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -62,9 +62,47 @@ def get_event(id):
     return response
 
 
-def add_new_event(title: str, club: str, category: str, events_date:str,total_seats:int):
-        session = Session(engine)  
-        events = session.add(title=title, club=club, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
-        response = ["title"=events.title, "club"= events.club, "events_date"= events.events_date ,"total_seats"=events.total_seats,]
-        session.close()
-        return response
+
+def add_new_event(title: str, club: str, category: str, events_date:datetime,total_seats:int):
+    session = Session(engine)  
+    events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+    response = {
+    "title": events.title,
+    "club": events.club,
+    "event_date": events.event_date,
+    "total_seats":events.total_seats
+}
+    session.close()
+    return response
+
+def delete_event(event_id):
+ session = Session(engine)  
+ events = session.get(Event,event_id)
+ session.delete(events)
+ session.commit
+ session.close
+
+def event_roll_number(event_id: int, roll_number:int):
+     session = session(engine)
+     event = session.get(Event, event_id)
+     if not event:
+         return{"error:event not found"}
+     
+     if event.seats_left <=0:
+         return{"error:The seats are full"}
+
+     registration = Registration(
+                event_id = event_id,
+                roll_number = roll_number,
+                registration_date = date.today()
+            )
+
+     return{
+         "registration_id" : registration.id,
+         "event_id" : event.id,
+         "roll_number" : registration.roll_number,
+         "registration_date" : registration.registration_date,
+         "seats_left" : event.seats_left,
+}
+
+
