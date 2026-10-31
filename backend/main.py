@@ -8,6 +8,11 @@ def get_all_equipment(type : str = None):
     return functions.get_all_equipment(type)
 
 
+@app.get("/equipments/{id}")
+def get_equipment(id : int):
+    return functions.get_equipment(id)
+
+
 
 
 @app.get("/equipments")
