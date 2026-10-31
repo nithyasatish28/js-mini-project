@@ -15,7 +15,7 @@ Update your own row at every check-in.
 | Day 1 | Thanuja Reddy | understand project requirements ,design API end points , plan sqlite database structure |  |  |  |
 | Day 1 | Supriya R |Setup backend folder  | yes | creating functions | No |
 | Day 2 | Thanuja Reddy |  |  |  |  |
-| Day 2 | Supriya R |  |  |  |  |
+| Day 2 | Supriya R |Setup frontend folder  |  |  |  |
 | Day 3 | Thanuja Reddy |  |  |  |  |
 | Day 3 | Supriya R |  |  |  |  |
 
