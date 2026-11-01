@@ -8,12 +8,8 @@ function MyComplaints() {
     const [error, setError] = useState("");
 
     async function showComplaints() {
-        const response = await fetch(
-            `${API_URL}/students/${encodeURIComponent(rollNo)}/complaints`
-        );
-
+        const response = await fetch(`${API_URL}/students/${(rollNo)}/complaints`);
         const data = await response.json();
-
         if (response.ok) {
             setComplaints(data);
             setSelectedComplaint(null);
@@ -26,7 +22,6 @@ function MyComplaints() {
     async function viewUpdates(id) {
         const response = await fetch(`${API_URL}/complaints/${id}`);
         const data = await response.json();
-
         if (response.ok) {
             setSelectedComplaint(data);
             setError("");
@@ -36,12 +31,8 @@ function MyComplaints() {
     }
 
     async function deleteComplaint(id) {
-        const response = await fetch(`${API_URL}/complaints/${id}`, {
-            method: "DELETE"
-        });
-
+        const response = await fetch(`${API_URL}/complaints/${id}`, {method: "DELETE"});
         const data = await response.json();
-
         if (response.ok) {
             setError("");
             setSelectedComplaint(null);
@@ -50,28 +41,21 @@ function MyComplaints() {
             setError(data.detail);
         }
     }
-
     return (
     <div className="dashboard-card">
             <h2>My Complaints</h2>
-
             <input
                 placeholder="Enter Roll Number"
                 value={rollNo}
                 onChange={(e) => setRollNo(e.target.value)}
             />
-
             <button onClick={showComplaints}>
                 Show
             </button>
-
             {error && <p className="error">{error}</p>}
-
             {complaints.map((complaint) => (
                 <div key={complaint.id} className="complaint-card">
-
-                    <h3>Complaint #{complaint.id}</h3>
-
+                    <h3>Complaint {complaint.id}</h3>
                     <p>Room: {complaint.room_no}</p>
                     <p>Category: {complaint.category}</p>
                     <p>Description: {complaint.description}</p>
@@ -86,10 +70,8 @@ function MyComplaints() {
                             Delete
                         </button>
                     )}
-
                 </div>
             ))}
-
             {selectedComplaint && (
     <div className="complaint-card">
         <h3>Complaint Updates</h3>
@@ -105,8 +87,7 @@ function MyComplaints() {
         ))}
     </div>
 )}
-        </div>
-    );
+        </div>);
 }
 
 export default MyComplaints;

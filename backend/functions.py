@@ -9,7 +9,6 @@ print(inspect(engine).get_table_names())
 
 class Complaint(Base):
     __tablename__ = "complaints"
-
     id = Column(Integer, primary_key=True)
     roll_no = Column(Integer)
     room_no = Column(Integer)
@@ -87,10 +86,10 @@ def add_complaint(roll_no, room_no, category, description):
         session.close()
         return None
     existing_complaint = session.query(Complaint).filter(
-        Complaint.room_no == room_no,
-        Complaint.category == category,
-        Complaint.status != "resolved"
-    ).first()
+    Complaint.roll_no == roll_no,
+    Complaint.category == category,
+    Complaint.status != "resolved"
+).first()
     if existing_complaint is not None:
         session.close()
         return False
@@ -170,6 +169,16 @@ def get_student_complaints(roll_no):
         response.append(temp_complaint)
     session.close()
     return response
+
+# def get_student_complaints(roll_no):
+#     session = Session(engine)
+#     complaints = session.query(Complaint).filter(
+#         Complaint.roll_no == roll_no
+#     ).all()
+#     session.close()
+#     if not complaints:
+#         return {"message": "No complaints found for this roll number"}
+#     return complaints
 
 
 def delete_complaint(complaint_id):
