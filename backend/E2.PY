@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 from datetime import date
 from sqlalchemy.orm import Session
 from function import engine, Plants, Waterings
 from fastapi import HTTPException
+=======
+from function import engine
+from sqlalchemy import MetaData, Table
+from fastapi import FastAPI,HTTPException
+from function import Session, Plants, Waterings
+>>>>>>> Stashed changes
 
 
 def get_plant(id):
@@ -13,7 +20,11 @@ def get_plant(id):
     waterings = session.query(Waterings).all()
     response_water=[]
     for water in waterings:
+<<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
         if water.plant_id == id:
             temp_water={
                 "id": water.id,
@@ -33,3 +44,7 @@ def get_plant(id):
            }
     session.close()
     return response,response_water
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
