@@ -59,7 +59,9 @@ cd backend
 **Frontend**
 
 ```bash
-cd frontend
+cd Frontend
+cd src
+npm run dev
 
 ```
 
