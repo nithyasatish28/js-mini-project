@@ -17,7 +17,7 @@ function App() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Common function for all API requests
+  
   async function apiRequest(url, options = {}) {
     let response;
 
@@ -38,7 +38,6 @@ function App() {
     return data;
   }
 
-  // E1: Get equipment
   async function loadEquipment(type = "") {
     try {
       setLoading(true);
@@ -64,7 +63,6 @@ function App() {
     loadEquipment();
   }, []);
 
-  // E4: Change equipment service status
   async function changeService(id, currentStatus) {
     try {
       setError("");
@@ -88,7 +86,7 @@ function App() {
     }
   }
 
-  // E5: Book equipment
+
   async function bookEquipment(equipmentId, rollNo, bookingDate) {
     try {
       setError("");
@@ -108,7 +106,6 @@ function App() {
 
       setMessage("Equipment booked successfully!");
 
-      // Automatically show the student's bookings
       await loadBookings(rollNo);
       await loadEquipment();
 
@@ -117,7 +114,6 @@ function App() {
     }
   }
 
-  // E6: Get bookings for a student
   async function loadBookings(rollNo) {
     try {
       setError("");
@@ -141,7 +137,6 @@ function App() {
     }
   }
 
-  // E7: Cancel booking
   async function cancelBooking(id) {
     try {
       setError("");
@@ -164,7 +159,6 @@ function App() {
     }
   }
 
-  // E3: Add equipment
   async function addEquipment(name, type, labRoom) {
     try {
       setError("");
