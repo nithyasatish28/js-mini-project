@@ -69,17 +69,18 @@ def update_complaint(complaint_id: int, note: str):
 def student_complaints(roll_no: str):
     return functions.fetch_student_complaint(roll_no)
 
-
 #E6
-@app.delete("/complaints/{complaint_id}", status_code=204)
+@app.delete("/complaints/{complaint_id}")
 def delete_complaint(complaint_id: int):
     complaint = functions.get_complaint(complaint_id)
     if complaint is None:
         raise HTTPException(status_code=404, detail="Complaint not found")
+
     if complaint["status"] != "open":
         raise HTTPException(status_code=409, detail="Only an open complaint can be deleted")
+
     functions.remove_complaint(complaint_id)
-    return {"message": "Complaint deleted successfully"}
+    return {"message": "Complaint deleted"}
 
 
 #E7

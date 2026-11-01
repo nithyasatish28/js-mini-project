@@ -1,41 +1,18 @@
 import { useState } from "react";
 
-function Warden({ complaints, counts, apiUrl, onDone }) {
-  const [notes, setNotes] = useState({});
-  const [message, setMessage] = useState("");
+function Warden({ complaints, counts, message, moveToNextStatus }) {
+  const [note, setNote] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
 
-  function changeNote(id, value) {
-    setNotes({ ...notes, [id]: value });
-  }
-
-  function moveNext(id) {
-    const note = notes[id] || "";
-
-    fetch(apiUrl + "/complaints/" + id + "/status?note=" + encodeURIComponent(note), {
-      method: "PATCH",
-    })
-      .then((response) => response.json().then((data) => ({ ok: response.ok, data })))
-      .then((result) => {
-        if (result.ok) {
-          setMessage("");
-          setNotes({ ...notes, [id]: "" });
-          onDone();
-        } else {
-          setMessage(result.data.detail);
-        }
-      });
-  }
-
-  const shown = complaints.filter((c) => {
-    if (statusFilter !== "" && c.status !== statusFilter) return false;
-    if (categoryFilter !== "" && c.category !== categoryFilter) return false;
-    return true;
-  });
+  const shown = complaints.filter(
+    (c) =>
+      (statusFilter === "" || c.status === statusFilter) &&
+      (categoryFilter === "" || c.category === categoryFilter)
+  );
 
   return (
-    <div>
+    <>
       <h2>Warden</h2>
       <p>Open: {counts.open} | In progress: {counts.in_progress} | Resolved: {counts.resolved}</p>
 
@@ -55,6 +32,8 @@ function Warden({ complaints, counts, apiUrl, onDone }) {
         <option value="internet">internet</option>
       </select>
 
+      <p>Type a note, then click Move on a complaint:</p>
+      <input placeholder="Note" value={note} onChange={(e) => setNote(e.target.value)} />
       <p>{message}</p>
 
       {shown.map((c) => (
@@ -62,20 +41,10 @@ function Warden({ complaints, counts, apiUrl, onDone }) {
           <p>Room {c.room_no} | {c.category} | Roll no: {c.roll_no}</p>
           <p>{c.description}</p>
           <p>Status: {c.status}</p>
-
-          {c.status !== "resolved" && (
-            <div>
-              <input
-                placeholder="Note"
-                value={notes[c.id] || ""}
-                onChange={(e) => changeNote(c.id, e.target.value)}
-              />
-              <button onClick={() => moveNext(c.id)}>Move to next status</button>
-            </div>
-          )}
+          <button onClick={() => moveToNextStatus(c.id, note)}>Move to next status</button>
         </div>
       ))}
-    </div>
+    </>
   );
 }
 
