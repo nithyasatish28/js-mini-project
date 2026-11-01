@@ -1,4 +1,4 @@
-# Team 01 · Hostel Complaint Tracker
+<img width="812" height="267" alt="image" src="https://github.com/user-attachments/assets/e106b7ac-b88f-480a-b0d5-82f97db5b0c1" /># Team 01 · Hostel Complaint Tracker
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
@@ -14,7 +14,7 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | A Akshay |working on main.py(endpoints)  |  |  |  |
 | Day 1 | Lakshya R |working on functions.py and error handling(backend)| yes |  |  |
-| Day 2 | A Akshay |  |  |  |  |
+| Day 2 | A Akshay | working on componets folder |  |  |  |
 | Day 2 | Lakshya R |working on react warden.jsx  |  |  |  |
 | Day 3 | A Akshay |  |  |  |  |
 | Day 3 | Lakshya R |  |  |  |  |
@@ -25,21 +25,21 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |  | ✅ | ✅ | ✅ | End points by Akshay,httpExceptions by Lakshya and functions divided|
+| E2 |  | ✅ | ✅ | ✅ |  End points by Akshay,httpExceptions by Lakshya and functions divided |
+| E3 |  | ✅ | ✅ | ✅ |  End points by Akshay,httpExceptions by Lakshya and functions divided |
+| E4 |  | ✅ | ✅ | ✅ |  End points by Akshay,httpExceptions by Lakshya and functions divided |
+| E5 |  | ✅ | ✅ | ✅ |  End points by Akshay,httpExceptions by Lakshya and functions divided |
+| E6 |  | ✅ | ✅ | ✅ |  End points by Akshay,httpExceptions by Lakshya and functions divided |
+| E7 |  | ✅ |✅ | ✅ |  End points by Akshay,httpExceptions by Lakshya and functions divided |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Warden | ⬜ | ⬜ | ⬜ |  |
-| My complaints | ⬜ | ⬜ | ⬜ |  |
-| Raise a complaint | ⬜ | ⬜ | ⬜ |  |
+| Warden | ✅ | ✅ | ✅ | Lakshya |
+| My complaints | ✅ | ✅ | ✅ | Akshay |
+| Raise a complaint | ✅ | ✅ | ✅ | Akshay |
 
 ## 4. Blockers and help needed
 
