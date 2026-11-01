@@ -1,4 +1,4 @@
-# Team 07 · Campus Event Registration
+Team 07 · Campus Event Registration
 
 | Team | Partner 1 | Partner 2 | Project | Branch |
 |---|---|---|---|---|
@@ -14,24 +14,24 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Gokul Reddy M | I am doing forntend |  |  |  |
 | Day 1 | Abhishek Nayak |I am doing backend|  |  |  |
-| Day 2 | Gokul Reddy M |  |  |  |  |
-| Day 2 | Abhishek Nayak |  |  |  |  |
-| Day 3 | Gokul Reddy M |  |  |  |  |
-| Day 3 | Abhishek Nayak |  |  |  |  |
+| Day 2 | Gokul Reddy M |in progess frontend  |  |  |  |
+| Day 2 | Abhishek Nayak | in progress backend |  |  |  |
+| Day 3 | Gokul Reddy M | completed frontend |  |  |  |
+| Day 3 | Abhishek Nayak | completed backend |  |  |  |
+Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 
 ## 2. Endpoint tracker
 
-Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |  | 🟡 ⬜ | ✅⬜ | ✅⬜ |  |
+| E2 |  | 🟡 ⬜ | ✅⬜ | ✅⬜ |  |
+| E3 |  | 🟡 ⬜ | ✅⬜ | ✅⬜ |  |
+| E4 |  | 🟡 ⬜ | ✅⬜ | ✅⬜ |  |
+| E5 |  | 🟡 ⬜ | ✅⬜ |✅ ⬜ |  |
+| E6 |  | 🟡 ⬜ | 🟡 ⬜ | ✅⬜ |  |
+| E7 |  | 🟡 ⬜ | 🟡 ⬜ |✅ ⬜ |  |
 
 ## 3. Frontend tracker
 
@@ -43,11 +43,14 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 ## 4. Blockers and help needed
 
-- 
+- many bugs in the code
 
 ## 5. How to run our app
+  1. Allows students to discover and explore upcoming campus events, workshops, competitions, and fests.
+2. Enables students to register for events easily and receive instant confirmation with QR-code tickets.
+3. Helps organizers create events, manage registrations, track attendance, and send notifications.
+4. Provides admins with tools to approve events, manage users, and monitor overall campus activities.
 
-Fill this in by the end of Day 2. Someone who has never seen your code should be able to follow it.
 
 **Backend**
 
