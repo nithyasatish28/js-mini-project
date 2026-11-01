@@ -52,15 +52,16 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 **Backend**
 
 ```bash
-cd backend
-
+python -m pip install -r Backend/requirements.txt
+python -m uvicorn Backend.main:app --reload --port 8001
 ```
 
 **Frontend**
 
 ```bash
-cd frontend
-
+cd Frontend
+npm install
+npm run dev
 ```
 
 ## 6. Proof of work

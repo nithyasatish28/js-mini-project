@@ -1,6 +1,7 @@
 from datetime import date, timedelta
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from Backend import E1
 from Backend import E2
@@ -12,6 +13,17 @@ from Backend import E7
 
 
 app=FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 ALLOWED_EQUIPMENT_TYPES = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"]
 
