@@ -32,7 +32,7 @@ class Waterings(Base):
 
 Base.metadata.create_all(engine)
 
-VALID_TYPES = ["Succulent", "Flowering", "Herb", "Indoor", "Tree"]
+VALID_TYPES = ["succulent", "flowering", "herb", "indoor", "tree"]
 
 
 # E1 - Get all plants
@@ -40,7 +40,7 @@ def get_all_plants(plant_type=None):
 
     if plant_type is not None:
         
-        plant_type = plant_type.strip().capitalize()  
+        plant_type = plant_type.strip().lower()  
 
         if plant_type not in VALID_TYPES:
             raise HTTPException(status_code=422, detail="Invalid plant type")
@@ -95,17 +95,10 @@ def get_plant(id):
         session.close()
         raise HTTPException(status_code = 404, detail = "Plant not Found")
     
-    waterings = session.query(Waterings).all()
-    response_water=[]
-    for water in waterings:
-
-        if water.plant_id == id:
-            temp_water={
-                "id": water.id,
-                "roll_no": water.roll_no,         
-                "watered_on": water.watered_on   
-                }
-            response_water.append(temp_water)        
+    waterings = session.query(Waterings).filter(Waterings.plant_id == id).order_by(Waterings.watered_on.desc()).all()
+    response_water=[{"id": w.id, "roll_no": w.roll_no, "watered_on": w.watered_on.isoformat()}
+    for w in waterings
+    ]   
     
     response = {
             "id": plant.id,
@@ -182,7 +175,7 @@ def adopt_plant(plant_id, roll_no):
         session.close()
         raise HTTPException(status_code=409, detail="A student cannot adopt more than 2 plants")  
       
-    plant.adopted_by = clean_roll
+    plant.adopted_by = clean_roll   
     session.commit()
     response = {
         "id": plant.id,
@@ -287,7 +280,7 @@ def get_need_water():
 
         elif (date.today() - watering.watered_on.date()).days >= plant.water_every_days:
 
-            response.append {
+            response.append({
                 "id": plant.id,
                 "name": plant.name,
                 "type": plant.type,
@@ -295,7 +288,7 @@ def get_need_water():
                 "water_every_days": plant.water_every_days,
                 "adopted_by": plant.adopted_by,
                 "last_watered": watering.watered_on.isoformat()
-            }
+            })
 
             
 
