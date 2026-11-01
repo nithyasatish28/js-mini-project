@@ -9,7 +9,7 @@ function MyEvents({ rollNo }) {
         return;
     }
 
-    fetch(API_URL/registrations/" + rollNo)
+    fetch(API_URL + "/registrations/" + rollNo)
     .then(function(response) {
         return response.json();
     })
