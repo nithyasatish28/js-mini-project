@@ -39,7 +39,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 |---|---|---|---|---|
 | Stations | ✅ | ✅ | ✅ | Soham |
 | My umbrella | ✅ | ✅ | ✅ | Soham |
-| Add a station | ⬜ | ⬜ | ⬜ |  |
+| Add a station | ✅ | ✅ | ✅ | chaithanya |
 
 ## 4. Blockers and help needed
 
