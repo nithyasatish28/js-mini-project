@@ -15,7 +15,7 @@ Update your own row at every check-in.
 | Day 1 | K. Jyoshna |will start doing backend end points E1,E2,E4,E5, create datbase  tables| yes |  will start doing frontend| no |
 | Day 1 | Elluri Thammiksha | will start doing backend end points E3,E6,E7,create database | yes | working on next step  | no |
 | Day 2 | K. Jyoshna | start working in frontend |  |  |  |
-| Day 2 | Elluri Thammiksha |working on frontend  |  |  |  |
+| Day 2 | Elluri Thammiksha |working on frontend  | yes   | checking or updating | no |
 | Day 3 | K. Jyoshna |  |  |  |  |
 | Day 3 | Elluri Thammiksha |  |  |  |  |
 
@@ -25,21 +25,21 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |GET /equipment  | ✅ | ✅ | ✅| Jyoshna  |
+| E2 | GET /equipment/{equipment_id} | ✅ | ✅| ✅ | Jyoshna  |
+| E3 | POST /equipment | ✅ | ✅ | ✅ | Thammiksha  |
+| E4 |  PATCH /equipment/{equipment_id}| ✅ | ✅ | ✅ | Jyoshna  |
+| E5 |POST /bookings  | ✅ | ✅| ✅ | Jyoshna |
+| E6 | GET /students/{roll_no}/bookings | ✅ | ✅ | ✅ | Thammiksha |
+| E7 |PATCH /bookings/{booking_id}/cancel  | ✅ | ✅ | ✅|Thammiksha  |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Equipment | ⬜ | ⬜ | ⬜ |  |
-| My bookings | ⬜ | ⬜ | ⬜ |  |
-| Add equipment | ⬜ | ⬜ | ⬜ |  |
+| Equipment | ✅ | ✅ | ✅ | Jyoshna  |
+| My bookings | ✅ | ✅ | ✅ | Thammiksha |
+| Add equipment | ✅ | ✅ | ✅| Thammiksha |
 
 ## 4. Blockers and help needed
 
