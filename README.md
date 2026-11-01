@@ -51,21 +51,34 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 **Backend**
 
 ```bash
+# Go into the backend folder
 cd backend
 python -m venv .venv
 .venv\Scripts\Activate
+
+# Install the packages we need
 pip install fastapi uvicorn sqlalchemy
+
+# Start the backend (keep this terminal open)
 uvicorn main:app --reload --port 8001
+
+# Test it: open http://127.0.0.1:8001/docs in your browser
 
 ```
 
 **Frontend**
 
 ```bash
+# Go into the frontend folder
 cd frontend
+
+# Install the packages we need (only the first time)
 npm install
+
+# Start the website (keep this terminal open)
 npm run dev
 
+# See the website: open http://localhost:5173 in your browser
 ```
 
 ## 6. Proof of work
