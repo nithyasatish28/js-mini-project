@@ -63,7 +63,20 @@ function MyBookings({ apiUrl }) {
       {error && <p className="error">{error}</p>}
       {msg && <p className="success">{msg}</p>}
 
-
+      <ul className="booking-list">
+        {active.map((b) => (
+          <li key={b.id} className="booking-item">
+            <div>
+              <p><strong>Booking #{b.id}</strong></p>
+              <p>Equipment ID: {b.equipment_id} | Date: {b.booking_date}</p>
+            </div>
+            <button className="btn-danger" onClick={() => handleCancel(b.id)}>Cancel</button>
+          </li>
+        ))}
+      </ul>
+      {bookings.length > 0 && active.length === 0 && (
+        <p>No active bookings.</p>
+      )}
     </>
   );
 }
