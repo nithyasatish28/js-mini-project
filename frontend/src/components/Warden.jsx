@@ -1,7 +1,32 @@
 import { useState } from "react";
 
-function Warden({ complaints, counts, message, moveToNextStatus }) {
+function WardenItem({ complaint, moveToNextStatus }) {
   const [note, setNote] = useState("");
+
+  return (
+    <div>
+      <p>Room {complaint.room_no} | {complaint.category} | Roll no: {complaint.roll_no}</p>
+      <p>{complaint.description}</p>
+      <p>Status: {complaint.status}</p>
+
+      {complaint.status !== "resolved" && (
+        <>
+          <input placeholder="Note" value={note} onChange={(e) => setNote(e.target.value)} />
+          <button
+            onClick={() => {
+              moveToNextStatus(complaint.id, note);
+              setNote("");
+            }}
+          >
+            Move to next status
+          </button>
+        </>
+      )}
+    </div>
+  );
+}
+
+function Warden({ complaints, counts, message, moveToNextStatus }) {
   const [statusFilter, setStatusFilter] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
 
@@ -32,17 +57,10 @@ function Warden({ complaints, counts, message, moveToNextStatus }) {
         <option value="internet">internet</option>
       </select>
 
-      <p>Type a note, then click Move on a complaint:</p>
-      <input placeholder="Note" value={note} onChange={(e) => setNote(e.target.value)} />
       <p>{message}</p>
 
       {shown.map((c) => (
-        <div key={c.id}>
-          <p>Room {c.room_no} | {c.category} | Roll no: {c.roll_no}</p>
-          <p>{c.description}</p>
-          <p>Status: {c.status}</p>
-          <button onClick={() => moveToNextStatus(c.id, note)}>Move to next status</button>
-        </div>
+        <WardenItem key={c.id} complaint={c} moveToNextStatus={moveToNextStatus} />
       ))}
     </>
   );
