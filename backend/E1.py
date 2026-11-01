@@ -7,11 +7,14 @@ from fastapi import HTTPException
 def get_all_plants(plant_type=None):
 
     if plant_type is not None:
-        plant_type = plant_type.strip().lower()
+        # .lower=.capitalize()
+        plant_type = plant_type.strip().lower()  
 
         if plant_type not in ["succulent", "flowering", "herb", "indoor", "tree"]:
             raise HTTPException(status_code=404, detail="Invalid plant type")
 
+    # "Session" and "Engine" used to connect and communicate with database using SQLALCHEMY.
+    # "Engine" is responsible for managing the database connection.
     session = Session(engine)
 
     plant_query = session.query(Plants)
