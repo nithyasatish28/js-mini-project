@@ -63,9 +63,11 @@ Open http://127.0.0.1:8000 for the API status or http://127.0.0.1:8000/docs to t
 
 **Frontend**
 
+
 ```bash
 cd frontend
-
+npm install
+npm run dev
 ```
 
 ## 6. Proof of work
