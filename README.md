@@ -14,10 +14,10 @@ Update your own row at every check-in.
 |---|---|-------------------|------------|-------------------------------------|---|
 | Day 1 | Mohammed Shafi | E4,E5,E6          | Yes         |  Front-End                                  |  |
 | Day 1 | Sarang Siva Thilakan | E1,E2,E3,E7          | Yes                        | Front-End |
-| Day 2 | Mohammed Shafi |          |          |                                    |  |
-| Day 2 | Sarang Siva Thilakan |           |                         | |
-| Day 3 | Mohammed Shafi |                   |            |                                     |  |
-| Day 3 | Sarang Siva Thilakan |                   |            |                                     |  |
+| Day 2 | Mohammed Shafi |       Front-End-Garden-Add_A_Plant   |    No      |                                    | demo  |
+| Day 2 | Sarang Siva Thilakan |    Front-End- MyPlants       |     Yes                    |demo |
+| Day 3 | Mohammed Shafi |       demo preparation            |       No     |                                     |  |
+| Day 3 | Sarang Siva Thilakan |     demo preparation              |   No         |                                     |  |
 
 ## 2. Endpoint tracker
 
@@ -25,20 +25,20 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path            | Built   | Rules checked in /docs | Connected to React | Who |
 |---|--------------------------|---------|------------------------|---|---|
-| E1 | GET /plants              |    ✅  |✅                     | ⬜ | Sarang |
-| E2 | GET /plants/{plant_id}   |    ✅  | ✅                    | ⬜ | Sarang |
-| E3 | POST /plants             |    ✅  |✅                     | ⬜ | Sarang  |
-| E4 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜ | Shafi |
-| E5 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜ | Shafi  |
-| E6 | POST /water              | ✅      | ✅                       | ⬜ | Shafi  |
-| E7 | GET /water                         |  ✅     | ✅                      | ⬜ | Shafi  |
+| E1 | GET /plants              |    ✅  |✅                     | ✅  | Sarang |
+| E2 | GET /plants/{plant_id}   |    ✅  | ✅                    | ✅  | Sarang |
+| E3 | POST /plants             |    ✅  |✅                     | ⬜  | Sarang  |
+| E4 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜  | Shafi |
+| E5 | PATCH /plants/{plant_id} | ✅      | ✅                     | ✅  | Shafi  |
+| E6 | POST /water              | ✅      | ✅                       | ✅  | Shafi  |
+| E7 | GET /water                         |  ✅     | ✅                      | ✅  | Shafi  |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Garden | 🟡 | ⬜ | ⬜ | Shafi |
-| My plants | 🟡 | ⬜ | ⬜ | Sarang |
+| Garden | ✅ | ✅ | ✅ | Shafi |
+| My plants | ✅ | ✅ | ✅ | Sarang |
 | Add a plant | ⬜ | ⬜ | ⬜ |  |
 
 ## 4. Blockers and help needed
@@ -53,6 +53,8 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8001
 
 ```
 
@@ -60,11 +62,13 @@ cd backend
 
 ```bash
 cd frontend
+npm install
+npm run dev
 
 ```
 
 ## 6. Proof of work
 
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
-
+![img.png](img.png)
 ![Our app](screenshot.png)
