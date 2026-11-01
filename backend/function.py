@@ -38,7 +38,8 @@ def get_all_plants(plant_type=None):
 
     if plant_type is not None:
         
-        plant_type = plant_type.strip().capitalize()  
+        plant_type = plant_type.strip()
+        # .capitalize()  
 
         if plant_type not in ["succulent", "flowering", "herb", "indoor", "tree"]:
             raise HTTPException(status_code=404, detail="Invalid plant type")
@@ -83,6 +84,7 @@ def get_all_plants(plant_type=None):
     session.close()
     return result
 
+    
 #E2 - Get plant by id
 
 def get_plant(id):
