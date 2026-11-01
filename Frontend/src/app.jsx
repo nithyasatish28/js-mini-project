@@ -3,7 +3,7 @@ import Stations from "./components/Stations";
 import AddStation from "./components/AddStation";
 import MyUmbrella from "./components/MyUmbrella";
 
-const API_URL = "http://127.0.0.1:8001";
+const API_URL = "http://127.0.0.1:8000";
 
 export default function App() {
   const [stations, setStations] = useState([]);
