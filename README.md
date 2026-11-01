@@ -12,12 +12,13 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Gokul Reddy M | I am doing forntend |  |  |  |
-| Day 1 | Abhishek Nayak |I am doing backend|  |  |  |
-| Day 2 | Gokul Reddy M |in progess frontend  |  |  |  |
-| Day 2 | Abhishek Nayak | in progress backend |  |  |  |
-| Day 3 | Gokul Reddy M | completed frontend |  |  |  |
-| Day 3 | Abhishek Nayak | completed backend |  |  |  |
+| Day 1 | Gokul Reddy M | I am doing forntend |no   |continue frontend development   |no  |
+| Day 1 | Abhishek Nayak |I am doing backend| no  | continue backend devolopment | no |
+| Day 2 | Gokul Reddy M |in progess frontend  | no  |  complete fronted development | no |
+| Day 2 | Abhishek Nayak | in progress backend | no  |  complete backend devolopment| no |
+| Day 3 | Gokul Reddy M | completed frontend |yes   |testing and fixing frontend bugs  | no |
+| Day 3 | Abhishek Nayak | completed backend | yes | Test backend APIs and integrate with frontend/no
+
 Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 
 ## 2. Endpoint tracker
@@ -37,9 +38,11 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Events | ⬜ | ⬜ | ⬜ |  |
-| My events | ⬜ | ⬜ | ⬜ |  |
-| Add an event | ⬜ | ⬜ | ⬜ |  |
+| Events | 🟡⬜ | 🟡⬜ | ⬜ |  |
+| Events | 🟡⬜ | 🟡⬜ | ⬜ |  |
+| Events | 🟡⬜ | 🟡⬜ | ⬜ |  |
+| My events | 🟡⬜ | 🟡⬜ | ⬜ |  |
+| Add an event | 🟡⬜ | 🟡⬜ | ⬜ |  |
 
 ## 4. Blockers and help needed
 
