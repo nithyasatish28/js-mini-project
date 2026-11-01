@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 | GET	/events	Get all events | ✅ | ⬜ | ⬜ |  |
-| E2 |  | ✅ | ⬜ | ⬜ |  |
-| E3 |  | ✅ | ⬜ | ⬜ |  |
-| E4 |  | ✅ | ⬜ | ⬜ |  |
-| E5 |  | ✅ | ⬜ | ⬜ |  |
-| E6 |  | ✅ | ⬜ | ⬜ |  |
-| E7 |  | ✅ | ⬜ | ⬜ |  |
+| E1 | GET	/events  | ✅ | ✅ | ⬜ |  |
+| E2 | GET	/events/{event_id | ✅ | ✅ | ⬜ |  |
+| E3 |	POST	/events  | ✅ | ✅ | ⬜ |  |
+| E4 |	DELETE	/events/{event_id}  | ✅ | ✅ | ⬜ |  |
+| E5 | 	POST	/events/{event_id}/registrations | ✅ | ✅ | ⬜ |  |
+| E6 |  	GET	/registrations/{roll_no| ✅ | ✅ | ⬜ |  |
+| E7 | 	PATCH	/registrations/{registration_id}/cancel | ✅ | ✅ | ⬜ |  |
 
 ## 3. Frontend tracker
 
