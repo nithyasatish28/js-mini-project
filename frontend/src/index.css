@@ -1,107 +1,65 @@
-
-/* General Reset */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-/* Main Page */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f6f9;
-  color: #333;
-  padding: 30px;
+  margin: 0;
+  padding: 24px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1f2328;
 }
 
-/* Headings */
 h1 {
-  text-align: center;
-  color: #1e3a5f;
-  margin-bottom: 25px;
+  margin: 0 0 20px;
 }
 
-h2, h3 {
-  color: #243b53;
-  margin: 15px 0;
+.equipment-list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
 }
 
-/* Inputs and Dropdowns */
-input,
-select {
-  padding: 11px;
-  margin: 8px 5px;
-  border: 1px solid #ccc;
+.equipment {
+  background: #ffffff;
+  border: 1px solid #dde1e6;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.equipment:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.equipment h2 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.equipment p {
+  margin: 0;
+}
+
+.equipment button {
+  align-self: flex-start;
+  padding: 7px 12px;
+  border: 1px solid #dde1e6;
   border-radius: 6px;
-  font-size: 14px;
-  outline: none;
-  background-color: white;
-}
-
-input:focus,
-select:focus {
-  border-color: #2563eb;
-}
-
-/* Buttons */
-button {
-  padding: 10px 18px;
-  margin: 8px 5px;
-  background-color: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
+  background: #ffffff;
+  color: #1f2328;
   cursor: pointer;
-  font-size: 14px;
 }
 
-button:hover {
-  background-color: #1d4ed8;
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: white;
-}
-
-th {
-  background-color: #1e3a5f;
-  color: white;
-  padding: 13px;
-  text-align: left;
-}
-
-td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-  background-color: #f1f5f9;
-}
-
-/* Links */
-a {
-  color: #2563eb;
-  text-decoration: none;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-  body {
-    padding: 12px;
-  }
-
-  input,
-  select {
-    width: 100%;
-    margin: 6px 0;
-  }
-
-  table {
-    font-size: 12px;
-  }
+.equipment button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
