@@ -1,0 +1,52 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f4f5f7;
+  color: #1f2328;
+}
+
+h1 { margin: 0 0 20px; }
+
+/* The grid of cards */
+.events {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* One card */
+.event {
+  background: #ffffff;
+  border: 1px solid #dde1e6;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.event:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.event h2 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.event p { margin: 0; }
+
+.event p:first-of-type {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f7a5c;
+}
