@@ -26,7 +26,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
 | E1 | GET /plants  | ✅ | ✅ | ⬜ | Fayaz |
-| E2 | GET /plants/{plant_id} | ✅ | ⬜ | ⬜ | Fayaz |
+| E2 | GET /plants/{plant_id} | ✅ | ✅ | ⬜ | Fayaz |
 | E3 | POST /plants | ✅ | ✅ | ⬜| Fayaz |
 | E4 | POST /plants/{plant_id}/adopt | ✅ | ⬜ | ⬜ | Fayaz |
 | E5 | DELETE /plants/{plant_id}/adopt | ✅ | ⬜ | ⬜ | Fayaz |
