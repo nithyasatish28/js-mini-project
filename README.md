@@ -45,9 +45,9 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Stations | ⬜ | ⬜ | ⬜ |  |
-| My umbrella | ⬜ | ⬜ | ⬜ |  |
-| Add a station | ⬜ | ⬜ | ⬜ |  |
+| Stations | y⬜ | y⬜ | n⬜ |  |
+| My umbrella | y⬜ | y⬜ | n⬜ |  |
+| Add a station | y⬜ | y⬜ | n⬜ |  |
 
 ## 4. Blockers and help needed
 
