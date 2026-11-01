@@ -38,8 +38,8 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
 | Equipment | ✅ | ✅ | ✅ |Poojitha  |
-| My bookings | ⬜ | ⬜ | ⬜ |  |
-| Add equipment | ⬜ | ⬜ | ⬜ |  |
+| My bookings | ✅ | ✅ | ✅ |Thanmayee  |
+| Add equipment | ✅ | ✅ | ✅ |Thanmayee  |
 
 ## 4. Blockers and help needed
 
@@ -53,6 +53,8 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
+uvicorn main:app --reload --port 8001
+open http://127.0.0.1:8001/docs in the browser
 
 ```
 
@@ -60,6 +62,7 @@ cd backend
 
 ```bash
 cd frontend
+npm run dev
 
 ```
 
