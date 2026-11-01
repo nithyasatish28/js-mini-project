@@ -23,3 +23,26 @@ select {
 button {
   cursor: pointer;
 }
+
+/* Active borrows table */
+
+.borrow-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.borrow-table th,
+.borrow-table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #e3e8f0;
+}
+
+.borrow-table th {
+  color: #24476b;
+}
+
+.refresh-button {
+  margin-top: 10px;
+}

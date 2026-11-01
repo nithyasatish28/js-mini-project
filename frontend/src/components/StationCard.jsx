@@ -1,3 +1,5 @@
+import React from "react";
+
 function StationCard({ station, onSelect }) {
   const isEmpty = station.umbrellas_available === 0;
 

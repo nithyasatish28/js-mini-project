@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-function MyUmbrella({ apiUrl }) {
+
+function MyUmbrella({ apiUrl, onReturned }) {
   const [rollNo, setRollNo] = useState("");
   const [borrow, setBorrow] = useState(null);
   const [stations, setStations] = useState([]);
@@ -61,6 +62,7 @@ function MyUmbrella({ apiUrl }) {
         setBorrow(null);
         setRollNo("");
         setReturnStation("");
+        onReturned();
       } else {
         setMessage(data.detail);
       }
