@@ -65,8 +65,8 @@ cd frontend
 
 ## 6. Proof of work
 
-Frontend Application
-![Frontend](Frontend.png.jpeg)
+ Frontend Application
+![Frontend](Frontend.png)
 
  Backend API Documentation
-![Backend](Backend.png.jpeg)
+![Backend](Backend.png)
