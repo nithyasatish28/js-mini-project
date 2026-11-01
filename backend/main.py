@@ -1,7 +1,17 @@
 from fastapi import FastAPI
 import functions
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/equipments")
 def get_all_equipment(type : str = None):
@@ -17,19 +27,18 @@ def add_equipment(name : str, type : str, lab_room : str):
     return functions.add_equipment(name=name, type=type, lab_room=lab_room)
 
 
-
-@app.patch("/equipments{equipment_id}/status")
+@app.patch("/equipments/{equipment_id}/status")
 def update_service(equipment_id : int, in_service : bool):
-    functions.update_service(equipment_id,in_service)
+    functions.update_service(equipment_id, in_service)
     return {"message": "Equipment status updated successfully."}
 
 
 @app.post("/booking")
-def add_booking(equipment_id : int ,booking_date , roll_no : int):
+def add_booking(equipment_id : int, booking_date : str, roll_no : str):
     return functions.add_booking(equipment_id=equipment_id, booking_date=booking_date, roll_no=roll_no)
 
 @app.get("/booking/{roll_no}")
-def get_equipments_not_booked(roll_no):
+def get_equipments_not_booked(roll_no : str):
     return functions.get_student_bookings(roll_no)
 
 @app.patch("/booking/cancel/{roll_no}")

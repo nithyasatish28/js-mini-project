@@ -5,31 +5,40 @@ function MyBookings({ apiUrl }) {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState("");
   const [msg, setMsg] = useState("");
+  const [searched, setSearched] = useState(false);
 
   const today = new Date().toISOString().split("T")[0];
 
   function handleShow() {
     setError("");
     setMsg("");
-    if (!rollInput) {
+    if (!rollInput.trim()) {
       setError("Enter your roll number.");
       return;
     }
-    fetch(`${apiUrl}/booking/${rollInput}`)
+    fetch(`${apiUrl}/booking/${encodeURIComponent(rollInput.trim())}`)
       .then((res) => res.json())
       .then((data) => {
+        setSearched(true);
         if (data.detail) {
           setError(data.detail);
+          setBookings([]);
         } else {
           setBookings(data);
+          if (data.length === 0) {
+            setMsg("This roll number doesn't have any bookings.");
+          }
         }
+      })
+      .catch(() => {
+        setError("Failed to fetch bookings.");
       });
   }
 
   function handleCancel(bookingId) {
     setError("");
     setMsg("");
-    fetch(`${apiUrl}/booking/cancel/${rollInput}?booking_id=${bookingId}`, {
+    fetch(`${apiUrl}/booking/cancel/${encodeURIComponent(rollInput.trim())}?booking_id=${bookingId}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -40,6 +49,9 @@ function MyBookings({ apiUrl }) {
           setMsg("Booking cancelled.");
           handleShow();
         }
+      })
+      .catch(() => {
+        setError("Failed to cancel booking.");
       });
   }
 
@@ -55,7 +67,10 @@ function MyBookings({ apiUrl }) {
           type="text"
           placeholder="Your roll number"
           value={rollInput}
-          onChange={(e) => setRollInput(e.target.value)}
+          onChange={(e) => {
+            setRollInput(e.target.value);
+            setSearched(false);
+          }}
         />
         <button className="btn-primary" onClick={handleShow}>Show</button>
       </div>
@@ -68,12 +83,15 @@ function MyBookings({ apiUrl }) {
           <li key={b.id} className="booking-item">
             <div>
               <p><strong>Booking #{b.id}</strong></p>
-              <p>Equipment ID: {b.equipment_id} | Date: {b.booking_date}</p>
+              <p>{b.equipment_name ? `${b.equipment_name} | ` : ""}Equipment ID: {b.equipment_id} | Date: {b.booking_date}</p>
             </div>
             <button className="btn-danger" onClick={() => handleCancel(b.id)}>Cancel</button>
           </li>
         ))}
       </ul>
+      {searched && !error && !msg && bookings.length === 0 && (
+        <p>This roll number doesn't have any bookings.</p>
+      )}
       {bookings.length > 0 && active.length === 0 && (
         <p>No active bookings.</p>
       )}
