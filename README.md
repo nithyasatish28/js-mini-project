@@ -15,9 +15,11 @@ Update your own row at every check-in.
 | Day 1 | Adib Fareed Hasan |  |  |  |  |
 | Day 1 | Tanush K |  |  |  |  |
 | Day 2 | Adib Fareed Hasan |  |  |  |  |
-| Day 2 | Tanush K |  |  |  |  |
+| Day 2 | Tanush K | starting frontend |  |  |  |
 | Day 3 | Adib Fareed Hasan |  |  |  |  |
-| Day 3 | Tanush K |  |  |  |  |
+| Day 3 | Tanush K |  Connect the frontend components to the backend APIs.| Set up the frontend using React and Vite.
+
+Created the basic frontend folder structure and components. |  |  |
 
 ## 2. Endpoint tracker
 
