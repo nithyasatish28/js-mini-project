@@ -12,11 +12,11 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Kommaddi Fayaz | main.py (endpoints) |  |  |  |
+| Day 1 | Kommaddi Fayaz | main.py (endpoints) | no | 3 are pending |  |
 | Day 1 | Ganga Siva Kumar Reddy |functions.py  | no |3 more function  | yes |
-| Day 2 | Kommaddi Fayaz |  |  |  |  |
+| Day 2 | Kommaddi Fayaz | main.py | no |  |  |
 | Day 2 | Ganga Siva Kumar Reddy | functions.py | no | 1 more | yes |
-| Day 3 | Kommaddi Fayaz |  |  |  |  |
+| Day 3 | Kommaddi Fayaz | main.py | yes |  |  |
 | Day 3 | Ganga Siva Kumar Reddy | functions.py | yes |  frontend|no  |
 
 ## 2. Endpoint tracker
