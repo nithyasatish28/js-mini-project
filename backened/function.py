@@ -91,9 +91,6 @@ def delete_event(event_id):
     session.close
 
 
- session.delete(events)
- session.commit
- session.close
 
 def event_roll_number(event_id: int, roll_number:int):
      session = session(engine)
