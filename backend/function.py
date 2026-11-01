@@ -90,13 +90,31 @@ def get_equipment(id):
         return _equipment_response(item)
 
 
-def add_equipment(name, type, lab_room):
-    with SessionLocal() as session:
-        item = Equipment( name=name, type=type, lab_room=lab_room, in_service=1 )
-        session.add(item)
+def add_equipment(name, item_type, lab_room):
+    session = SessionLocal()
+
+    try:
+        new_equipment = Equipment(
+            name=name,
+            type=item_type,
+            lab_room=lab_room,
+            in_service=1
+        )
+
+        session.add(new_equipment)
         session.commit()
-        session.refresh(item)
-        return _equipment_response(item)
+        session.refresh(new_equipment)
+
+        return {
+            "id": new_equipment.id,
+            "name": new_equipment.name,
+            "type": new_equipment.type,
+            "lab_room": new_equipment.lab_room,
+            "in_service": new_equipment.in_service
+        }
+
+    finally:
+        session.close()
 
 
 def update_service(id, in_service):
