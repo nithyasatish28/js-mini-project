@@ -232,7 +232,6 @@ def get_student_bookings(roll_no):
         Equipment, Booking.equipment_id == Equipment.id
     ).filter(
         Booking.roll_no == roll_str,
-        Booking.cancelled == 0,
         Booking.booking_date >= today_str
     ).all()
 

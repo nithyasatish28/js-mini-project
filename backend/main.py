@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import functions
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -27,7 +27,7 @@ def add_equipment(name : str, type : str, lab_room : str):
     return functions.add_equipment(name=name, type=type, lab_room=lab_room)
 
 
-@app.patch("/equipments/{equipment_id}/status")
+@app.patch("/equipments/status/{equipment_id}")
 def update_service(equipment_id : int, in_service : bool):
     functions.update_service(equipment_id, in_service)
     return {"message": "Equipment status updated successfully."}
@@ -41,6 +41,13 @@ def add_booking(equipment_id : int, booking_date : str, roll_no : str):
 def get_equipments_not_booked(roll_no : str):
     return functions.get_student_bookings(roll_no)
 
-@app.patch("/booking/cancel/{roll_no}")
-def cancel_booking(booking_id : int):
-    return functions.cancel_booking(booking_id)
+@app.patch("/booking/cancel/{id_or_roll}")
+def cancel_booking(id_or_roll : str, booking_id : int = None):
+    if booking_id is not None:
+        target_id = booking_id
+    else:
+        try:
+            target_id = int(id_or_roll)
+        except ValueError:
+            raise HTTPException(status_code=422, detail="Booking id must be an integer.")
+    return functions.cancel_booking(target_id)

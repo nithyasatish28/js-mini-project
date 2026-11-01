@@ -7,8 +7,6 @@ function MyBookings({ apiUrl }) {
   const [msg, setMsg] = useState("");
   const [searched, setSearched] = useState(false);
 
-  const today = new Date().toISOString().split("T")[0];
-
   function handleShow() {
     setError("");
     setMsg("");
@@ -26,7 +24,7 @@ function MyBookings({ apiUrl }) {
         } else {
           setBookings(data);
           if (data.length === 0) {
-            setMsg("This roll number doesn't have any bookings.");
+            setMsg("No active bookings.");
           }
         }
       })
@@ -55,10 +53,6 @@ function MyBookings({ apiUrl }) {
       });
   }
 
-  const active = bookings.filter(
-    (b) => b.cancelled === 0 && b.booking_date >= today
-  );
-
   return (
     <>
       <h2>My Bookings</h2>
@@ -79,21 +73,30 @@ function MyBookings({ apiUrl }) {
       {msg && <p className="success">{msg}</p>}
 
       <ul className="booking-list">
-        {active.map((b) => (
+        {bookings.map((b) => (
           <li key={b.id} className="booking-item">
             <div>
-              <p><strong>Booking #{b.id}</strong></p>
-              <p>{b.equipment_name ? `${b.equipment_name} | ` : ""}Equipment ID: {b.equipment_id} | Date: {b.booking_date}</p>
+              <p>
+                <strong>Booking #{b.id}</strong>{" "}
+                {b.cancelled === 1 ? (
+                  <span className="badge">Cancelled</span>
+                ) : null}
+              </p>
+              <p>
+                {b.equipment_name ? `${b.equipment_name} | ` : ""}
+                Equipment ID: {b.equipment_id} | Date: {b.booking_date}
+              </p>
             </div>
-            <button className="btn-danger" onClick={() => handleCancel(b.id)}>Cancel</button>
+            {b.cancelled === 0 && (
+              <button className="btn-danger" onClick={() => handleCancel(b.id)}>
+                Cancel
+              </button>
+            )}
           </li>
         ))}
       </ul>
       {searched && !error && !msg && bookings.length === 0 && (
         <p>This roll number doesn't have any bookings.</p>
-      )}
-      {bookings.length > 0 && active.length === 0 && (
-        <p>No active bookings.</p>
       )}
     </>
   );
