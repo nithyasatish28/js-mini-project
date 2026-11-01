@@ -15,7 +15,7 @@ Update your own row at every check-in.
 | Day 1 | Samhita Bhuvanagiri | Main.py - Getting the API's to work and making sure they follow the rules and display correct error  | Yes | Frontend |  |
 | Day 1 | Aiman Patil | Functions.py - created and connected the tables as well as defined function logic | Yes | Frontend |  |
 | Day 2 | Samhita Bhuvanagiri | Finish the react connection in App.jsx so that the frontend can call the apis from backend | Yes | Some parts of the front end will probably be buggy after aiman makes the buttons and everything show up, so i'll debug the logic/code in App.jsx |  |
-| Day 2 | Aiman Patil |  |  |  |  |
+| Day 2 | Aiman Patil | Frontend - App formatting, making different .jsx files for different components, making sure the rules are followed and the page matches what was required. | Yes | A final test run after Sam is done checking for bugs. |  |
 | Day 3 | Samhita Bhuvanagiri |  |  |  |  |
 | Day 3 | Aiman Patil |  |  |  |  |
 
