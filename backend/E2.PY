@@ -4,8 +4,6 @@ from function import engine, Plants, Waterings
 from fastapi import HTTPException
 
 
-
-
 def get_plant(id):
     session = Session(engine)
     plant = session.get(Plants, id)
