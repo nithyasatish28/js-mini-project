@@ -9,7 +9,7 @@ function MyEvents({ rollNo }) {
         return;
     }
 
-    fetch("http://127.0.0.1:8001/registrations/" + rollNo)
+    fetch(API_URL/registrations/" + rollNo)
     .then(function(response) {
         return response.json();
     })
@@ -19,11 +19,11 @@ function MyEvents({ rollNo }) {
 }
 
     function cancel(id) {
-        fetch("http://127.0.0.1:8001/registrations/" + id + "/cancel", {
+        fetch(API_URL+ "/registrations/" + id + "/cancel", {
             method: "PATCH"
         })
-        .then(function() {
-            showEvents();
+        .then(function(response) {
+            return response.json();
         });
     }
 
@@ -35,7 +35,8 @@ function MyEvents({ rollNo }) {
             {events.map(function(item) {
                 return (
                     <p key={item.registration_id}>
-                        {item.title} - {item.event_date}
+                        <p></p>{item.title}<p/>
+                        <p>{item.event_date}</p>
                         <button onClick={function() {
                             cancel(item.registration_id);
                         }}>
