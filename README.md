@@ -15,9 +15,9 @@ Update your own row at every check-in.
 | Day 1 | Thanuja Reddy | understand project requirements ,design API end points , plan sqlite database structure |  |  |  |
 | Day 1 | Supriya R |Setup backend folder  | yes | creating functions | No |
 | Day 2 | Thanuja Reddy |  |  |  |  |
-| Day 2 | Supriya R |Setup frontend folder  |  |  |  |
+| Day 2 | Supriya R |Setup frontend folder  |No  |  |  |
 | Day 3 | Thanuja Reddy |  |  |  |  |
-| Day 3 | Supriya R |  |  |  |  |
+| Day 3 | Supriya R |final checks |Yes  |  |  |
 
 ## 2. Endpoint tracker
 
@@ -25,11 +25,11 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |GET /events | ✅ | ✅ | ⬜ | Thanuja |
-| E2 |GET /events/{event_id}  | ✅ | ✅ | ⬜ | Thanuja |
-| E3 |POST /events  | ✅ | ✅ | ⬜ |Thanuja  |
-| E4 |DELETE /events/{event_id}  | ✅ | ✅ | ⬜ | Thanuja |
-| E5 |POST /events/{event_id}/registrations  | ✅ | ✅ | ⬜ | Thanuja |
+| E1 |GET /events | ✅ | ✅ | ✅ | Supriya |
+| E2 |GET /events/{event_id}  | ✅ | ✅ | ✅ | Thanuja |
+| E3 |POST /events  | ✅ | ✅ | ✅ |Supriya |
+| E4 |DELETE /events/{event_id}  | ✅ | ✅ | ✅ | Thanuja |
+| E5 |POST /events/{event_id}/registrations  | ✅ | ✅ | ⬜ | Supriya |
 | E6 |GET /registrations/{roll_no} | ✅ | ✅ | ⬜ | Thanuja |
 | E7 |PATCH /registrations/{registration_id}/cancel  | ✅ | ✅ | ⬜ | Thanuja |
 
@@ -37,7 +37,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Events | ⬜ | ⬜ | ⬜ |  |
+| Events | ✅ | ✅ | ✅ |  |
 | My events | ⬜ | ⬜ | ⬜ |  |
 | Add an event | ⬜ | ⬜ | ⬜ |  |
 
@@ -63,9 +63,11 @@ Open http://127.0.0.1:8000 for the API status or http://127.0.0.1:8000/docs to t
 
 **Frontend**
 
+
 ```bash
 cd frontend
-
+npm install
+npm run dev
 ```
 
 ## 6. Proof of work
