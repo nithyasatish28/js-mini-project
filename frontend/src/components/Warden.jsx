@@ -5,9 +5,12 @@ function WardenItem({ complaint, moveToNextStatus }) {
 
   return (
     <div>
-      <p>Room {complaint.room_no} | {complaint.category} | Roll no: {complaint.roll_no}</p>
+      <hr />
+    
+      <p>Room | {complaint.room_no} |   ---   | {complaint.category} |   ---   | Roll no: {complaint.roll_no} |</p>
       <p>{complaint.description}</p>
       <p>Status: {complaint.status}</p>
+  
 
       {complaint.status !== "resolved" && (
         <>
@@ -38,7 +41,7 @@ function Warden({ complaints, counts, message, moveToNextStatus }) {
 
   return (
     <>
-      <h2>Warden</h2>
+      <h1>Warden</h1>
       <p>Open: {counts.open} | In progress: {counts.in_progress} | Resolved: {counts.resolved}</p>
 
       <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
