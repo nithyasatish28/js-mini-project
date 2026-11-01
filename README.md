@@ -70,5 +70,6 @@ npm run dev
 
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
 
-![Our app](screenshot.png) ![Uploading image.png…]()
+![Our app](screenshot.png) <img width="1919" height="1011" alt="image" src="https://github.com/user-attachments/assets/a50c106b-d52d-4d6a-a339-3f3c1b066d95" />
+
 
