@@ -127,3 +127,8 @@ def get_active_borrow(roll_no: str):
         )
 
     return result
+
+
+@app.get("/borrows/active")
+def get_all_active_borrows():
+    return function.get_all_active_borrows()

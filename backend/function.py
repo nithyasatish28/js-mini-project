@@ -259,6 +259,31 @@ def get_active_borrow(roll_no):
     return result
 
 
+def get_all_active_borrows():
+    session = Session(engine)
+
+    borrows = session.query(Borrows, Stations.name).join(
+        Stations,
+        Borrows.from_station_id == Stations.id
+    ).filter(
+        Borrows.returned_on.is_(None)
+    ).order_by(Borrows.borrowed_on.desc()).all()
+
+    result = []
+
+    for borrow_data, station_name in borrows:
+        result.append({
+            "borrow_id": borrow_data.id,
+            "roll_no": borrow_data.roll_no,
+            "from_station_id": borrow_data.from_station_id,
+            "station_name": station_name,
+            "borrowed_on": borrow_data.borrowed_on
+        })
+
+    session.close()
+    return result
+
+
 def get_attention_stations():
     session = Session(engine)
 
