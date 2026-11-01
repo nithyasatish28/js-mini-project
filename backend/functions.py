@@ -11,8 +11,8 @@ class Complaint(Base):
     __tablename__ = "complaints"
 
     id = Column(Integer, primary_key=True)
-    roll_no = Column(String)
-    room_no = Column(String)
+    roll_no = Column(Integer)
+    room_no = Column(Integer)
     category = Column(String)
     description = Column(String)
     status = Column(String)
@@ -83,11 +83,17 @@ def get_complaint(complaint_id):
 
 def add_complaint(roll_no, room_no, category, description):
     session = Session(engine)
-    existing_complaint = session.query(Complaint).filter( 
-        Complaint.room_no == room_no, Complaint.category == category, Complaint.status != "resolved" ).first() 
-    if existing_complaint is not None: 
-     session.close() 
-     return False
+    if roll_no <= 0 or room_no <= 0:
+        session.close()
+        return None
+    existing_complaint = session.query(Complaint).filter(
+        Complaint.room_no == room_no,
+        Complaint.category == category,
+        Complaint.status != "resolved"
+    ).first()
+    if existing_complaint is not None:
+        session.close()
+        return False
     complaint = Complaint(
         roll_no=roll_no,
         room_no=room_no,
