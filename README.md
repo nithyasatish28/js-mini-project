@@ -43,8 +43,8 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 ## 4. Blockers and help needed
 
-facing an error while trying to push updates into github
-Need help to ssolve station is None attribute Error
+1.facing an error while trying to push updates into github.
+2.Need help to solve station is None attribute Error.
 
 ## 5. How to run our app
 
