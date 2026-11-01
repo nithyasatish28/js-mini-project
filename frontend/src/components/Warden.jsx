@@ -42,7 +42,7 @@ function Warden({ complaints, counts, message, moveToNextStatus }) {
   return (
     <>
       <h1>Warden</h1>
-      <p>Open: {counts.open} | In progress: {counts.in_progress} | Resolved: {counts.resolved}</p>
+      <p><h4>Open: {counts.open} | In progress: {counts.in_progress} | Resolved: {counts.resolved}</h4></p>
 
       <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
         <option value="">All statuses</option>
