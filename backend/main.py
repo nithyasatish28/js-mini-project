@@ -14,7 +14,6 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-VALID_CATEGORIES = ["electrical", "plumbing", "furniture", "cleaning", "internet"]
 VALID_STATUSES = ["open", "in_progress", "resolved"]
 
 @app.get("/complaints")
@@ -37,12 +36,6 @@ def get_one_complaint(id: int):
 
 @app.post("/complaints")
 def create_complaint(rollno: str, roomno: int, description: str, category: str):
-    if category not in VALID_CATEGORIES:
-        raise HTTPException(status_code=422, detail="Category not in the list.")
-        
-    if len(description) < 10:
-        raise HTTPException(status_code=422, detail="Description must be at least 10 characters.")
-        
     return functions.create_complaint(rollno=rollno, roomno=roomno, category=category, description=description)
 
 @app.patch("/complaints/{complaint_id}")
