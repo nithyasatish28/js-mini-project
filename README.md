@@ -14,10 +14,10 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Darsh Keshav | Set up Git and the team-06-hostel branch. Create the Vite React app in frontend | YES | Frontend | NTG as off |
 | Day 1 | Rehaan Saha | Create hostel.db with the complaints and updates tables and 8 seed complaints | YES | Frontend | NTG as of |
-| Day 2 | Darsh Keshav |  |  |  |  |
-| Day 2 | Rehaan Saha |  |  |  |  |
-| Day 3 | Darsh Keshav |  |  |  |  |
-| Day 3 | Rehaan Saha |  |  |  |  |
+| Day 2 | Darsh Keshav | Connect the React app to the API. Write the fetch functions for E1-E7 in App.jsx. Build the Warden: status counts, complaint cards, status and category filters, and  Show API error messages on the page. | YES | Test the whole app with Rehaan, fill in the README run steps, add the screenshot, and prepare for the demo. | NTG as of now |
+| Day 2 | Rehaan Saha | Finish and test all 7 endpoints and the rules in /docs. Build Raise a complaint and My complaints in React. | YES | Test the whole app with Darsh, check the data survives an API restart, fill in the README run steps, add the screenshot, and prepare for the demo. | Ntg as of now |
+| Day 3 | Darsh Keshav | Bugs and minor changes. |  |  |  |
+| Day 3 | Rehaan Saha | Bugs and minor changes. |  |  |  |
 
 ## 2. Endpoint tracker
 
