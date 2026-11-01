@@ -1,7 +1,7 @@
-
-import StationList from "./components/StationList";
-import MyUmbrella from "./components/MyUmbrella";
-import AddStation from "./components/AddStation";
+import React from "react";
+import StationList from "./components/StationList.jsx";
+import MyUmbrella from "./components/MyUmbrella.jsx";
+import AddStation from "./components/AddStation.jsx";
 import "./styles/app.css";
 
 const API_URL = "http://127.0.0.1:8001";
