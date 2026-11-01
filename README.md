@@ -33,13 +33,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |GET/stations  | ⬜ | ⬜ | ⬜ |  |
-| E2 |GET/stations/{station_id}  | ⬜ | ⬜ | ⬜ |  |
-| E3 |POST/stations  | ⬜ | ⬜ | ⬜ |  |
-| E4 |POST/borrow  | ⬜ | ⬜ | ⬜ |  |
-| E5 |PATCH /borrows/{borrow_id}/return  | ⬜ | ⬜ | ⬜ |  |
-| E6 |GET /students/{roll_no}/umbrella  | ⬜ | ⬜ | ⬜ |  |
-| E7 |GET /stations/needs-attention | ⬜ | ⬜ | ⬜ |  |
+| E1 |GET/stations  | ✅ | ⬜ | ⬜ |  |
+| E2 |GET/stations/{station_id}  | ✅ | ⬜ | ⬜ |  |
+| E3 |POST/stations  | ✅ | ⬜ | ⬜ |  |
+| E4 |POST/borrow  | ✅ | ⬜ | ⬜ |  |
+| E5 |PATCH /borrows/{borrow_id}/return  | ✅ | ⬜ | ⬜ |  |
+| E6 |GET /students/{roll_no}/umbrella  | ✅ | ⬜ | ⬜ |  |
+| E7 |GET /stations/needs-attention | ✅ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
@@ -50,24 +50,33 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | Add a station | y⬜ | y⬜ | n⬜ |  |
 
 ## 4. Blockers and help needed
-
+To do some detailed work like creative thing .
 - 
 
 ## 5. How to run our app
 
 Fill this in by the end of Day 2. Someone who has never seen your code should be able to follow it.
+open terminal in the project folder
 
 **Backend**
 
 ```bash
 cd backend
+powershell terminal
+python -m venv .venv
+.venv\Scripts\activate
+uvicorn main:app --port 8001
 
+umbrellas.db creates automatically when swager runs 
 ```
 
 **Frontend**
 
 ```bash
 cd frontend
+bash terminal
+npm install
+npm run dev
 
 ```
 
