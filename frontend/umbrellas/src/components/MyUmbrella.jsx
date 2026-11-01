@@ -1,54 +1,67 @@
+
 import { useState } from "react";
-function MyUmbrella({ API_URL, stations, handleResult, setMessage }) {
+
+const API_URL = "http://127.0.0.1:8001";
+
+function MyUmbrella({ stations, onAdd }) {
   const [rollNo, setRollNo] = useState("");
-  const [umbrella, setUmbrella] = useState(null);
+  const [borrow, setBorrow] = useState(null);
   const [stationId, setStationId] = useState("");
-  function showUmbrella() {
-    fetch(API_URL + "/students/" + rollNo + "/umbrella")
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.detail) {
+  const [message, setMessage] = useState("");
+
+  function getUmbrella() {
+    fetch(`${API_URL}/students/${rollNo}/umbrella`)
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
           setMessage(data.detail);
-          setUmbrella(null);
-        } else {
-          setMessage("");
-          setUmbrella(data);
+          setBorrow(null);
+          return;
         }
-      });
+
+        setBorrow(data);
+        setMessage("");
+      })
+      .catch((error) => console.log("Fetch error:", error));
   }
+
   function returnUmbrella() {
-    fetch(API_URL + "/borrows/" + umbrella.borrow_id + "/return?station_id=" + stationId, {
-      method: "PATCH",
+    fetch(`${API_URL}/borrows/${borrow.borrow_id}/return?station_id=${stationId}`, {
+      method: "PATCH"
     })
-      .then((response) => response.json())
-      .then((data) => {
-        handleResult(data, "Umbrella returned");
-        // was their a error
-        if (!data.detail) {
-          setUmbrella(null);
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          setMessage(data.detail);
+          return;
         }
-    });
-}
+
+        setBorrow(null);
+        setMessage("Umbrella returned successfully");
+        onAdd();
+      })
+      .catch((error) => console.log("Fetch error:", error));
+  }
+
   return (
     <>
-      <h2>Return my umbrella</h2>
-      <input placeholder="Roll number" value={rollNo} onChange={(r) => setRollNo(r.target.value)} />
-      <button onClick={showUmbrella}>Show</button>
-      {umbrella ? (
-        <div>
-          <p>Borrowed from: {umbrella.station_name}</p>
-          <select value={stationId} onChange={(s) => setStationId(s.target.value)}>
-            <option value="">Choose a station</option>
-            {/* first dropdown choice */}
-            {stations.map((s) => (
-              <option key={s.id} value={s.id}>{s.name}</option>
-            //   1 choice for 1 station
+      <h2>My Umbrella</h2>
+      <input placeholder="Roll number" onChange={(e) => setRollNo(e.target.value)} />
+      <button onClick={getUmbrella}>Show</button>
+      <p>{message}</p>
+
+      {borrow && (
+        <>
+          <p>{borrow.station_name}</p>
+          <select onChange={(e) => setStationId(e.target.value)}>
+            {stations.map((station) => (
+              <option key={station.id} value={station.id}>{station.name}</option>
             ))}
           </select>
           <button onClick={returnUmbrella}>Return</button>
-        </div>
-      ) : (
-        <p></p>
+        </>
       )}
     </>
   );

@@ -8,34 +8,52 @@ const API_URL = "http://127.0.0.1:8001";
 
 function App() {
   const [stations, setStations] = useState([]);
+  const [rollNo, setRollNo] = useState("");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch(`${API_URL}/stations`)
-      .then((response) => response.json())
-      .then((data) => setStations(data));
+    getStations();
   }, []);
 
-function getStations() {
-  fetch(`${API_URL}/stations`)
-    .then(async (response) => {
-      const data = await response.json();
+  function getStations() {
+    fetch(`${API_URL}/stations`)
+      .then(async (response) => {
+        const data = await response.json();
 
-      if (!response.ok) {
-        console.log("API error:", data);
-        return;
-      }
+        if (!response.ok) {
+          console.log("API error:", data);
+          return;
+        }
 
-      setStations(data);
+        setStations(data);
+      })
+      .catch((error) => console.log("Fetch error:", error));
+  }
+
+  function borrowUmbrella(stationId) {
+    fetch(`${API_URL}/borrow?roll_no=${rollNo}&station_id=${stationId}`, {
+      method: "POST"
     })
-    .catch((error) => console.log("Fetch error:", error));
-}
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          setMessage(data.detail);
+          return;
+        }
+
+        setMessage("Umbrella borrowed successfully");
+        getStations();
+      })
+      .catch((error) => console.log("Fetch error:", error));
+  }
 
   return (
     <>
       <h1>Umbrella Sharing Stations</h1>
+      <input placeholder="Enter roll number" onChange={(e) => setRollNo(e.target.value)} />
       <p>{message}</p>
-      <StationList stations={stations} onAdd={getStations} />
+      <StationList stations={stations} onAdd={borrowUmbrella} />
       <MyUmbrella stations={stations} onAdd={getStations} />
       <AddStation onAdd={getStations} />
     </>

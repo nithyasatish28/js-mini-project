@@ -1,27 +1,44 @@
+
 import { useState } from "react";
-function AddStation({ API_URL, handleResult }) {
+
+const API_URL = "http://127.0.0.1:8001";
+
+function AddStation({ onAdd }) {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
   const [capacity, setCapacity] = useState("");
   const [umbrellas, setUmbrellas] = useState("");
+  const [message, setMessage] = useState("");
+
   function addStation() {
-    fetch(
-      API_URL + "/stations?name=" + name + "&location=" + location +
-        "&capacity=" + capacity + "&umbrellas_available=" + umbrellas,
-      { method: "POST" }
-    )
-      .then((response) => response.json())
-      .then((data) => handleResult(data, "Station added"));
+    fetch(`${API_URL}/stations?name=${name}&location=${location}&capacity=${capacity}&umbrellas_available=${umbrellas}`, {
+      method: "POST"
+    })
+      .then(async (response) => {
+        const data = await response.json();
+
+        if (!response.ok) {
+          setMessage(data.detail);
+          return;
+        }
+
+        setMessage("Station added successfully");
+        onAdd();
+      })
+      .catch((error) => console.log("Fetch error:", error));
   }
+
   return (
     <>
-      <h2>Add a station</h2>
-      <input placeholder="Name" value={name} onChange={(n) => setName(n.target.value)} />
-      <input placeholder="Location" value={location} onChange={(l) => setLocation(l.target.value)} />
-      <input placeholder="capacity" value={capacity} onChange={(c) => setCapacity(c.target.value)} />
-      <input placeholder="AvailabilityToBorrow" value={umbrellas} onChange={(a) => setUmbrellas(a.target.value)} />
-      <button onClick={addStation}>Add</button>
+      <h2>Add Station</h2>
+      <input placeholder="Station name" onChange={(e) => setName(e.target.value)} />
+      <input placeholder="Location" onChange={(e) => setLocation(e.target.value)} />
+      <input placeholder="Capacity" onChange={(e) => setCapacity(e.target.value)} />
+      <input placeholder="Available umbrellas" onChange={(e) => setUmbrellas(e.target.value)} />
+      <button onClick={addStation}>Add Station</button>
+      <p>{message}</p>
     </>
   );
 }
+
 export default AddStation;

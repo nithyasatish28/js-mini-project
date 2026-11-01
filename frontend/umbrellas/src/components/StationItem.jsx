@@ -6,6 +6,7 @@ function StationItem({ station, onAdd }) {
       <p>Capacity: {station.capacity}</p>
       <p>Umbrellas available: {station.umbrellas_available}</p>
       <p>Free slots: {station.free_slots}</p>
+
       {station.umbrellas_available > 0 ? (
         <button onClick={() => onAdd(station.id)}>Borrow</button>
       ) : (
