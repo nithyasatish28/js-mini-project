@@ -54,7 +54,7 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
-pip install uvicorn
+pip install -r requirements.txt
 uvicorn main:app --reload --port 8001
 
 ```
