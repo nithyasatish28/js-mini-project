@@ -22,13 +22,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |get/stations  | ✅ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | get/stations  | ✅ |✅ | ⬜ | aditya |
+| E2 | post/add_stations | ✅ | ✅ | ⬜ | aditya |
+| E3 | get/stations/id | ✅ | ✅ | ⬜ | aditya |
+| E4 | post/borrow/roll_no | ✅ | ✅ | ⬜ | aditya |
+| E5 | patch/borrow/{roll_no}/return_no | ✅ | ✅ | ⬜ | aditya |
+| E6 | get/students/returned | ✅ | ✅ | ⬜ | aditya |
+| E7 | get/stations/attention | ✅ | ✅ | ⬜ | aditya |
 
 ## 3. Frontend tracker
 
@@ -40,7 +40,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 ## 4. Blockers and help needed
 
-- 
+-  the spelling mistake and base position changing  and some type errors, comma,@ missing .
 
 ## 5. How to run our app
 
@@ -62,6 +62,11 @@ cd frontend
 
 ## 6. Proof of work
 
-Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
+Save a screenshot of `/docs` or your app as `screenshot.png` <img width="1811" height="710" alt="image" src="https://github.com/user-attachments/assets/968d3067-097a-44b9-b16e-64453549d719" /><img width="596" height="900" alt="image" src="https://github.com/user-attachments/assets/f13e0048-2650-4179-bb78-f1d87b411512" />
+<img width="898" height="850" alt="image" src="https://github.com/user-attachments/assets/975ad6ba-c0f6-49ab-8c45-427060aa0930" />
+
+
+
+in this branch. It shows here:
 
 ![Our app](screenshot.png)
