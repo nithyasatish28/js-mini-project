@@ -17,7 +17,7 @@ Update your own row at every check-in.
 | Day 2 | Gokul Reddy M |in progess frontend  | no  |  complete fronted development | no |
 | Day 2 | Abhishek Nayak | in progress backend | no  |  complete backend devolopment| no |
 | Day 3 | Gokul Reddy M | completed frontend |yes   |testing and fixing frontend bugs  | no |
-| Day 3 | Abhishek Nayak | completed backend | yes | Test backend APIs and integrate with frontend/no
+| Day 3 | Abhishek Nayak | completed backend | yes | Test backend APIs and integrate with frontend|no
 
 Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 
