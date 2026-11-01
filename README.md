@@ -25,7 +25,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |Hemant|
+| E1 |Get/  | ⬜ | ⬜ | ⬜ |Hemant|
 | E2 |  | ⬜ | ⬜ | ⬜ |Harsita|
 | E3 |  | ⬜ | ⬜ | ⬜ |Hemant|
 | E4 |  | ⬜ | ⬜ | ⬜ |Harsita|

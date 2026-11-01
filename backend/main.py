@@ -5,6 +5,7 @@ import E2
 import E3
 import E4
 import E5
+import E6
 import E7
 
 app = FastAPI()
@@ -17,18 +18,18 @@ app.add_middleware(
 )
 
 @app.get("/")
-def hello():
-    return {"message": "hello peoples"}
+def Hello():
+    return {"message": "Hi, Welcome to the Plant API!"}
 
 
 # E1 - Get all plants.
 @app.get("/plants")
-def read_plants(type: str = None):
+def get_plant_data(type: str = None):
     return E1.get_all_plants(type)
 
 # E2 - Get plant by id
 @app.get("/plants/{id}")
-def plant(id: int):
+def read_plant(id: int):
     return E2.get_plant(id)
 
 
