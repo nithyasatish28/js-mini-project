@@ -33,7 +33,8 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
         plants = session.query(Plants).all()
         response = []
         for plant in plants:
-            last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one_or_none()
+            last_watered = session.query(Watering).filter(Watering.plant_id == plant.id).order_by(Watering.plant_id.desc()).first()
+
             temp_plant = {
                 "id": plant.id,
                 "name": plant.name,
@@ -51,7 +52,7 @@ def get_all_plants(plant_type=None): #gives all plants, may be filtered with typ
         plants = session.query(Plants).filter(Plants.type == plant_type)
         response = []
         for plant in plants:
-            last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one_or_none()
+            last_watered = session.query(Watering).filter(Watering.plant_id == plant.id).order_by(Watering.plant_id.desc()).first()
             temp_plant = {
                 "id": plant.id,
                 "name": plant.name,
@@ -72,7 +73,7 @@ def get_plant(id): #gets info about specific plant from id and gives all waterin
     if not plant:
         session.close()
         return {"code":404,"msg":"Plant doesn't exist"}
-    last_watered = session.query(Watering).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).all()
+    last_watered = session.query(Watering).filter(Watering.plant_id == plant.id).order_by(Watering.plant_id.desc()).all()
     response = {
         "id": plant.id,
         "name": plant.name,
@@ -160,7 +161,7 @@ def water_plant(plant_id, roll_no):
     if plant.adopted_by != roll_no:
         session.close()
         return {"code": 403, "msg": "Plant is not adopted by you"}
-    last_watered = session.query(Watering).join(Plants).filter(Plants.id == plant_id).order_by(Watering.plant_id.desc()).one_or_none()
+    last_watered = session.query(Watering).filter(Watering.plant_id == plant_id).order_by(Watering.plant_id.desc()).first()
 
     if last_watered  and datetime.today().date() == last_watered.watered_on.date():
         session.close()
@@ -188,7 +189,7 @@ def need_to_water_today(): #gets the plants that need to be watered today, E7
     plants = session.query(Plants).all()
     response = []
     for plant in plants:
-        last_watered = session.query(Watering).join(Plants).filter(Plants.id == plant.id).order_by(Watering.plant_id.desc()).one_or_none()
+        last_watered = session.query(Watering).filter(Watering.plant_id == plant.id).order_by(Watering.plant_id.desc()).first()
 
         temp_plant = {
             "id": plant.id,

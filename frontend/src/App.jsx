@@ -18,10 +18,10 @@ function App() {
   }, []);
 
   return <>
-    <Garden plants={plants}/>
+    <Garden plants={plants} setPlants={setPlants}/>
     <h1>My Plants</h1>
-    <RollForm setAdoptedBy={setAdoptedBy}/>
-    <MyPlants plants ={plants} adopted_by={adoptedBy} />
+    <RollForm setAdoptedBy={setAdoptedBy} />
+    <MyPlants plants ={plants} adopted_by={adoptedBy} setPlants={setPlants} />
   </>
 }
 

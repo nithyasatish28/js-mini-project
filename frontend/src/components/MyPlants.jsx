@@ -36,9 +36,13 @@ function handleGiveUp(plantId) {
   return (
     <>
     <h2>Adopted Plants for Roll No: {adopted_by}</h2>
-    {filteredPlants.length > 0 ? (filteredPlants.map((plant)=>(<PlantCard key={plant.id} plant={plant} />))):(<p>No plants</p>)}
-    {filteredPlants.length > 0 ? (filteredPlants.map((plant)=>(<button onClick={() => handleWater(plant.id)} >Water</button>))):(<p>No plant to water</p>)}
-    {filteredPlants.length > 0 ? (filteredPlants.map((plant)=>(<button onClick={() => handleGiveUp(plant.id)} >Give up</button>))):(<p>No plant to give up</p>)}
+    {filteredPlants.length > 0 ? (filteredPlants.map((fplant)=>(
+        <><PlantCard key={fplant.id + "plant"} plant={fplant} setPlant={setPlants}/>
+          <button key={fplant.id + "water"} onClick={() => handleWater(fplant.id)} >Water</button>
+          <button key={fplant.id + "give up"} onClick={() => handleGiveUp(fplant.id)} >Give up</button>
+        </>
+
+    ))):(<p>No plants</p>)}
     </>
   );
 }

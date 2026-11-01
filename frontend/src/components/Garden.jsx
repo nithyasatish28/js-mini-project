@@ -1,10 +1,10 @@
 import PlantCard from "./PlantCard.jsx";
 
-function Garden({plants}){
-    return <>
+function Garden({plants,setPlants}){
+    return <div className="Garden">
     <h1>Garden</h1>
-        {plants.map((plant) => <PlantCard key={plant.id} plant={plant}/>)}
-    </>
+        {plants.map((plant) => <PlantCard key={plant.id} plant={plant} setPlants={setPlants}/>)}
+    </div>
 
 }
 
