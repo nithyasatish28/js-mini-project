@@ -2,9 +2,9 @@ from sqlalchemy import Integer, String, Column, create_engine, DateTime, Foreign
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime, date
 from fastapi import HTTPException
+import os
 
-
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = "garden.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
@@ -32,17 +32,18 @@ class Waterings(Base):
 
 Base.metadata.create_all(engine)
 
+VALID_TYPES = ["Succulent", "Flowering", "Herb", "Indoor", "Tree"]
+
 
 # E1 - Get all plants
 def get_all_plants(plant_type=None):
 
     if plant_type is not None:
         
-        plant_type = plant_type.strip()
-        # .capitalize()  
+        plant_type = plant_type.strip().capitalize()  
 
-        if plant_type not in ["succulent", "flowering", "herb", "indoor", "tree"]:
-            raise HTTPException(status_code=404, detail="Invalid plant type")
+        if plant_type not in VALID_TYPES:
+            raise HTTPException(status_code=422, detail="Invalid plant type")
 
     # "Session" and "Engine" used to connect and communicate with database using SQLALCHEMY.
     # "Engine" is responsible for managing the database connection.
@@ -66,7 +67,7 @@ def get_all_plants(plant_type=None):
         need_water = True
 
         if watering is not None:
-            last_watered = watering.watered_on
+            last_watered = watering.watered_on.isoformat()
             days = (date.today() - last_watered.date()).days
             need_water = days >= plant.water_every_days
 
@@ -92,7 +93,8 @@ def get_plant(id):
     plant = session.get(Plants, id)
     if plant is None:
         session.close()
-        raise HTTPException(status_code = 404, detail = "Item id not in the menu")
+        raise HTTPException(status_code = 404, detail = "Plant not Found")
+    
     waterings = session.query(Waterings).all()
     response_water=[]
     for water in waterings:
@@ -100,7 +102,7 @@ def get_plant(id):
         if water.plant_id == id:
             temp_water={
                 "id": water.id,
-                "roll_no": water.roll_no,
+                "roll_no": water.roll_no,         
                 "watered_on": water.watered_on   
                 }
             response_water.append(temp_water)        
@@ -115,11 +117,19 @@ def get_plant(id):
             "waterings": response_water,
            }
     session.close()
-    return response,response_water
+    return response
 
 #E3 - Adopt a plant
 
 def add_plant(name, type, location, water_every_days):
+    if not name or not str(name).strip():
+        raise HTTPException(status_code=422, detail="Plant name cannot be empty")
+    if not location or not str(location).strip():
+        raise HTTPException(status_code=422, detail="Location cannot be empty")
+    if not type or str(type).strip().lower() not in VALID_TYPES:
+        raise HTTPException(status_code=422, detail="Invalid plant type")
+    if water_every_days is None or not (1 <= int(water_every_days) <= 14):
+        raise HTTPException(status_code=422, detail="water_every_days must be between 1 and 14")
 
     session = Session(engine)
 
@@ -149,23 +159,41 @@ def add_plant(name, type, location, water_every_days):
 
 #E4 - Adopt a plant
 def adopt_plant(plant_id, roll_no):
+    if not roll_no or not str(roll_no).strip():
+        raise HTTPException(status_code=422, detail="Roll number cannot be empty")
+
+    clean_roll = str(roll_no).strip()
     session = Session(engine)
     plant = session.get(Plants, plant_id)
     
    
     if plant is None:
         session.close()
-        raise HTTPException(status_code=404, detail="Plant doesnt exist")
+        raise HTTPException(status_code=409, detail="Plant does not exist")
         
    
     if plant.adopted_by:
         session.close()
         raise HTTPException(status_code=409, detail="Plant is already adopted")
-        
-    plant.adopted_by = roll_no
+
+    
+    adopted_count = session.query(Plants).filter(Plants.adopted_by == clean_roll).count()
+    if adopted_count >= 2:
+        session.close()
+        raise HTTPException(status_code=409, detail="A student cannot adopt more than 2 plants")  
+      
+    plant.adopted_by = clean_roll
     session.commit()
+    response = {
+        "id": plant.id,
+        "name": plant.name,
+        "type": plant.type,
+        "location": plant.location,
+        "water_every_days": plant.water_every_days,
+        "adopted_by": plant.adopted_by
+ }
     session.close()
-    return plant
+    return response
 
 #E5 - Unadopt a plant
 def unadopt_plant(id):
@@ -187,7 +215,11 @@ def unadopt_plant(id):
     return response
 
 #E6 - Water a plant
-def water_plant(plant_id, roll_no):  
+def water_plant(plant_id, roll_no): 
+    if not roll_no or not str(roll_no).strip():
+        raise HTTPException(status_code=422, detail="Roll number cannot be empty")
+    
+    clean_roll = str(roll_no).strip()
 
     session = Session(engine)
 
@@ -197,9 +229,9 @@ def water_plant(plant_id, roll_no):
         session.close()
         raise HTTPException(status_code=404, detail="Plant doesn't exist")
 
-    if plant.adopted_by != roll_no:
+    if plant.adopted_by != clean_roll:
         session.close()
-        raise HTTPException(status_code=403, detail="Plant is not adopted by you")
+        raise HTTPException(status_code=403, detail="only the student who adopted the plant can water it")
 
     last_watered = session.query(Waterings).filter(
         Waterings.plant_id == plant_id
@@ -211,7 +243,8 @@ def water_plant(plant_id, roll_no):
 
     watering = Waterings(
         plant_id=plant_id,
-        roll_no=roll_no
+        roll_no=clean_roll,
+        watered_on=datetime.now()
     )
 
     session.add(watering)
@@ -222,7 +255,7 @@ def water_plant(plant_id, roll_no):
         "id": watering.id,
         "plant_id": watering.plant_id,
         "roll_no": watering.roll_no,
-        "watered_on": watering.watered_on
+        "watered_on": watering.watered_on.isoformat()
     }
 
     session.close()
@@ -237,12 +270,11 @@ def get_need_water():
     response = []
 
     for plant in plants:
-
-        last_watered = session.query(Waterings).filter(
+        watering = session.query(Waterings).filter(
             Waterings.plant_id == plant.id
-        ).order_by(Waterings.watered_on.desc()).first()
-
-        if last_watered is None:
+            ).order_by(Waterings.watered_on.desc()).first()
+        
+        if watering is None:
             response.append({
                 "id": plant.id,
                 "name": plant.name,
@@ -253,19 +285,19 @@ def get_need_water():
                 "last_watered": None
             })
 
-        elif (date.today() - last_watered.watered_on).days >= plant.water_every_days:
+        elif (date.today() - watering.watered_on.date()).days >= plant.water_every_days:
 
-            temp_plant = {
+            response.append {
                 "id": plant.id,
                 "name": plant.name,
                 "type": plant.type,
                 "location": plant.location,
                 "water_every_days": plant.water_every_days,
                 "adopted_by": plant.adopted_by,
-                "last_watered": last_watered.watered_on
+                "last_watered": watering.watered_on.isoformat()
             }
 
-            response.append(temp_plant)
+            
 
     session.close()
     return response
