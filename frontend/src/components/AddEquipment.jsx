@@ -1,67 +1,77 @@
-import { useState, useEffect } from "react";
-import EquipmentCard from "./components/EquipmentCard";
-import MyBookings from "./components/MyBookings";
-import AddEquipment from "./components/AddEquipment";
-import "./index.css";
+import { useState } from "react";
 
-const API_URL = "http://127.0.0.1:8001";
+const TYPES = ["microscope", "oscilloscope", "3d-printer", "laptop", "camera"];
 
-const TYPES = ["", "microscope", "oscilloscope", "3d-printer", "laptop", "camera"];
+function AddEquipment({ apiUrl, onRefresh }) {
+  const [name, setName] = useState("");
+  const [type, setType] = useState(TYPES[0]);
+  const [labRoom, setLabRoom] = useState("");
+  const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
 
-function App() {
-  const [equipment, setEquipment] = useState([]);
-  const [typeFilter, setTypeFilter] = useState("");
-
-  function loadEquipment(filter) {
-    const url = filter
-      ? `${API_URL}/equipments?type=${filter}`
-      : `${API_URL}/equipments`;
-    fetch(url)
+  function handleSubmit(e) {
+    e.preventDefault();
+    setError("");
+    setMsg("");
+    if (!name || !labRoom) {
+      setError("Name and lab room are required.");
+      return;
+    }
+    fetch(
+      `${apiUrl}/equipments?name=${encodeURIComponent(name)}&type=${type}&lab_room=${encodeURIComponent(labRoom)}`,
+      { method: "POST" }
+    )
       .then((res) => res.json())
-      .then((data) => setEquipment(data));
+      .then((data) => {
+        if (data.detail) {
+          setError(data.detail);
+        } else {
+          setMsg(`"${data.name}" added!`);
+          setName("");
+          setType(TYPES[0]);
+          setLabRoom("");
+          onRefresh();
+        }
+      });
   }
-
-  useEffect(() => {
-    loadEquipment(typeFilter);
-  }, [typeFilter]);
 
   return (
     <>
-      <div className="app-header">
-        <h1>🔬 Lab Equipment Booking</h1>
-      </div>
-
-      <div className="section">
-        <h2>Equipment</h2>
-        <div className="filter-row">
-          <label>Filter by type:</label>
-          <select value={typeFilter} onChange={(e) => setTypeFilter(e.target.value)}>
+      <h2>Add Equipment</h2>
+      <form className="add-form" onSubmit={handleSubmit}>
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            placeholder="e.g. Canon DSLR"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Type</label>
+          <select value={type} onChange={(e) => setType(e.target.value)}>
             {TYPES.map((t) => (
-              <option key={t} value={t}>{t === "" ? "All" : t}</option>
+              <option key={t} value={t}>{t}</option>
             ))}
           </select>
         </div>
-        <ul className="equipment-list">
-          {equipment.map((item) => (
-            <EquipmentCard
-              key={item.id}
-              item={item}
-              apiUrl={API_URL}
-              onRefresh={() => loadEquipment(typeFilter)}
-            />
-          ))}
-        </ul>
-      </div>
+        <div>
+          <label>Lab Room</label>
+          <input
+            type="text"
+            placeholder="e.g. Lab 101"
+            value={labRoom}
+            onChange={(e) => setLabRoom(e.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn-primary">Add Equipment</button>
+      </form>
 
-      <div className="section">
-        <MyBookings apiUrl={API_URL} />
-      </div>
-
-      <div className="section">
-        <AddEquipment apiUrl={API_URL} onRefresh={() => loadEquipment(typeFilter)} />
-      </div>
+      {error && <p className="error">{error}</p>}
+      {msg && <p className="success">{msg}</p>}
     </>
   );
 }
 
-export default App;
+export default AddEquipment;
