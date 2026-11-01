@@ -17,7 +17,7 @@ Update your own row at every check-in.
 | Day 2 | Padmaraju Poojitha |debugging the code  |Done  |booking form  | getting rejected while puhing |
 | Day 2 | S Thanmayee |testing all the endpoints  |Done  |adding frontend folders and files  |getting rejected while pushing  |
 | Day 3 | Padmaraju Poojitha | created equipmentlist file and src file |Done  |push all the files to git  |None  |
-| Day 3 | S Thanmayee |  |  |  |  |
+| Day 3 | S Thanmayee |adding addequipment.jsx, mybooking.jsx and app.jsx  |Done  |adding them and checking the json output  |None  |
 
 ## 2. Endpoint tracker
 
