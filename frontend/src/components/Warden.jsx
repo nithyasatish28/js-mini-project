@@ -5,7 +5,7 @@ function WardenItem({ complaint, moveToNextStatus }) {
 
   return (
     <div>
-      <hr />
+      <hr/>
     
       <p><h2>Room | {complaint.room_no} |   ---   | {complaint.category} |   ---   | Roll no: {complaint.roll_no} |</h2></p>
       <p><h3>{complaint.description}</h3></p>
