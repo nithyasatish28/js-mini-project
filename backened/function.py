@@ -62,11 +62,8 @@ def get_event(id):
             "seats_left":events.seats_left
             }
     session.close()
-    return response()
-def add_new_event(title: str, club: str, category: str, event_date:datetime,total_seats:int, seats_left:int):
-    session = Session(engine)
-    event = Event(title=title, club=club, category=category, event_date=event_date, total_seats=total_seats, seats_left=seats_left)  
-    session.add(event)
+    return response
+
 
 
 
@@ -131,12 +128,11 @@ event = Event(
         total_seats=total_seats,
         seats_left=total_seats,
      
-     )
+          )
 session.add(event)
 session.commit()
 session.refresh(event)
-
-        response {
+response {
     
          "id": event.id,
         "title": event.title,
@@ -147,9 +143,8 @@ session.refresh(event)
     }
 
 
-       session.close()
-       return response()
-
+session.close()
+return response()
         
 
 def get_event(event_id: int):
