@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, create_engine, DateTime, func
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime
-from fastapi import HTTPException
 
 DB_PATH = "hostel_complaint_tracker.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -85,18 +84,13 @@ def get_one_complaint(id: int):
 
 def create_complaint(rollno, roomno, category, description):
     session = Session(engine)
-
-    existing = session.query(complaints).filter(
-        complaints.room_no == int(roomno), 
-        complaints.category == str(category), 
-        complaints.status.in_(["open", "in_progress"])
-    ).first()
-    
-    if existing:
-        session.close()
-        raise HTTPException(status_code=409, detail="Room already has an unresolved complaint in that category.")
-        
-    complaint = complaints(rollno=rollno, room_no=roomno, category=category, description=description, status="open")    
+    complaint = complaints(
+        rollno=rollno, 
+        room_no=roomno, 
+        category=category, 
+        description=description, 
+        status="open"
+    )    
     session.add(complaint)
     session.commit()
     session.refresh(complaint)
@@ -114,22 +108,12 @@ def create_complaint(rollno, roomno, category, description):
     session.close()
     return temp
 
-def update_complaint_status(complaint_id, new_status, note):
+def update_complaint_status(complaint_id, new_status, note=None):
     session = Session(engine)
     complaint = session.query(complaints).filter(complaints.id == complaint_id).first()
-    
     if not complaint:
         session.close()
-        raise HTTPException(status_code=404, detail="Complaint id doesn't exist.")
-        
-    if complaint.status == "resolved":
-        session.close()
-        raise HTTPException(status_code=409, detail="Changing a complaint that is already resolved is not allowed.")
-
-    status_order = {"open": "in_progress", "in_progress": "resolved"}
-    if status_order.get(complaint.status) != new_status:
-        session.close()
-        raise HTTPException(status_code=409, detail="A complaint can only move one step at a time.")
+        return None
         
     complaint.status = new_status
     if new_status.lower() == "resolved":
@@ -170,14 +154,9 @@ def get_students_complaints_byrollno(rollno):
 def delete_complaint(complaint_id: int):
     session = Session(engine)
     complaint = session.query(complaints).filter(complaints.id == complaint_id).first()
-    
     if not complaint:
         session.close()
-        raise HTTPException(status_code=404, detail="Complaint id doesn't exist.")
-        
-    if complaint.status != "open":
-        session.close()
-        raise HTTPException(status_code=409, detail="Cannot delete a complaint that is not open anymore.")
+        return None
      
     session.query(updates).filter(updates.complaint_id == str(complaint_id)).delete()
     session.delete(complaint)
