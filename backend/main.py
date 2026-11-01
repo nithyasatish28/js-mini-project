@@ -1,12 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-import E1
-import E2
-import E3
-import E4
-import E5
-import E6
-import E7
+import function 
 
 app = FastAPI()
 
@@ -25,36 +19,36 @@ def Hello():
 # E1 - Get all plants.
 @app.get("/plants")
 def get_plant_data(type: str = None):
-    return E1.get_all_plants(type)
+    return function.get_all_plants(type)
 
 # E2 - Get plant by id
 @app.get("/plants/{id}")
 def plant(id: int):
-    return E2.get_plant(id)
+    return function.get_plant(id)
 
 
 # E3 - new plant inserted
 @app.post("/plants", status_code=201)
 def create_plant(name: str, type: str, location: str, water_every_days: int):
-    return E3.add_plant(name, type, location, water_every_days)
+    return function.add_plant(name, type, location, water_every_days)
 
 # E4 - Adopt a plant
 @app.patch("/plants/{id}/{roll_no}")
 def adopt(id: int, roll_no: str):
-    return E4.adopt_plant(id, roll_no.strip())
+    return function.adopt_plant(id, roll_no.strip())
 
 # E5 - Unadopt a plant.
 @app.patch("/plants/{id}/unadopt")
 def unadopt_plant(id: int):
-    return E5.unadopt_plant(id)
+    return function.unadopt_plant(id)
 
 # E6 - watered plant.
 @app.post("/plants/{id}/water")
 def water_plant(id: int, roll_no: str):
-    return E6.water_plant(id, roll_no.strip())
+    return function.water_plant(id, roll_no.strip())
 
 
 # E7 - plants who needs water
 @app.get("/plants/needs-water")
 def need_water():
-    return E7.get_need_water()
+    return function.get_need_water()
