@@ -67,7 +67,7 @@ def get_all_plants(type = None):
             need_water = days >= plant.water_every_days
         temp_plant ={
             "id": plant.id,
-           "name": plant.name,
+            "name": plant.name,
             "type": plant.type,
             "location": plant.location,
             "adopted_by":plant.adopted_by,
@@ -108,7 +108,7 @@ def get_plant(id):
             "waterings": response_water,
            }
     session.close()
-    return response,response_water
+    return response
 
 
 # E4-adpot by roll number

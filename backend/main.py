@@ -8,7 +8,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174"],
+    allow_origins=["http://localhost:5174","http://127.0.0.1:5174"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -42,7 +42,7 @@ def add_plant(name, type,location,  water_every_days):
 # E4
 @app.patch("/plants/{id}/{roll_no}")
 def adopt(id: int, roll_no: str):
-    return AM_functions.adopt_plant(id, roll_no.strip())
+    return AM_functions.adopt_plant(id, roll_no.strip().upper())
 
 @app.patch("/plants/{id}")
 def unadopt(id):

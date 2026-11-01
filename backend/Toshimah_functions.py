@@ -36,12 +36,12 @@ def seed_data():
     session = Session(engine)
     if session.query(plants).count() == 0:
         plant_records = [
-            plants(id=1, name="Tulsi", type="herb", location="Block A garden", water_every_days=2, adopted_by="Adopted"),
-            plants(id=2, name="Aloe Vera", type="succulent", location="Library window", water_every_days=10, adopted_by="Adopted"),
-            plants(id=3, name="Rose", type="flowering", location="Main gate", water_every_days=2, adopted_by="Adopted"),
-            plants(id=4, name="Money Plant", type="indoor", location="Admin office", water_every_days=5, adopted_by="Adopted"),
-            plants(id=5, name="Neem", type="tree", location="Canteen", water_every_days=7, adopted_by="Adopted"),
-            plants(id=6, name="Mint", type="herb", location="Hostel terrace", water_every_days=1, adopted_by="Adopted"),
+            plants(id=1, name="Tulsi", type="herb", location="Block A garden", water_every_days=2, adopted_by="AU25UG001"),
+            plants(id=2, name="Aloe Vera", type="succulent", location="Library window", water_every_days=10, adopted_by="AU25UG002"),
+            plants(id=3, name="Rose", type="flowering", location="Main gate", water_every_days=2, adopted_by="AU23UG045"),
+            plants(id=4, name="Money Plant", type="indoor", location="Admin office", water_every_days=5, adopted_by="AU34UG009"),
+            plants(id=5, name="Neem", type="tree", location="Canteen", water_every_days=7, adopted_by="AU26UG005"),
+            plants(id=6, name="Mint", type="herb", location="Hostel terrace", water_every_days=1, adopted_by="AU21UG001"),
             plants(id=7, name="Jade Plant", type="succulent", location="Lab 3", water_every_days=14, adopted_by=None),
             plants(id=8, name="Hibiscus", type="flowering", location="Block B entrance", water_every_days=3, adopted_by=None),
             plants(id=9, name="Snake Plant", type="indoor", location="Reception", water_every_days=10, adopted_by=None),
