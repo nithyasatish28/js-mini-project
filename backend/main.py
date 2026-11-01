@@ -1,4 +1,4 @@
-from datetime import date, datatime, timedelta
+from datetime import date, datetime, timedelta
 from fastapi import FastAPI, HTTPException, Body, Query
 from fastapi.middleware.cors import CORSMiddleware
 import function
@@ -36,7 +36,7 @@ def add_equipment(name: str = Body(...),type: str = Body(...),lab_room: str = Bo
         raise HTTPException(status_code=422,detail="Name and lab room cannot be empty.")
     if type not in function.VALID_TYPES:
         raise HTTPException(status_code=422,detail="Invalid equipment type.")
-    return function.add_equipment(name=name,type=type,lab_room=lab_room)
+    return function.add_equipment(name=name,item_type=type,lab_room=lab_room)
 
 
 @app.patch("/equipment/{id}/service")
