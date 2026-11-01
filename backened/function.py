@@ -1,6 +1,6 @@
 from sqlalchemy import Integer,String, Column, create_engine, DateTime,ForeignKey
 from sqlalchemy.orm import Session, declarative_base
-from datetime import datetime
+from datetime import datetime , date
 
 DB_PATH="event.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -65,10 +65,17 @@ def get_event(id):
     return response
 
 
+<<<<<<< HEAD
 def add_new_event(title: str, club: str, category: str, event_date:datetime,total_seats:int, seats_left:int):
     session = Session(engine)
     event = Event(title=title, club=club, category=category, event_date=event_date, total_seats=total_seats, seats_left=seats_left)  
     session.add(event)
+=======
+
+def add_new_event(title: str, club: str, category: str, events_date:datetime,total_seats:int):
+    session = Session(engine)  
+    events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+>>>>>>> 2627e1919b15cea241debe0220f720dd1d8bf095
     response = {
         "title": event.title,
         "club": event.club,
@@ -82,10 +89,39 @@ def add_new_event(title: str, club: str, category: str, event_date:datetime,tota
 def delete_event(event_id):
  session = Session(engine)  
  events = session.get(Event,event_id)
+<<<<<<< HEAD
  if events:
     session.delete(events)
     session.commit
     session.close
 
+=======
+ session.delete(events)
+ session.commit
+ session.close
+
+def event_roll_number(event_id: int, roll_number:int):
+     session = session(engine)
+     event = session.get(Event, event_id)
+     if not event:
+         return{"error:event not found"}
+     
+     if event.seats_left <=0:
+         return{"error:The seats are full"}
+
+     registration = Registration(
+                event_id = event_id,
+                roll_number = roll_number,
+                registration_date = date.today()
+            )
+
+     return{
+         "registration_id" : registration.id,
+         "event_id" : event.id,
+         "roll_number" : registration.roll_number,
+         "registration_date" : registration.registration_date,
+         "seats_left" : event.seats_left,
+}
+>>>>>>> 2627e1919b15cea241debe0220f720dd1d8bf095
 
 
