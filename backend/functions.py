@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from sqlalchemy import Column, DateTime, Integer, String, ForeignKey, create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 

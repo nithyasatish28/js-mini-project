@@ -14,9 +14,9 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Konduru Nanda Kishore Raju |  |  |  |  |
-| Day 2 | Konduru Nanda Kishore Raju |  |  |  |  |
-| Day 3 | Konduru Nanda Kishore Raju |  |  |  |  |
+| Day 1 | Konduru Nanda Kishore Raju | Backend setup, database models and E1, E2, E3, E7, Installing all essencial packages and requirements for project | Yes | Borrow and Return API | no |
+| Day 2 | Konduru Nanda Kishore Raju |E4, E5, E6, validation and Swagger testing and planned for front end and fixed errors  | yes |  React frontend and API integration| no  |
+| Day 3 | Konduru Nanda Kishore Raju |React components, navigation, CSS and frontend integration  | Almost done  |designing an dlay out and final touch for Web front end checking and final outputs  |CSS layout and final UI verification  |
 
 ## 2. Endpoint tracker
 
@@ -24,49 +24,54 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |  | ✅ | ✅ | ✅ | Raju |
+| E2 |  | ✅ | ✅ | ✅ | Raju |
+| E3 |  | ✅ | ✅ | ✅ |  Raju|
+| E4 |  | ✅ | ✅ | ✅ | Raju |
+| E5 |  | ✅ | ✅ | ✅ | Raju |
+| E6 |  | ✅ | ✅ | ✅ | Raju |
+| E7 |  | ✅ | ✅ | ✅ | Raju |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Stations | ⬜ | ⬜ | ⬜ |  |
-| My umbrella | ⬜ | ⬜ | ⬜ |  |
-| Add a station | ⬜ | ⬜ | ⬜ |  |
+| Stations | ✅ | ✅ | ✅ | Raju |
+| My umbrella | ✅ | ✅ | ✅ | Nanda mKishore Raju |
+| Add a station | ✅ | ✅ | ✅ | Raju |
 
 ## 4. Blockers and help needed
 
-- 
+Frontend
+connecting the both frontend and backend end and the connecting buttons
 
 ## 5. How to run our app
 
-Fill this in by the end of Day 2. Someone who has never seen your code should be able to follow it.
+To run the project, start the backend first and then start the frontend in another terminal.
+
 
 **Backend**
 
-```powershell
+.\backend\.venv\Scripts\Activate.ps1
 python -m pip install -r backend\requirements.txt
-python -m uvicorn backend.main:app --reload --port 8000
-```
+python -m uvicorn backend.main:app --reload --port 8001
+To check the API endpoints, open http://localhost:8001/docs
 
 **Frontend**
 
-```powershell
 cd frontend
 npm install
 npm run dev
-```
 
-Open the frontend at [http://localhost:8001](http://localhost:8001). The backend API is available at [http://localhost:8000/docs](http://localhost:8000/docs).
+The frontend will run at http://localhost:5173.
+
+
+Open the frontend at [http://localhost:5173]. The backend API is available at [http://localhost:8001/docs].
 
 ## 6. Proof of work
 
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
 
-![Our app](screenshot.png)
+![Backend](docs/screenshots/backend-api.png)
+
+![Frontend](docs/screenshots/frontend-dashboard.png)
