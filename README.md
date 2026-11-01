@@ -27,8 +27,8 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 |---|--------------------------|---------|------------------------|---|---|
 | E1 | GET /plants              |    ✅  |✅                     | ✅  | Sarang |
 | E2 | GET /plants/{plant_id}   |    ✅  | ✅                    | ✅  | Sarang |
-| E3 | POST /plants             |    ✅  |✅                     | ⬜  | Sarang  |
-| E4 | PATCH /plants/{plant_id} | ✅      | ✅                     | ⬜  | Shafi |
+| E3 | POST /plants             |    ✅  |✅                     | ✅  | Sarang  |
+| E4 | PATCH /plants/{plant_id} | ✅      | ✅                     | ✅  | Shafi |
 | E5 | PATCH /plants/{plant_id} | ✅      | ✅                     | ✅  | Shafi  |
 | E6 | POST /water              | ✅      | ✅                       | ✅  | Shafi  |
 | E7 | GET /water                         |  ✅     | ✅                      | ✅  | Shafi  |
@@ -39,7 +39,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 |---|---|---|---|---|
 | Garden | ✅ | ✅ | ✅ | Shafi |
 | My plants | ✅ | ✅ | ✅ | Sarang |
-| Add a plant | ⬜ | ⬜ | ⬜ |  |
+| Add a plant | ✅ | ✅ | ✅ | Shafi  |
 
 ## 4. Blockers and help needed
 

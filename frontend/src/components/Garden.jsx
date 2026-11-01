@@ -1,6 +1,9 @@
 import PlantCard from "./PlantCard.jsx";
 import {useState} from "react";
 
+
+const API_URL = "http://127.0.0.1:8001";
+
 function Garden({plants,setPlants}){
     const [type,setType] = useState("")
     let filteredPlants = [...plants]
@@ -13,10 +16,17 @@ function Garden({plants,setPlants}){
 
     }
 
+    function needWater(){
+        fetch(API_URL + "/water")
+            .then((response) => response.json())
+            .then((data) => {setPlants(data) });
+    }
+
 
     return <div className="Garden">
     <h1>Garden</h1>
-        type:
+        <>        type:
+
         <select name="type" value={type} onChange={handleType}>
             <option value="">No Filter</option>
             <option value="succulent">succulent</option>
@@ -25,6 +35,9 @@ function Garden({plants,setPlants}){
             <option value="indoor">indoor</option>
             <option value="tree">tree</option>
         </select>
+        </>
+
+        <button onClick={needWater}>Need Water Today</button>
         {filteredPlants.map((plant) => <PlantCard key={plant.id} plant={plant} setPlants={setPlants}/>)}
     </div>
 

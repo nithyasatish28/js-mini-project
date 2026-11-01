@@ -203,5 +203,9 @@ def need_to_water_today(): #gets the plants that need to be watered today, E7
 
         if last_watered and (datetime.today().date() - last_watered.watered_on.date()).days >= plant.water_every_days:
             response.append(temp_plant)
+
+        if not last_watered:
+            response.append(temp_plant)
+
     session.close()
     return response
