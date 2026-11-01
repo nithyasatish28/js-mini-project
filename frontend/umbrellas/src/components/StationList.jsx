@@ -7,7 +7,7 @@ function StationList({ API_URL, stations, handleResult }) {
   const [details, setDetails] = useState(null);
 
   function onBorrow(id) {
-    fetch(API_URL + "/borrow ? roll_no=" + rollNo + "&station_id=" + id, {
+    fetch(API_URL + "/borrow?roll_no=" + rollNo + "&station_id=" + id, {
       method: "POST",
     })
       .then((response) => response.json())
@@ -55,6 +55,7 @@ function StationList({ API_URL, stations, handleResult }) {
           <StationItem key={station.id} station={station} onBorrow={onBorrow} onDetails={onDetails} />
         ))}
       </ol>
+
     </>
   );
 }

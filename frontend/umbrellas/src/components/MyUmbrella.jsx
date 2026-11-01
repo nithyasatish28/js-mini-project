@@ -13,7 +13,7 @@ function MyUmbrella({ API_URL, stations, handleResult, setMessage }) {
           setMessage(data.detail);
           setUmbrella(null);
         } else {
-        //   setMessage("");
+          setMessage("");
           setUmbrella(data);
         }
       });
@@ -35,7 +35,7 @@ function MyUmbrella({ API_URL, stations, handleResult, setMessage }) {
 
   return (
     <>
-      <h2>My umbrella</h2>
+      <h2>Return my umbrella</h2>
       <input placeholder="Roll number" value={rollNo} onChange={(event) => setRollNo(event.target.value)} />
       <button onClick={showUmbrella}>Show</button>
 
