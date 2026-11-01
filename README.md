@@ -13,11 +13,11 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Amruta Nagavi | setup database and create tables |  |  |  |
-| Day 1 | Toshimah Devi Palanadoo | set up fastAPI and CORS and seed data |  |  |  |
+| Day 1 | Toshimah Devi Palanadoo | set up fastAPI and CORS and seed data | yes | the AppPlant.jsx  |  |
 | Day 2 | Amruta Nagavi |  |  |  |  |
-| Day 2 | Toshimah Devi Palanadoo |  |  |  |  |
+| Day 2 | Toshimah Devi Palanadoo | start with AddPlant component | yes | the completion of frontend |  |
 | Day 3 | Amruta Nagavi |  |  |  |  |
-| Day 3 | Toshimah Devi Palanadoo |  |  |  |  |
+| Day 3 | Toshimah Devi Palanadoo | Completed the frontend and made sure everything works | yes |  |  |
 
 ## 2. Endpoint tracker
 
@@ -38,8 +38,8 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
 | Garden | ⬜ | ⬜ | ⬜ |  |
-| My plants | ⬜ | ⬜ | ⬜ |  |
-| Add a plant | ⬜ | ⬜ | ⬜ |  |
+| My plants | ✅ | ✅ | ⬜ |  |
+| Add a plant | ✅ | ✅ | ⬜ |  |
 
 ## 4. Blockers and help needed
 
