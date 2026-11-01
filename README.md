@@ -29,17 +29,17 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E2 |GET /events/{event_id}  | ✅ | ✅ | ✅ | Thanuja |
 | E3 |POST /events  | ✅ | ✅ | ✅ |Supriya |
 | E4 |DELETE /events/{event_id}  | ✅ | ✅ | ✅ | Thanuja |
-| E5 |POST /events/{event_id}/registrations  | ✅ | ✅ | ⬜ | Supriya |
-| E6 |GET /registrations/{roll_no} | ✅ | ✅ | ⬜ | Thanuja |
-| E7 |PATCH /registrations/{registration_id}/cancel  | ✅ | ✅ | ⬜ | Thanuja |
+| E5 |POST /events/{event_id}/registrations  | ✅ | ✅ |  ✅ | Supriya |
+| E6 |GET /registrations/{roll_no} | ✅ | ✅ | ✅ | Thanuja |
+| E7 |PATCH /registrations/{registration_id}/cancel  | ✅ | ✅ | ✅| Thanuja |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Events | ✅ | ✅ | ✅ |  |
-| My events | ⬜ | ⬜ | ⬜ |  |
-| Add an event | ⬜ | ⬜ | ⬜ |  |
+| Events | ✅ | ✅ | ✅ |Thanuja  |
+| My events | ✅ | ✅ | ✅ | Supriya |
+| Add an event | ✅ | ✅ | ✅ |  Supriya,Thanuja|
 
 ## 4. Blockers and help needed
 
