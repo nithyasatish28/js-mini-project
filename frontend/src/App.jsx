@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import EquipmentCard from "./components/EquipmentCard";
-import MyBookings from "./components/MyBookings";
+// import MyBookings from "./components/MyBookings";
 import AddEquipment from "./components/AddEquipment";
 import "./index.css";
 

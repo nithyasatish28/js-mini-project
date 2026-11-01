@@ -68,6 +68,13 @@ function EquipmentCard({ item, apiUrl, onRefresh }) {
         <button className="btn-primary" onClick={handleBook}>Book</button>
       </div>
 
+      <button
+        className={item.in_service ? "btn-danger" : "btn-success"}
+        onClick={handleToggle}
+      >
+        {item.in_service ? "Mark out of service" : "Mark in service"}
+      </button>
+
       {error && <p className="error">{error}</p>}
       {msg && <p className="success">{msg}</p>}
     </li>
