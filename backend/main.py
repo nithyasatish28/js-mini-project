@@ -1,69 +1,56 @@
 from typing import Optional
 
 from fastapi import FastAPI, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, field_validator
 
 import functions
 
-app = FastAPI(title="Complaints API")
+app = FastAPI(title="Lost and Found API")
 
 
-class ComplaintCreate(BaseModel):
-    roll_no: int
-    room_no: str
-    catagory: Optional[str] = None
-    description: str = ""
-    status: str = "active"
+class ItemCreate(BaseModel):
+    name: str = Field(min_length=1, max_length=120)
+    description: str = Field(min_length=1, max_length=1000)
+    contact: str = Field(min_length=1, max_length=200)
+    location: Optional[str] = Field(default=None, max_length=200)
+
+    @field_validator("name", "description", "contact")
+    @classmethod
+    def strip_required_text(cls, value):
+        value = value.strip()
+        if not value:
+            raise ValueError("Field must not be blank")
+        return value
+
+    @field_validator("location")
+    @classmethod
+    def strip_location(cls, value):
+        if value is None:
+            return None
+        return value.strip() or None
 
 
-class ComplaintUpdate(BaseModel):
-    roll_no: Optional[int] = None
-    room_no: Optional[str] = None
-    catagory: Optional[str] = None
-    description: Optional[str] = None
-    status: Optional[str] = None
-    resolved_on: Optional[str] = None
+@app.get("/items")
+def items():
+    return functions.get_all_items()
 
 
-@app.get("/complaints")
-def get_all_complaints():
-    return functions.get_all_Complaints()
+@app.get("/items/{item_id}")
+def item(item_id: int):
+    lost_item = functions.get_item(item_id)
+    if lost_item is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Item not found",
+        )
+    return lost_item
 
 
-@app.get("/complaints/{complaint_id}")
-def get_complaint(complaint_id: int):
-    complaint = functions.get_Complaints(complaint_id)
-    if complaint is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Complaint not found")
-    return complaint
-
-
-@app.post("/complaints")
-def create_complaint(data: ComplaintCreate):
-    return functions.add_complaint(
-        roll_no=data.roll_no,
-        room_no=data.room_no,
-        catagory=data.catagory,
+@app.post("/items", status_code=status.HTTP_201_CREATED)
+def add_item(data: ItemCreate):
+    return functions.add_lost_item(
+        name=data.name,
         description=data.description,
-        status=data.status,
+        contact=data.contact,
+        location=data.location,
     )
-
-@app.put("/complaints/{complaint_id}")
-def update_complaint(complaint_id: int, data: ComplaintUpdate):
-    update_data = {k: v for k, v in data.dict(exclude_unset=True).items() if v is not None}
-    if not update_data:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Fill all the fields")
-
-    complaint = functions.update_complaint(complaint_id)
-    if complaint is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Complaint NAHI MAL. COMPLAINT DAAL!!!!")
-    return complaint
-
-
-@app.delete("/complaints/{complaint_id}")
-def delete_complaint(complaint_id: int):
-    deleted = functions.delete_complaint(complaint_id)
-    if not deleted:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Complaint not found")
-    return {"message": "Complaint deleted successfully"}
-

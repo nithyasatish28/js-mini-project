@@ -12,11 +12,11 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Jiken Pulinbhai Jasoliya | starting with the Backend (API) | not-yet | Debugging | debugging |
+| Day 1 | Jiken Pulinbhai Jasoliya | starting with the Backend (API) | not | Debugging | debugging |
 | Day 1 | Vilok |  |  |  |  |
-| Day 2 | Jiken Pulinbhai Jasoliya |  |  |  |  |
-| Day 2 | Vilok |  |  |  |  |
-| Day 3 | Jiken Pulinbhai Jasoliya |  |  |  |  |
+| Day 2 | Jiken Pulinbhai Jasoliya | debugging the backend APIs | yes | last checks |  |
+| Day 2 | Vilok | started with the frontend | yes | last checks | nothing |
+| Day 3 | Jiken Pulinbhai Jasoliya | last checks | yes | run the code | nope |
 | Day 3 | Vilok |  |  |  |  |
 
 ## 2. Endpoint tracker

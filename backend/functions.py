@@ -1,106 +1,64 @@
 from datetime import datetime
 
-from sqlalchemy import Column, DateTime, Integer, String, create_engine
-from sqlalchemy.orm import Session, declarative_base
+from sqlalchemy import create_engine, Column, Integer, String, DateTime  # type: ignore
+from sqlalchemy.orm import declarative_base, Session  # type: ignore
 
-DB_PATH = "complaints.db"
-engine = create_engine(f"sqlite:///{DB_PATH}")
+DB_PATH = "lost_found.db"
+engine = create_engine(f"sqlite:///{DB_PATH}", echo=True)
 Base = declarative_base()
 
 
-class Complaints(Base):
-    __tablename__ = "Complaints"
+class Items(Base):
+    __tablename__ = "items"
 
     id = Column(Integer, primary_key=True)
-    roll_no = Column(Integer)
-    room_no = Column(String)
-    catagory = Column(String)
+    name = Column(String)
     description = Column(String)
+    posted_at = Column(DateTime, default=datetime.now)
+    location = Column(String)
     status = Column(String)
-    created_on = Column(DateTime, default=datetime.now)
-    resolved_on = Column(DateTime, nullable=True)
+    contact = Column(String)
+    resolved_at = Column(DateTime, nullable=True)
 
 
 Base.metadata.create_all(engine)
 
 
-def _to_datetime(value):
-    if value is None:
-        return None
-    if isinstance(value, datetime):
-        return value
-    return datetime.fromisoformat(str(value))
-
-
-def _Complaints_to_dict(item):
+def _item_to_dict(item):
     return {
         "id": item.id,
-        "roll_no": item.roll_no,
-        "room_no": item.room_no,
-        "catagory": item.catagory,
+        "name": item.name,
         "description": item.description,
+        "posted_at": item.posted_at,
+        "location": item.location,
         "status": item.status,
-        "created_on": item.created_on,
-        "resolved_on": item.resolved_on,
+        "contact": item.contact,
+        "resolved_at": item.resolved_at,
     }
 
 
-def add_complaint(roll_no, room_no, catagory=None, description="", status="active", created_on=None, resolved_on=None, location=None):
-    created_on = _to_datetime(created_on) if created_on is not None else datetime.now()
-    resolved_on = _to_datetime(resolved_on)
-
+def add_lost_item(name, description, contact, location=None):
     with Session(engine) as session:
-        item = Complaints(
-            roll_no=roll_no,
-            room_no=room_no,
-            catagory=catagory,
+        item = Items(
+            name=name,
             description=description,
-            status=status,
-            created_on=created_on,
-            resolved_on=resolved_on,
+            contact=contact,
+            location=location,
+            status="active",
         )
         session.add(item)
         session.commit()
         session.refresh(item)
-        return _Complaints_to_dict(item)
+        return _item_to_dict(item)
 
 
-def get_all_Complaints():
+def get_all_items():
     with Session(engine) as session:
-        items = session.query(Complaints).all()
-        return [_Complaints_to_dict(item) for item in items]
+        items = session.query(Items).all()
+        return [_item_to_dict(item) for item in items]
 
 
-def get_Complaints(id_):
+def get_item(id):
     with Session(engine) as session:
-        item = session.get(Complaints, id_)
-        return _Complaints_to_dict(item) if item is not None else None
-
-
-def update_complaint(complaint_id, **kwargs):
-    with Session(engine) as session:
-        item = session.get(Complaints, complaint_id)
-        if item is None:
-            return None
-
-        for key, value in kwargs.items():
-            if hasattr(item, key):
-                if key in {"created_on", "resolved_on"}:
-                    value = _to_datetime(value)
-                setattr(item, key, value)
-
-        session.commit()
-        session.refresh(item)
-        return _Complaints_to_dict(item)
-
-
-def delete_complaint(complaint_id):
-    with Session(engine) as session:
-        item = session.get(Complaints, complaint_id)
-        if item is None:
-            return False
-
-        session.delete(item)
-        session.commit()
-        return True
-
+        item = session.get(Items, id)
+        return _item_to_dict(item) if item is not None else None
