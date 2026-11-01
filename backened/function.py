@@ -66,11 +66,6 @@ def get_event(id):
 
 
 
-def add_new_event(title: str, club: str, category: str, event_date:datetime,total_seats:int, seats_left:int):
-    session = Session(engine)
-    event = Event(title=title, club=club, category=category, event_date=event_date, total_seats=total_seats, seats_left=seats_left)  
-    session.add(event)
-
 
 def add_new_event(title: str, club: str, category: str, events_date:datetime,total_seats:int):
     session = Session(engine)  
