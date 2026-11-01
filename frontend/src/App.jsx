@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-// import Garden from "./components/Garden";
-import MyPlants from "./components/MyPlants";
-import AddPlant from "./components/AddPlant";
+// import Garden from "./components/GardenItem";
+import GardenList from "./components/GardenList";
+// import MyPlants from "./components/MyPlants";
+// import AddPlant from "./components/AddPlant";
 
 const API_URL = "http://127.0.0.1:8001";
 
 function App() {
   const [plants, setPlants] = useState([]);
-  const [rollNo, setRollNo] = useState("");
+  const [rollNo, setRollNo] = useState(""); 
 
   function refreshAll() {
     fetch(API_URL + "/plants")
@@ -15,23 +16,24 @@ function App() {
       .then((data) => setPlants(data));
   }
 
-  useEffect(() => {
-    refreshAll();
-  }, []);
+useEffect(() => {
+  refreshAll();
+}, []);
 
   return (
+   
     <div>
       <h1>Campus Garden</h1>
 
 
       <input
-        placeholder="Enter your Roll No"
+        placeholder="Enter Roll No: AUXXUGXXX"
         value={rollNo}
         onChange={(e) => setRollNo(e.target.value)}
       />
 
-      <AddPlant API_URL={API_URL} onAdd={refreshAll} />
-      {/* <Garden plants={plants} API_URL={API_URL} onAdopt={refreshAll} /> */}
+      {/* <AddPlant API_URL={API_URL} onAdd={refreshAll} /> */}
+      <GardenList plants={plants} API_URL={API_URL} setPlants={setPlants}  rollNo ={rollNo} onAdopt={refreshAll}/>
       {/* <MyPlants plants={plants} API_URL={API_URL} rollNo={rollNo} onUpdate={refreshAll} /> */}
     </div>
   );
