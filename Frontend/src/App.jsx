@@ -59,7 +59,7 @@ function App() {
         setEquipment((currentEquipment) =>
           currentEquipment.map((equipment) =>
             equipment.id === equipment_id
-              ? { ...equipment, in_service }
+              ? { ...equipment, in_service: in_service ? 1 : 0 }
               : equipment,
           ),
         );

@@ -12,12 +12,12 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Monica Irala | will do E2,E3,E6 and E7  |  |  |  |
-| Day 1 | Aryan Rao | willl do e1,e4,e5 and create database |  |  |  |
-| Day 2 | Monica Irala |  |  |  |  |
-| Day 2 | Aryan Rao |  |  |  |  |
-| Day 3 | Monica Irala |  |  |  |  |
-| Day 3 | Aryan Rao |  |  |  |  |
+| Day 1 | Monica Irala | will do E2,E3,E6 and E7 | ✅ | Frontend components | None |
+| Day 1 | Aryan Rao | will do e1,e4,e5 and create database | ✅ | Frontend setup | None |
+| Day 2 | Monica Irala | Connect E3, E6, E7 to React (AddEquipment, MyBookings) | ✅ | Demo preparation | None |
+| Day 2 | Aryan Rao | Connect E1, E4, E5 to React (EquipmentList, EquipmentItem, booking) | ✅ | Demo preparation | None |
+| Day 3 | Monica Irala | Demo & final code review | 🟡 | Explain PRD & components | None |
+| Day 3 | Aryan Rao | Demo & final code review | 🟡 | Explain API & database | None |
 
 ## 2. Endpoint tracker
 
@@ -25,25 +25,25 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ✅ | ⬜ | ⬜ | Aryan |
-| E2 |  | ✅ | ⬜ | ⬜ |Monica |
-| E3 |  | ✅ | ⬜ | ⬜ |Monica |
-| E4 |  | ✅ | ⬜ | ⬜ | Aryan |
-| E5 |  | ✅ | ⬜ | ⬜ | Aryan |
-| E6 |  | ✅ | ⬜ | ⬜ |Monica  |
-| E7 |  | ✅ | ⬜ | ⬜ |Monica  |
+| E1 | `GET /equipment` | ✅ | ✅ | ✅ | Aryan |
+| E2 | `GET /equipment/{equipment_id}` | ✅ | ✅ | ✅ | Monica |
+| E3 | `POST /equipment` | ✅ | ✅ | ✅ | Monica |
+| E4 | `PUT /equipment/{equipment_id}/status` | ✅ | ✅ | ✅ | Aryan |
+| E5 | `POST /booking` | ✅ | ✅ | ✅ | Aryan |
+| E6 | `GET /bookings/student/{roll_no}` | ✅ | ✅ | ✅ | Monica |
+| E7 | `PATCH /booking/{booking_id}/cancel` | ✅ | ✅ | ✅ | Monica |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Equipment | ⬜ | ⬜ | ⬜ |  |
-| My bookings | ⬜ | ⬜ | ⬜ |  |
-| Add equipment | ⬜ | ⬜ | ⬜ |  |
+| Equipment | ✅ | ✅ | ✅ | Aryan |
+| My bookings | ✅ | ✅ | ✅ | Monica |
+| Add equipment | ✅ | ✅ | ✅ | Monica |
 
 ## 4. Blockers and help needed
 
-- 
+- None at the moment. All endpoints, frontend components, and rule validations are functioning as specified in the PRD.
 
 ## 5. How to run our app
 

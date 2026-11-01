@@ -14,6 +14,70 @@ h1 {
   margin: 0 0 20px;
 }
 
+section {
+  background: #ffffff;
+  border: 1px solid #dde1e6;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+section h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+input,
+select {
+  padding: 6px 10px;
+  font-size: 0.95rem;
+  border: 1px solid #c1c7cd;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+button {
+  padding: 7px 14px;
+  border: 1px solid #dde1e6;
+  border-radius: 6px;
+  background: #0969da;
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+button:hover {
+  background: #0856b3;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  background: #8c959f;
+}
+
+[role="alert"] {
+  color: #cf222e;
+  background: #ffebe9;
+  border: 1px solid #ff8182;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 10px 0;
+}
+
+[role="status"] {
+  color: #1a7f37;
+  background: #dafbe1;
+  border: 1px solid #4ac26b;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin: 10px 0;
+}
+
 .equipment-list {
   list-style: none;
   margin: 20px 0 0;
@@ -30,7 +94,7 @@ h1 {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: transform 0.15s, box-shadow 0.15s;
 }
@@ -56,10 +120,13 @@ h1 {
   border-radius: 6px;
   background: #ffffff;
   color: #1f2328;
-  cursor: pointer;
+}
+
+.equipment button:hover {
+  background: #f3f4f6;
 }
 
 .equipment button:disabled {
-  cursor: not-allowed;
+  background: #ffffff;
   opacity: 0.55;
 }
