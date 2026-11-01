@@ -19,7 +19,7 @@ function MyComplaints({
 
       {studentComplaints.map((c) => (
         <div key={c.id}>
-          <p>Room | {c.room_no} |   ---   | {c.category} |</p>
+          <p>Room {c.room_no} | {c.category}</p>
           <p>{c.description}</p>
           <p>Status: {c.status}</p>
           <button onClick={() => getComplaint(c.id)}>View updates</button>

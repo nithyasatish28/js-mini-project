@@ -7,9 +7,9 @@ function WardenItem({ complaint, moveToNextStatus }) {
     <div>
       <hr />
     
-      <p>Room | {complaint.room_no} |   ---   | {complaint.category} |   ---   | Roll no: {complaint.roll_no} |</p>
-      <p>{complaint.description}</p>
-      <p>Status: {complaint.status}</p>
+      <p><h2>Room | {complaint.room_no} |   ---   | {complaint.category} |   ---   | Roll no: {complaint.roll_no} |</h2></p>
+      <p><h3>{complaint.description}</h3></p>
+      <p><h4>Status: {complaint.status}</h4></p>
   
 
       {complaint.status !== "resolved" && (

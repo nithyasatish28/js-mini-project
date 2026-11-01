@@ -14,7 +14,7 @@ rows = [
 
 session = Session(engine)
 
-# just to clear the old data first that we had add while testing if it worked or not 
+# just to clear the old data first, that we had added while testing if it worked or not 
 session.query(Updates).delete()
 session.query(Complaints).delete()
 
