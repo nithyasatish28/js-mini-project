@@ -12,10 +12,10 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | A Akshay |working on main.py(endpoints)  |  |  |  |
-| Day 1 | Lakshya R |working on functions.py and error handling(backend)| yes |  |  |
-| Day 2 | A Akshay | working on componets folder |  |  |  |
-| Day 2 | Lakshya R |working on react warden.jsx  |  |  |  |
+| Day 1 | A Akshay |working on main.py(endpoints)  | yes | frontend | E7 |
+| Day 1 | Lakshya R |working on functions.py and error handling(backend)| yes | frontend |  |
+| Day 2 | A Akshay | working on componets folder |yes  |  |  |
+| Day 2 | Lakshya R |working on react warden.jsx  |  yes|  |  |
 | Day 3 | A Akshay |  |  |  |  |
 | Day 3 | Lakshya R |  |  |  |  |
 
