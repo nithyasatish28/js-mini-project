@@ -117,6 +117,7 @@ def event_roll_number(event_id: int, roll_number:int):
          "seats_left" : event.seats_left,
 }
 
+
 def student_registration(title: str, club: str, category:str, event_date: int, total_seats: int):
     session = session(engine)
 
@@ -147,22 +148,22 @@ event = Event(
         return response
 
 
-def get_event(event_id: int):
-      session = Session(engine)
-  
-      event = session.get(Event, event_id)
-      if not event:
-          session.close()
-          return {"error": "Event not found"}
-  
-      response = {
-          "id": event.id,
-          "title": event.title,
-          "club": event.club,
-          "event_date": event.event_date,
-          "seats_left": event.seats_left,
-      }
-  
-      session.close()
-      return response
-     
+ def get_event(event_id: int):
+     session = Session(engine)
+ 
+     event = session.get(Event, event_id)
+     if not event:
+         session.close()
+         return {"error": "Event not found"}
+ 
+     response = {
+         "id": event.id,
+         "title": event.title,
+         "club": event.club,
+         "event_date": event.event_date,
+         "seats_left": event.seats_left,
+     }
+ 
+     session.close()
+     return response
+    
