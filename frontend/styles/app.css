@@ -1,0 +1,179 @@
+
+/* Main application */
+
+.app {
+  width: 90%;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+/* Header */
+
+.header {
+  background-color: #24476b;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.header p {
+  font-size: 16px;
+}
+
+/* Main sections */
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.station-section,
+.sections > * {
+  background-color: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.station-section h2,
+.sections h2 {
+  margin-bottom: 18px;
+  color: #24476b;
+}
+
+/* Station cards */
+
+.station-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.station-card {
+  border: 1px solid #dce3eb;
+  border-radius: 10px;
+  padding: 18px;
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.station-card:hover {
+  border-color: #24476b;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.station-card h3 {
+  color: #24476b;
+  margin-bottom: 10px;
+}
+
+.station-card p {
+  margin-bottom: 6px;
+}
+
+/* Station status labels */
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.empty {
+  background-color: #ffe3e3;
+  color: #b42318;
+}
+
+.full {
+  background-color: #fff0d5;
+  color: #995c00;
+}
+
+.available {
+  background-color: #dcfce7;
+  color: #16743b;
+}
+
+/* My Umbrella and Add Station sections */
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+/* Forms */
+
+.sections input,
+.sections select {
+  display: block;
+  width: 100%;
+  padding: 11px;
+  margin: 10px 0 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.sections button,
+.station-section button,
+.station-details button {
+  background-color: #24476b;
+  color: white;
+  border: none;
+  padding: 11px 18px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.sections button:hover,
+.station-section button:hover,
+.station-details button:hover {
+  background-color: #18334f;
+}
+
+/* Station details */
+
+.station-details {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f4f7fb;
+  border-radius: 10px;
+}
+
+.station-details h3 {
+  margin-bottom: 10px;
+}
+
+/* Error messages */
+
+.error {
+  color: #b42318;
+  margin-top: 12px;
+}
+
+/* Smaller screens */
+
+@media (max-width: 700px) {
+  .sections {
+    grid-template-columns: 1fr;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .app {
+    width: 94%;
+  }
+}
