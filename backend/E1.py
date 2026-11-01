@@ -7,8 +7,8 @@ from fastapi import HTTPException
 def get_all_plants(plant_type=None):
 
     if plant_type is not None:
-        # .lower=.capitalize()
-        plant_type = plant_type.strip().lower()  
+        
+        plant_type = plant_type.strip().capitalize()  
 
         if plant_type not in ["succulent", "flowering", "herb", "indoor", "tree"]:
             raise HTTPException(status_code=404, detail="Invalid plant type")

@@ -12,11 +12,11 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Harsita |Create a Database, E2, E4, E6 |  |  |  |
+| Day 1 | Harsita |Create a Database, | Yes | E2, E4, E6  | No |
 | Day 1 | Hemanth Singh | E1,  |  yes |  |  |
-| Day 2 | Harsita |  |  |  |  |
+| Day 2 | Harsita | E2, E4, E6  | Yes | Frontend | No |
 | Day 2 | Hemanth Singh | E3, E5, E7 |yes |  |  |
-| Day 3 | Harsita |  |  |  |  |
+| Day 3 | Harsita | Frontend |  |  |  |
 | Day 3 | Hemanth Singh |  |  |  |  |
 
 ## 2. Endpoint tracker
@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 |  | ⬜ | ⬜ | ⬜ |Hemant|
+| E2 |  | ⬜ | ⬜ | ⬜ |Harsita|
+| E3 |  | ⬜ | ⬜ | ⬜ |Hemant|
+| E4 |  | ⬜ | ⬜ | ⬜ |Harsita|
+| E5 |  | ⬜ | ⬜ | ⬜ |Hemant|
+| E6 |  | ⬜ | ⬜ | ⬜ |Harsita|
+| E7 |  | ⬜ | ⬜ | ⬜ |Hemant|
 
 ## 3. Frontend tracker
 
