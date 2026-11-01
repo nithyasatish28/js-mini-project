@@ -31,7 +31,7 @@ def delete_event(event_id:int):
 def event_roll_number(event_id:int , roll_number:int):
     return function.event_roll_number(event_id=event_id , roll_number=roll_number)
 
-@app.post("/events")
+@app.get("/events")
 def create_event(title: str, club: str, category: str, event_date: int, total_seats: int)
     return function.create_event(
         title =title,
@@ -41,7 +41,7 @@ def create_event(title: str, club: str, category: str, event_date: int, total_se
         total_Seats=total_seats,
     )
 
-@app.get("/events/{events_id}")
+@app.patch("/events/{events_id}")
 def get_event(event_id: int):
     return function.get_event(event_id=event_id)
     
