@@ -24,7 +24,7 @@ Update your own row at every check-in.
 Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 🟡 in progress · ⬜ not started
 | ID | Method and path | API status | Frontend status | Test status | Owner |
 |---|---|---|---|---|---|
-| E1 | GET /complaints?status=&category= | ✅ | ✅ | ✅ | Rehaan (Functions), Darsh (AP1 & React) |
+| E1 | GET /complaints | ✅ | ✅ | ✅ | Rehaan (Functions), Darsh (AP1 & React) |
 | E2 | GET /complaints/{id} | ✅ | ✅ | ✅ | Rehaan (Functions), Darsh (AP1 & React) |
 | E3 | POST /complaints | ✅ | ✅ | ✅ | Rehaan (Functions), Darsh (AP1 & React) |
 | E4 | PATCH /complaints/{id}/status | ✅ | ✅ | ✅ | Rehaan (Functions), Darsh (AP1 & React) |
@@ -42,7 +42,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 ## 4. Blockers and help needed
 
-- 
+- None, all endpoints and the React parts work together.
 
 ## 5. How to run our app
 
@@ -52,6 +52,8 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
+python -m venv .venv
+.venv\Scripts\Activate
 pip install fastapi uvicorn sqlalchemy
 uvicorn main:app --reload --port 8001
 
