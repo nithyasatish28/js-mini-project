@@ -4,6 +4,7 @@ import './App.css'
 import Garden from "./components/Garden.jsx";
 import MyPlants from './components/MyPlants.jsx';
 import RollForm from './components/RollInput.jsx';
+import AddPlant from "./components/AddPlant.jsx";
 
 const API_URL = "http://127.0.0.1:8001"
 
@@ -22,6 +23,9 @@ function App() {
     <h1>My Plants</h1>
     <RollForm setAdoptedBy={setAdoptedBy} />
     <MyPlants plants ={plants} adopted_by={adoptedBy} setPlants={setPlants} />
+    <h1>Add Plants</h1>
+    <AddPlant setPlants={setPlants}/>
+
   </>
 }
 

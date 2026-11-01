@@ -40,8 +40,7 @@ function AdoptForm({plant,setPlants}) {
           onChange={handleChange}
         />
       </label>
-      <button type='submit'>Show</button>
-      <p>{RollNo}</p>
+      <button type='submit'>Adopt</button>
     </form>
   )
 }
