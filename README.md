@@ -54,12 +54,15 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 cd backend
 pip install fastapi uvicorn sqlalchemy
 uvicorn main:app --reload --port 8001
+
 ```
 
 **Frontend**
 
 ```bash
 cd frontend
+npm install
+npm run dev
 
 ```
 
