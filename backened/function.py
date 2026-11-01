@@ -6,6 +6,8 @@ DB_PATH="event.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
 Base = declarative_base()
 
+Categories = ["technical", "cultural"," sports", "workshop", "seminar"]
+
 class Event (Base):
     __tablename__ = "events"
     id = Column(Integer, primary_key=True )
@@ -28,22 +30,23 @@ class Registration(Base):
 Base.metadata.create_all(engine)
 
 def get_all_event(category:str):
-        session = Session(engine)
-        events = session.query(Event).all()
-        response = []
-        for event in events:
-             temp_event= {
-        "id": events.id,
-        "title": events.title,
-        "club":events.club,
-        "category": events.category,
-        "event_date":events.event_date,
-        "total_seats":events.total_seats,
-        "seats_left":events.seats_left
+    session = Session(engine)
+    events = session.query(Event).all()
+    response = []
+    for event in events:
+        temp_event= {
+            "id": event.id,
+            "title": event.title,
+            "club":event.club,
+            "category": event.category,
+            "event_date":event.event_date,
+            "total_seats":event.total_seats,
+            "seats_left":event.seats_left
         }
-            
-        session.close()
-        return response
+        response.append(temp_event)
+        
+    session.close()
+    return response
 
     
                                               
@@ -62,22 +65,37 @@ def get_event(id):
     return response
 
 
+<<<<<<< HEAD
+def add_new_event(title: str, club: str, category: str, event_date:datetime,total_seats:int, seats_left:int):
+    session = Session(engine)
+    event = Event(title=title, club=club, category=category, event_date=event_date, total_seats=total_seats, seats_left=seats_left)  
+    session.add(event)
+=======
 
 def add_new_event(title: str, club: str, category: str, events_date:datetime,total_seats:int):
     session = Session(engine)  
     events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+>>>>>>> 2627e1919b15cea241debe0220f720dd1d8bf095
     response = {
-    "title": events.title,
-    "club": events.club,
-    "event_date": events.event_date,
-    "total_seats":events.total_seats
-}
+        "title": event.title,
+        "club": event.club,
+        "event_date": event.event_date,
+        "total_seats":event.total_seats
+    }
+    session.commit()
     session.close()
     return response
 
 def delete_event(event_id):
  session = Session(engine)  
  events = session.get(Event,event_id)
+<<<<<<< HEAD
+ if events:
+    session.delete(events)
+    session.commit
+    session.close
+
+=======
  session.delete(events)
  session.commit
  session.close
@@ -104,6 +122,7 @@ def event_roll_number(event_id: int, roll_number:int):
          "registration_date" : registration.registration_date,
          "seats_left" : event.seats_left,
 }
+>>>>>>> 2627e1919b15cea241debe0220f720dd1d8bf095
 
 def student_registration(title: str, club: str, category:str, event_date: int, total_seats: int):
     session = session(engine)
