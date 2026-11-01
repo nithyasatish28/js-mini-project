@@ -53,10 +53,10 @@ def add_waterings(plant_id,roll_no,watered_on):
     Watering = Waterings(plant_id = plant_id,roll_no= roll_no,watered_on = watered_on)
     session.add(Watering)
     response = {
-        "id": Waterings.id,
-        "plant_id":Waterings.plant_id,
-        "roll_no":Waterings.roll_no,
-        "watered_on":Waterings.watered_on
+        "id": Watering.id,
+        "plant_id":Watering.plant_id,
+        "roll_no":Watering.roll_no,
+        "watered_on":Watering.watered_on
     }
     session.commit() 
     session.close()
@@ -90,6 +90,11 @@ def get_all_plants():
 def get_plant_by_id(plant_id):
     session = Session(engine)
     plant = session.get(Plants, plant_id) 
+    session.close()
+    if plant is None:
+        session.close()
+        return None
+
     response = {
         "id": plant.id,
         "name": plant.name,
@@ -141,17 +146,22 @@ def give_up_plant(plant_id):
 
 def plants_need_water():
     session = Session(engine)
-    plant = session.query(Plants).all()
+    plants = session.query(Plants).all()
     response = []
-    for plant in Plants:
+    for plant in plants:
         last_watered = (
             session.query(Waterings)
-            .filter(Waterings.plant_id == plant.id)   
-        )
-        if last_watered < date.today():
-            return ("need water")
+            .filter(Waterings.plant_id == plant.id)
+            .order_by(Waterings.watered_on.desc())
+            .first()
+)
+        
+
+        if last_watered is None:
+            need_water = True
         else:
-            return ("no need")
+            days = (date.today() - last_watered.watered_on).days
+            need_water = days >= plant.water_every_days
         
     temp_plant = {
         "id": plant.id,
