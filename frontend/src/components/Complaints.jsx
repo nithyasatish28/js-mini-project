@@ -5,6 +5,7 @@ function Complaints({ API_URL, refresh, onAction }) {
   const [complaints, setComplaints] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
   const [updates, setUpdates] = useState([]);
+  const [searched, setSearched] = useState(false);
 
   function fetchComplaints() {
     if (!rollNo) return;
@@ -13,6 +14,7 @@ function Complaints({ API_URL, refresh, onAction }) {
       .then((res) => res.json())
       .then((data) => {
         setComplaints(data);
+        setSearched(true);
       });
   }
 
@@ -56,12 +58,23 @@ function Complaints({ API_URL, refresh, onAction }) {
       <h2>My Complaints</h2>
 
       <div className="filters">
-        <input type="text" placeholder="Enter Roll Number" value={rollNo} onChange={(event) => setRollNo(event.target.value)} />
+        <input
+          type="text"
+          placeholder="Enter Roll Number"
+          value={rollNo}
+          onChange={(event) => {
+            setRollNo(event.target.value);
+            setSearched(false);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") fetchComplaints();
+          }}
+        />
         <button type="button" onClick={fetchComplaints}> Show </button>
       </div>
 
       <div className="complaint-list">
-        {complaints.length === 0 && rollNo && (
+        {searched && complaints.length === 0 && (
           <p>No complaints found for roll number {rollNo}.</p>
         )}
 
