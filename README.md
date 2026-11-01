@@ -16,7 +16,7 @@ Update your own row at every check-in.
 | Day 1 | S Thanmayee |Prepare API and DB requirements  |Done  |making the url to work without errors |def 1 particular fun  |
 | Day 2 | Padmaraju Poojitha |debugging the code  |Done  |booking form  | getting rejected while puhing |
 | Day 2 | S Thanmayee |testing all the endpoints  |Done  |adding frontend folders and files  |getting rejected while pushing  |
-| Day 3 | Padmaraju Poojitha |  |  |  |  |
+| Day 3 | Padmaraju Poojitha | created equipmentlist file and src file |Done  |push all the files to git  |None  |
 | Day 3 | S Thanmayee |  |  |  |  |
 
 ## 2. Endpoint tracker
@@ -29,15 +29,15 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E2 |get  | ✅ | ✅ | ✅ |Thanmayee  |
 | E3 |post  | ✅ | ✅ | ✅ |Thanmayee  |
 | E4 |patch  | ✅ | ✅ | ✅ |Thanmayee  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E5 |post | ✅ | ✅ | ✅ |Poojitha  |
+| E6 |get  | ✅ | ✅ | ✅ |Poojitha  |
+| E7 |patch  | ✅ | ✅ | ✅ |Poojitha  |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Equipment | ⬜ | ⬜ | ⬜ |  |
+| Equipment | ✅ | ✅ | ✅ |Poojitha  |
 | My bookings | ⬜ | ⬜ | ⬜ |  |
 | Add equipment | ⬜ | ⬜ | ⬜ |  |
 
