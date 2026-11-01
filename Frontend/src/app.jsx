@@ -73,7 +73,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Part 2: My Umbrella (Using your exact prop handlers) */}
+      {/* Part 2: My Umbrella*/}
       <MyUmbrella 
         stations={stations} 
         apiUrl={API_URL} 
