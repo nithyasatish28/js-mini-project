@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import AddEvent from "./components/AddEvents";
 import MyEvents from "./components/MyEvents";
-import API_URL from "./api";
+
+const API_URL = "http://127.0.0.1:8001";
 
 function App() {
   const[events, setEvents] = useState([]);
@@ -21,10 +22,11 @@ function App() {
   return (
     <>
         <h1>Campus Event Registration</h1>
+        <h2>Events</h2>
         <input placeholder="Enter Roll Number"
                value={rollNo}
                onChange={function(event) {
-            setRollNo(event.target.value);
+                   setRollNo(event.target.value);
               }}
         />
         {events.map(function(event) {
@@ -35,7 +37,17 @@ function App() {
                 <p>Category:{event.category}</p>
                 <p>Date:{event.event_date}</p>
                 <p>Seats Left: {event.seats_left}</p>
-                
+
+                <button onClick={functions(){
+                  register(event.id);
+            }}>
+              Register
+            </button>
+            <button onClick={functions(){
+              deleteEvent(event.id);
+            }}> 
+                Delete
+            </button>
             </div>
           )
         })}
