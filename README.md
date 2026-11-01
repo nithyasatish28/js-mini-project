@@ -64,13 +64,10 @@ cd frontend
 ```
 
 ## 6. Proof of work
+<img width="1600" height="837" alt="Frontend" src="https://github.com/user-attachments/assets/275b9912-0b15-4538-b401-783085d04cb5" />
+<img width="1586" height="701" alt="Backend" src="https://github.com/user-attachments/assets/0dabb6a7-6f9a-4950-b69c-ad897cfd5450" />
 
- Frontend Application
- ![Uploading Frontend.png…]()
 
-
-Backend API Documentation
-![Uploading Backend.png…]()
 
 
 
