@@ -35,9 +35,9 @@ function getStations() {
     <>
       <h1>Umbrella Sharing Stations</h1>
       <p>{message}</p>
-      <StationList stations={stations} onRefresh={getStations} />
-      <MyUmbrella stations={stations} onRefresh={getStations} />
-      <AddStation onRefresh={getStations} />
+      <StationList stations={stations} onAdd={getStations} />
+      <MyUmbrella stations={stations} onAdd={getStations} />
+      <AddStation onAdd={getStations} />
     </>
   );
 }
