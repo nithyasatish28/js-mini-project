@@ -87,13 +87,20 @@ def get_all_plants():
 
 
 # 4)getting a plant by id
+
 def get_plant_by_id(plant_id):
     session = Session(engine)
-    plant = session.get(Plants, plant_id) 
-    session.close()
+
+    plant = session.get(Plants, plant_id)
     if plant is None:
         session.close()
         return None
+    waterings = (
+        session.query(Waterings)
+        .filter(Waterings.plant_id == plant_id)
+        .order_by(Waterings.watered_on.desc())
+        .all()
+    )
 
     response = {
         "id": plant.id,
@@ -101,11 +108,19 @@ def get_plant_by_id(plant_id):
         "type": plant.type,
         "water_every_days": plant.water_every_days,
         "location": plant.location,
-        "adopted_by": plant.adopted_by
+        "adopted_by": plant.adopted_by,
+        "waterings": [
+            {
+                "id": watering.id,
+                "plant_id": watering.plant_id,
+                "roll_no": watering.roll_no,
+                "watered_on": watering.watered_on
+            }
+            for watering in waterings
+        ]
     }
     session.close()
     return response
-
 
 # 5)Adopting a plant
 def adopt_plant(plant_id, roll_no):
