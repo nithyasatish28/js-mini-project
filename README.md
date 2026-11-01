@@ -14,9 +14,9 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Yashwant Gowda | created framework | yes | handleing backend  |  |
 | Day 1 | S Mohammed Abrar ul Haq | will handle the database | not yet | preparing sample data to test api |  |
-| Day 2 | Yashwant Gowda |  |  |  |  |
+| Day 2 | Yashwant Gowda | handleing backend  | yes | testing api |  |
 | Day 2 | S Mohammed Abrar ul Haq |  |  |  |  |
-| Day 3 | Yashwant Gowda |  |  |  |  |
+| Day 3 | Yashwant Gowda | testing api |  yes|  |  |
 | Day 3 | S Mohammed Abrar ul Haq |  |  |  |  |
 
 ## 2. Endpoint tracker
@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | GET	/events	Get all events | ✅ | ⬜ | ⬜ |  |
+| E2 |  | ✅ | ⬜ | ⬜ |  |
+| E3 |  | ✅ | ⬜ | ⬜ |  |
+| E4 |  | ✅ | ⬜ | ⬜ |  |
+| E5 |  | ✅ | ⬜ | ⬜ |  |
+| E6 |  | ✅ | ⬜ | ⬜ |  |
+| E7 |  | ✅ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
