@@ -1,3 +1,4 @@
+from datetime import date, datatime, timedelta
 from fastapi import FastAPI, HTTPException, Body, Query
 from fastapi.middleware.cors import CORSMiddleware
 import function
@@ -11,6 +12,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
 
 
 @app.get("/equipment")
@@ -64,11 +66,15 @@ def student_bookings(roll_no: str = Query(...)):
         raise HTTPException(status_code=422,detail="Roll number cannot be empty.")
     return function.get_student_bookings(roll_no)
 
-@app.patch("/bookings/{id}/cancel")
+
+@app.patch("/bookings/{id}/cancel",
+    responses={404: {"description": "Booking not found"}, 409: {"description": "Booking is already cancelled"}})
 def cancel_booking(id: int):
     result = function.cancel_booking(id)
     if result is None:
         raise HTTPException(status_code=404,detail="Booking not found.")
-    if "error" in result:
+    if isinstance(result, dict) and "error" in result:
         raise HTTPException(status_code=result["error"],detail=result["detail"])
+
     return result
+    
