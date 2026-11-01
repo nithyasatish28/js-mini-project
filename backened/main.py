@@ -32,7 +32,7 @@ def event_roll_number(event_id:int , roll_number:int):
     return function.event_roll_number(event_id=event_id , roll_number=roll_number)
 
 @app.get("/events")
-def create_event(title: str, club: str, category: str, event_date: int, total_seats: int)
+def create_event(title: str, club: str, category: str, event_date: int, total_seats: int):
     return function.create_event(
         title =title,
         club =club,
