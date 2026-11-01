@@ -85,4 +85,14 @@ npm run dev
 
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
 
-![Our app](screenshot.png)
+![Our app](screenshot.png) 
+
+Frontend 
+<img width="728" height="1036" alt="WhatsApp Image 2026-11-01 at 23 23 39" src="https://github.com/user-attachments/assets/2eba9d10-cf70-4c46-8ff6-01d60f7c9df0" />
+
+Backend 
+<img width="1380" height="862" alt="WhatsApp Image 2026-11-01 at 23 24 23" src="https://github.com/user-attachments/assets/c0985221-fc4c-44ae-9be4-3d1e2911bb89" />
+
+
+
+
