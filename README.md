@@ -65,6 +65,8 @@ cd frontend
 
 ## 6. Proof of work
 
-Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
+Frontend Application
+![Frontend](Frontend.png.jpeg)
 
-![Our app](screenshot.png)
+ Backend API Documentation
+![Backend](Backend.png.jpeg)
