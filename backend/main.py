@@ -31,8 +31,7 @@ def add_event(title: str, club: str, category: str, event_date:date, total_seats
         raise HTTPException(422, "Invalid category")
     if total_seats < 1 or total_seats > 200:
         raise HTTPException(422, "Total seats must be between 1 and 200")
-    return functions.add_event(title=title, club=club, category=category, event_date=event_date, total_seats=total_seats)
-
+    return functions.add_event(title=title, club=club, category=category, event_date=str(event_date), total_seats=total_seats)
 
 @app.delete("/events/{event_id}")
 def delete_event(event_id: int):
