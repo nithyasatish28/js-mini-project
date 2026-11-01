@@ -16,8 +16,8 @@ Update your own row at every check-in.
 | Day 1 | Lakshya R |working on functions.py and error handling(backend)| yes | frontend |  |
 | Day 2 | A Akshay | working on componets folder |yes  |  |  |
 | Day 2 | Lakshya R |working on react warden.jsx  |  yes|  |  |
-| Day 3 | A Akshay |  |  |  |  |
-| Day 3 | Lakshya R |  |  |  |  |
+| Day 3 | A Akshay | Error handling in frontend | yes |  |  |
+| Day 3 | Lakshya R |connecting backend to frontend  | yes |  |  |
 
 ## 2. Endpoint tracker
 
