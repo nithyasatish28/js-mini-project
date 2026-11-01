@@ -24,6 +24,10 @@ function AddPlant({ API_URL, onAdd }) {
   }
 
   return (
+    <div>
+      <h2>Add a New Plant</h2>
+    
+
     <form onSubmit={addPlant}>
       <label>
         <strong>Name:</strong>
@@ -57,6 +61,7 @@ function AddPlant({ API_URL, onAdd }) {
 
       <button type="submit">Add Plant</button>
     </form>
+    </div>
   );
 }
 
