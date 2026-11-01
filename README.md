@@ -16,7 +16,7 @@ Update your own row at every check-in.
 | Day 1 | B Chaitanya | Backend/ Creating Database  | completed  |Creating Endpoints and testing them in swagger | Nothing |
 | Day 2 | Soham Nanduri | Frontend MyUmbrella.jsx and update with API and backend | Completed | Complete the README for frontend | Nothing |
 | Day 2 | B Chaitanya | created Endpoints/ testing and Debugging | Completed | Update the Readme file | Nothing |
-| Day 3 | Soham Nanduri | README for frontend | In Progress |  |  |
+| Day 3 | Soham Nanduri | README for frontend | Completed | Present the mini-project | Nothing |
 | Day 3 | B Chaitanya |  |  |  |  |
 
 ## 2. Endpoint tracker
