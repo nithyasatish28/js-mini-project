@@ -36,12 +36,12 @@ def seed_data():
     session = Session(engine)
     if session.query(plants).count() == 0:
         plant_records = [
-            plants(id=1, name="Tulsi", type="herb", location="Block A garden", water_every_days=2, adopted_by="AU25UG001"),
-            plants(id=2, name="Aloe Vera", type="succulent", location="Library window", water_every_days=10, adopted_by="AU25UG002"),
-            plants(id=3, name="Rose", type="flowering", location="Main gate", water_every_days=2, adopted_by="AU23UG045"),
-            plants(id=4, name="Money Plant", type="indoor", location="Admin office", water_every_days=5, adopted_by="AU34UG009"),
-            plants(id=5, name="Neem", type="tree", location="Canteen", water_every_days=7, adopted_by="AU26UG005"),
-            plants(id=6, name="Mint", type="herb", location="Hostel terrace", water_every_days=1, adopted_by="AU21UG001"),
+            plants(id=1, name="Tulsi", type="herb", location="Block A garden", water_every_days=2, adopted_by="AU101"),
+            plants(id=2, name="Aloe Vera", type="succulent", location="Library window", water_every_days=10, adopted_by="AU102"),
+            plants(id=3, name="Rose", type="flowering", location="Main gate", water_every_days=2, adopted_by="AU103"),
+            plants(id=4, name="Money Plant", type="indoor", location="Admin office", water_every_days=5, adopted_by="AU102"),
+            plants(id=5, name="Neem", type="tree", location="Canteen", water_every_days=7, adopted_by="AU104"),
+            plants(id=6, name="Mint", type="herb", location="Hostel terrace", water_every_days=1, adopted_by="AU105"),
             plants(id=7, name="Jade Plant", type="succulent", location="Lab 3", water_every_days=14, adopted_by=None),
             plants(id=8, name="Hibiscus", type="flowering", location="Block B entrance", water_every_days=3, adopted_by=None),
             plants(id=9, name="Snake Plant", type="indoor", location="Reception", water_every_days=10, adopted_by=None),
@@ -86,9 +86,6 @@ def unadopt_plant(id):
     if not plant:
         session.close()
         raise HTTPException(status_code=404, detail="Plant not found")
-    if not plant.adopted_by:
-        session.close()
-        raise HTTPException(status_code=400, detail="Plant is not currently adopted")
 
     plant.adopted_by = None
     session.commit()
@@ -99,19 +96,35 @@ def unadopt_plant(id):
 def water_plant(id, roll_no):
     session = Session(engine)
     plant = session.get(plants, id)
-    if not plant:
+
+    if plant is None:
         session.close()
         raise HTTPException(status_code=404, detail="Plant not found")
-    
-    watered_on = datetime.now()
-    watering = waterings(plant_id=id, roll_no=roll_no, watered_on=watered_on)
-    session.add(watering)
-    session.commit()
-    session.refresh(watering)
-    response = {"id": watering.id, "plant_id": watering.plant_id,
-        "roll_no": watering.roll_no, "watered_on": watering.watered_on}
-    session.close()
 
+    plant_owner = plant.adopted_by
+
+    if plant_owner is None or plant_owner == "None" or plant_owner == "Nobody":
+        session.close()
+        raise HTTPException(status_code=400, detail="This plant is not adopted yet, so you cannot water it.")
+
+    if plant_owner != roll_no:
+        session.close()
+        raise HTTPException(status_code=403, detail="You can only water plants that you have adopted.")
+
+    watered_on = datetime.now()
+    new_watering = waterings(plant_id=id, roll_no=roll_no, watered_on=watered_on)
+
+    session.add(new_watering)
+    session.commit()
+
+    response = {
+        "id": new_watering.id, 
+        "plant_id": new_watering.plant_id,
+        "roll_no": new_watering.roll_no, 
+        "watered_on": new_watering.watered_on
+    }
+    
+    session.close()
     return response
 
     
