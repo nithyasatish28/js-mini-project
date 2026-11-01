@@ -53,6 +53,7 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
+uvicorn main:app --reload --port 8001 
 
 ```
 
@@ -60,6 +61,7 @@ cd backend
 
 ```bash
 cd frontend
+npm run dev
 
 ```
 
