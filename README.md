@@ -12,9 +12,9 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Aditya Sivaji Perumalla |  |  |  |  |
-| Day 2 | Aditya Sivaji Perumalla |  |  |  |  |
-| Day 3 | Aditya Sivaji Perumalla |  |  |  |  |
+| Day 1 | Aditya Sivaji Perumalla | i will do some endpoints functions | 3 function are completed | remaining endpoints functions | stuck on some typeerrors and tablenames|
+| Day 2 | Aditya Sivaji Perumalla | remaining endpoint functions | 6 functions are completed | remaining endpoint and error handling | stuck on some edge cases |
+| Day 3 | Aditya Sivaji Perumalla | adding the edge cases for every functions | all edge cases are completed and backend and api working properly | i have to do the frontend | inserting different parameters for different functions |
 
 ## 2. Endpoint tracker
 
@@ -22,7 +22,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |get/stations  | 🟡 | ⬜ | ⬜ |  |
+| E1 |get/stations  | ✅ | ⬜ | ⬜ |  |
 | E2 |  | ⬜ | ⬜ | ⬜ |  |
 | E3 |  | ⬜ | ⬜ | ⬜ |  |
 | E4 |  | ⬜ | ⬜ | ⬜ |  |
