@@ -22,8 +22,8 @@ class Events(Base):
 class Registrations(Base):
     __tablename__ = "registrations"
     id = Column(Integer,primary_key=True)
-    event_id = Column(Integer,ForeignKey("events.id"),nullable=False)
-    roll_no = Column(String,nullable=False)
+    event_id = Column(Integer,ForeignKey("events.id"))
+    roll_no = Column(String)
     registered_on = Column(DateTime,default=datetime.now)
     cancelled_on = Column(DateTime,nullable=True)
 Base.metadata.create_all(engine)
@@ -93,39 +93,25 @@ def add_event(title,club,category,event_date,total_seats):
 def delete_event(event_id):
     session = Session(engine)
     event = session.get(Events,event_id)
-
     if event is None:
-        session.close()
-        return None
-    registrations = session.query(Registrations).filter(
-        Registrations.event_id == event_id,
-        Registrations.cancelled_on == None
-    ).all()
-    if len(registrations) > 0:
-        session.close()
-        return {"error" : "This event has active registrations"}
-    session.query(Registrations).filter(
-        Registrations.event_id ==event_id
-
-    ).delete()
-    session.delete(event)
-    session.commit()     
+        session.delete(event)
+        session.commit()
+        result = True
+    else:
+        result = False
     session.close()
-    return{"message":"Event deleted successfully"}
+    return result        
        
 
-def register_student(event_id,roll_no):
+def register_event(event_id,roll_no):
     session = Session(engine)
     event = session.get(Events,event_id)
     if event is None:
         session.close()
-        return None
+        return "Event not found"
     if event.seats_left <= 0:
         session.close()
-        return{"error":"No seats available"}
-    if date.fromisoformat(event.event_date) < date.today():
-        session.close()
-        return{"error":"Event has already passed"}
+        return "No seats available"
     registration = session.query(Registrations).filter(
         Registrations.event_id == event_id,
         Registrations.roll_no == roll_no,
@@ -133,18 +119,17 @@ def register_student(event_id,roll_no):
     ).first()
     if registration:
         session.close()
-        return{"error":"Already registered"}
+        return "Already registered"
     registration = Registrations(event_id=event_id,roll_no= roll_no)
     session.add(registration)
     event.seats_left=event.seats_left - 1
     session.commit()
     session.close()
-    return{"message":"Registration successful"}
+    return "Registration successful"
 
 
 def get_student_registrations(roll_no):
     session = Session(engine)
-
     registrations = session.query(Registrations).filter(
         Registrations.roll_no == roll_no,
         Registrations.cancelled_on == None
@@ -152,14 +137,12 @@ def get_student_registrations(roll_no):
     response = []
     for registration in registrations:
         event = session.get(Events,registration.event_id)
-
         temp_item = {
             "registration_id": registration.id,
             "event_id": event.id,
             "title":event.title,
             "event_date":event.event_date
         }
-
         response.append(temp_item)
     session.close()
     return response
@@ -173,11 +156,11 @@ def cancel_registration(registration_id):
         return None
     if registration.cancelled_on != None:
         session.close()
-        return {"error":"Already cancelled"}
+        return "Already cancelled"
     registration.cancelled_on = datetime.now()
     event = session.get(Events,registration.event_id)
     event.seats_left = event.seats_left + 1
     session.commit()
     session.close()
-    return {"message":"Registration cancelled successfully"}
+    return "Registration cancelled successfully"
   
