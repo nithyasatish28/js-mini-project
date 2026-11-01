@@ -6,17 +6,11 @@ app = FastAPI(
     title="event tracker API"
 )
 
-
-
-
-
 @app.get("/events")
 def get_all_events(category=None):
     if category == "":
         category = None
     return function.get_all_event(category=category )
-
-
 
 @app.get ("/events/{event_id}")
 def get_event(event_id:int):
