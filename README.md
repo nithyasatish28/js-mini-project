@@ -12,12 +12,12 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Thanuja Reddy | understand project requirements ,design API end points , plan sqlite database structure |  |  |  |
+| Day 1 | Thanuja Reddy | understand project requirements ,design API end points , plan sqlite database structure | Yes | Write main.py | no |
 | Day 1 | Supriya R |Setup backend folder  | yes | creating functions | No |
-| Day 2 | Thanuja Reddy |  |  |  |  |
-| Day 2 | Supriya R |Setup frontend folder  |No  |  |  |
-| Day 3 | Thanuja Reddy |  |  |  |  |
-| Day 3 | Supriya R |final checks |Yes  |  |  |
+| Day 2 | Thanuja Reddy | main.py endpoints with all rules | yes | Test all rules in /docs |No  |
+| Day 2 | Supriya R |Setup frontend folder  |No  | writing code for frontend |No  |
+| Day 3 | Thanuja Reddy | Writing code for components folder and Final checks|Yes  | Demo | No |
+| Day 3 | Supriya R |final checks |Yes  |Demo  | No |
 
 ## 2. Endpoint tracker
 
