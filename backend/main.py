@@ -45,7 +45,7 @@ def add_station(name: str, location: str, capacity: int, umbrellas_available: in
         raise HTTPException(status_code=422, detail="Capacity must be between 1 and 30")
 
     if umbrellas_available < 0 or umbrellas_available > capacity:
-        raise HTTPException(status_code=422, detail="AvailabilityToBorrow must be between 0 and capacity")
+        raise HTTPException(status_code=422, detail="Availability to borrow must be between 0 and capacity")
 
     response = functions.add_station(name, location, capacity, umbrellas_available)
 

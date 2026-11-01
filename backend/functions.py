@@ -1,4 +1,3 @@
-
 from sqlalchemy import Integer, String, Column, ForeignKey, create_engine, DateTime
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime
@@ -239,4 +238,3 @@ def get_stations_needs_attention():
 
     session.close()
     return response
-
