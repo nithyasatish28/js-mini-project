@@ -10,23 +10,38 @@ function MyUmbrella({ stations, onAdd }) {
   const [message, setMessage] = useState("");
 
   function getUmbrella() {
+    if (rollNo.trim() === "") {
+      setMessage("Please enter your roll number");
+      setBorrow(null);
+      return;
+    }
+
     fetch(`${API_URL}/students/${rollNo}/umbrella`)
       .then(async (response) => {
         const data = await response.json();
 
         if (!response.ok) {
-          setMessage(data.detail);
+          setMessage("No umbrella borrowed by this student");
           setBorrow(null);
           return;
         }
 
         setBorrow(data);
+        setStationId("");
         setMessage("");
       })
-      .catch((error) => console.log("Fetch error:", error));
+      .catch((error) => {
+        setMessage("Unable to connect to the server");
+        console.log("Fetch error:", error);
+      });
   }
 
   function returnUmbrella() {
+    if (stationId === "") {
+      setMessage("Please select a return station");
+      return;
+    }
+
     fetch(`${API_URL}/borrows/${borrow.borrow_id}/return?station_id=${stationId}`, {
       method: "PATCH"
     })
@@ -39,10 +54,14 @@ function MyUmbrella({ stations, onAdd }) {
         }
 
         setBorrow(null);
+        setStationId("");
         setMessage("Umbrella returned successfully");
         onAdd();
       })
-      .catch((error) => console.log("Fetch error:", error));
+      .catch((error) => {
+        setMessage("Unable to connect to the server");
+        console.log("Fetch error:", error);
+      });
   }
 
   return (
@@ -55,7 +74,8 @@ function MyUmbrella({ stations, onAdd }) {
       {borrow && (
         <>
           <p>{borrow.station_name}</p>
-          <select onChange={(e) => setStationId(e.target.value)}>
+          <select value={stationId} onChange={(e) => setStationId(e.target.value)}>
+            <option value="">Select station</option>
             {stations.map((station) => (
               <option key={station.id} value={station.id}>{station.name}</option>
             ))}

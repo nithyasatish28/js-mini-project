@@ -11,6 +11,31 @@ function AddStation({ onAdd }) {
   const [message, setMessage] = useState("");
 
   function addStation() {
+    if (name === "" || location === "") {
+      setMessage("Please enter station name and location");
+      return;
+    }
+
+    if (capacity === "" || umbrellas === "") {
+      setMessage("Please enter capacity and available umbrellas");
+      return;
+    }
+
+    if (capacity < 1 || capacity > 30) {
+      setMessage("Capacity must be between 1 and 30");
+      return;
+    }
+
+    if (umbrellas < 0) {
+      setMessage("Available umbrellas cannot be negative");
+      return;
+    }
+
+    if (umbrellas > capacity) {
+      setMessage("Available umbrellas cannot exceed capacity");
+      return;
+    }
+
     fetch(`${API_URL}/stations?name=${name}&location=${location}&capacity=${capacity}&umbrellas_available=${umbrellas}`, {
       method: "POST"
     })
@@ -25,7 +50,10 @@ function AddStation({ onAdd }) {
         setMessage("Station added successfully");
         onAdd();
       })
-      .catch((error) => console.log("Fetch error:", error));
+      .catch((error) => {
+        setMessage("Unable to connect to the server");
+        console.log("Fetch error:", error);
+      });
   }
 
   return (
@@ -42,3 +70,4 @@ function AddStation({ onAdd }) {
 }
 
 export default AddStation;
+

@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from "react";
 import StationList from "./components/StationList";
 import MyUmbrella from "./components/MyUmbrella";
@@ -21,16 +22,24 @@ function App() {
         const data = await response.json();
 
         if (!response.ok) {
-          console.log("API error:", data);
+          setMessage(data.detail);
           return;
         }
 
         setStations(data);
       })
-      .catch((error) => console.log("Fetch error:", error));
+      .catch((error) => {
+        setMessage("Unable to connect to the server");
+        console.log("Fetch error:", error);
+      });
   }
 
   function borrowUmbrella(stationId) {
+    if (rollNo.trim() === "") {
+      setMessage("Please enter your roll number");
+      return;
+    }
+
     fetch(`${API_URL}/borrow?roll_no=${rollNo}&station_id=${stationId}`, {
       method: "POST"
     })
@@ -45,7 +54,10 @@ function App() {
         setMessage("Umbrella borrowed successfully");
         getStations();
       })
-      .catch((error) => console.log("Fetch error:", error));
+      .catch((error) => {
+        setMessage("Unable to connect to the server");
+        console.log("Fetch error:", error);
+      });
   }
 
   return (
