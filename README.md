@@ -13,9 +13,9 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Thanuja Reddy | understand project requirements ,design API end points , plan sqlite database structure |  |  |  |
-| Day 1 | Supriya R |Setup backend folder  |  |  |  |
+| Day 1 | Supriya R |Setup backend folder  | yes | creating functions | No |
 | Day 2 | Thanuja Reddy |  |  |  |  |
-| Day 2 | Supriya R |  |  |  |  |
+| Day 2 | Supriya R |Setup frontend folder  |  |  |  |
 | Day 3 | Thanuja Reddy |  |  |  |  |
 | Day 3 | Supriya R |  |  |  |  |
 
@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |get /events | ⬜ | ⬜ | ⬜ | Thanuja |
-| E2 |get /events/{event_id}  | ⬜ | ⬜ | ⬜ | Thanuja |
-| E3 |post /events  | ⬜ | ⬜ | ⬜ |Thanuja  |
-| E4 |DELETE /events/{events_id}  | ⬜ | ⬜ | ⬜ | Thanuja |
-| E5 |POST /events/{event_id}/registrations  | ⬜ | ⬜ | ⬜ | Thanuja |
-| E6 |GET /registrations?roll_no=  | ⬜ | ⬜ | ⬜ | Thanuja |
-| E7 |PATCH /registrations/{registration_id}/cancel  | ⬜ | ⬜ | ⬜ | Thanuja |
+| E1 |GET /events | ✅ | ✅ | ⬜ | Thanuja |
+| E2 |GET /events/{event_id}  | ✅ | ✅ | ⬜ | Thanuja |
+| E3 |POST /events  | ✅ | ✅ | ⬜ |Thanuja  |
+| E4 |DELETE /events/{event_id}  | ✅ | ✅ | ⬜ | Thanuja |
+| E5 |POST /events/{event_id}/registrations  | ✅ | ✅ | ⬜ | Thanuja |
+| E6 |GET /registrations/{roll_no} | ✅ | ✅ | ⬜ | Thanuja |
+| E7 |PATCH /registrations/{registration_id}/cancel  | ✅ | ✅ | ⬜ | Thanuja |
 
 ## 3. Frontend tracker
 
@@ -51,15 +51,10 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 **Backend**
 
-```powershell
+```bash
 cd backend
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python -m uvicorn main:app --reload
-```
 
-Open http://127.0.0.1:8000 for the API status or http://127.0.0.1:8000/docs to try the endpoints.
+```
 
 **Frontend**
 
