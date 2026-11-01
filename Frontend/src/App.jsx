@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import EquipmentList from "./components/EquipmentList";
+import MyBookings from "./components/MyBookings";
+import AddEquipment from "./components/AddEquipment";
 
 const API_URL = "http://127.0.0.1:8001";
 
@@ -38,6 +40,14 @@ function App() {
       .then(setEquipment)
       .catch((requestError) => setError(requestError.message));
   }, [equipmentType]);
+
+
+  // Reload equipment after adding new equipment
+  function loadEquipment() {
+    fetchJson(API_URL + "/equipment")
+      .then(setEquipment)
+      .catch((requestError) => setError(requestError.message));
+  }
 
   function changeEquipmentStatus(equipment_id, in_service) {
     const query = new URLSearchParams({ in_service: String(in_service) });
@@ -92,6 +102,13 @@ function App() {
   return (
     <main className="page-shell">
       <h1>Lab equipment</h1>
+
+      <AddEquipment
+        API_URL={API_URL}
+        onEquipmentAdded={loadEquipment}
+      />
+
+      <MyBookings API_URL={API_URL} />
 
       <label>
         Equipment type{" "}
