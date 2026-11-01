@@ -23,7 +23,7 @@ Update your own row at every check-in.
 | Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment  |Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  |
 >>>>>>> Stashed changes
 | Day 2 | Sanghavi S |  |  |  |  |
-| Day 2 | Naidile D |  |  |  |  |
+| Day 2 | Naidile D | heavy spelling mistakes i faced captital and small letters also . insted of availability i was writing station in so  many places . / ? missing in some place . more space also error i faced . missing the arrow error . ? missing not found it shows . sometimes failed to fetch the data because of wrong terminal .  | i completed frontend statiolist , stationitem , addstation, myumbrella, app.jsx |  |  |
 | Day 3 | Sanghavi S |  |  |  |  |
 | Day 3 | Naidile D |  |  |  |  |
 
