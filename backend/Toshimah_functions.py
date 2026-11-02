@@ -2,6 +2,8 @@ from sqlalchemy import Integer, String, DateTime, Column, ForeignKey, create_eng
 from sqlalchemy.orm import Session, declarative_base;
 from datetime import datetime;
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+
 DB_PATH = "garden.db"
 
 engine = create_engine(f"sqlite:///{DB_PATH}")
@@ -60,10 +62,26 @@ def seed_data():
     session.close()
         
         
+
+app = FastAPI()
+
+# CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 seed_data()
 
 
 def add_plant(name, type, location, water_every_days):
+    if name.strip() == "" or name.strip().isdigit():
+        raise HTTPException(status_code=422, detail="Name must be proper text, not a number")
+    if location.strip() == "" :
+        raise HTTPException(status_code=422, detail="Location must be proper text, not a number")
     session = Session(engine)
     plant = plants(name = name , type= type , location = location ,  water_every_days = water_every_days, adopted_by = None)
     session.add(plant)
