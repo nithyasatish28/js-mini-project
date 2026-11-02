@@ -14,9 +14,9 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | Amruta Nagavi | setup database and create tables |  |  |  |
 | Day 1 | Toshimah Devi Palanadoo | set up fastAPI and CORS and seed data | yes | the AppPlant.jsx  |  |
-| Day 2 | Amruta Nagavi |  |  |  |  |
+| Day 2 | Amruta Nagavi | did App.jsx and garden.py | yes | make sure the app works on inputs | yes |
 | Day 2 | Toshimah Devi Palanadoo | start with AddPlant component | yes | the completion of frontend |  |
-| Day 3 | Amruta Nagavi |  |  |  |  |
+| Day 3 | Amruta Nagavi | update the garden.py  | yes |  |  |
 | Day 3 | Toshimah Devi Palanadoo | Completed the frontend and made sure everything works | yes |  |  |
 
 ## 2. Endpoint tracker
@@ -25,19 +25,19 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | GET/plants | ✅ | ✅ | ✅ | Amruta |
+| E2 | GET/plants/{id} | ✅ | ✅ | ✅ | Amruta |
 | E3 |POST/plants  | ✅ | ✅ | ✅ | Toshimah |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
+| E4 | PATCH/plants/{id}/{roll_no} | ✅ | ✅ | ✅ |Amruta  |
 | E5 |PATCH/plants/{id}  | ✅ | ✅ | ✅ | toshimah |
 | E6 |POST/plants/{id}  | ✅ | ✅ | ✅ | Toshimah |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E7 | GET/plants/needs-water| ✅ | ✅ | ✅ | Amruta |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Garden | ⬜ | ⬜ | ⬜ |  |
+| Garden | ✅  | ✅  | ⬜ |  |
 | My plants | ✅ | ✅ | ⬜ |  |
 | Add a plant | ✅ | ✅ | ⬜ |  |
 
