@@ -41,7 +41,6 @@ function StationList({ API_URL, stations, handleResult }) {
       {/* passing with no value */}
       <button onClick={() => setAttention(null)}>Show all</button>
       {/* calling fun with value  */}
-     {details ? <p>Details: {details.name}, capacity {details.capacity}</p> : <p></p>}
       <ol>
         {listToShow.map((station) => (
           <StationItem key={station.id} station={station} onBorrow={onBorrow} onDetails={onDetails} />

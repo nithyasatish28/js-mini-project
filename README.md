@@ -12,6 +12,7 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
+<<<<<<< HEAD
 | Day 1 | Sanghavi S | Understand project requirements, design API endpoints and plan SQLite database structure. |  |  |  |
 
 | Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment. Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  | terminal to run |
@@ -20,7 +21,15 @@ Update your own row at every check-in.
 | Day 2 | Sanghavi S |  |  |  |  |
 | Day 2 | Naidile D |   |  |  |  |
 | Day 3 | Sanghavi S |  |  |  |  |
-| Day 3 | Naidile D |  |  |  |  |
+=======
+| Day 1 | Sanghavi S | Understand project requirements, design API endpoints and plan SQLite database structure. |started implementing API endpoints.|Complete backend functions and test all endpoints in Swagger.  | Understanding API parameters  |
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+| Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment. Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  | terminal to run |
+| Day 2 | Sanghavi S | Worked on backend database functions, implemented API endpoints for stations, borrowing and returning umbrellas, and added input validations. | Completed the main backend functions and API endpoints. | Test all endpoints and handle different error conditions in Swagger. | Connection errors|
+| Day 2 | Naidile D | heavy spelling mistakes i faced captital and small letters also . insted of availability i was writing station in so  many places . / ? missing in some place . more space also error i faced . missing the arrow error . ? missing not found it shows . sometimes failed to fetch the data because of wrong terminal .  | i completed frontend statiolist , stationitem , addstation, myumbrella, app.jsx |  |  |
+| Day 3 | Sanghavi S |Tested backend endpoints in Swagger  | Completed backend testing |  |  Debugging API responses and handling different validation cases.|
+| Day 3 | Naidile D |tested frontend app  |  |  |  |
 
 ## 2. Endpoint tracker
 
@@ -28,41 +37,50 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |GET/stations  | ⬜ | ⬜ | ⬜ |  |
-| E2 |GET/stations/{station_id}  | ⬜ | ⬜ | ⬜ |  |
-| E3 |POST/stations  | ⬜ | ⬜ | ⬜ |  |
-| E4 |POST/borrow  | ⬜ | ⬜ | ⬜ |  |
-| E5 |PATCH /borrows/{borrow_id}/return  | ⬜ | ⬜ | ⬜ |  |
-| E6 |GET /students/{roll_no}/umbrella  | ⬜ | ⬜ | ⬜ |  |
-| E7 |GET /stations/needs-attention | ⬜ | ⬜ | ⬜ |  |
+| E1 |GET/stations  | ✅ | y⬜ | y⬜ |  |
+| E2 |GET/stations/{station_id}  | ✅ | y⬜ | y⬜ |  |
+| E3 |POST/stations  | ✅ | y⬜ | y⬜ |  |
+| E4 |POST/borrow  | ✅ | y⬜ | y⬜ |  |
+| E5 |PATCH /borrows/{borrow_id}/return  | ✅ | y⬜ | y⬜ |  |
+| E6 |GET /students/{roll_no}/umbrella  | ✅ | y⬜ |y ⬜ |  |
+| E7 |GET /stations/needs-attention | ✅ | y⬜ | y⬜ |  |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Stations | ⬜ | ⬜ | ⬜ |  |
-| My umbrella | ⬜ | ⬜ | ⬜ |  |
-| Add a station | ⬜ | ⬜ | ⬜ |  |
+| Stations | y⬜ | y⬜ | n⬜ |  |
+| My umbrella | y⬜ | y⬜ | n⬜ |  |
+| Add a station | y⬜ | y⬜ | n⬜ |  |
 
 ## 4. Blockers and help needed
-
+To do some detailed work like creative thing .
 - 
 
 ## 5. How to run our app
 
 Fill this in by the end of Day 2. Someone who has never seen your code should be able to follow it.
+open terminal in the project folder
 
 **Backend**
 
 ```bash
 cd backend
+powershell terminal
+python -m venv .venv
+.venv\Scripts\activate
+uvicorn main:app --port 8001
 
+umbrellas.db creates automatically when swager runs 
 ```
 
 **Frontend**
 
 ```bash
 cd frontend
+bash terminal
+npm install
+npm run dev
 
 ```
 
