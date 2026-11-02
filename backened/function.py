@@ -68,19 +68,37 @@ def get_event(id):
 
 
 
-def add_new_event(title: str, club: str, category: str, events_date:datetime,total_seats:int):
-    session = Session(engine)  
-    events = session.add(title=title, club=club, category=category, events_date=events_date ,total_seats=total_seats ,seats_left=total_seats)
+def add_new_event(title: str, club: str, category: str, event_date: datetime, total_seats: int):
+
+    session = Session(engine)
+
+    event = Event(
+        title=title,
+        club=club,
+        category=category,
+        event_date=event_date,
+        total_seats=total_seats,
+        seats_left=total_seats
+    )
+
+    session.add(event)
+    session.commit()
+    session.refresh(event)
 
     response = {
+        "id": event.id,
         "title": event.title,
         "club": event.club,
+        "category": event.category,
         "event_date": event.event_date,
-        "total_seats":event.total_seats
+        "total_seats": event.total_seats,
+        "seats_left": event.seats_left
     }
-    session.commit()
+
     session.close()
+
     return response
+
 
 def delete_event(event_id):
  session = Session(engine)  
@@ -93,7 +111,7 @@ def delete_event(event_id):
 
 
 def event_roll_number(event_id: int, roll_number:int):
-     session = session(engine)
+     session = session(engine) 
      event = session.get(Event, event_id)
      if not event:
          return{"error:event not found"}
@@ -114,37 +132,36 @@ def event_roll_number(event_id: int, roll_number:int):
          "registration_date" : registration.registration_date,
          "seats_left" : event.seats_left,
 }
+def student_registration(title: str, club: str, category: str, event_date: datetime, total_seats: int):
 
+    session = Session(engine)
 
-
-def student_registration(title: str, club: str, category:str, event_date: int, total_seats: int):
-    session = session(engine)
-
-event = Event(
+    event = Event(
         title=title,
         club=club,
         category=category,
         event_date=event_date,
         total_seats=total_seats,
-        seats_left=total_seats,
-     
-          )
-session.add(event)
-session.commit()
-session.refresh(event)
-response {
-    
-         "id": event.id,
+        seats_left=total_seats
+    )
+
+    session.add(event)
+    session.commit()
+    session.refresh(event)
+
+    response = {
+        "id": event.id,
         "title": event.title,
         "club": event.club,
+        "category": event.category,
         "event_date": event.event_date,
         "total_seats": event.total_seats,
-        "seats_left": event.seats_left,
+        "seats_left": event.seats_left
     }
 
+    session.close()
 
-session.close()
-return response()
+    return response
         
 
 def get_event(event_id: int):
