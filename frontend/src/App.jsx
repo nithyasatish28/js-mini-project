@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 // import Garden from "./components/GardenItem";
 import GardenList from "./components/GardenList";
-// import MyPlants from "./components/MyPlants";
-// import AddPlant from "./components/AddPlant";
+import MyPlants from "./components/MyPlants";
+import AddPlant from "./components/AddPlant";
 
 const API_URL = "http://127.0.0.1:8001";
 
@@ -32,9 +32,9 @@ useEffect(() => {
         onChange={(e) => setRollNo(e.target.value)}
       />
 
-      {/* <AddPlant API_URL={API_URL} onAdd={refreshAll} /> */}
+      <AddPlant API_URL={API_URL} onAdd={refreshAll} />
       <GardenList plants={plants} API_URL={API_URL} setPlants={setPlants}  rollNo ={rollNo} onAdopt={refreshAll}/>
-      {/* <MyPlants plants={plants} API_URL={API_URL} rollNo={rollNo} onUpdate={refreshAll} /> */}
+      <MyPlants plants={plants} API_URL={API_URL} rollNo={rollNo} onUpdate={refreshAll} />
     </div>
   );
 }
