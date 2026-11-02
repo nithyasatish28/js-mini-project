@@ -25,7 +25,8 @@
 - Maintain and update equipment service status.
 - Store equipment and booking information systematically.
 - Reduce manual effort and avoid booking conflicts.
-- 
+
+
 ## 1. Who built what
 
 Update your own row at every check-in.
