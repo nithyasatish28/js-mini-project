@@ -13,11 +13,11 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Ayushman Anand | Create backend folder, install required libraries, set up database and backend files, and create the initial API endpoints. | Created backend and frontend folders, installed required libraries, created main.py and function.py, set up the SQLite database using SQLAlchemy, created the Stations and Borrows database models, added five initial stations, created the root API endpoint, and added the GET /stations endpoint to retrieve all stations with their free slots.  | Test the GET /stations endpoint and then work on the GET /stations/{id} endpoint.|  nothing right now |
-| Day 1 | Shafreen | Create react app | working on it |  |  |
-| Day 2 | Ayushman Anand |  |  |  |  |
-| Day 2 | Shafreen |  |  |  |  |
-| Day 3 | Ayushman Anand |  |  |  |  |
-| Day 3 | Shafreen |  |  |  |  |
+| Day 1 | Shafreen | Create frontend folders, install required libraries. | Completed | Work on react app | Nothing right now |
+| Day 2 | Ayushman Anand |  Worked on Functions an dmain file | Completed | inspect the errors | Not right now |
+| Day 2 | Shafreen | Work on components and index.html files | Completed | Work on app and main file | Not right now |
+| Day 3 | Ayushman Anand | fix the errors | Completed |  | nope |
+| Day 3 | Shafreen | Fix the errors | Completed |  | Nope |
 
 ## 2. Endpoint tracker
 
@@ -25,22 +25,21 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | GET  | ✅ | ✅ | ✅ | Ayushman |
+| E2 | GET  | ✅ | ✅ | ✅ | Ayushman |
+| E3 | POST | ✅ | ✅ | ✅ | Ayushman |
+| E4 | POST | ✅ | ✅ | ✅ | Ayushman |
+| E5 | PATCH | ✅ | ✅ | ✅ | Ayushman |
+| E6 | GET | ✅ | ✅ | ✅ | Ayushman |
+| E7 | GET | ✅ | ✅ | ✅ | Ayushman |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Stations | ⬜ | ⬜ | ⬜ |  |
-| My umbrella | ⬜ | ⬜ | ⬜ |  |
-| Add a station | ⬜ | ⬜ | ⬜ |  |
-
+| Stations | ✅ | ✅ | ✅ | Shafreen |
+| My umbrella | ✅ | ✅ | ✅ | Shafreen |
+| Add a station | ✅ | ✅ | ✅ | Shafreen |
 ## 4. Blockers and help needed
 
 - 
@@ -53,6 +52,8 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
+pip install -r requirements.txt
+uvicorn main:app --reload --port 8001
 
 ```
 
@@ -60,6 +61,8 @@ cd backend
 
 ```bash
 cd frontend
+npm install
+npm run dev
 
 ```
 
