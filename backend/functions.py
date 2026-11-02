@@ -5,7 +5,7 @@ from sqlalchemy.orm import declarative_base, Session
 
 DB_PATH = "lab.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
-db = session(engine)
+db = Session(engine)
 Base = declarative_base()
 
 class Equipment(Base):
