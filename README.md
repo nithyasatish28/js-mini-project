@@ -13,10 +13,10 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | Harsita |Create a Database, | Yes | E2, E4, E6  | No |
-| Day 1 | Hemanth Singh | E1,  |  yes |  |  |
-| Day 2 | Harsita | E2, E4, E6  | Yes | Frontend | No |
-| Day 2 | Hemanth Singh | E3, E5, E7 |yes |  | No |
-| Day 3 | Harsita | Frontend |  |  |  |
+| Day 1 | Hemanth Singh | E1,  |  yes | E3, E5, E7 | WAS STUCKED BUT FIXED THE PROBLEM |
+| Day 2 | Harsita | E2, E4, E6  | Yes | Frontend | YES, SOME CHANGES STILL PENDING|
+| Day 2 | Hemanth Singh | E3, E5, E7 |yes | FRONTEND | No |
+| Day 3 | Harsita | Frontend | KIND OF | PRESENTATION | IN PARTS  |
 | Day 3 | Hemanth Singh |  |  |  |  |
 
 ## 2. Endpoint tracker
@@ -25,21 +25,21 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |Get/  |✅| ⬜ | ⬜ |Hemant|
-| E2 |  | ✅ | ⬜ | ⬜ |Harsita|
-| E3 |  | ✅ | ⬜ | ⬜ |Hemant|
-| E4 |  | ✅ | ⬜ | ⬜ |Harsita|
-| E5 |  | ✅ | ⬜ | ⬜ |Hemant|
-| E6 |  | ✅ | ⬜ | ⬜ |Harsita|
-| E7 |  | ✅ | ⬜ | ⬜ |Hemant|
+| E1 | Get/Plants  |✅| ✅ | ✅| ✅ |Hemant|
+| E2 | get/plants/{id} | ✅ | ✅| ✅ |Harsita|
+| E3 | Post/plants | ✅ | ✅| ✅ |Hemant|
+| E4 | patch/plants/{id}/adopt | ✅ | ✅| ✅|Harsita|
+| E5 | patch/plants/{id}/unadopt | ✅ |✅| ✅ |Hemant|
+| E6 | post/plants/{id}/water | ✅ | ✅| ✅ |Harsita|
+| E7 | Get/plants/need-water | ✅ | ✅| ✅ |Hemant|
 s
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Garden | ⬜ | ⬜ | ⬜ |  |
-| My plants | ⬜ | ⬜ | ⬜ |  |
-| Add a plant | ⬜ | ⬜ | ⬜ |  |
+| Garden | ✅ | ✅| ✅ | BOTH |
+| My plants | ✅ | ✅| ✅ | BOTH |
+| Add a plant |✅ | ✅| ✅| BOTH |
 
 ## 4. Blockers and help needed
 

@@ -68,7 +68,7 @@ def get_all_plants(plant_type=None):
 
         if watering is not None:
             last_watered = watering.watered_on.isoformat()
-            days = (date.today() - last_watered.date()).days
+            days = (date.today() - watering.watered_on.date()).days
             need_water = days >= plant.water_every_days
 
         result.append({
@@ -162,12 +162,12 @@ def adopt_plant(plant_id, roll_no):
    
     if plant is None:
         session.close()
-        raise HTTPException(status_code=409, detail="Plant does not exist")
+        raise HTTPException(status_code=422, detail="Plant does not exist")
         
    
     if plant.adopted_by:
         session.close()
-        raise HTTPException(status_code=409, detail="Plant is already adopted")
+        raise HTTPException(status_code=404, detail="Plant is already adopted")
 
     
     adopted_count = session.query(Plants).filter(Plants.adopted_by == clean_roll).count()
@@ -197,7 +197,7 @@ def unadopt_plant(id):
         raise HTTPException(status_code=404, detail="Plant not found")
     if not plant.adopted_by:
         session.close()
-        raise HTTPException(status_code=400, detail="Plant is not currently adopted")
+        raise HTTPException(status_code=409, detail="Plant is not currently adopted")
 
     plant.adopted_by = None
     session.commit()
@@ -225,6 +225,7 @@ def water_plant(plant_id, roll_no):
     if plant.adopted_by != clean_roll:
         session.close()
         raise HTTPException(status_code=403, detail="only the student who adopted the plant can water it")
+    # 404 = Not Found, 403 = Forbidden, 409 = Conflict, 422 = Unprocessable Entity, 400 = Bad Request, 201 = Created, 200 = OK
 
     last_watered = session.query(Waterings).filter(
         Waterings.plant_id == plant_id

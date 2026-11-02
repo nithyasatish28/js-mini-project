@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174","http://127.0.0.1:5174" ],
+    allow_origins=["http://localhost:5173","http://127.0.0.1:5173" ],
     allow_methods=["*"],
     allow_headers=["*"]
 )
@@ -35,7 +35,7 @@ def get_plant_data(type: str = None):
 
 
 # E7 - plants who needs water
-@app.get("/plants/need-water")
+@app.get("/plants/needs-water")
 def need_water():
     return function.get_need_water()
 
@@ -61,15 +61,11 @@ def unadopt_plant(id: int):
 def adopt(id: int, request: AdoptRequest):
     return function.adopt_plant(id, request.roll_no.strip())
 
-@app.patch("/plants/{id}/{roll_no}")
-def adopt_plant_path(id: int, roll_no: str):
- return function.adopt_plant(id, roll_no.strip())
-
 
 # E6 - watered plant.
 @app.post("/plants/{id}/water")
 def water_plant(id: int, req: WaterRequest = None, roll_no: str = None):
- actual_roll = req.roll_no if req else roll_no
- if not actual_roll:
-    raise HTTPException(status_code=422, detail="roll_no is required")
- return function.water_plant(id, actual_roll.strip())
+    actual_roll = req.roll_no if req else roll_no
+    if not actual_roll:
+        raise HTTPException(status_code=422, detail="roll_no is required")
+    return function.water_plant(id, actual_roll.strip())
