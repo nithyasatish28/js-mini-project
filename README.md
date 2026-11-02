@@ -25,21 +25,21 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 |  | ⬜ | ⬜ | ⬜ |  |
-| E2 |  | ⬜ | ⬜ | ⬜ |  |
-| E3 |  | ⬜ | ⬜ | ⬜ |  |
-| E4 |  | ⬜ | ⬜ | ⬜ |  |
-| E5 |  | ⬜ | ⬜ | ⬜ |  |
-| E6 |  | ⬜ | ⬜ | ⬜ |  |
-| E7 |  | ⬜ | ⬜ | ⬜ |  |
+| E1 | `GET /complaints` | ✅ | ✅ | ✅ |  |
+| E2 | `GET /complaints/{complaint_id}` | ✅ | ✅ | ✅ |  |
+| E3 | `POST /complaints` | ✅ | ✅ | ✅ |  |
+| E4 | `PUT /complaints/{complaint_id}` | ✅ | ✅ | ✅ |  |
+| E5 | `DELETE /complaints/{complaint_id}` | ✅ | ✅ | ✅ |  |
+| E6 | `GET /complaints/status/{status}` | ✅ | ✅ | ✅ |  |
+| E7 | `PATCH /complaints/{complaint_id}/resolve` | ✅ | ✅ | ✅ |  |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Warden | ⬜ | ⬜ | ⬜ |  |
-| My complaints | ⬜ | ⬜ | ⬜ |  |
-| Raise a complaint | ⬜ | ⬜ | ⬜ |  |
+| Warden dashboard and complaint management | ✅ | ✅ | ✅ |  |
+| My complaints (roll number search) | ✅ | ✅ | ✅ |  |
+| Raise a complaint | ✅ | ✅ | ✅ |  |
 
 ## 4. Blockers and help needed
 
@@ -53,15 +53,18 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
-
+npm start
 ```
 
 **Frontend**
 
 ```bash
 cd frontend
-
+npm install
+npm run dev
 ```
+
+The Node API uses the existing `backend/complaints.db`. To run the FastAPI implementation instead, run `python -m pip install -r requirements.txt` and then `python -m uvicorn main:app --reload --host 127.0.0.1 --port 8000` from the backend folder.
 
 ## 6. Proof of work
 

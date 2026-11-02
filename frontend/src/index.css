@@ -753,6 +753,10 @@ button {
   vertical-align: middle;
 }
 
+.complaint-table .row-actions {
+  white-space: nowrap;
+}
+
 .table-primary {
   display: block;
   max-width: 250px;
@@ -1117,57 +1121,7 @@ textarea.form-control {
   }
 }
 
-.item-board {
-  margin-top: 21px;
-}
-
-.item-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
-  padding: 16px;
-}
-
-.item-card {
-  min-width: 0;
-  padding: 16px;
-  border: 1px solid #edf0e9;
-  border-radius: 12px;
-  background: #fcfdfb;
-}
-
-.item-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.item-category {
-  color: #82916f;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.item-card h3 {
-  margin: 15px 0 7px;
-  color: #303a31;
-  font-family: 'Manrope', sans-serif;
-  font-size: 15px;
-}
-
-.item-description {
-  min-height: 36px;
-  margin: 0;
-  color: #7c857a;
-  font-size: 10px;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
-}
-
-.item-meta {
+.complaint-details {
   display: grid;
   gap: 8px;
   margin-top: 14px;
@@ -1178,15 +1132,46 @@ textarea.form-control {
   overflow-wrap: anywhere;
 }
 
-.item-meta span {
+.complaint-details span {
   display: flex;
   gap: 6px;
 }
 
-.item-meta strong {
+.complaint-details strong {
   min-width: 54px;
   color: #9aa095;
   font-weight: 600;
+}
+
+.dialog-backdrop {
+  position: fixed;
+  z-index: 9;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(26, 37, 28, 0.45);
+}
+
+.complaint-dialog {
+  width: min(520px, 100%);
+  overflow: hidden;
+  border: 1px solid #e9ece5;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 55px rgba(34, 48, 37, 0.22);
+}
+
+.complaint-dialog-content {
+  padding: 18px;
+}
+
+.complaint-dialog-content > p {
+  margin: 14px 0;
+  color: #616b60;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
 .form-control:disabled,
@@ -1229,9 +1214,5 @@ textarea.form-control {
 @media (max-width: 700px) {
   .stats {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .item-grid {
-    grid-template-columns: 1fr;
   }
 }

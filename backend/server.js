@@ -4,35 +4,50 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const port = Number(process.env.PORT || 8000);
-const databasePath = join(dirname(fileURLToPath(import.meta.url)), 'lost_found.db');
+const databasePath = join(dirname(fileURLToPath(import.meta.url)), 'complaints.db');
 const database = new DatabaseSync(databasePath);
+const statuses = ['active', 'pending', 'resolved', 'closed'];
 
 database.exec(`
-  CREATE TABLE IF NOT EXISTS items (
+  CREATE TABLE IF NOT EXISTS "Complaints" (
     id INTEGER PRIMARY KEY,
-    name VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
-    posted_at DATETIME NOT NULL,
-    location VARCHAR,
-    status VARCHAR NOT NULL,
-    contact VARCHAR NOT NULL,
-    resolved_at DATETIME
+    roll_no INTEGER,
+    room_no VARCHAR,
+    catagory VARCHAR,
+    description VARCHAR,
+    status VARCHAR,
+    created_on DATETIME,
+    resolved_on DATETIME
   )
 `);
 
 const selectAll = database.prepare(`
-  SELECT id, name, description, posted_at, location, status, contact, resolved_at
-  FROM items
-  ORDER BY posted_at DESC, id DESC
+  SELECT id, roll_no, room_no, catagory, description, status, created_on, resolved_on
+  FROM "Complaints"
+  ORDER BY created_on DESC, id DESC
 `);
 const selectOne = database.prepare(`
-  SELECT id, name, description, posted_at, location, status, contact, resolved_at
-  FROM items WHERE id = ?
+  SELECT id, roll_no, room_no, catagory, description, status, created_on, resolved_on
+  FROM "Complaints" WHERE id = ?
 `);
-const insertItem = database.prepare(`
-  INSERT INTO items (name, description, posted_at, location, status, contact, resolved_at)
-  VALUES (?, ?, ?, ?, 'active', ?, NULL)
+const selectByStatus = database.prepare(`
+  SELECT id, roll_no, room_no, catagory, description, status, created_on, resolved_on
+  FROM "Complaints" WHERE status = ?
+  ORDER BY created_on DESC, id DESC
 `);
+const insertComplaint = database.prepare(`
+  INSERT INTO "Complaints" (roll_no, room_no, catagory, description, status, created_on, resolved_on)
+  VALUES (?, ?, ?, ?, ?, ?, NULL)
+`);
+const updateComplaint = database.prepare(`
+  UPDATE "Complaints"
+  SET roll_no = ?, room_no = ?, catagory = ?, description = ?, status = ?, resolved_on = ?
+  WHERE id = ?
+`);
+const resolveComplaint = database.prepare(`
+  UPDATE "Complaints" SET status = 'resolved', resolved_on = ? WHERE id = ?
+`);
+const deleteComplaint = database.prepare('DELETE FROM "Complaints" WHERE id = ?');
 
 function sendJson(response, responseStatus, data) {
   response.writeHead(responseStatus, {
@@ -63,7 +78,7 @@ function readJson(request) {
   });
 }
 
-function validateItem(body) {
+function validateComplaint(body, partial = false) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) {
     return { errors: ['Request body must be a JSON object.'], value: {} };
   }
@@ -71,28 +86,45 @@ function validateItem(body) {
   const errors = [];
   const value = {};
 
+  if (!partial || Object.hasOwn(body, 'roll_no')) {
+    const rollNumber = Number(body.roll_no);
+    if (!Number.isSafeInteger(rollNumber) || rollNumber < 1) {
+      errors.push('roll_no must be a positive whole number.');
+    } else {
+      value.roll_no = rollNumber;
+    }
+  }
+
   for (const [field, maxLength] of [
-    ['name', 120],
+    ['room_no', 30],
+    ['catagory', 80],
     ['description', 1000],
-    ['contact', 200],
-    ['location', 200],
+    ['status', 30],
   ]) {
-    const rawValue = body[field];
-    const fieldValue = rawValue == null ? '' : String(rawValue).trim();
-    if (field !== 'location' && !fieldValue) {
-      errors.push(`${field} is required.`);
+    if (partial && !Object.hasOwn(body, field)) continue;
+    const fieldValue = body[field] == null ? '' : String(body[field]).trim();
+    if (field === 'status' && !fieldValue && !partial) {
+      value.status = 'active';
+      continue;
+    }
+    if (field === 'room_no' && !fieldValue) {
+      errors.push('room_no is required.');
+    } else if (field === 'status' && !statuses.includes(fieldValue.toLowerCase())) {
+      errors.push(`status must be one of: ${statuses.join(', ')}.`);
     } else if (fieldValue.length > maxLength) {
       errors.push(`${field} must be ${maxLength} characters or fewer.`);
     } else {
-      value[field] = fieldValue || null;
+      value[field] = field === 'status'
+        ? fieldValue.toLowerCase()
+        : fieldValue || null;
     }
   }
 
   return { errors, value };
 }
 
-function itemPath(pathname) {
-  const match = pathname.match(/^\/(?:api\/)?items(?:\/(\d+))?\/?$/);
+function complaintPath(pathname) {
+  const match = pathname.match(/^\/(?:api\/)?complaints(?:\/(\d+))?\/?$/);
   if (!match) return null;
   return match[1] ? Number(match[1]) : 0;
 }
@@ -104,44 +136,109 @@ const server = createServer(async (request, response) => {
     return sendJson(response, 200, { status: 'ok' });
   }
 
-  const itemId = itemPath(pathname);
-  if (itemId === null) {
+  const statusMatch = pathname.match(/^\/(?:api\/)?complaints\/status\/([^/]+)\/?$/);
+  const resolveMatch = pathname.match(/^\/(?:api\/)?complaints\/(\d+)\/resolve\/?$/);
+  const complaintId = complaintPath(pathname);
+  if (complaintId === null && !statusMatch && !resolveMatch) {
     return sendJson(response, 404, { detail: 'Route not found.' });
   }
 
   try {
-    if (request.method === 'GET' && itemId === 0) {
+    if (request.method === 'GET' && statusMatch) {
+      const complaintStatus = decodeURIComponent(statusMatch[1]).toLowerCase();
+      if (!statuses.includes(complaintStatus)) {
+        return sendJson(response, 400, { detail: `Status must be one of: ${statuses.join(', ')}.` });
+      }
+      return sendJson(response, 200, selectByStatus.all(complaintStatus));
+    }
+
+    if (request.method === 'GET' && complaintId === 0) {
       return sendJson(response, 200, selectAll.all());
     }
 
-    if (request.method === 'GET' && itemId > 0) {
-      const item = selectOne.get(itemId);
-      return item
-        ? sendJson(response, 200, item)
-        : sendJson(response, 404, { detail: 'Item not found.' });
+    if (request.method === 'GET' && complaintId > 0) {
+      const complaint = selectOne.get(complaintId);
+      return complaint
+        ? sendJson(response, 200, complaint)
+        : sendJson(response, 404, { detail: 'Complaint not found.' });
     }
 
-    if (request.method === 'POST' && itemId === 0) {
+    if (request.method === 'POST' && complaintId === 0) {
       const body = await readJson(request);
-      const { errors, value } = validateItem(body);
+      const { errors, value } = validateComplaint(body);
       if (errors.length) return sendJson(response, 422, { detail: errors });
 
-      const postedAt = new Date().toISOString();
-      const result = insertItem.run(
-        value.name,
+      const result = insertComplaint.run(
+        value.roll_no,
+        value.room_no,
+        value.catagory,
         value.description,
-        postedAt,
-        value.location,
-        value.contact,
+        value.status || 'active',
+        new Date().toISOString(),
       );
+      if (['resolved', 'closed'].includes((value.status || 'active').toLowerCase())) {
+        database.prepare('UPDATE "Complaints" SET resolved_on = ? WHERE id = ?')
+          .run(new Date().toISOString(), Number(result.lastInsertRowid));
+      }
       return sendJson(response, 201, selectOne.get(Number(result.lastInsertRowid)));
     }
 
-    response.setHeader('Allow', itemId === 0 ? 'GET, POST' : 'GET');
+    if (request.method === 'PUT' && complaintId > 0) {
+      const existing = selectOne.get(complaintId);
+      if (!existing) return sendJson(response, 404, { detail: 'Complaint not found.' });
+
+      const body = await readJson(request);
+      const { errors, value } = validateComplaint(body, true);
+      if (errors.length) return sendJson(response, 422, { detail: errors });
+      if (!Object.keys(value).length) {
+        return sendJson(response, 400, { detail: 'Provide at least one field to update.' });
+      }
+
+      const updated = { ...existing, ...value };
+      if (Object.hasOwn(value, 'status')) {
+        updated.resolved_on = ['resolved', 'closed'].includes(updated.status.toLowerCase())
+          ? updated.resolved_on || new Date().toISOString()
+          : null;
+      }
+      updateComplaint.run(
+        updated.roll_no,
+        updated.room_no,
+        updated.catagory,
+        updated.description,
+        updated.status,
+        updated.resolved_on,
+        complaintId,
+      );
+      return sendJson(response, 200, selectOne.get(complaintId));
+    }
+
+    if (request.method === 'DELETE' && complaintId > 0) {
+      const result = deleteComplaint.run(complaintId);
+      return result.changes
+        ? sendJson(response, 200, { message: 'Complaint deleted successfully' })
+        : sendJson(response, 404, { detail: 'Complaint not found.' });
+    }
+
+    if (request.method === 'PATCH' && resolveMatch) {
+      const resolvedId = Number(resolveMatch[1]);
+      if (!selectOne.get(resolvedId)) {
+        return sendJson(response, 404, { detail: 'Complaint not found.' });
+      }
+      resolveComplaint.run(new Date().toISOString(), resolvedId);
+      return sendJson(response, 200, selectOne.get(resolvedId));
+    }
+
+    if (statusMatch) {
+      response.setHeader('Allow', 'GET');
+    } else if (resolveMatch) {
+      response.setHeader('Allow', 'PATCH');
+    } else {
+      response.setHeader('Allow', complaintId === 0 ? 'GET, POST' : 'GET, PUT, DELETE');
+    }
     return sendJson(response, 405, { detail: 'Method not allowed.' });
   } catch (error) {
     const responseStatus = error.message === 'Request body must be valid JSON.' ? 400 : 500;
-    if (responseStatus === 500) console.error('Lost and Found API error:', error);
+    if (responseStatus === 500) console.error('Complaint API error:', error);
     return sendJson(response, responseStatus, {
       detail: error.message || 'Internal server error.',
     });
@@ -149,7 +246,7 @@ const server = createServer(async (request, response) => {
 });
 
 server.listen(port, '127.0.0.1', () => {
-  console.log(`Lost and Found API listening at http://127.0.0.1:${port}`);
+  console.log(`Hostel Complaint Tracker API listening at http://127.0.0.1:${port}`);
   console.log(`Using database: ${databasePath}`);
 });
 
