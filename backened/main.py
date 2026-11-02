@@ -14,7 +14,7 @@ def get_all_events(category=None):
 
 @app.get ("/events/{event_id}")
 def get_event(event_id:int):
-    return function.get_event(id=event_id) 
+    return function.get_event(event_id=event_id) 
 
 
 @app.post("/events")
@@ -34,7 +34,7 @@ def event_roll_number(event_id:int , roll_number:int):
 @app.get("/events")
 def create_event(title: str, club: str, category: str, event_date: datetime, total_seats: int):
     return function.create_event(
-        title =title,
+        title =title,                                                                                                                                                                                                                               
         club =club,
         category=category,
         event_date=event_date,

@@ -121,8 +121,8 @@ def event_roll_number(event_id: int, roll_number:int):
          return{"error:The seats are full"}
 
      registration = Registration(
-                event_id = event_id,
-                roll_number = roll_number,
+                event_id=event_id,
+                roll_number=roll_number,
                 registration_date = date.today()
             )
 
