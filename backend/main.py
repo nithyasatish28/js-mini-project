@@ -16,15 +16,18 @@ def get_equipment_by_type(equipment_type: str):
 
 
 @app.get("/equipment/{equipment_id}")
-def equipment_by_id(equipment_id: int):
-    if functions.get_equipment_by_id(equipment_id=equipment_id) is None:
+def get_equipment_by_id(equipment_id: int):
+    equipment = functions.get_equipment_by_id(equipment_id)
+
+    if equipment is None:
         raise HTTPException(status_code=404, detail="Equipment not found")
-    return functions.get_equipment_by_id(equipment_id=equipment_id)
+
+    return equipment
 
 
 @app.post("/equipment")
 def add_equipment(name: str, equipment_type: str, lab_room: str):
-    if not name or not lab_room or not equipment_type:
+    if not name or not equipment_type or not lab_room:
         raise HTTPException(status_code=422, detail="All fields are required")
 
     if equipment_type not in functions.equipment_types:
@@ -42,12 +45,12 @@ def update_service(equipment_id: int, in_service: int):
     if in_service not in [0, 1]:
         raise HTTPException(status_code=422, detail="Invalid service status")
 
-    result = functions.update_service(equipment_id, in_service)
+    response = functions.update_service(equipment_id, in_service)
 
-    if result is None:
+    if response is None:
         raise HTTPException(status_code=404, detail="Equipment not found")
 
-    return result
+    return response
 
 
 @app.post("/bookings")
@@ -64,27 +67,31 @@ def book_equipment(equipment_id: int, roll_no: str, booking_date: date):
             detail="Booking date cannot be more than 7 days ahead"
         )
 
-    result = functions.book_equipment(equipment_id, roll_no, booking_date)
+    response = functions.book_equipment(
+        equipment_id,
+        roll_no,
+        booking_date
+    )
 
-    if result is None:
+    if response is None:
         raise HTTPException(status_code=404, detail="Equipment not found")
 
-    if result == "out_of_service":
+    if response == "out_of_service":
         raise HTTPException(status_code=409, detail="Equipment is out of service")
 
-    if result == "already_booked":
+    if response == "already_booked":
         raise HTTPException(
             status_code=409,
             detail="Equipment is already booked for this date"
         )
 
-    if result == "booking_limit":
+    if response == "booking_limit":
         raise HTTPException(
             status_code=409,
             detail="Maximum 2 bookings allowed per day"
         )
 
-    return result
+    return response
 
 
 @app.get("/students/{roll_no}/bookings")
@@ -92,7 +99,7 @@ def student_bookings(roll_no: str):
     if not roll_no:
         raise HTTPException(status_code=422, detail="Roll number is required")
 
-    return functions.get_student_bookings(roll_no=roll_no)
+    return functions.get_student_bookings(roll_no)
 
 
 @app.patch("/bookings/{booking_id}/cancel")
