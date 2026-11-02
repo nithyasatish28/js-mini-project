@@ -15,13 +15,9 @@ function AddPlant({ API_URL, onAdd }) {
     // 3. Send the POST request (no body, no headers needed)
     const res = await fetch(url, { method: "POST" });
 
-    if (res.ok) {
-      onAdd();       // Tell parent to refresh the list
-      form.reset();  // Clear the form inputs
-    } else {
-      alert("Failed to add plant. Check console for details.");
-    }
-  }
+    await fetch(url, { method: "POST" });
+    onAdd();       // Tell parent to refresh the list
+    form.reset(); 
 
   return (
     <div>
