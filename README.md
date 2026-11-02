@@ -12,11 +12,11 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Sanika B Raj |design endpoints and then plan database structure  | completed |  |  |
-| Day 1 | Blessy Krupa S |  |  |  |  |
-| Day 2 | Sanika B Raj |function.py and main.py in backend  | completed |  |  |
+| Day 1 | Sanika B Raj |design endpoints and then plan database structure  | completed |functions.py  |no  |
+| Day 1 | Blessy Krupa S |  |  |  | 
+| Day 2 | Sanika B Raj |function.py and main.py in backend  | completed | test all the rules |no  |
 | Day 2 | Blessy Krupa S |  |  |  |  |
-| Day 3 | Sanika B Raj |backend  | completed | frontend completed |app not working  |
+| Day 3 | Sanika B Raj |backend  | completed | frontend completed |app not working |
 | Day 3 | Blessy Krupa S |  |  |  |  |
 
 ## 2. Endpoint tracker
