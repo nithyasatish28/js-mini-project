@@ -12,10 +12,10 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | shahibha| understand project requirements ,design API end points , plan sqlite database structure | Yes | Write main.py | no |
-| Day 1 | madiha |Setup backend folder  | yes | creating functions | No |
-| Day 2 | shahibha | main.py endpoints with all rules | yes | Test all rules in /docs |No  |
-| Day 2 | madiha |Setup frontend folder  |No  | writing code for frontend |No  |
+| Day 1 | shahibha| E1,E2,E3,E4 | Yes | Write main.py ,function.py | no |
+| Day 1 | madiha |E5,E6,E7  | yes | Write main.py ,function.py | No |
+| Day 2 | shahibha |check if it working   | no | Test all rules in /docs |yes  |
+| Day 2 | madiha |Setup frontend folder  | yes  | writing code for frontend |No  |
 | Day 3 | shahibha | Writing code for components folder and Final checks|Yes  | Demo | No |
 | Day 3 | madiha |final checks |Yes  |Demo  | No |
 
