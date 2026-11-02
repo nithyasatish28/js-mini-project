@@ -99,7 +99,7 @@ function Complaints({ API_URL, refresh, onAction }) {
                   <ul>
                     {updates.map((update) => (
                       <li key={update.id}>
-                        Status updated to <strong>{update.status}</strong> {update.note}
+                        Status updated to <strong>{update.status}</strong>{update.note && ` - ${update.note}`}
                       </li>
                     ))}
                   </ul>

@@ -8,10 +8,23 @@
 
 ## Problem Statement
 
-Campus hostel management requires a transparent and efficient way to track and resolve student issues. This project builds a full-stack **Hostel Complaint Tracker** using a **FastAPI + SQLite** backend and a **React (Vite)** frontend:
-- **Students** can raise a complaint for their room across 5 standard categories (`electrical`, `plumbing`, `furniture`, `cleaning`, `internet`) using their roll number, and track the progress of their complaints and update notes.
-- **The Hostel Warden** manages all complaints on a dedicated dashboard: viewing status counts (`open`, `in_progress`, `resolved`), filtering by category and status, and transitioning complaints forward as work gets completed (`open` → `in_progress` → `resolved`).
-- All actions update seamlessly in the React UI without requiring manual page reloads.
+Currently, hostel complaints are handled through physical paper registers, verbal complaints, or chaotic WhatsApp groups where messages constantly get buried, ignored, or forgotten.
+
+This creates two big problems:
+
+- Students have no transparency on whether anyone is actually fixing their issue.
+- Wardens have no organized system to track pending work or filter issues by category.
+
+Our project replaces that chaos with a centralized, real-time web portal.
+
+We built a full-stack Hostel Complaint Tracker using FastAPI, SQLalchemy, and React.
+
+- Students can raise room complaints across 5 categories using their roll number and follow real-time progress.
+- Wardens get a dedicated dashboard with live status counts, multi-category filters, and a structured lifecycle transition: open 
+→
+→ in_progress 
+→
+→ resolved.
 
 ---
 
@@ -23,9 +36,10 @@ Campus hostel management requires a transparent and efficient way to track and r
   - `create_complaint`: Inserts a new complaint into the database.
   - `delete_complaint`: Deletes an open complaint and its associated history logs.
   - `get_complaint_status_counts`: Aggregates and returns complaint counts grouped by status.
-- **Frontend Components:**
+- **Frontend Components and Layout:**
   - `RaiseComplaint.jsx`: Form for students to submit a complaint with category buttons and validation.
-  - `Warden.jsx`: Warden dashboard with real-time status counts, status/category filter buttons, and complaint status updates.
+   `Warden.jsx`: Warden control panel displaying dynamic status counters, multi-criteria filter controls, note inputs, and status advancement actions.
+  - `main.jsx`: Application entry point that mounts the root <App /> component into the HTML
 
 ### Naman Choudhary
 - **Backend Models:** Created the `complaints` table (`class complaints(Base)`).
@@ -34,11 +48,9 @@ Campus hostel management requires a transparent and efficient way to track and r
   - `get_one_complaint`: Retrieves a single complaint along with its complete update history.
   - `update_complaint_status`: Advances complaint status and logs the transition in the updates table.
   - `get_students_complaints_byrollno`: Retrieves all complaints associated with a specific roll number.
-- **Frontend Components & Layout:**
-  - `App.jsx`: Master layout, state coordination, and refresh communication between components.
+- **Frontend Components:**
   - `Complaints.jsx`: "My Complaints" component with roll number lookup, accordion details view, and delete capability.
-  - `index.css`: Page styling, responsive layout, button styling, and badge classes.
-
+  - `App.jsx`:State coordination, and refresh communication between components.
 ---
 
 ## 1. Who is doing what (Progress Report)
@@ -52,7 +64,29 @@ Campus hostel management requires a transparent and efficient way to track and r
 | Day 3 | Melvin Jacob | Refined `Warden.jsx` filters and `RaiseComplaint.jsx` form inputs; verified end-to-end status transitions and counts | ✅ Yes | Final demo prep and testing | None |
 | Day 3 | Naman Choudhary | Polished `Complaints.jsx` list display, accordion updates view, and delete functionality; verified responsive layout | ✅ Yes | Final demo prep and testing | None |
 
+
 ---
+
+
+js-mini-project/
+├── backend/
+│   ├── main.py                     # FastAPI application endpoints and CORS configuration
+│   ├── functions.py                # SQLAlchemy ORM models, session logic, and DB operations
+│   └── hostel_complaint_tracker.db # SQLite relational database file
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── RaiseComplaint.jsx  # Student complaint submission form component
+│   │   │   ├── Complaints.jsx      # Student lookup, accordion history, and cancellation
+│   │   │   └── Warden.jsx          # Warden dashboard, metric counters, and status management
+│   │   ├── App.jsx                 # Application root coordinating shared refresh state
+│   │   ├── main.jsx                # DOM mounting point
+│   │   └── index.css               # Global responsive styling and UI layout rules
+│   ├── index.html                  # HTML entry point
+│   ├── package.json                # Frontend package configuration and scripts
+│   └── vite.config.js              # Vite build tool configuration
+└── README.md                       # Project documentation
+
 
 ## 2. Endpoint tracker
 

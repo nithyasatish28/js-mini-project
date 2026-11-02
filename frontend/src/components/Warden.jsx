@@ -5,6 +5,7 @@ function Warden({ API_URL, refresh, onAction }) {
   const [counts, setCounts] = useState({ open: 0, in_progress: 0, resolved: 0 });
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [notes, setNotes] = useState({});
 
   function fetchCounts() {
     fetch(`${API_URL}/complaints/stats/counts`)
@@ -37,16 +38,31 @@ function Warden({ API_URL, refresh, onAction }) {
     fetchComplaints();
   }, [refresh, selectedStatus, selectedCategory]);
 
+  function handleNoteChange(id, value) {
+    let updatedNotes = { ...notes };
+    updatedNotes[id] = value;
+    setNotes(updatedNotes);
+  }
+
   function changeStatus(id, currentStatus) {
     let nextStatus = "resolved";
     if (currentStatus === "open") {
       nextStatus = "in_progress";
     }
 
-    fetch(`${API_URL}/complaints/${id}?new_status=${nextStatus}`, {
+    let note = notes[id] || "";
+    let url = `${API_URL}/complaints/${id}?new_status=${nextStatus}`;
+    if (note) {
+      url = `${API_URL}/complaints/${id}?new_status=${nextStatus}&note=${encodeURIComponent(note)}`;
+    }
+
+    fetch(url, {
       method: "PATCH"
     })
       .then(() => {
+        let updatedNotes = { ...notes };
+        delete updatedNotes[id];
+        setNotes(updatedNotes);
         fetchCounts();
         fetchComplaints();
         onAction();
@@ -94,12 +110,20 @@ function Warden({ API_URL, refresh, onAction }) {
               <div>
                 <strong>Room {complaint.room_no}</strong> · Category: {complaint.category} · Roll No: {complaint.roll_no} · Status: {complaint.status}
               </div>
-
-              {complaint.status !== "resolved" && (
-                <button type="button" onClick={() => changeStatus(complaint.id, complaint.status)}> Move to next status </button>
-              )}
             </div>
             <p><strong>Description:</strong> {complaint.description}</p>
+
+            {complaint.status !== "resolved" && (
+              <div className="action-row">
+                <input
+                  type="text"
+                  placeholder="Add a note (optional)"
+                  value={notes[complaint.id] || ""}
+                  onChange={(event) => handleNoteChange(complaint.id, event.target.value)}
+                />
+                <button type="button" onClick={() => changeStatus(complaint.id, complaint.status)}> Move to next status </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
