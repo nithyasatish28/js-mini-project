@@ -38,7 +38,8 @@ We built a full-stack Hostel Complaint Tracker using FastAPI, SQLalchemy, and Re
   - `get_complaint_status_counts`: Aggregates and returns complaint counts grouped by status.
 - **Frontend Components and Layout:**
   - `RaiseComplaint.jsx`: Form for students to submit a complaint with category buttons and validation.
-   `Warden.jsx`: Warden control panel displaying  status , note inputs, and status advancement actions.
+  - Warden.jsx: Dashboard to view counts, filter complaints, write notes, and update statuses.
+
 
 ### Naman Choudhary
 - **Backend Models:** Created the `complaints` table (`class complaints(Base)`).
@@ -50,6 +51,7 @@ We built a full-stack Hostel Complaint Tracker using FastAPI, SQLalchemy, and Re
 - **Frontend Components:**
   - `Complaints.jsx`: "My Complaints" component with roll number lookup, accordion details view, and delete capability.
   - `App.jsx`:State coordination, and refresh communication between components.
+  -- `Warden.jsx`: Dashboard to view counts, filter complaints, write notes, and update statuses.
 ---
 
 ## 1. Who is doing what (Progress Report)
