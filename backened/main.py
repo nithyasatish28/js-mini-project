@@ -31,7 +31,7 @@ def delete_event(event_id:int):
 def event_roll_number(event_id:int , roll_number:int):
     return function.event_roll_number(event_id=event_id , roll_number=roll_number)
 
-@app.get("/events")
+@app.get("/events/{roll_number}/{title}/{date}")
 def create_event(title: str, club: str, category: str, event_date: int, total_seats: int):
     return function.create_event(
         title =title,
