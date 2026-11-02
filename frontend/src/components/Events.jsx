@@ -3,43 +3,29 @@ import { useState } from "react";
 function Events(props) {
   const [category, setCategory] = useState("All");
 
-  const filteredEvents =
-    category === "All"
-      ? props.events
-      : props.events.filter(
-    (event) => event.category.toLowerCase() === category.toLowerCase()
-  );
+  const filteredEvents = category === "All" 
+    ? props.events 
+    : props.events.filter((e) => e.category === category);
 
   return (
-    <>
-      <h2>Available Events</h2>
-
-      <label>Filter by Category: </label>
-
-      <select
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      >
+    <div>
+      <select onChange={(e) => setCategory(e.target.value)}>
         <option value="All">All</option>
-        <option value="Technical">Technical</option>
-        <option value="Cultural">Cultural</option>
-        <option value="Sports">Sports</option>
+        <option value="technical">Technical</option>
+        <option value="cultural">Cultural</option>
+        <option value="sports">Sports</option>
+        <option value="workshop">Workshop</option>
+        <option value="seminar">Seminar</option>
       </select>
 
-      {filteredEvents.map((event) => (
-        <div key={event.id}>
-          <h3>{event.title}</h3>
-          <p>Club: {event.club}</p>
-          <p>Category: {event.category}</p>
-          <p>Date: {event.event_date}</p>
-          <p>Available Seats: {event.seats_left}</p>
-
-          <button onClick={() => props.onRegister(event.id)}>
-            Register
-          </button>
+      {filteredEvents.map((e) => (
+        <div key={e.id} style={{ border: "1px solid #ccc", margin: "5px", padding: "5px" }}>
+          <h3>{e.title}</h3>
+          <p>{e.club} | {e.category} | {e.event_date} | Seats: {e.seats_left}</p>
+          <button onClick={() => props.onDelete(e.id)}>Delete</button>
         </div>
       ))}
-    </>
+    </div>
   );
 }
 
