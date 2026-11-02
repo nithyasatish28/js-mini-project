@@ -6,7 +6,27 @@
 
 **Every 3 hours:** update this file, then commit and push it with the message `Check-in Day 1 12:00` (your day and time). Your instructor reads this page on GitHub.
 
-## 1. Who is doing what
+## Problem Statement
+
+- Managing laboratory equipment manually can be challenging in educational institutions. Students often face difficulties identifying available equipment, checking its service status, and booking the required equipment. Manual booking processes can lead to scheduling conflicts, double bookings, poor tracking of equipment usage, and unnecessary delays.
+
+- The **Lab Equipment Booking System** aims to simplify and digitize this process through a centralized web-based application. It allows students to view available laboratory equipment, check its details and service status, book equipment for a specific date using their roll number, and cancel existing bookings.
+
+- The system also provides lab assistants with the ability to add new equipment and update the service status of existing equipment. By maintaining equipment and booking records in a database, the application improves accessibility, organization, and transparency in laboratory resource management.
+
+
+
+### Project Objectives
+
+- Provide a centralized platform to view laboratory equipment.
+- Allow students to book equipment using their roll numbers.
+- Enable students to view and cancel their bookings.
+- Allow lab assistants to add new equipment.
+- Maintain and update equipment service status.
+- Store equipment and booking information systematically.
+- Reduce manual effort and avoid booking conflicts.
+- 
+## 1. Who built what
 
 Update your own row at every check-in.
 
