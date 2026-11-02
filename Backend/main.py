@@ -1,3 +1,5 @@
+#before rohit sir or nithya mam see this i wanted to say i was absent for the react classes so i learnt from ai and youtube so there might be things that are noot there
+
 from datetime import date, timedelta
 
 from fastapi import FastAPI, HTTPException
