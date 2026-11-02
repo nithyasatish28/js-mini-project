@@ -1,3 +1,4 @@
+from fastapi import HTTPException
 from sqlalchemy import Integer,String, Column, create_engine, DateTime,ForeignKey
 from sqlalchemy.orm import Session, declarative_base
 from datetime import datetime , date
@@ -147,22 +148,27 @@ def student_registration(title: str, club: str, category: str, event_date: date,
     session.close()
     return response
 
-def get_event(event_id: int):
-     session = Session(engine)
- 
-     event = session.get(Event, event_id)
-     if not event:
-         session.close()
-         return {"error": "Event not found"}
- 
-     response = {
-         "id": event.id,
-         "title": event.title,
-         "club": event.club,
-         "event_date": event.event_date,
-         "seats_left": event.seats_left,
-     }
- 
-     session.close()
-     return response
-    
+def cancel_registration(registration_id: int):
+    session = Session(engine)
+    reg = session.get(Registration, registration_id)
+    if not reg:
+        session.close()
+        raise HTTPException(status_code=404, detail="Registration not found.")
+
+
+    if reg.cancelled_on is not None:
+        session.close()
+        raise HTTPException(status_code=409, detail="This registration was already cancelled.")
+
+    reg.cancelled_on = str(date.today())
+
+    # Cancelling adds 1 seat back to the event
+    event = session.get(Event, reg.event_id)
+    if event:
+        event.seats_left += 1
+        session.add(event)
+
+    session.add(reg)
+    session.commit()
+    session.close()
+    return {"message": "Registration cancelled."}
