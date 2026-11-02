@@ -60,7 +60,7 @@ def seed_events():
                 category="sports",
                 event_date="2026-11-22",
                 total_seats=40,
-                seats_left=0  # 0 seats left as required by PRD
+                seats_left=0  
             ),
             Events(
                 title="AI Seminar",
@@ -98,7 +98,7 @@ def seed_events():
                 title="Python Introduction",
                 club="Coding Club",
                 category="technical",
-                event_date="2026-10-01",  # Date has already passed as required by PRD
+                event_date="2026-10-01", 
                 total_seats=40,
                 seats_left=40
             )
@@ -277,7 +277,6 @@ def get_student_registrations(roll_no):
     return result
 
 
-# E7: CANCEL REGISTRATION
 def cancel_registration(registration_id):
     session = Session(engine)
     reg = session.get(Registrations, registration_id)
