@@ -21,15 +21,11 @@ function GardenList({ plants ,API_URL ,setPlants, onAdopt , rollNo }) {
     }
 
 
-    async function adopt(id){
-     const resp = await fetch(API_URL+"/plants/"+id+"/" + rollNo, 
+    function adopt(id){
+     fetch(API_URL+"/plants/"+id+"/" + rollNo, 
         {method: "PATCH",}) 
       .then((response) => response.json())
-      .then(() => onAdopt());
-          
-    if (resp.ok){
-         onAdopt();}
-    else alert("can not adopt");      
+      .then(() => onAdopt());      
     
     }
     
