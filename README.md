@@ -51,7 +51,6 @@ We built a full-stack Hostel Complaint Tracker using FastAPI, SQLalchemy, and Re
 - **Frontend Components:**
   - `Complaints.jsx`: "My Complaints" component with roll number lookup, accordion details view, and delete capability.
   - `App.jsx`:State coordination, and refresh communication between components.
-  -- `Warden.jsx`: Dashboard to view counts, filter complaints, write notes, and update statuses.
 ---
 
 ## 1. Who is doing what (Progress Report)
