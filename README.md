@@ -25,13 +25,13 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | # | Method + path | Built | Rules checked in /docs | Connected to React | Who |
 |---|---|---|---|---|---|
-| E1 | GET + /plant/ | ✅ | ✅ | ✅ | jashan |
-| E2 | GET +/plant/{id} | ✅ | ✅ | ✅ | jashan |
-| E3 | POST + /plants/ | ✅ | ✅ | ✅ | jashan |
-| E4 | POST + /plants/watering/ | ✅ | ✅ | ✅ | jashan |
-| E5 | PATCH + /plants/{id} | ✅ | ✅ | ✅ | jashan |
-| E6 | PAST + /watering/{plant_id} | ✅ | ✅ | ✅ | jashan |
-| E7 | GET + /plants/want_water | ✅ | ✅ | ✅ | jashan |
+| E1 | GET + /plant/ | ✅ | |  | jashan |
+| E2 | GET +/plant/{id} | ✅ |  |  | jashan |
+| E3 | POST + /plants/ | ✅ | |  | jashan |
+| E4 | POST + /plants/watering/ | ✅ |  |  | jashan |
+| E5 | PATCH + /plants/{id} | ✅ |  |  | jashan |
+| E6 | PAST + /watering/{plant_id} | ✅ | |  | jashan |
+| E7 | GET + /plants/want_water | ✅ |  | | jashan |
 
 ## 3. Frontend tracker
 
