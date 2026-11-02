@@ -6,7 +6,7 @@ app = FastAPI(
     title="event tracker API"
 )
 
-@app.get("/events")
+@app.get("/events/{category}")
 def get_all_events(category=None):
     if category == "":
         category = None
