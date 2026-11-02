@@ -34,9 +34,9 @@ Update your own row at every check-in.
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
 | Day 1 | H A Bhuvan | README.md & Frontend Part,App.jsx and Bookeqip.jsx |✅yes  |  |  |
-| Day 1 | Pavan Kumar | README & In backend part, presently creating database  |  |  |  |
+| Day 1 | Pavan Kumar | README & In backend part, presently creating database  |✅yes  |  |  |
 | Day 2 | H A Bhuvan | Working on frontend, almost done  |✅yes  ||  no|
-| Day 2 | Pavan Kumar | main.py and functions.py files are redy to push |  |  |  |
+| Day 2 | Pavan Kumar | main.py and functions.py files are redy to push |✅yes  |  |  |
 | Day 3 | H A Bhuvan | Done with all the files in frontend and react is working, frontend files: working| ✅yes |  |  |
 | Day 3 | Pavan Kumar |  |  |  |  |
 
