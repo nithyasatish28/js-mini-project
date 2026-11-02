@@ -30,7 +30,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E3 | POST + /plants/ | ✅ | |  | jashan |
 | E4 | POST + /plants/watering/ | ✅ |  |  | jashan |
 | E5 | PATCH + /plants/{id} | ✅ |  |  | jashan |
-| E6 | PAST + /watering/{plant_id} | ✅ | |  | jashan |
+| E6 | PoST + /watering/{plant_id} | ✅ | |  | jashan |
 | E7 | GET + /plants/want_water | ✅ |  | | jashan |
 
 ## 3. Frontend tracker
