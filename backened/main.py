@@ -41,7 +41,6 @@ def create_event(title: str, club: str, category: str, event_date: datetime, tot
         total_Seats=total_seats,
     )
 
-@app.patch("/events/{events_id}")
-def get_event(event_id: int):
-    return function.get_event(event_id=event_id)
-    
+@app.patch("/registrations/{registration_id}/cancel")
+def cancel_registration(registration_id: int):
+    return function.cancel_registration(registration_id=registration_id)
