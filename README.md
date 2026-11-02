@@ -23,7 +23,7 @@ Campus hostel management requires a transparent and efficient way to track and r
   - `create_complaint`: Inserts a new complaint into the database.
   - `delete_complaint`: Deletes an open complaint and its associated history logs.
   - `get_complaint_status_counts`: Aggregates and returns complaint counts grouped by status.
-- **Frontend Components:**
+- **Frontend Components and Layout:**
   - `RaiseComplaint.jsx`: Form for students to submit a complaint with category buttons and validation.
   - `Warden.jsx`: Warden dashboard with real-time status counts, status/category filter buttons, and complaint status updates.
 
@@ -34,11 +34,9 @@ Campus hostel management requires a transparent and efficient way to track and r
   - `get_one_complaint`: Retrieves a single complaint along with its complete update history.
   - `update_complaint_status`: Advances complaint status and logs the transition in the updates table.
   - `get_students_complaints_byrollno`: Retrieves all complaints associated with a specific roll number.
-- **Frontend Components & Layout:**
-  - `App.jsx`: Master layout, state coordination, and refresh communication between components.
+- **Frontend Components:**
   - `Complaints.jsx`: "My Complaints" component with roll number lookup, accordion details view, and delete capability.
-  - `index.css`: Page styling, responsive layout, button styling, and badge classes.
-
+  - `App.jsx`:State coordination, and refresh communication between components.
 ---
 
 ## 1. Who is doing what (Progress Report)
