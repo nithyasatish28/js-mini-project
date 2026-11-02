@@ -42,7 +42,7 @@ s
 | Add a plant |✅ | ✅| ✅| BOTH |
 
 ## 4. Blockers and help needed
-
+I faced a merge error in VS Code that took about 1 hour. i tried doing everything but still  could'nt solve it but finally i used AI and, finally solved the problem.
 - 
 
 ## 5. How to run our app
@@ -53,6 +53,10 @@ Fill this in by the end of Day 2. Someone who has never seen your code should be
 
 ```bash
 cd backend
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn main:app --reload
 
 ```
 
@@ -60,6 +64,9 @@ cd backend
 
 ```bash
 cd frontend
+npm install
+npm run dev
+
 
 ```
 
