@@ -14,9 +14,9 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 | Day 1 | K. Jyoshna |will start doing backend end points E1,E2,E4,E5, create datbase  tables| yes |  will start doing frontend| no |
 | Day 1 | Elluri Thammiksha | will start doing backend end points E3,E6,E7,create database | yes | working on next step  | no |
-| Day 2 | K. Jyoshna | start working in frontend |  |  |  |
+| Day 2 | K. Jyoshna | start working in frontend | yes |will connect frontend and backend  | no |
 | Day 2 | Elluri Thammiksha |working on frontend  | yes   | checking or updating | no |
-| Day 3 | K. Jyoshna |  |  |  |  |
+| Day 3 | K. Jyoshna |connected frontend and backend   | yes |check everything is working perfectly or not   | no |
 | Day 3 | Elluri Thammiksha |  |  |  |  |
 
 ## 2. Endpoint tracker
