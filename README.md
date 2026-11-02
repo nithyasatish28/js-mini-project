@@ -12,12 +12,12 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Yashwant Gowda | Database setup & endpoints E1-E4 | ✅ Yes | Rule checks in /docs | None |
-| Day 1 | S Mohammed Abrar ul Haq | Endpoints E5-E7 & SQLite tables | ✅ Yes | Rules validation & pytest | None |
-| Day 2 | Yashwant Gowda | React UI components (Events, Cards, Filter) | ✅ Yes | Registration & cancel wiring | None |
-| Day 2 | S Mohammed Abrar ul Haq | My Registrations, Add Event & on-page errors | ✅ Yes | End-to-end integration & styling | None |
-| Day 3 | Yashwant Gowda | Testing, README documentation, demo rehearsal | ✅ Yes | Project submission | None |
-| Day 3 | S Mohammed Abrar ul Haq | Code walkthrough preparation & live demo | ✅ Yes | Project submission | None |
+| Day 1 | Yashwant Gowda | created framework | yes | handleing backend  |  |
+| Day 1 | S Mohammed Abrar ul Haq | will handle the database | yes | preparing sample data to test api |  |
+| Day 2 | Yashwant Gowda | handleing backend  | yes | testing api |  |
+| Day 2 | S Mohammed Abrar ul Haq | frontend components & styling | yes | integration & verification |  |
+| Day 3 | Yashwant Gowda | testing api & frontend connection | yes | final demo preparation |  |
+| Day 3 | S Mohammed Abrar ul Haq | code review & demo walkthrough | yes | final demo |  |
 
 ## 2. Endpoint tracker
 
@@ -43,7 +43,7 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 ## 4. Blockers and help needed
 
-- None. All 7 API endpoints, all validation rules, and all 3 frontend parts are fully implemented and passing.
+- None. All 7 API endpoints, database rules, and frontend components are functioning properly.
 
 ## 5. How to run our app
 
