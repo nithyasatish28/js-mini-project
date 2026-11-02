@@ -37,9 +37,9 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Garden | ✅  | ✅  | ⬜ |  |
-| My plants | ✅ | ✅ | ⬜ |  |
-| Add a plant | ✅ | ✅ | ⬜ |  |
+| Garden | ✅  | ✅  | ✅ | Amruta |
+| My plants | ✅ | ✅ | ✅ | Toshimah |
+| Add a plant | ✅ | ✅ | ✅ | Toshimah |
 
 ## 4. Blockers and help needed
 
@@ -67,7 +67,6 @@ cd frontend
 
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
 
-![Our app](<img width="1315" height="910" alt="image" src="https://github.com/user-attachments/assets/8335f0e6-61fb-4d12-ab8b-652b4ebbf24d" />
-<img width="1085" height="835" alt="image" src="https://github.com/user-attachments/assets/7aec505b-5975-45f1-979d-fe51f384dd50" />
-
+![Our app](<img width="1085" height="835" alt="image" src="https://github.com/user-attachments/assets/7aec505b-5975-45f1-979d-fe51f384dd50" />
+<img width="1315" height="910" alt="image" src="https://github.com/user-attachments/assets/8335f0e6-61fb-4d12-ab8b-652b4ebbf24d" />
 )
