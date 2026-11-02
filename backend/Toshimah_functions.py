@@ -80,12 +80,16 @@ def add_plant(name, type, location, water_every_days):
     session.close()
     return response
 
-def unadopt_plant(id):
+def unadopt_plant(id,roll_no):
     session = Session(engine)
     plant = session.get(plants, id)
     if not plant:
         session.close()
         raise HTTPException(status_code=404, detail="Plant not found")
+    
+    if plant.adopted_by != roll_no:
+        session.close()
+        raise HTTPException(status_code=409, detail="You can only unadopt plants that you have adopted.")
 
     plant.adopted_by = None
     session.commit()
