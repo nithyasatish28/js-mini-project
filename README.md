@@ -67,4 +67,5 @@ cd frontend
 
 Save a screenshot of `/docs` or your app as `screenshot.png` in this branch. It shows here:
 
-![Our app](screenshot.png)
+<img width="1600" height="1040" alt="Our app" src="https://github.com/user-attachments/assets/79313101-6272-445a-a4af-0aee3d4e67f5" />
+
