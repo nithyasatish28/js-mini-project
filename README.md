@@ -37,9 +37,9 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Warden | ✅ | ✅ | ⬜ |  |
-| My complaints | ✅ | ✅ | ⬜ |  |
-| Raise a complaint | ✅ | ✅ | ⬜ |  |
+| Warden | ✅ | ✅ | ✅ | Data and buttons by Aiman, API errors by Sam |
+| My complaints | ✅ | ✅ | ✅ | Data and buttons by Aiman, API errors by Sam |
+| Raise a complaint | ✅ | ✅ | ✅ | Data and buttons by Aiman, API errors by Sam |
 
 ## 4. Blockers and help needed
 
