@@ -1,11 +1,11 @@
 from datetime import datetime
 from datetime import date
 from sqlalchemy import Column, DateTime,Date, Integer, ForeignKey, String, create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.orm import declarative_base, Session
 
 DB_PATH = "lab.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
-SessionLocal = sessionmaker(bind=engine)
+db = session(engine)
 Base = declarative_base()
 
 class Equipment(Base):
