@@ -1,17 +1,26 @@
-function StationItem({ station, onAdd }) {
+function StationItem({ station, onBorrow, onDetails }) {
+    let emptyLabel = "";
+    let fullLabel = "";  
+    if (station.umbrellas_available === 0){
+    emptyLabel = "Empty";}
+    else{
+    emptyLabel = "";
+  }
+    if (station.free_slots === 0) {
+    fullLabel = "Full";}
+    else {
+    fullLabel = "";
+  }
   return (
-    <li className="station">
-      <h2>{station.name}</h2>
-      <p>{station.location}</p>
-      <p>Capacity: {station.capacity}</p>
-      <p>Umbrellas available: {station.umbrellas_available}</p>
-      <p>Free slots: {station.free_slots}</p>
-
-      {station.umbrellas_available > 0 ? (
-        <button onClick={() => onAdd(station.id)}>Borrow</button>
-      ) : (
-        <p>No umbrellas available</p>
-      )}
+    <li>
+      <h3>name: {station.name}</h3>
+      <p>Location: {station.location}</p>
+      <p>Avilability: {station.umbrellas_available}</p>
+      <p>free_slots: {station.free_slots}</p>
+      <p>{emptyLabel}</p>
+      <p>{fullLabel}</p>
+      <button onClick={() => onBorrow(station.id)}>Borrow</button>
+      <button onClick={() => onDetails(station.id)}>Details</button>
     </li>
   );
 }
