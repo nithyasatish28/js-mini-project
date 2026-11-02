@@ -10,14 +10,14 @@
 
 In college hostels, issue reporting is usually handled manually through physical paper registers or verbal complaints. This leads to three major problems:
 
-Zero transparency for students: Students never know if their issue is actually being worked on.
-No centralized tracking for wardens: Wardens lack a high-level view of how many issues are pending, in-progress, or resolved.
-Lost or repeated complaints: Without audit logs, unresolved issues get neglected.
+- Zero transparency for students: Students never know if their issue is actually being worked on.
+- No centralized tracking for wardens: Wardens lack a high-level view of how many issues are pending, in-progress, or resolved.
+- Lost or repeated complaints: Without audit logs, unresolved issues get neglected.
 
 Our Solution: We built a full-stack Hostel Complaint Tracker using FastAPI, SQLalchemy, and React.
 
-Students can raise room complaints across 5 categories using their roll number and follow real-time progress notes.
-Wardens get a dedicated dashboard with live status counts, multi-category filters, and a structured lifecycle transition: open 
+- Students can raise room complaints across 5 categories using their roll number and follow real-time progress notes.
+- Wardens get a dedicated dashboard with live status counts, multi-category filters, and a structured lifecycle transition: open 
 →
 → in_progress 
 →
