@@ -37,9 +37,9 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Events | ✅ | ✅ | ✅ |Thanuja  |
-| My events | ✅ | ✅ | ✅ | Supriya |
-| Add an event | ✅ | ✅ | ✅ |  Supriya,Thanuja|
+| Events | ✅ | ✅ | ⬜ |Thanuja  |
+| My events | ✅ | ✅ | ⬜ | Supriya |
+| Add an event | ✅ | ✅ | ⬜ |  Supriya,Thanuja|
 
 ## 4. Blockers and help needed
 
