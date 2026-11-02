@@ -14,11 +14,11 @@ def get_all_events(category=None):
 
 @app.get ("/events/{event_id}")
 def get_event(event_id:int):
-    return function.get_event(id=event_id) 
+    return function.get_event(event_id=event_id) 
 
 
 @app.post("/events")
-def create_new_event(title: str, club: str, category: str, event_date:str,total_seats:int, seats_left:int):
+def create_new_event(title: str, club: str, category: str, event_date:datetime,total_seats:int, seats_left:int):
     if total_seats <=0:
         raise HTTPException(status_code=422,detail="Inavid no of seats" )
     return function.add_new_event(title=title, club=club, category=category, event_date=event_date ,total_seats=total_seats ,seats_left=seats_left)
@@ -31,10 +31,10 @@ def delete_event(event_id:int):
 def event_roll_number(event_id:int , roll_number:int):
     return function.event_roll_number(event_id=event_id , roll_number=roll_number)
 
-@app.get("/events/{roll_number}/{title}/{date}")
-def create_event(title: str, club: str, category: str, event_date: int, total_seats: int):
+@app.get("/events")
+def create_event(title: str, club: str, category: str, event_date: datetime, total_seats: int):
     return function.create_event(
-        title =title,
+        title =title,                                                                                                                                                                                                                               
         club =club,
         category=category,
         event_date=event_date,
@@ -43,4 +43,4 @@ def create_event(title: str, club: str, category: str, event_date: int, total_se
 
 @app.patch("/registrations/{registration_id}/cancel")
 def cancel_registration(registration_id: int):
-    return function.cancel_registration(registration_id=registration_id)while
+    return function.cancel_registration(registration_id=registration_id)
