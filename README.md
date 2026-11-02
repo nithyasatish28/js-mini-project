@@ -14,19 +14,15 @@ Update your own row at every check-in.
 |---|---|---|---|---|---|
 <<<<<<< HEAD
 | Day 1 | Sanghavi S | Understand project requirements, design API endpoints and plan SQLite database structure. |  |  |  |
-
 | Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment. Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  | terminal to run |
-| Day 2 | Sanghavi S | Worked on backend database functions, implemented API endpoints for stations, borrowing and returning umbrellas, and added input validations. | Completed the main backend functions and API endpoints. | Test all endpoints and handle different error conditions in Swagger. | Connection errors|
-| Day 2 | Naidile D | heavy spelling mistakes i faced captital and small letters also . insted of availability i was writing station in so  many places . / ? missing in some place . more space also error i faced . missing the arrow error . ? missing not found it shows . sometimes failed to fetch the data because of wrong terminal .  | i completed frontend statiolist , stationitem , addstation, myumbrella, app.jsx |  |  |
-| Day 3 | Sanghavi S |Tested backend endpoints in Swagger  | Completed backend testing |  |  Debugging API responses and handling different validation cases.|
-| Day 3 | Naidile D |tested frontend app  |  |  |  |
 
-| Day 2 | Sanghavi S |  |  |  |  |
-| Day 2 | Naidile D |   |  |  |  |
-| Day 3 | Sanghavi S |  |  |  |  |
+| Day 2 | Sanghavi S |   Worked on backend database functions, implemented API endpoints for stations, borrowing and returning umbrellas, and added input validations. | Completed the main backend functions and API endpoints. | Test all endpoints and handle different error conditions in Swagger. | Connection errors|
+| Day 2 | Naidile D |   heavy spelling mistakes i faced captital and small letters also . insted of availability i was writing station in so  many places . / ? missing in some place . more space also error i faced . missing the arrow error . ? missing not found it shows . sometimes failed to fetch the data because of wrong terminal .  | i completed frontend statiolist , stationitem , addstation, myumbrella, app.jsx |  |  |
+
+| Day 3 | Sanghavi S |  Tested backend endpoints in Swagger  | Completed backend testing |  |  Debugging API responses and handling different validation cases.|
+| Day 3 | Naidile D |tested frontend app  | everything is not clear  |  | modifying frontend app |
 =======
-| Day 1 | Sanghavi S | Understand project requirements, design API endpoints and plan SQLite database structure. |started implementing API endpoints.|Complete backend functions and test all endpoints in Swagger.  | Understanding API parameters  |
-| Day 1 | Naidile D | created a folder and cloned data switched to team 20 , understanding probem requirment. Imports from sqlalchemy , specifing path , created core interface that connects sqlite with python db(engine) , initializing the base class(base)  |  |  | terminal to run |
+
 
 
 ## 2. Endpoint tracker
