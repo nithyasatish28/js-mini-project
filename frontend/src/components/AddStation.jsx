@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { apiRequest } from "../services/api";
 
@@ -11,7 +12,6 @@ function AddStation({ onStationAdded }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     setMessage("");
     setError(false);
 
@@ -40,13 +40,14 @@ function AddStation({ onStationAdded }) {
       });
 
       setMessage("Station added successfully!");
-
       setName("");
       setLocation("");
       setCapacity("");
       setUmbrellas("");
 
-      onStationAdded();
+      if (onStationAdded) {
+        onStationAdded();
+      }
     } catch (err) {
       setError(true);
       setMessage(err.message);
@@ -59,7 +60,6 @@ function AddStation({ onStationAdded }) {
 
       <form onSubmit={handleSubmit}>
         <label>Station Name</label>
-
         <input
           type="text"
           placeholder="Example: Hostel"
@@ -69,7 +69,6 @@ function AddStation({ onStationAdded }) {
         />
 
         <label>Location</label>
-
         <input
           type="text"
           placeholder="Example: Ground floor"
@@ -79,7 +78,6 @@ function AddStation({ onStationAdded }) {
         />
 
         <label>Station Capacity</label>
-
         <input
           type="number"
           min="1"
@@ -90,10 +88,10 @@ function AddStation({ onStationAdded }) {
         />
 
         <label>Umbrellas Available</label>
-
         <input
           type="number"
           min="0"
+          max={capacity || 30}
           value={umbrellas}
           onChange={(event) => setUmbrellas(event.target.value)}
           required
