@@ -12,11 +12,11 @@ Update your own row at every check-in.
 
 | Day | Partner | What will you do? | Completed? | What are you going to work on next? | Stuck on? |
 |---|---|---|---|---|---|
-| Day 1 | Sanika B Raj |design endpoints and then plan database structure  |  |  |  |
-| Day 1 | Blessy Krupa S |  |  |  |  |
-| Day 2 | Sanika B Raj |  |  |  |  |
+| Day 1 | Sanika B Raj |design endpoints and then plan database structure  | completed |functions.py  |no  |
+| Day 1 | Blessy Krupa S |  |  |  | 
+| Day 2 | Sanika B Raj |function.py and main.py in backend  | completed | test all the rules |no  |
 | Day 2 | Blessy Krupa S |  |  |  |  |
-| Day 3 | Sanika B Raj |  |  |  |  |
+| Day 3 | Sanika B Raj |backend  | completed | frontend completed |app not working |
 | Day 3 | Blessy Krupa S |  |  |  |  |
 
 ## 2. Endpoint tracker
@@ -28,18 +28,18 @@ Fill in the method and path from your PRD's endpoint table. Status: ✅ done · 
 | E1 |GET /api/stations | ⬜ | ⬜ | ⬜ |  |
 | E2 |GET /api/stations/{id}  | ⬜ | ⬜ | ⬜ |  |
 | E3 |POST/api/stations  | ⬜ | ⬜ | ⬜ |  |
-| E4 |POST /api/borrowings |⬜ | ⬜ | ⬜ |  |
-| E5 |PUT /api/borrowings/{id}/return  | ⬜ | ⬜ | ⬜ |  |
-| E6 |GET/api/students/{rollNumber}/borrowing | ⬜ | ⬜ | ⬜ |  |
+| E4 |POST /api/borrow |⬜ | ⬜ | ⬜ |  |
+| E5 |POST /api/return  | ⬜ | ⬜ | ⬜ |  |
+| E6 |GET/api/students/{rollNumber}/borrow | ⬜ | ⬜ | ⬜ |  |
 | E7 |GET /api/stations/attention|⬜ | ⬜ | ⬜ |  |
 
 ## 3. Frontend tracker
 
 | Part (from section 5 of your PRD) | Shows the data | Buttons work | Shows API errors | Who |
 |---|---|---|---|---|
-| Stations | ⬜ | ⬜ | ⬜ |  |
-| My umbrella | ⬜ | ⬜ | ⬜ |  |
-| Add a station | ⬜ | ⬜ | ⬜ |  |
+| Stations |  ✅| ✅| ⬜ |  |
+| My umbrella | ✅ | ✅ | ⬜ |  |
+| Add a station | ✅ | ✅ | ⬜ |  |
 
 ## 4. Blockers and help needed
 
