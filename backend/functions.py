@@ -1,6 +1,6 @@
 from sqlalchemy import Integer, String, Column, create_engine,DateTime, ForeignKey
 from sqlalchemy.orm import Session, declarative_base
-from datetime import datetime,date
+from datetime import datetime
 
 DB_PATH = "events.db"
 engine = create_engine(f"sqlite:///{DB_PATH}")
